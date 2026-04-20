@@ -23,14 +23,40 @@ const TextElement = ({
   const text =
     checkInputExists(destructedProp, localOPtions, property) || localOPtions;
   const inlineEditIds = destructedProp?.ids;
-  const hasValidInlineEditIds = Boolean(inlineEditIds?.variable?.tag);
+
+  const normalizedInlineEditIds = (() => {
+    if (!inlineEditIds || typeof inlineEditIds !== "object") {
+      return null;
+    }
+
+    if (inlineEditIds?.variable?.tag) {
+      return inlineEditIds;
+    }
+
+    const variableTag =
+      inlineEditIds?.variableTag ||
+      inlineEditIds?.variable_tag ||
+      inlineEditIds?.tag;
+
+    if (!variableTag) {
+      return null;
+    }
+
+    return {
+      ...inlineEditIds,
+      variable: {
+        ...(inlineEditIds?.variable || {}),
+        tag: variableTag,
+      },
+    };
+  })();
 
   const handleInlineEditClick = (e) => {
-    if (!hasValidInlineEditIds || typeof onInlineEditClick !== "function") {
+    if (!normalizedInlineEditIds || typeof onInlineEditClick !== "function") {
       return;
     }
 
-    onInlineEditClick(inlineEditIds, e);
+    onInlineEditClick(normalizedInlineEditIds, e);
   };
 
   return (
