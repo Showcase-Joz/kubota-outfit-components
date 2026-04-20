@@ -289,8 +289,9 @@ const WarrantyBlockWrapper = styled.div`
   }
   &.special-aPR-value--hide {
     .incentiveWrapper {
-      align-self: end;
       .aPR {
+        align-self: end;
+        margin-bottom: 0.1em;
         .text-type--aPR {
           font-size: 1.4em;
           margin-right: 0.3em;
@@ -383,11 +384,10 @@ const WarrantyBlockWrapper = styled.div`
     }
     &.special-aPR-value--hide {
       .incentiveWrapper {
-        align-self: end;
         .aPR {
           .text-type--aPR {
-            font-size: 1.4em;
-            margin-right: 0.3em;
+            font-size: 2.2em;
+            margin-right: unset;
             &::before {
               font-size: 0.41em;
             }
@@ -449,7 +449,7 @@ const WarrantyBlockWrapper = styled.div`
     &.aPR--hide {
       .incentiveWrapper {
         .incentiveBlock {
-          display: none;
+          text-align: center;
         }
       }
     }
@@ -483,11 +483,12 @@ const WarrantyBlockWrapper = styled.div`
         max-width: fit-content;
       }
     }
-    &.aPR--short {
+    &.aPR--short,
+    &.aPR--long {
       .incentiveWrapper {
         .aPR {
           .text-type--aPR {
-            font-size: 2em;
+            font-size: 1.4em;
             margin-right: 0.3em;
           }
         }
