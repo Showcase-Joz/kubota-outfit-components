@@ -502,10 +502,10 @@ const WarrantyBlock = ({
 
   return (
     <WarrantyBlockWrapper
-      className={`warrantyBlock aPR--${testAprValue === "notApplicable" ? "hide" : "show"} aPR--${
-        testAprValue !== "available" && testAprValue !== "0"
-          ? "standard-size"
-          : "large-size"
+      className={`warrantyBlock apr--${
+        testAprValue === "notApplicable" ? "hide" : "show"
+      } aPR--${testAprValue === "notApplicable" ? "hide" : "show"}  special-apr-value--${
+        testAprValue === "available" ? "show" : "hide"
       } incentivePreText--${incentivePreTextValue?.class} incentiveConnectorText--${incentiveConnectorTextValue?.class} warrantyConnectorText--${warrantyConnectorTextValue?.class}`}
     >
       <div className="incentiveWrapper">
