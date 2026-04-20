@@ -1,0 +1,42 @@
+{
+  "name": "kubota-outfit-components",
+  "version": "0.1.0",
+  "description": "Kubota-specific reusable components for Outfit template projects.",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
+    "@outfit.io/react": ">=1",
+    "html-react-parser": ">=1",
+    "react": ">=17",
+    "react-dom": ">=17"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@outfit.io/react": "^1.0.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "html-react-parser": "^1.4.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^6.0.2"
+  }
+}
