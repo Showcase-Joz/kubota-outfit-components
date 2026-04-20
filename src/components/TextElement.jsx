@@ -23,9 +23,10 @@ const TextElement = ({
   const text =
     checkInputExists(destructedProp, localOPtions, property) || localOPtions;
   const inlineEditIds = destructedProp?.ids;
+  const hasValidInlineEditIds = Boolean(inlineEditIds?.variable?.tag);
 
   const handleInlineEditClick = (e) => {
-    if (!inlineEditIds || typeof onInlineEditClick !== "function") {
+    if (!hasValidInlineEditIds || typeof onInlineEditClick !== "function") {
       return;
     }
 
