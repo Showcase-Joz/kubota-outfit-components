@@ -283,7 +283,7 @@ const WarrantyBlockWrapper = styled.div`
       display: none;
     }
   }
-  &.aPR--standard-size {
+  &.special-aPR-value--hide {
     .incentiveWrapper {
       .aPR {
         .text-type--aPR {
@@ -503,7 +503,7 @@ const WarrantyBlock = ({
   return (
     <WarrantyBlockWrapper
       className={`warrantyBlock
-      aPR--${testAprValue === "notApplicable" ? "hide" : "show"} aPR--${testAprValue !== "0" ? "long" : "short"} special-apr-value--${
+      aPR--${testAprValue === "notApplicable" ? "hide" : "show"} aPR--${testAprValue !== "0" ? "long" : "short"} special-aPR-value--${
         testAprValue === "available" ? "show" : "hide"
       } incentivePreText--${incentivePreTextValue?.class} incentiveConnectorText--${incentiveConnectorTextValue?.class} warrantyConnectorText--${warrantyConnectorTextValue?.class}`}
     >
