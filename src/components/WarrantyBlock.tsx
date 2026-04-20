@@ -138,8 +138,7 @@ const WarrantyBlockWrapper = styled.div`
     .aPR {
       // INFO aPR wrapper and content
       align-self: anchor-center;
-      .text-type--aPR,
-      .aPR--long .text-type--aPR {
+      .text-type--aPR {
         display: grid;
         font-size: 1em;
         font-family: var(
@@ -298,6 +297,16 @@ const WarrantyBlockWrapper = styled.div`
           &::after {
             display: none;
           }
+        }
+      }
+    }
+  }
+  &.aPR--long {
+    .incentiveWrapper {
+      .aPR {
+        .text-type--aPR {
+          font-size: 2em;
+          margin-right: 0.3em;
         }
       }
     }
