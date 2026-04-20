@@ -284,7 +284,23 @@ const WarrantyBlockWrapper = styled.div`
       display: none;
     }
   }
-
+  &.special-aPR-value--hide {
+    .incentiveWrapper {
+      align-self: end;
+      .aPR {
+        .text-type--aPR {
+          font-size: 1.4em;
+          margin-right: 0.3em;
+          &::before {
+            font-size: 0.41em;
+          }
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
   &.aPR--short {
     .incentiveWrapper {
       .aPR {
@@ -362,7 +378,23 @@ const WarrantyBlockWrapper = styled.div`
         }
       }
     }
-
+    &.special-aPR-value--hide {
+      .incentiveWrapper {
+        align-self: end;
+        .aPR {
+          .text-type--aPR {
+            font-size: 1.4em;
+            margin-right: 0.3em;
+            &::before {
+              font-size: 0.41em;
+            }
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
     .connectorWrapper {
       span.connector-line {
         height: min(0.9px, 0.03em);
@@ -403,7 +435,6 @@ const WarrantyBlockWrapper = styled.div`
           }
         }
       }
-
       .incentiveBlock {
         .incentiveText {
           .text-type--incentiveText {
@@ -412,23 +443,7 @@ const WarrantyBlockWrapper = styled.div`
         }
       }
     }
-    &.special-aPR-value--hide {
-      .incentiveWrapper {
-        align-self: end;
-        .aPR {
-          .text-type--aPR {
-            font-size: 1.4em;
-            margin-right: 0.3em;
-            &::before {
-              font-size: 0.41em;
-            }
-            &::after {
-              display: none;
-            }
-          }
-        }
-      }
-    }
+
     .connectorWrapper:has(.text-type--connectorLines:empty) {
       width: 95%;
     }
