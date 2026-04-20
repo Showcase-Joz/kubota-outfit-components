@@ -110,9 +110,11 @@ const WarrantyBlockWrapper = styled.div`
   container-name: warrantyWrapper;
   container-type: inline-size;
 
+  grid-area: warrantyBlock;
   display: grid;
   grid-template-rows: min-content min-content min-content;
   height: 100cqb;
+  width: 100%;
   place-content: center;
   justify-items: center;
 
@@ -440,7 +442,8 @@ const WarrantyBlock = ({
   warrantyText,
   warrantyConnectorText,
 }: WarrantyBlockProps) => {
-  const content = fallbackContent || dummyData || defaultWarrantyFallbackContent;
+  const content =
+    fallbackContent || dummyData || defaultWarrantyFallbackContent;
   const testAprValue = checkInputExists(aPR, content?.aPR?.value);
   const aprInput = aPR || content?.aPR;
 
