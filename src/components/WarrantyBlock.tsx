@@ -298,7 +298,7 @@ const WarrantyBlockWrapper = styled.div`
     display: none;
   }
 
-  @container dynamicLayout (max-aspect-ratio: 11 / 10) {
+  @container warrantyWrapper (max-aspect-ratio: 11 / 10) {
     // INFO stacked layout styles (160x600, 300x250)
     &.incentivePreText--hide .incentivePreText {
       display: none;
@@ -370,7 +370,7 @@ const WarrantyBlockWrapper = styled.div`
     }
   }
 
-  @container dynamicLayout (min-aspect-ratio: 11 / 10) and (max-aspect-ratio: 2 / 1) {
+  @container warrantyWrapper (min-aspect-ratio: 11 / 10) and (max-aspect-ratio: 2 / 1) {
     // INFO wide layout styles (300x600)
     .incentiveWrapper {
       .aPR {
@@ -416,7 +416,7 @@ const WarrantyBlockWrapper = styled.div`
     }
   }
 
-  @container dynamicLayout (min-aspect-ratio: 2 / 1) {
+  @container warrantyWrapper (min-aspect-ratio: 2 / 1) {
     // INFO extra wide layout styles (728x90)
     .incentiveWrapper {
       font-size: 0.7em;
