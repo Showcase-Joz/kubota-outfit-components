@@ -284,14 +284,18 @@ const WarrantyBlockWrapper = styled.div`
     }
   }
   &.aPR--standard-size {
-    .text-type--aPR {
-      font-size: 1.4em;
-      margin-right: 0.3em;
-      &::before {
-        font-size: 0.41em;
-      }
-      &::after {
-        display: none;
+    .incentiveWrapper {
+      .aPR {
+        .text-type--aPR {
+          font-size: 1.4em;
+          margin-right: 0.3em;
+          &::before {
+            font-size: 0.41em;
+          }
+          &::after {
+            display: none;
+          }
+        }
       }
     }
   }
