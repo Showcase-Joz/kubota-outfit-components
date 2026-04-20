@@ -1,97 +1,10 @@
 [
   {
-    "tag": "aspect_selection",
-    "type": "Variables::Choice",
-    "custom_title": "Aspect Selection",
-    "hint": "Confirmed aspect ratio of the container. These are the defined aspect ratios for the 'financing' area ONLY!!!",
-    "position": 0,
-    "definition": {
-      "choices": [
-        {
-          "label": "Digital Ad 300x600",
-          "value": "300x600"
-        },
-        {
-          "label": "Digital Ad 300x250",
-          "value": "300x250"
-        },
-        {
-          "label": "Digital Ad 160x600",
-          "value": "160x600"
-        },
-        {
-          "label": "Digital Ad 728x90",
-          "value": "728x90"
-        },
-        {
-          "label": "Product Ad Square",
-          "value": "productAdSquare"
-        },
-        {
-          "label": "Product Ad Wide",
-          "value": "productAdWide"
-        }
-      ],
-      "multi": false,
-      "optional_text": false
-    }
-  },
-  {
-    "tag": "size_model",
-    "type": "Variables::Choice",
-    "custom_title": "Sizing Model",
-    "hint": "Select 'Aspect' to use the full canvas area for demonstrating the aspect ratio of the selected dimension. Select 'Exact' to use the exact pixel dimensions of the selected dimension.",
-    "position": 1,
-    "definition": {
-      "choices": [
-        {
-          "label": "Aspect",
-          "value": "aspect"
-        },
-        {
-          "label": "Exact",
-          "value": "exact"
-        }
-      ],
-      "multi": false,
-      "optional_text": false
-    }
-  },
-  {
-    "tag": "formatFamily",
-    "type": "Variables::Choice",
-    "custom_title": "Format Family",
-    "hint": "Select the format family for the container. This will determine the available aspect ratios and sizing options.",
-    "position": 2,
-    "definition": {
-      "choices": [
-        {
-          "label": "Digital Ads",
-          "value": "digitalAds"
-        },
-        {
-          "label": "Print",
-          "value": "print"
-        },
-        {
-          "label": "Web Banners",
-          "value": "webBanners"
-        },
-        {
-          "label": "Social Media",
-          "value": "socialMedia"
-        }
-      ],
-      "multi": false,
-      "optional_text": false
-    }
-  },
-  {
     "tag": "aPR",
     "type": "Variables::Choice",
     "custom_title": "APR",
     "hint": "Keep to 5 characters or fewer. Select 0% Available to render the fallback 0% APR treatment.",
-    "position": 3,
+    "position": 0,
     "definition": {
       "choices": [
         {
@@ -136,7 +49,7 @@
     "type": "Variables::Choice",
     "custom_title": "Incentive Connector Choice (Optional)",
     "hint": "Max 5 characters. Other allows for a custom connector. Blank removes the connector.",
-    "position": 4,
+    "position": 1,
     "definition": {
       "choices": [
         {
@@ -169,7 +82,7 @@
     "type": "Variables::Text",
     "custom_title": "Incentive Pre Text (Optional)",
     "hint": "Max 1 line. Sits above the Incentive Text. Hidden if removed.",
-    "position": 5,
+    "position": 2,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -198,7 +111,7 @@
     "type": "Variables::Text",
     "custom_title": "Incentive Text",
     "hint": "Max 20 characters. Short offer copy works best.",
-    "position": 6,
+    "position": 3,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -227,7 +140,7 @@
     "type": "Variables::Text",
     "custom_title": "Connector Lines Text",
     "hint": "Max 20 characters. Rendered between the incentive and warranty sections.",
-    "position": 7,
+    "position": 4,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -256,7 +169,7 @@
     "type": "Variables::Text",
     "custom_title": "Warranty Text",
     "hint": "Max 30 characters. Copy can balance over 2 lines in some cases.",
-    "position": 8,
+    "position": 5,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -285,7 +198,7 @@
     "type": "Variables::Text",
     "custom_title": "Warranty Connector Text",
     "hint": "Max 55 characters. Copy can balance over 2 lines in some cases.",
-    "position": 9,
+    "position": 6,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
