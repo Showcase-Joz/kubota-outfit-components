@@ -283,6 +283,9 @@ const WarrantyBlockWrapper = styled.div`
     .aPR {
       display: none;
     }
+    .incentiveConnectorTextWrapper {
+      display: none;
+    }
   }
   &.special-aPR-value--hide {
     .incentiveWrapper {
@@ -443,7 +446,13 @@ const WarrantyBlockWrapper = styled.div`
         }
       }
     }
-
+    &.aPR--hide {
+      .incentiveWrapper {
+        .incentiveBlock {
+          display: none;
+        }
+      }
+    }
     .connectorWrapper:has(.text-type--connectorLines:empty) {
       width: 95%;
     }
