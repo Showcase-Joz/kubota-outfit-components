@@ -385,6 +385,7 @@ const WarrantyBlockWrapper = styled.div`
     &.special-aPR-value--hide {
       .incentiveWrapper {
         .aPR {
+          align-self: center;
           .text-type--aPR {
             font-size: 2.2em;
             margin-right: unset;
