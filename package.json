@@ -1,6 +1,6 @@
 {
   "name": "kubota-outfit-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Kubota-specific reusable components for Outfit template projects.",
   "private": true,
   "type": "module",
@@ -18,7 +18,8 @@
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "@emotion/react": ">=11",
