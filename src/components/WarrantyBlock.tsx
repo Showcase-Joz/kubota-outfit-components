@@ -301,7 +301,7 @@ const WarrantyBlockWrapper = styled.div`
       }
     }
   }
-  &.aPR--long {
+  &.aPR--short {
     .incentiveWrapper {
       .aPR {
         .text-type--aPR {
