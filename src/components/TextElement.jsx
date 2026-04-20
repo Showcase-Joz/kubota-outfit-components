@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import { Limiter, onInlineEditClick } from "@outfit.io/react";
 import parse from "html-react-parser";
-import { checkInputExists, formatMoney } from "../utils/helpers";
+import { checkInputExists, formatMoney } from "../utils/helpers.js";
 const TextElementWrapper = styled.div``;
 
 const TextElement = ({

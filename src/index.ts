@@ -1,6 +1,6 @@
-export { WarrantyBlock } from "./components/WarrantyBlock";
+export { WarrantyBlock } from "./components/WarrantyBlock.js";
 export type {
   WarrantyBlockFallbackContent,
   WarrantyBlockField,
   WarrantyBlockProps,
-} from "./components/WarrantyBlock";
+} from "./components/WarrantyBlock.js";

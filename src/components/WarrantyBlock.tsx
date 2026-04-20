@@ -4,8 +4,8 @@ import {
   checkInputExists,
   cloneInlineClick,
   onceADummyText,
-} from "../utils/helpers";
-import { TextElement } from "./TextElement";
+} from "../utils/helpers.js";
+import { TextElement } from "./TextElement.js";
 
 export type WarrantyBlockField = {
   value: string;
