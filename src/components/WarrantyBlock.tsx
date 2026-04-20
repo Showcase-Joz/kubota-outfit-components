@@ -278,6 +278,24 @@ const WarrantyBlockWrapper = styled.div`
   }
 
   // INFO conditional overrides
+  .aPR--hide {
+    .aPR {
+      display: none;
+    }
+  }
+  .aPR--standard-size {
+    .text-type--aPR {
+      font-size: 1.4em;
+      margin-right: 0.3em;
+      &::before {
+        font-size: 0.41em;
+      }
+      &::after {
+        display: none;
+      }
+    }
+  }
+
   &.incentiveWrapper:has(.text-type--incentiveConnectorText:empty) {
     .incentiveConnectorTextWrapper {
       display: none;
@@ -463,6 +481,11 @@ const WarrantyBlock = ({
     : { value: "0" };
   const checkedAprInput = testAprValue === "available" ? standInAprInput : aPR;
 
+  const incentiveConnectorTextValue = onceADummyText(
+    incentiveConnectorText,
+    content?.incentiveConnectorText?.value,
+  );
+
   const incentivePreTextValue = onceADummyText(
     incentivePreText,
     content?.incentivePreText?.value,
@@ -475,7 +498,9 @@ const WarrantyBlock = ({
 
   return (
     <WarrantyBlockWrapper
-      className={`warrantyBlock incentivePreText--${incentivePreTextValue?.class} warrantyConnectorText--${warrantyConnectorTextValue?.class}`}
+      className={`warrantyBlock aPR--${testAprValue === "notApplicable" ? "hide" : "show"} aPR--${
+        testAprValue !== "available" ? "standard-size" : "large-size"
+      } incentivePreText--${incentivePreTextValue?.class} incentiveConnectorText--${incentiveConnectorTextValue?.class} warrantyConnectorText--${warrantyConnectorTextValue?.class}`}
     >
       <div className="incentiveWrapper">
         <div className="aPR">
@@ -490,7 +515,7 @@ const WarrantyBlock = ({
         </div>
         <div className="incentiveConnectorTextWrapper">
           <TextElement
-            dummyData={content?.incentiveConnectorText?.value || ""}
+            dummyData={incentiveConnectorTextValue?.dummyData || ""}
             destructedProp={incentiveConnectorText}
             dynamicClassName={`incentiveConnectorText`}
             height={undefined}
