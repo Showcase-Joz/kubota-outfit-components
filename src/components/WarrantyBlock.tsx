@@ -284,23 +284,7 @@ const WarrantyBlockWrapper = styled.div`
       display: none;
     }
   }
-  &.special-aPR-value--hide {
-    .incentiveWrapper {
-      align-self: end;
-      .aPR {
-        .text-type--aPR {
-          font-size: 1.4em;
-          margin-right: 0.3em;
-          &::before {
-            font-size: 0.41em;
-          }
-          &::after {
-            display: none;
-          }
-        }
-      }
-    }
-  }
+
   &.aPR--short {
     .incentiveWrapper {
       .aPR {
@@ -419,6 +403,23 @@ const WarrantyBlockWrapper = styled.div`
           }
         }
       }
+      &.special-aPR-value--hide {
+        .incentiveWrapper {
+          align-self: end;
+          .aPR {
+            .text-type--aPR {
+              font-size: 1.4em;
+              margin-right: 0.3em;
+              &::before {
+                font-size: 0.41em;
+              }
+              &::after {
+                display: none;
+              }
+            }
+          }
+        }
+      }
       .incentiveBlock {
         .incentiveText {
           .text-type--incentiveText {
@@ -456,6 +457,16 @@ const WarrantyBlockWrapper = styled.div`
       font-size: 0.7em;
       .text-type--incentiveText {
         max-width: fit-content;
+      }
+    }
+    &.aPR--short {
+      .incentiveWrapper {
+        .aPR {
+          .text-type--aPR {
+            font-size: 2em;
+            margin-right: 0.3em;
+          }
+        }
       }
     }
     .connectorWrapper {
