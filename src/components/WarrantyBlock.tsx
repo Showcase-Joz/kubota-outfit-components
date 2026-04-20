@@ -127,13 +127,13 @@ const WarrantyBlockWrapper = styled.div`
 
   .incentiveWrapper {
     font-size: 10cqi;
-    font-size: 1.33em;
+    font-size: 1.05em;
     display: flex;
     flex-wrap: wrap;
     align-items: anchor-center;
     justify-content: center;
     max-width: inherit;
-    column-gap: 4cqi;
+    column-gap: 0.4em;
     height: fit-content;
     .aPR {
       // INFO aPR wrapper and content
@@ -226,14 +226,14 @@ const WarrantyBlockWrapper = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    height: max(14cqb, 1.2em);
+    height: 1.2em;
     span.connector-line {
       display: inline-block;
       width: inherit;
-      height: min(0.8px, 0.8cqb);
+      height: min(0.9px, 0.03em);
       background-color: var(--color-black-tint-55, rgba(0, 0, 0, 0.55));
       vertical-align: middle;
-      margin: 0 2cqi;
+      margin: 0 0.23em;
     }
 
     .text-type--connectorLines {
@@ -248,7 +248,7 @@ const WarrantyBlockWrapper = styled.div`
 
   .warrantyWrapper {
     display: grid;
-    row-gap: 3cqb;
+    row-gap: 0.4em;
     height: fit-content;
     .warrantyText {
       .text-type--warrantyText {
@@ -306,7 +306,7 @@ const WarrantyBlockWrapper = styled.div`
 
     .incentiveWrapper {
       flex-direction: column;
-      row-gap: 5cqb;
+      row-gap: 0.6em;
 
       .aPR {
         align-self: center;
@@ -347,17 +347,17 @@ const WarrantyBlockWrapper = styled.div`
 
     .connectorWrapper {
       span.connector-line {
-        height: min(0.6px, 0.8cqb);
+        height: min(0.9px, 0.03em);
       }
     }
 
     .warrantyWrapper {
       .warrantyText {
-        max-width: 65cqi;
+        max-width: 8em;
         justify-self: center;
       }
       .warrantyConnectorText {
-        max-width: 45cqi;
+        max-width: 5.5em;
         justify-self: center;
         text-wrap-style: balance;
       }
@@ -366,7 +366,7 @@ const WarrantyBlockWrapper = styled.div`
     .incentiveWrapper,
     .connectorWrapper,
     .warrantyWrapper {
-      font-size: 8cqi;
+      font-size: 0.42em;
     }
   }
 
@@ -399,16 +399,18 @@ const WarrantyBlockWrapper = styled.div`
     }
 
     .warrantyWrapper {
+      font-size: 0.64em;
+
       justify-items: center;
       .warrantyText {
         .text-type--warrantyText {
-          font-size: 1.3em;
+          font-size: 1.16em;
           text-wrap-style: balance;
         }
       }
       .warrantyConnectorText {
         .text-type--warrantyConnectorText {
-          font-size: 0.4em;
+          font-size: 0.36em;
         }
       }
     }
@@ -417,9 +419,16 @@ const WarrantyBlockWrapper = styled.div`
   @container dynamicLayout (min-aspect-ratio: 2 / 1) {
     // INFO extra wide layout styles (728x90)
     .incentiveWrapper {
+      font-size: 0.7em;
       .text-type--incentiveText {
         max-width: fit-content;
       }
+    }
+    .connectorWrapper {
+      font-size: 0.5em;
+    }
+    .warrantyWrapper {
+      font-size: 0.5em;
     }
   }
 `;
