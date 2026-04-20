@@ -22,6 +22,15 @@ const TextElement = ({
   const localOPtions = options === undefined ? dummyData : options.name;
   const text =
     checkInputExists(destructedProp, localOPtions, property) || localOPtions;
+  const inlineEditIds = destructedProp?.ids;
+
+  const handleInlineEditClick = (e) => {
+    if (!inlineEditIds || typeof onInlineEditClick !== "function") {
+      return;
+    }
+
+    onInlineEditClick(inlineEditIds, e);
+  };
 
   return (
     <Limiter
@@ -34,7 +43,7 @@ const TextElement = ({
     >
       <TextElementWrapper
         className={`text-type--${dynamicClassName}`}
-        onClick={(e) => onInlineEditClick(destructedProp?.ids, e)}
+        onClick={handleInlineEditClick}
       >
         {dynamicClassName === "incentive-amount" || dynamicClassName === "aPR"
           ? formatMoney(text, lang, dummyData)
