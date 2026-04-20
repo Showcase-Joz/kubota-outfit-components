@@ -278,12 +278,12 @@ const WarrantyBlockWrapper = styled.div`
   }
 
   // INFO conditional overrides
-  .aPR--hide {
+  &.aPR--hide {
     .aPR {
       display: none;
     }
   }
-  .aPR--standard-size {
+  &.aPR--standard-size {
     .text-type--aPR {
       font-size: 1.4em;
       margin-right: 0.3em;
