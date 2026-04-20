@@ -108,7 +108,7 @@ export interface WarrantyBlockProps {
 
 const WarrantyBlockWrapper = styled.div`
   container-name: warrantyWrapper;
-  container-type: inline-size;
+  container-type: size;
 
   grid-area: warrantyBlock;
   display: grid;
