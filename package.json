@@ -1,6 +1,6 @@
 {
   "name": "kubota-outfit-components",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Kubota-specific reusable components for Outfit template projects.",
   "private": true,
   "type": "module",
