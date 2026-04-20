@@ -126,8 +126,8 @@ const WarrantyBlockWrapper = styled.div`
   color: var(--color-orange, #ff6600);
 
   .incentiveWrapper {
-    font-size: 1.6em;
     font-size: 10cqi;
+    font-size: 1.33em;
     display: flex;
     flex-wrap: wrap;
     align-items: anchor-center;

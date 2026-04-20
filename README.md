@@ -81,3 +81,51 @@ npm run build
 ```
 
 `build` emits JavaScript and TypeScript declaration files into `dist`.
+
+## Version + Tag Release
+
+Use one of these scripts to bump the package version, create a git commit, create
+the matching tag, and push branch plus tags to `origin/main`:
+
+```bash
+npm run release:patch
+npm run release:minor
+npm run release:major
+```
+
+Each release script runs `preversion` first, which performs:
+
+```bash
+npm run typecheck
+npm run build
+```
+
+Example patch release flow:
+
+```bash
+# 1) Ensure you are on main and up to date
+git checkout main
+git pull origin main
+
+# 2) Run a patch release (e.g. 0.1.2 -> 0.1.3)
+npm run release:patch
+
+# 3) Verify
+git tag --list | tail -n 5
+git log --oneline -n 3
+git show --no-patch --decorate HEAD
+```
+
+Example minor release flow:
+
+```bash
+# e.g. 0.1.3 -> 0.2.0
+npm run release:minor
+```
+
+Example major release flow:
+
+```bash
+# e.g. 0.2.0 -> 1.0.0
+npm run release:major
+```
