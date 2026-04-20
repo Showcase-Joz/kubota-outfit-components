@@ -29,23 +29,32 @@ const TextElement = ({
       return null;
     }
 
-    if (inlineEditIds?.variable?.tag) {
-      return inlineEditIds;
+    const rawIds =
+      inlineEditIds?.input && typeof inlineEditIds.input === "object"
+        ? inlineEditIds.input
+        : inlineEditIds;
+
+    if (rawIds?.variable?.tag) {
+      return rawIds;
     }
 
     const variableTag =
-      inlineEditIds?.variableTag ||
-      inlineEditIds?.variable_tag ||
-      inlineEditIds?.tag;
+      rawIds?.variable?.tag ||
+      rawIds?.variable?.variableTag ||
+      rawIds?.variable?.variable_tag ||
+      (typeof rawIds?.variable === "string" ? rawIds.variable : undefined) ||
+      rawIds?.variableTag ||
+      rawIds?.variable_tag ||
+      rawIds?.tag;
 
     if (!variableTag) {
       return null;
     }
 
     return {
-      ...inlineEditIds,
+      ...rawIds,
       variable: {
-        ...(inlineEditIds?.variable || {}),
+        ...(typeof rawIds?.variable === "object" ? rawIds.variable : {}),
         tag: variableTag,
       },
     };
