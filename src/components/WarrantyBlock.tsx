@@ -678,7 +678,7 @@ const WarrantyBlock = ({
             textfit
             textfitConfig={{
               fontUnit: "em",
-              overflowDetectionMode: "text",
+              overflowDetectionMode: "scroll",
             }}
           ></TextElement>
         </div>
