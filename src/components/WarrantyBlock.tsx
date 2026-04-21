@@ -80,12 +80,12 @@ export interface WarrantyBlockProps {
   incentiveConnectorText?: WarrantyBlockField;
   /**
    * Small label shown above the main incentive.
-   * Recommended max: 1 line, e.g. "instant".
+   * Recommended max: 1 line, e.g. "instant savings".
    */
   incentivePreText?: WarrantyBlockField;
   /**
    * Main incentive headline.
-   * Recommended max: 22 characters. Short offer copy works best.
+   * Warning when too many characters: Short offer copy works best.
    */
   incentiveText?: WarrantyBlockField;
   /**
@@ -399,6 +399,7 @@ const WarrantyBlockWrapper = styled.div`
           .text-type--incentiveText {
             width: min-content;
             font-size: 1.05em;
+            max-width: 13ch;
           }
         }
       }
@@ -464,6 +465,7 @@ const WarrantyBlockWrapper = styled.div`
         .incentiveText {
           .text-type--incentiveText {
             width: min-content;
+            max-width: 17ch;
           }
         }
       }
@@ -510,7 +512,7 @@ const WarrantyBlockWrapper = styled.div`
         }
         .incentiveText {
           .text-type--incentiveText {
-            max-width: fit-content;
+            max-width: 13ch;
           }
         }
       }
