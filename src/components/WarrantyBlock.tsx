@@ -334,8 +334,13 @@ const WarrantyBlockWrapper = styled.div`
   }
 
   &.connectorLinesText--hide {
-    .connector-line {
-      margin: unset;
+    .connectorWrapper {
+      .connector-line {
+        margin: unset;
+      }
+      .text-type--connectorLines {
+        display: none;
+      }
     }
   }
 
