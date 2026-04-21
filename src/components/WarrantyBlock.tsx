@@ -677,7 +677,8 @@ const WarrantyBlock = ({
             height={undefined}
             lines={undefined}
             chars={undefined}
-            textfit textfitConfig={{ heightOnly: true, fontUit: "em" }}
+            textfit
+            textfitConfig={{ heightOnly: true, fontUnit: "em" }}
           ></TextElement>
         </div>
         <div className="warrantyConnectorText">

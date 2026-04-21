@@ -5,6 +5,25 @@ import parse from "html-react-parser";
 import { checkInputExists, formatMoney } from "../utils/helpers.js";
 const TextElementWrapper = styled.div``;
 
+/**
+ * @typedef {object} TextElementProps
+ * @property {*} destructedProp
+ * @property {string} dynamicClassName
+ * @property {number | undefined} [lines]
+ * @property {number | undefined} [chars]
+ * @property {number | string | undefined} [height]
+ * @property {*} [dummyData]
+ * @property {string | undefined} [property]
+ * @property {{ name?: * } | undefined} [options]
+ * @property {boolean | undefined} [textfit]
+ * @property {Record<string, any> | undefined} [textfitConfig]
+ * @property {string | undefined} [lang]
+ * @property {* | undefined} [overflowMessage]
+ */
+
+/**
+ * @param {TextElementProps} props
+ */
 const TextElement = ({
   destructedProp,
   dynamicClassName,
@@ -12,10 +31,10 @@ const TextElement = ({
   chars,
   height,
   dummyData,
-  property = undefined,
-  options = undefined,
-  textfit = undefined,
-  textfitConfig = undefined,
+  property,
+  options,
+  textfit,
+  textfitConfig,
   lang = "en",
   overflowMessage = null,
 }) => {
