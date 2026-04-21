@@ -168,7 +168,7 @@
     "tag": "warrantyText",
     "type": "Variables::Text",
     "custom_title": "Warranty Text",
-    "hint": "Max 30 characters. Copy can balance over 2 lines in some cases.",
+    "hint": "Max 25 characters. Copy can balance over 2 lines in some cases.",
     "position": 5,
     "definition": {
       "paragraph": false,

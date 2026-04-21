@@ -96,7 +96,7 @@ export interface WarrantyBlockProps {
   connectorLinesText?: WarrantyBlockField;
   /**
    * Main warranty headline.
-   * Recommended max: 30 characters. Copy can balance over 2 lines in some cases.
+   * Recommended max: 25 characters. Copy can balance over 2 lines in some cases.
    */
   warrantyText?: WarrantyBlockField;
   /**
@@ -670,7 +670,7 @@ const WarrantyBlock = ({
             dynamicClassName={`warrantyText`}
             height={undefined}
             lines={undefined}
-            chars={30}
+            chars={25}
           ></TextElement>
         </div>
         <div className="warrantyConnectorText">
