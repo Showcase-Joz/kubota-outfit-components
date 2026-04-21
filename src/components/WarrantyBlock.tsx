@@ -634,7 +634,7 @@ const WarrantyBlock = ({
       <div className="connectorWrapper">
         <span className="connector-line"></span>
         <TextElement
-          dummyData={content?.connectorLinesText?.value || ""}
+          dummyData={connectorLinesTextValue?.dummyData || ""}
           destructedProp={connectorLinesText}
           dynamicClassName={`connectorLines`}
           height={undefined}
