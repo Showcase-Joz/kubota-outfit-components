@@ -674,7 +674,7 @@ const WarrantyBlock = ({
             dummyData={content?.warrantyText?.value || ""}
             destructedProp={warrantyText}
             dynamicClassName={`warrantyText`}
-            height={"self"}
+            height={"parent"}
             lines={undefined}
             chars={undefined}
           ></TextElement>
