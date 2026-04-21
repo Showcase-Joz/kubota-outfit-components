@@ -644,8 +644,8 @@ const WarrantyBlock = ({
               destructedProp={incentiveText}
               dynamicClassName={`incentiveText`}
               height={undefined}
-              lines={undefined}
-              chars={20}
+              lines={1}
+              chars={undefined}
             ></TextElement>
           </div>
         </div>
