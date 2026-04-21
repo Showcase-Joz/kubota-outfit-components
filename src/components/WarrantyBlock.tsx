@@ -679,6 +679,7 @@ const WarrantyBlock = ({
             textfitConfig={{
               maxHeight: "outerbox",
               fontUnit: "em",
+              overflowDetectionMode: "text",
             }}
           ></TextElement>
         </div>
