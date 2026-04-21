@@ -265,7 +265,6 @@ const WarrantyBlockWrapper = styled.div`
         );
         color: var(--color-orange, #ff6600);
         text-align: center;
-        height: 2.04em;
       }
     }
     .warrantyConnectorText {
@@ -542,11 +541,6 @@ const WarrantyBlockWrapper = styled.div`
     }
     .warrantyWrapper {
       font-size: 0.5em;
-      .warrantyText {
-        .text-type--warrantyText {
-          height: 1.02em;
-        }
-      }
     }
   }
 `;
@@ -674,14 +668,9 @@ const WarrantyBlock = ({
             dummyData={content?.warrantyText?.value || ""}
             destructedProp={warrantyText}
             dynamicClassName={`warrantyText`}
-            height={`self`}
+            height={undefined}
             lines={undefined}
-            chars={undefined}
-            textfit
-            textfitConfig={{
-              minFontSize: 70,
-              heightOnly: true,
-            }}
+            chars={30}
           ></TextElement>
         </div>
         <div className="warrantyConnectorText">
