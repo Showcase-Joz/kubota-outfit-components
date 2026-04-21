@@ -81,7 +81,7 @@
     "tag": "incentivePreText",
     "type": "Variables::Text",
     "custom_title": "Incentive Pre Text (Optional)",
-    "hint": "Max 1 line. Sits above the Incentive Text. Hidden if removed.",
+    "hint": "Max 22 characters. Sits above the Incentive Text. Hidden if removed.",
     "position": 2,
     "definition": {
       "paragraph": false,

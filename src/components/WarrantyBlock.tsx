@@ -287,6 +287,12 @@ const WarrantyBlockWrapper = styled.div`
       display: none;
     }
   }
+  &.incentiveConnectorText--hide {
+    .incentiveConnectorTextWrapper {
+      display: none;
+    }
+  }
+
   &.special-aPR-value--hide {
     .incentiveWrapper {
       .aPR {

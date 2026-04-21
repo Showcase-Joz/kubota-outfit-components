@@ -42,7 +42,7 @@ Each prop expects an Outfit-style text or choice input object:
 - `incentiveConnectorText`: Short connector between APR and incentive copy.
   Recommended max: 5 characters, for example `or`, `plus`, or `with`.
 - `incentivePreText`: Small label shown above the main incentive. Recommended
-  max: 1 line.
+  max: 22 characters.
 - `incentiveText`: Main incentive headline. Recommended max: 20 characters.
 - `connectorLinesText`: Connector label rendered between the incentive and
   warranty sections. Recommended max: 20 characters.
