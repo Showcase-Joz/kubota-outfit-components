@@ -41,51 +41,13 @@ const TextElement = ({
   const localOPtions = options === undefined ? dummyData : options.name;
   const text =
     checkInputExists(destructedProp, localOPtions, property) || localOPtions;
-  const inlineEditIds = destructedProp?.ids;
-
-  const normalizedInlineEditIds = (() => {
-    if (!inlineEditIds || typeof inlineEditIds !== "object") {
-      return null;
-    }
-
-    if (inlineEditIds?.variable?.tag) {
-      return inlineEditIds;
-    }
-
-    const variableTag =
-      inlineEditIds?.variable?.tag ||
-      inlineEditIds?.variable?.variableTag ||
-      inlineEditIds?.variable?.variable_tag ||
-      (typeof inlineEditIds?.variable === "string"
-        ? inlineEditIds.variable
-        : undefined) ||
-      inlineEditIds?.variableTag ||
-      inlineEditIds?.variable_tag ||
-      inlineEditIds?.input?.variable?.tag ||
-      inlineEditIds?.input?.variableTag ||
-      inlineEditIds?.input?.variable_tag;
-
-    if (!variableTag) {
-      return null;
-    }
-
-    return {
-      ...inlineEditIds,
-      variable: {
-        ...(typeof inlineEditIds?.variable === "object"
-          ? inlineEditIds.variable
-          : {}),
-        tag: variableTag,
-      },
-    };
-  })();
 
   const handleInlineEditClick = (e) => {
-    if (!normalizedInlineEditIds || typeof onInlineEditClick !== "function") {
+    if (!destructedProp?.ids || typeof onInlineEditClick !== "function") {
       return;
     }
 
-    onInlineEditClick(normalizedInlineEditIds, e);
+    onInlineEditClick(destructedProp.ids, e);
   };
 
   return (
