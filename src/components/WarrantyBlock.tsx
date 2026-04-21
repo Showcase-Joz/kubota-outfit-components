@@ -219,7 +219,6 @@ const WarrantyBlockWrapper = styled.div`
           );
           color: var(--color-orange, #ff6600);
           width: fit-content;
-          height: 2.02em;
         }
       }
     }
@@ -266,6 +265,7 @@ const WarrantyBlockWrapper = styled.div`
         );
         color: var(--color-orange, #ff6600);
         text-align: center;
+        height: 1.02em;
       }
     }
     .warrantyConnectorText {
@@ -400,7 +400,7 @@ const WarrantyBlockWrapper = styled.div`
           .text-type--incentiveText {
             width: min-content;
             font-size: 1.05em;
-            /* max-width: 13ch; */
+            max-width: 13ch;
           }
         }
       }
@@ -466,7 +466,7 @@ const WarrantyBlockWrapper = styled.div`
         .incentiveText {
           .text-type--incentiveText {
             width: min-content;
-            /* max-width: 17ch; */
+            max-width: 17ch;
           }
         }
       }
@@ -513,8 +513,7 @@ const WarrantyBlockWrapper = styled.div`
         }
         .incentiveText {
           .text-type--incentiveText {
-            /* max-height: 13ch; */
-            height: 1.02em;
+            max-width: 13ch;
           }
         }
       }
@@ -543,6 +542,11 @@ const WarrantyBlockWrapper = styled.div`
     }
     .warrantyWrapper {
       font-size: 0.5em;
+      .warrantyText {
+        .text-type--warrantyText {
+          height: 1.02em;
+        }
+      }
     }
   }
 `;
