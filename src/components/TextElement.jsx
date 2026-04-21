@@ -48,32 +48,33 @@ const TextElement = ({
       return null;
     }
 
-    const rawIds =
-      inlineEditIds?.input && typeof inlineEditIds.input === "object"
-        ? inlineEditIds.input
-        : inlineEditIds;
-
-    if (rawIds?.variable?.tag) {
-      return rawIds;
+    if (inlineEditIds?.variable?.tag) {
+      return inlineEditIds;
     }
 
     const variableTag =
-      rawIds?.variable?.tag ||
-      rawIds?.variable?.variableTag ||
-      rawIds?.variable?.variable_tag ||
-      (typeof rawIds?.variable === "string" ? rawIds.variable : undefined) ||
-      rawIds?.variableTag ||
-      rawIds?.variable_tag ||
-      rawIds?.tag;
+      inlineEditIds?.variable?.tag ||
+      inlineEditIds?.variable?.variableTag ||
+      inlineEditIds?.variable?.variable_tag ||
+      (typeof inlineEditIds?.variable === "string"
+        ? inlineEditIds.variable
+        : undefined) ||
+      inlineEditIds?.variableTag ||
+      inlineEditIds?.variable_tag ||
+      inlineEditIds?.input?.variable?.tag ||
+      inlineEditIds?.input?.variableTag ||
+      inlineEditIds?.input?.variable_tag;
 
     if (!variableTag) {
       return null;
     }
 
     return {
-      ...rawIds,
+      ...inlineEditIds,
       variable: {
-        ...(typeof rawIds?.variable === "object" ? rawIds.variable : {}),
+        ...(typeof inlineEditIds?.variable === "object"
+          ? inlineEditIds.variable
+          : {}),
         tag: variableTag,
       },
     };
