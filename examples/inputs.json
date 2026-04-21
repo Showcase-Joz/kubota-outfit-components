@@ -110,7 +110,7 @@
     "tag": "incentiveText",
     "type": "Variables::Text",
     "custom_title": "Incentive Text",
-    "hint": "Max 20 characters. Short offer copy works best.",
+    "hint": "Warning when too many characters. Short offer copy works best.",
     "position": 3,
     "definition": {
       "paragraph": false,

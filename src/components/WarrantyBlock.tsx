@@ -90,7 +90,7 @@ export interface WarrantyBlockProps {
   incentiveText?: WarrantyBlockField;
   /**
    * Connector label rendered between the incentive and warranty sections.
-   * Recommended max: 20 characters, e.g. "plus, or, with etc.".
+   * Warning when too many characters, e.g. "plus, or, with etc.".
    * "Other" choice option is available to support custom connectors, but use should be curtailed as space is limited and short connectors work best.
    */
   connectorLinesText?: WarrantyBlockField;
@@ -331,6 +331,14 @@ const WarrantyBlockWrapper = styled.div`
 
   &.incentivePreText--hide .incentivePreText {
     visibility: hidden;
+  }
+  &.incentiveText--hide {
+    .incentiveConnectorTextWrapper {
+      display: none;
+    }
+    .incentiveBlock {
+      display: none;
+    }
   }
 
   &.connectorLinesText--hide {
@@ -574,6 +582,10 @@ const WarrantyBlock = ({
     incentivePreText,
     content?.incentivePreText?.value,
   );
+  const incentiveTextValue = onceADummyText(
+    incentiveText,
+    content?.incentiveText?.value,
+  );
 
   const connectorLinesTextValue = onceADummyText(
     connectorLinesText,
@@ -590,7 +602,7 @@ const WarrantyBlock = ({
       className={`warrantyBlock
       aPR--${testAprValue === "notApplicable" ? "hide" : "show"} aPR--${testAprValue !== "0" ? "long" : "short"} special-aPR-value--${
         testAprValue === "available" ? "show" : "hide"
-      } incentivePreText--${incentivePreTextValue?.class} incentiveConnectorText--${incentiveConnectorTextValue?.class} connectorLinesText--${connectorLinesTextValue?.class} warrantyConnectorText--${warrantyConnectorTextValue?.class}`}
+      } incentivePreText--${incentivePreTextValue?.class} incentiveConnectorText--${incentiveConnectorTextValue?.class} incentiveText--${incentiveTextValue?.class} connectorLinesText--${connectorLinesTextValue?.class} warrantyConnectorText--${warrantyConnectorTextValue?.class}`}
     >
       <div className="incentiveWrapper">
         <div className="aPR">
@@ -626,7 +638,7 @@ const WarrantyBlock = ({
           </div>
           <div className="incentiveText">
             <TextElement
-              dummyData={content?.incentiveText?.value || ""}
+              dummyData={incentiveTextValue?.dummyData || ""}
               destructedProp={incentiveText}
               dynamicClassName={`incentiveText`}
               height={undefined}
