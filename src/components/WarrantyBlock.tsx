@@ -677,7 +677,7 @@ const WarrantyBlock = ({
             chars={undefined}
             textfit
             textfitConfig={{
-              maxHeight: "self",
+              maxHeight: "outerbox",
               fontUnit: "em",
             }}
           ></TextElement>
