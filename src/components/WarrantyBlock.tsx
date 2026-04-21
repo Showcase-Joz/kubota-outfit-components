@@ -674,9 +674,10 @@ const WarrantyBlock = ({
             dummyData={content?.warrantyText?.value || ""}
             destructedProp={warrantyText}
             dynamicClassName={`warrantyText`}
-            height={"outerbox"}
+            height={undefined}
             lines={undefined}
             chars={undefined}
+            textfit textfitConfig={{ heightOnly: true, fontUit: "em" }}
           ></TextElement>
         </div>
         <div className="warrantyConnectorText">
