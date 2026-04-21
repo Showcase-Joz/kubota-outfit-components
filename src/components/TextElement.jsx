@@ -42,9 +42,6 @@ const TextElement = ({
   const text =
     checkInputExists(destructedProp, localOPtions, property) || localOPtions;
   const inlineEditIds = destructedProp?.ids;
-  const variableTagByClassName = {
-    connectorLines: "connectorLinesText",
-  };
 
   const normalizedInlineEditIds = (() => {
     if (!inlineEditIds || typeof inlineEditIds !== "object") {
@@ -67,10 +64,7 @@ const TextElement = ({
       (typeof rawIds?.variable === "string" ? rawIds.variable : undefined) ||
       rawIds?.variableTag ||
       rawIds?.variable_tag ||
-      rawIds?.tag ||
-      destructedProp?.tag ||
-      variableTagByClassName?.[dynamicClassName] ||
-      dynamicClassName;
+      rawIds?.tag;
 
     if (!variableTag) {
       return null;
