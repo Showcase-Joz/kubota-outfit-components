@@ -255,7 +255,7 @@ const WarrantyBlockWrapper = styled.div`
     .warrantyText {
       .text-type--warrantyText {
         text-transform: uppercase;
-        font-size: 0.93em;
+        font-size: 0.92em;
         font-family: var(
           --font-family-arial-black-default,
           "Arial Black",
@@ -490,6 +490,7 @@ const WarrantyBlockWrapper = styled.div`
         .text-type--warrantyText {
           font-size: 1.16em;
           text-wrap-style: balance;
+          max-width: 85cqi;
         }
       }
       .warrantyConnectorText {
