@@ -678,6 +678,7 @@ const WarrantyBlock = ({
             textfit
             textfitConfig={{
               minFontSize: 100,
+              heightOnly: true,
             }}
           ></TextElement>
         </div>
