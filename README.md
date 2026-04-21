@@ -13,6 +13,22 @@ another client.
 This repo is private/package-in-progress. For now, consume it from source or use
 it as the source of truth for copying components into a Kubota Outfit template.
 
+Install directly from a tagged GitHub release in a template project:
+
+```bash
+npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.1.77
+```
+
+Or add it to `package.json` dependencies:
+
+```json
+{
+  "dependencies": {
+    "kubota-outfit-components": "git+ssh://github:Showcase-Joz/kubota-outfit-components#v0.1.77"
+  }
+}
+```
+
 ## Usage
 
 ```tsx
