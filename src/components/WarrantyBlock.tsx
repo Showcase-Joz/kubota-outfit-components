@@ -679,7 +679,7 @@ const WarrantyBlock = ({
             chars={undefined}
             textfit
             textfitConfig={{
-              overflowDetectionMode: "text",
+              overflowDetectionMode: "innerbox",
               minFontSize: 100,
             }}
           ></TextElement>
