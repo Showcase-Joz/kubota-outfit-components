@@ -678,7 +678,10 @@ const WarrantyBlock = ({
             lines={undefined}
             chars={undefined}
             textfit
-            textfitConfig={{ heightOnly: true, fontUnit: "em" }}
+            textfitConfig={{
+              overflowDetectionMode: "innerbox",
+              fontUnit: "em",
+            }}
           ></TextElement>
         </div>
         <div className="warrantyConnectorText">
