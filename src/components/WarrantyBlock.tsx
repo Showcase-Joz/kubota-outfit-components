@@ -85,7 +85,7 @@ export interface WarrantyBlockProps {
   incentivePreText?: WarrantyBlockField;
   /**
    * Main incentive headline.
-   * Recommended max: 20 characters. Short offer copy works best.
+   * Recommended max: 22 characters. Short offer copy works best.
    */
   incentiveText?: WarrantyBlockField;
   /**
@@ -202,6 +202,7 @@ const WarrantyBlockWrapper = styled.div`
           font-size: 0.26em;
           font-weight: 700;
           color: var(--color-black-tint-55, rgba(0, 0, 0, 0.55));
+          max-width: 22ch;
         }
       }
 
