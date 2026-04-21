@@ -543,9 +543,7 @@ const WarrantyBlockWrapper = styled.div`
     .warrantyWrapper {
       font-size: 0.5em;
       .warrantyText {
-        .text-type--warrantyText {
-          height: 1.02em;
-        }
+        height: 1.02em;
       }
     }
   }
