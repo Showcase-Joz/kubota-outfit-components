@@ -431,6 +431,10 @@ const WarrantyBlockWrapper = styled.div`
       .warrantyText {
         max-width: 8em;
         justify-self: center;
+        .text-type--warrantyText {
+          max-width: 81cqi;
+          min-width: 71cqi;
+        }
       }
       .warrantyConnectorText {
         max-width: 5.5em;
