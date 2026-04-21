@@ -379,6 +379,7 @@ const WarrantyBlockWrapper = styled.div`
         .incentivePreText {
           .text-type--incentivePreText {
             font-size: 0.4em;
+            max-width: 28ch;
           }
         }
         .incentiveText {
@@ -487,6 +488,10 @@ const WarrantyBlockWrapper = styled.div`
     // INFO extra wide layout styles (728x90)
     .incentiveWrapper {
       font-size: 0.7em;
+      .text-type--incentivePreText {
+        max-width: 32ch;
+      }
+
       .text-type--incentiveText {
         max-width: fit-content;
       }
