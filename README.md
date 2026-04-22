@@ -16,7 +16,7 @@ it as the source of truth for copying components into a Kubota Outfit template.
 Install directly from a tagged GitHub release in a template project:
 
 ```bash
-npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.1.77
+npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0
 ```
 
 Check the [tag history](https://github.com/Showcase-Joz/kubota-outfit-components/tags)
@@ -26,7 +26,7 @@ Or add it to `package.json` dependencies:
 ```json
 {
   "dependencies": {
-    "kubota-outfit-components": "git+ssh://github:Showcase-Joz/kubota-outfit-components#v0.1.77"
+    "kubota-outfit-components": "git+ssh://github:Showcase-Joz/kubota-outfit-components#v0.2.0"
   }
 }
 ```
@@ -166,15 +166,15 @@ Steps:
 1. Go to the repository on GitHub.
 2. Open the `Releases` page.
 3. Click `Draft a new release`.
-4. Select the tag you just pushed, for example `v0.1.77`.
-5. Set the release title to the same version, for example `v0.1.77`.
+4. Select the tag you just pushed, for example `v0.2.0`.
+5. Set the release title to the same version, for example `v0.2.0`.
 6. Paste the release notes template below.
 7. Publish the release.
 
 Suggested release body:
 
 ```md
-## v0.1.77
+## v0.2.0
 
 - Added `WarrantyBlock` as the primary export.
 - Supports Outfit-style inputs for APR, incentive copy, connector lines, and warranty copy.
@@ -182,18 +182,45 @@ Suggested release body:
 - Intended for direct consumption from template projects via a pinned Git tag.
 
 ## Install
-npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.1.77
+npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0
 
 Or add this to `package.json`:
 
 "dependencies": {
-  "kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.1.77"
+  "kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0"
 }
 ```
 
 If you want a release checklist, keep this order:
 
 1. Finish code changes.
-2. Run `npm run preversion` for the typecheck and build.
+2. Optional sanity check: run `npm run preversion` (release scripts run this automatically).
 3. Run the appropriate release script __(npm run release:patch, npm run release:minor, npm run release:major)__.
 4. Create the GitHub release and paste the notes.
+
+## Consume a Release in Template Projects
+
+When a new release is published, template projects should pin to that exact tag.
+
+Install a specific release directly:
+
+```bash
+npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0
+```
+
+Or pin in `package.json` and then run install:
+
+```json
+{
+  "dependencies": {
+    "kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0"
+  }
+}
+```
+
+```bash
+npm install
+```
+
+To move to a newer release later, update the tag (for example `#v0.2.1`) and run
+`npm install` again.
