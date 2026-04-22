@@ -19,6 +19,8 @@ Install directly from a tagged GitHub release in a template project:
 npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.1.77
 ```
 
+Check the [tag history](https://github.com/Showcase-Joz/kubota-outfit-components/tags)
+
 Or add it to `package.json` dependencies:
 
 ```json
@@ -87,7 +89,15 @@ override these variables:
 ## Outfit Inputs
 
 See [`examples/inputs.json`](examples/inputs.json) for suggested input
-definitions and hints.
+definitions and hints. Each outer object in inputs.json hosts the suggested inputs, choices, hints and definitions. ie...
+
+```json
+[
+  {
+    "warrantyBlock Inputs": [**...use these**]
+  }
+]
+```
 
 ## Local Checks
 
@@ -145,3 +155,45 @@ Example major release flow:
 # e.g. 0.2.0 -> 1.0.0
 npm run release:major
 ```
+
+## GitHub Release
+
+After pushing the tag, create a GitHub release from that tag so the version has a
+human-readable changelog and install instructions.
+
+Steps:
+
+1. Go to the repository on GitHub.
+2. Open the `Releases` page.
+3. Click `Draft a new release`.
+4. Select the tag you just pushed, for example `v0.1.77`.
+5. Set the release title to the same version, for example `v0.1.77`.
+6. Paste the release notes template below.
+7. Publish the release.
+
+Suggested release body:
+
+```md
+## v0.1.77
+
+- Added `WarrantyBlock` as the primary export.
+- Supports Outfit-style inputs for APR, incentive copy, connector lines, and warranty copy.
+- Ships with responsive layout rules and fallback preview content.
+- Intended for direct consumption from template projects via a pinned Git tag.
+
+## Install
+npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.1.77
+
+Or add this to `package.json`:
+
+"dependencies": {
+  "kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.1.77"
+}
+```
+
+If you want a release checklist, keep this order:
+
+1. Finish code changes.
+2. Run `npm run preversion` for the typecheck and build.
+3. Run the appropriate release script __(npm run release:patch, npm run release:minor, npm run release:major)__.
+4. Create the GitHub release and paste the notes.
