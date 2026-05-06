@@ -70,6 +70,24 @@ Each prop expects an Outfit-style text or choice input object:
 - `fallbackContent`: Optional preview/default content using the same field
   shape.
 
+Example `fallbackContent` value:
+
+```tsx
+<WarrantyBlock
+  fallbackContent={{
+    aPR: { value: "available" },
+    incentiveConnectorText: { value: "or" },
+    incentivePreText: { value: "instant" },
+    incentiveText: { value: "cash discount" },
+    connectorLinesText: { value: "plus" },
+    warrantyText: { value: "4,000 Hours up to 4 Years" },
+    warrantyConnectorText: {
+      value: "2 year standard warranty + 2 year extended warranty",
+    },
+  }}
+/>
+```
+
 ## Styling
 
 The component ships with internal fallback values for fonts and colors, so it
