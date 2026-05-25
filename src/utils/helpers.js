@@ -104,7 +104,52 @@ export const formatMoney = (value, lang = "en", fallback = "") => {
     maximumFractionDigits: fractionDigits,
   }).format(num);
 };
+export const onceADummy = (input, dummyData) => {
+  /*
+    Usage: 
+    const checkDummy = onceADummy(inputName, data?.fakeItem?.value)
+    OR: onceADummy(inputName, data?.fakeItem?.value).dummyData || .class
+    prop={checkDummy.dummyData} -- adds return value of dummyData property
+    className={`some-element--${checkDummy.class}`} -- adds 'show' or 'hide'
 
+    If the input has not been used yet, there won't be a value property;
+    otherwise, the input's value is used. If all else fails, the dummy
+    data will still be used.
+  */
+
+  // TODO maybe improve to include an optional image for a state!
+
+  let hideADummy = "hide";
+  let isItADummy = dummyData;
+
+  if (!onceADummy.inputsWithValue) {
+    onceADummy.inputsWithValue = new Set();
+  }
+
+  const inputsWithValue = onceADummy.inputsWithValue;
+  const inputKey =
+    input?.ids?.value_id || input?.ids?.id || input?.ids?.input_id;
+  const hasHadValue = inputKey && inputsWithValue.has(inputKey);
+
+  if (input && input?.value !== undefined && input?.value !== null) {
+    hideADummy = "show";
+    if (inputKey) {
+      inputsWithValue.add(inputKey);
+    }
+    // console.log("input value exists", input?.value); // eslint-disable-line no-console
+  } else if (!input?.value) {
+    hideADummy = "show";
+    // console.warn(
+    //   "The input value is undefined or null, using dummy data instead.",
+    //   input
+    // );
+    if (input?.value === null && (!inputKey || hasHadValue)) {
+      hideADummy = "hide";
+      // console.warn("The input value is null, using dummy data instead.", input);
+    }
+  }
+  return { dummyData: isItADummy, class: hideADummy };
+};
 /**
  * Return dummy text and a visibility class for optional content slots.
  *
