@@ -34,16 +34,21 @@ Or add it to `package.json` dependencies:
 
 ## Usage
 
-`AnnouncementBanner` is a lightweight short-copy banner. It uses a single
-optional string prop, `announcementMessage`, and does not require the
-Outfit-style input object shape used by `WarrantyBlock`.
+`AnnouncementBanner` is a lightweight single-line banner for short template
+messages. It accepts Outfit-style text input objects, plus preview/default
+content through `fallbackContent` or the compatibility alias `dummyData`.
 
 Announcement banner example:
 
 ```tsx
 import { AnnouncementBanner } from "kubota-outfit-components";
 
-<AnnouncementBanner announcementMessage="Limited time offer" />;
+<AnnouncementBanner
+  announcementMessage={announcementMessage}
+  fallbackContent={{
+    announcementMessage: { value: "this is an announcement" },
+  }}
+/>
 ```
 
 Warranty block example:
@@ -62,30 +67,110 @@ import { WarrantyBlock } from "kubota-outfit-components";
 />;
 ```
 
+The preferred preview/default content prop is `fallbackContent`. The
+`dummyData` prop is still supported as a compatibility alias and uses the same
+shape:
+
+```js
+{
+  announcementMessage: { value: "announcement" }
+}
+```
+
+`announcementMessage` should stay short. One or two words work best because the
+banner is constrained to a single line and is styled as a compact label.
+
+## AnnouncementBanner usage notes
+
+`src/components/AnnouncementBanner.tsx` renders a single-line announcement
+banner for short template messages.
+
+### Positioning modes
+
+`AnnouncementBanner` supports relative positioning by default and absolute
+positioning when the `absolute` prop is supplied.
+
+#### Relative mode
+
+Relative mode is used when no `absolute` prop is passed:
+
+```tsx
+<AnnouncementBanner
+  announcementMessage={announcementMessage}
+  maxWidth="78vw"
+/>
+```
+
+In relative mode the banner stays in normal document flow. The `maxWidth` prop
+limits both the wrapper and the message label, with the component's left banner
+offset accounted for internally.
+
+If `maxWidth` is not supplied, the banner falls back to `calc(100% - 6vw)`.
+
+#### Absolute mode
+
+If you want to place this component inside another component, such as a
+background image wrapper, the absolute positioning mode lets you place the
+banner inside the nearest positioned parent.
+
+Pass an `absolute` object to position the banner absolutely:
+
+```tsx
+<AnnouncementBanner
+  announcementMessage={announcementMessage}
+  maxWidth="78vw"
+  absolute={{
+    top: "12mm",
+    left: "8mm",
+  }}
+/>
+```
+
+Supported offsets are `top`, `right`, `bottom`, and `left`. Values should
+include CSS units such as `mm`, `px`, `%`, or `em`.
+
+In absolute mode, `maxWidth` is adjusted using the supplied left offset, print
+offset, and border offset so the visible banner can line up with the positioned
+placement while keeping its background extension.
+
+When `absolute.left` is supplied, the banner background extension uses the
+inverse of that value so the left-side fill can continue back toward the page
+edge:
+
+```css
+left: calc(-1 * (<absolute.left>) - 3mm);
+```
+
+For example, `left: "8mm"` gives the background extension a calculated left
+offset of `calc(-1 * (8mm) - 3mm)`.
+
+### TextElement association
+
+The banner displays its message through `src/components/TextElement.jsx`.
+
+`TextElement` handles the shared Outfit text behavior: fallback text resolution
+via `checkInputExists`, inline editing via `onInlineEditClick`, limiter
+support, HTML parsing, and money formatting for the existing finance-related
+text classes.
+
+`AnnouncementBanner` uses `onceADummyText` from `src/utils/helpers.js` to decide
+whether the fallback preview text should be shown or whether an empty/null live
+input should hide the banner.
+
+## AnnouncementBanner Props
+
+- `announcementMessage`: Outfit-style text input object for the banner copy.
+- `fallbackContent`: Preferred preview/default content.
+- `dummyData`: Compatibility alias for `fallbackContent`.
+- `absolute`: Optional positioning object with `top`, `right`, `bottom`, and
+  `left` offsets.
+- `maxWidth`: Optional width limit for the wrapper and label.
+
 `WarrantyBlock` props expect an Outfit-style text or choice input object:
 
 ```ts
 { value: string; ids?: unknown }
 ```
-
-## AnnouncementBanner Props
-
-- `announcementMessage?: string`: Banner copy shown inside the skewed label.
-  Use a short announcement or callout string. If omitted, the banner renders an
-  empty message container.
-
-## AnnouncementBanner Example
-
-```tsx
-<AnnouncementBanner announcementMessage="Now available" />
-```
-
-## AnnouncementBanner Notes
-
-- The banner renders as a single-line callout with a decorative skewed tail.
-- It uses its own container name, `announcementBanner`, so template CSS can
-  target it independently if needed.
-- Keep the message short for the best layout fit.
 
 ## WarrantyBlock Props
 
@@ -230,7 +315,8 @@ Suggested release body:
 
 - Added `WarrantyBlock` as the primary export.
 - Added `AnnouncementBanner` as a secondary export for short callout banners
-  with their own dedicated prop and styling surface.
+  with relative and absolute positioning modes, preview fallback content, and
+  TextElement-based rendering.
 - Supports Outfit-style inputs for APR, incentive copy, connector lines, and warranty copy.
 - Ships with responsive layout rules and fallback preview content.
 - Intended for direct consumption from template projects via a pinned Git tag.

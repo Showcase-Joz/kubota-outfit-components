@@ -5,4 +5,9 @@ export type {
   WarrantyBlockField,
   WarrantyBlockProps,
 } from "./components/WarrantyBlock.js";
-export type { AnnouncementBannerProps } from "./components/AnnouncementBanner.js";
+export type {
+  AnnouncementBannerAbsolute,
+  AnnouncementBannerFallbackContent,
+  AnnouncementBannerField,
+  AnnouncementBannerProps,
+} from "./components/AnnouncementBanner.js";

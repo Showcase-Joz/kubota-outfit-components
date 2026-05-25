@@ -1,19 +1,70 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+import { onceADummyText } from "../utils/helpers.js";
+import { TextElement } from "./TextElement.js";
 
-export interface AnnouncementBannerProps {
-  announcementMessage?: string;
+export type AnnouncementBannerField = {
+  value: string;
+  ids?: unknown;
+};
+
+export type AnnouncementBannerFallbackContent = {
+  announcementMessage?: AnnouncementBannerField;
+};
+
+export type AnnouncementBannerAbsolute = {
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+};
+
+const defaultAnnouncementBannerFallbackContent: AnnouncementBannerFallbackContent =
+  {
+    announcementMessage: {
+      value: "announcement",
+    },
+  };
+
+interface AnnouncementBannerWrapperProps {
+  $absolute?: AnnouncementBannerAbsolute;
+  $isAbsolute: boolean;
+  $maxWidth: string;
 }
 
-const AnnouncementBannerWrapper = styled.div`
+const AnnouncementBannerWrapper = styled.div<AnnouncementBannerWrapperProps>`
   --banner-offset: 1em;
+  --banner-print-offset: 3mm;
+  --banner-border-offset: 1em;
+
   container-name: announcementBanner;
   container-type: inline-size;
 
   display: flex;
-  position: relative;
-  left: -1em;
+  position: ${(props) => (props.$isAbsolute ? "absolute" : "relative")};
+  left: ${(props) => {
+    if (!props.$isAbsolute) return "-1em";
+
+    return props.$absolute?.left
+      ? `calc(-1 * (${props.$absolute.left}) - var(--banner-print-offset))`
+      : "0";
+  }};
+  top: ${(props) =>
+    props.$isAbsolute ? props.$absolute?.top || "auto" : "auto"};
+  right: ${(props) =>
+    props.$isAbsolute ? props.$absolute?.right || "auto" : "auto"};
+  bottom: ${(props) =>
+    props.$isAbsolute ? props.$absolute?.bottom || "auto" : "auto"};
+  width: fit-content;
+  max-width: ${(props) =>
+    props.$isAbsolute && props.$absolute?.left
+      ? `calc(${props.$maxWidth} - ${props.$absolute.left} - var(--banner-print-offset) - var(--banner-border-offset))`
+      : props.$maxWidth};
   font-size: 1.1em;
+
+  &.announcementBanner--hide {
+    display: none;
+  }
 
   .message {
     position: relative;
@@ -21,7 +72,7 @@ const AnnouncementBannerWrapper = styled.div`
     isolation: isolate;
     width: fit-content;
     min-width: fit-content;
-    max-width: calc(70% + var(--banner-offset));
+    max-width: inherit;
     background-color: salmon;
     border-left: 1em solid;
     border-color: salmon;
@@ -48,14 +99,54 @@ const AnnouncementBannerWrapper = styled.div`
       z-index: -1;
     }
   }
+
+  .text-type--announcementMessage {
+    width: fit-content;
+    min-width: fit-content;
+    max-width: inherit;
+    color: inherit;
+    font: inherit;
+    line-height: 1;
+  }
 `;
 
+export interface AnnouncementBannerProps {
+  fallbackContent?: AnnouncementBannerFallbackContent;
+  dummyData?: AnnouncementBannerFallbackContent;
+  announcementMessage?: AnnouncementBannerField;
+  absolute?: AnnouncementBannerAbsolute;
+  maxWidth?: string;
+}
+
 const AnnouncementBanner = ({
+  fallbackContent,
+  dummyData,
   announcementMessage,
+  absolute,
+  maxWidth = "calc(100% - 6vw)",
 }: AnnouncementBannerProps) => {
+  const content =
+    fallbackContent || dummyData || defaultAnnouncementBannerFallbackContent;
+  const announcementMessageValue = onceADummyText(
+    announcementMessage,
+    content?.announcementMessage?.value || "",
+  );
+
   return (
-    <AnnouncementBannerWrapper>
-      <div className="message">{announcementMessage}</div>
+    <AnnouncementBannerWrapper
+      className={`announcementBanner announcementBanner--${announcementMessageValue.class}`}
+      $absolute={absolute}
+      $isAbsolute={Boolean(absolute)}
+      $maxWidth={maxWidth}
+    >
+      <div className="message">
+        <TextElement
+          dummyData={announcementMessageValue.dummyData || ""}
+          destructedProp={announcementMessage}
+          dynamicClassName="announcementMessage"
+          lines={1}
+        />
+      </div>
     </AnnouncementBannerWrapper>
   );
 };
