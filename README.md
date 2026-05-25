@@ -2,12 +2,11 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
-theming more aggressively if the same component patterns need to be forked for
-This package starts with the responsive `WarrantyBlock` component and the
-skewed `AnnouncementBanner` component. The current version is intentionally
-Kubota-shaped: it includes Kubota-oriented defaults, responsive layout rules,
-and Outfit input guidance. Future versions can separate theming more
-aggressively if the same component patterns need to be forked for another
+This package starts with two primary exports: the responsive `WarrantyBlock`
+component and the skewed `AnnouncementBanner` component. The current version is
+intentionally Kubota-shaped: it includes Kubota-oriented defaults, responsive
+layout rules, and Outfit input guidance. Future versions can separate theming
+more aggressively if the same component patterns need to be forked for another
 client.
 
 ## Install
@@ -35,6 +34,10 @@ Or add it to `package.json` dependencies:
 
 ## Usage
 
+`AnnouncementBanner` is a lightweight short-copy banner. It expects a plain
+string-style message and does not require the Outfit-style input object shape
+used by `WarrantyBlock`.
+
 ```tsx
 import { AnnouncementBanner, WarrantyBlock } from "kubota-outfit-components";
 
@@ -61,6 +64,13 @@ Each prop expects an Outfit-style text or choice input object:
 
 - `announcementMessage`: Banner copy shown inside the skewed label. Use a short
   announcement or callout string.
+
+## AnnouncementBanner Notes
+
+- The banner renders as a single-line callout with a decorative skewed tail.
+- It uses its own container name, `announcementBanner`, so template CSS can
+  target it independently if needed.
+- Keep the message short for the best layout fit.
 
 ## WarrantyBlock Props
 
@@ -204,7 +214,8 @@ Suggested release body:
 ## v0.2.0
 
 - Added `WarrantyBlock` as the primary export.
-- Added `AnnouncementBanner` as a secondary export for short callout banners.
+- Added `AnnouncementBanner` as a secondary export for short callout banners
+  with their own dedicated prop and styling surface.
 - Supports Outfit-style inputs for APR, incentive copy, connector lines, and warranty copy.
 - Ships with responsive layout rules and fallback preview content.
 - Intended for direct consumption from template projects via a pinned Git tag.
