@@ -34,14 +34,22 @@ Or add it to `package.json` dependencies:
 
 ## Usage
 
-`AnnouncementBanner` is a lightweight short-copy banner. It expects a plain
-string-style message and does not require the Outfit-style input object shape
-used by `WarrantyBlock`.
+`AnnouncementBanner` is a lightweight short-copy banner. It uses a single
+optional string prop, `announcementMessage`, and does not require the
+Outfit-style input object shape used by `WarrantyBlock`.
+
+Announcement banner example:
 
 ```tsx
-import { AnnouncementBanner, WarrantyBlock } from "kubota-outfit-components";
+import { AnnouncementBanner } from "kubota-outfit-components";
 
-<AnnouncementBanner announcementMessage="announcement" />;
+<AnnouncementBanner announcementMessage="Limited time offer" />;
+```
+
+Warranty block example:
+
+```tsx
+import { WarrantyBlock } from "kubota-outfit-components";
 
 <WarrantyBlock
   aPR={inputs?.aPR}
@@ -54,7 +62,7 @@ import { AnnouncementBanner, WarrantyBlock } from "kubota-outfit-components";
 />;
 ```
 
-Each prop expects an Outfit-style text or choice input object:
+`WarrantyBlock` props expect an Outfit-style text or choice input object:
 
 ```ts
 { value: string; ids?: unknown }
@@ -62,8 +70,15 @@ Each prop expects an Outfit-style text or choice input object:
 
 ## AnnouncementBanner Props
 
-- `announcementMessage`: Banner copy shown inside the skewed label. Use a short
-  announcement or callout string.
+- `announcementMessage?: string`: Banner copy shown inside the skewed label.
+  Use a short announcement or callout string. If omitted, the banner renders an
+  empty message container.
+
+## AnnouncementBanner Example
+
+```tsx
+<AnnouncementBanner announcementMessage="Now available" />
+```
 
 ## AnnouncementBanner Notes
 
