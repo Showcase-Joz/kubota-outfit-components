@@ -260,6 +260,162 @@
     ]
   },
   {
+    "offerBlock Inputs": [
+      {
+        "tag": "incentiveAmount",
+        "type": "Variables::Text",
+        "custom_title": "Incentive Amount",
+        "hint": "Max 6 characters, or 7 including the comma. Keep to 5 characters or fewer for the best fit.",
+        "position": 0,
+        "definition": {
+          "paragraph": false,
+          "heading_level_one": false,
+          "heading_level_two": false,
+          "heading_level_three": false,
+          "heading_level_four": false,
+          "heading_level_five": false,
+          "heading_level_six": false,
+          "unordered_list": false,
+          "ordered_list": false,
+          "no_formatting": true,
+          "hyperlink": false,
+          "text_color_style": false,
+          "remove_formatting": false,
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "strikethrough": false,
+          "alignment": false,
+          "disable_inline_edit": false,
+          "special_characters": false
+        }
+      },
+      {
+        "tag": "downPayment",
+        "type": "Variables::Text",
+        "custom_title": "Down Payment",
+        "hint": "Down payment value. Use 0 when there is no down payment.",
+        "position": 1,
+        "definition": {
+          "paragraph": false,
+          "heading_level_one": false,
+          "heading_level_two": false,
+          "heading_level_three": false,
+          "heading_level_four": false,
+          "heading_level_five": false,
+          "heading_level_six": false,
+          "unordered_list": false,
+          "ordered_list": false,
+          "no_formatting": true,
+          "hyperlink": false,
+          "text_color_style": false,
+          "remove_formatting": false,
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "strikethrough": false,
+          "alignment": false,
+          "disable_inline_edit": false,
+          "special_characters": false
+        }
+      },
+      {
+        "tag": "aPR",
+        "type": "Variables::Choice",
+        "custom_title": "APR",
+        "hint": "Keep to 5 characters or fewer. Select 0% Available to render the fallback 0% APR treatment.",
+        "position": 2,
+        "definition": {
+          "choices": [
+            {
+              "label": "Not Applicable",
+              "value": "notApplicable"
+            },
+            {
+              "label": "0% Available",
+              "value": "available"
+            },
+            {
+              "label": "0%",
+              "value": "0"
+            },
+            {
+              "label": "0.99%",
+              "value": "0.99"
+            },
+            {
+              "label": "1.99%",
+              "value": "1.99"
+            },
+            {
+              "label": "2.99%",
+              "value": "2.99"
+            },
+            {
+              "label": "3.99%",
+              "value": "3.99"
+            },
+            {
+              "label": "4.99%",
+              "value": "4.99"
+            }
+          ],
+          "multi": false,
+          "optional_text": true
+        }
+      },
+      {
+        "tag": "paymentMonths",
+        "type": "Variables::Choice",
+        "custom_title": "Payment Months",
+        "hint": "Payment term in months.",
+        "position": 3,
+        "definition": {
+          "choices": [
+            {
+              "label": "Not Applicable",
+              "value": "notApplicable"
+            },
+            {
+              "label": "12",
+              "value": "12"
+            },
+            {
+              "label": "24",
+              "value": "24"
+            },
+            {
+              "label": "36",
+              "value": "36"
+            },
+            {
+              "label": "48",
+              "value": "48"
+            },
+            {
+              "label": "54",
+              "value": "54"
+            },
+            {
+              "label": "60",
+              "value": "60"
+            },
+            {
+              "label": "72",
+              "value": "72"
+            },
+            {
+              "label": "84",
+              "value": "84"
+            }
+          ],
+          "multi": false,
+          "optional_text": false
+        }
+      }
+    ]
+  },
+  {
     "NextNewBlock Inputs": []
   }
 ]

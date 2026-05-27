@@ -2,8 +2,9 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
-This package starts with two primary exports: the responsive `WarrantyBlock`
-component and the skewed `AnnouncementBanner` component. The current version is
+This package starts with three primary exports: the responsive `WarrantyBlock`
+component, the monthly `OfferBlock` component, and the skewed
+`AnnouncementBanner` component. The current version is
 intentionally Kubota-shaped: it includes Kubota-oriented defaults, responsive
 layout rules, and Outfit input guidance. Future versions can separate theming
 more aggressively if the same component patterns need to be forked for another
@@ -64,6 +65,19 @@ import { WarrantyBlock } from "kubota-outfit-components";
   connectorLinesText={inputs?.connectorLinesText}
   warrantyText={inputs?.warrantyText}
   warrantyConnectorText={inputs?.warrantyConnectorText}
+/>;
+```
+
+Offer block example:
+
+```tsx
+import { OfferBlock } from "kubota-outfit-components";
+
+<OfferBlock
+  incentiveAmount={inputs?.incentiveAmount}
+  downPayment={inputs?.downPayment}
+  aPR={inputs?.aPR}
+  paymentMonths={inputs?.paymentMonths}
 />;
 ```
 
@@ -207,6 +221,31 @@ Example `fallbackContent` value:
 />
 ```
 
+## OfferBlock Props
+
+- `incentiveAmount`: Main monthly offer amount. Rendered as the large value in
+  `$XXXX /MO`. Placeholder `XXXX` is supported for previews.
+- `downPayment`: Down payment value. Rendered in the finance terms row.
+- `aPR`: APR percentage value. Use `available` to render the fallback
+  `0% available` treatment, or `notApplicable` to hide APR.
+- `paymentMonths`: Payment term in months. Use `notApplicable` to hide the
+  payment term.
+- `fallbackContent`: Optional preview/default content using the same field
+  shape.
+
+Example `fallbackContent` value:
+
+```tsx
+<OfferBlock
+  fallbackContent={{
+    incentiveAmount: { value: "XXXX" },
+    downPayment: { value: "0" },
+    aPR: { value: "4.99" },
+    paymentMonths: { value: "84" },
+  }}
+/>
+```
+
 ## Styling
 
 The component ships with internal fallback values for fonts and colors, so it
@@ -232,6 +271,9 @@ definitions and hints. Each outer object in inputs.json hosts the suggested inpu
 [
   {
     "warrantyBlock Inputs": [**...use these**]
+  },
+  {
+    "offerBlock Inputs": [**...use these**]
   }
 ]
 ```

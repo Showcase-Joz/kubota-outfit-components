@@ -63,7 +63,9 @@ const TextElement = ({
         className={`text-type--${dynamicClassName}`}
         onClick={handleInlineEditClick}
       >
-        {dynamicClassName === "incentive-amount" || dynamicClassName === "aPR"
+        {dynamicClassName === "incentive-amount" ||
+        dynamicClassName === "aPR" ||
+        dynamicClassName === "downPayment"
           ? formatMoney(text, lang, dummyData)
           : parse(String(text ?? ""))}
       </TextElementWrapper>

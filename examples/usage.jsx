@@ -1,4 +1,4 @@
-import { AnnouncementBanner, WarrantyBlock } from "../src";
+import { AnnouncementBanner, OfferBlock, WarrantyBlock } from "../src";
 
 const Example = ({ inputs }) => (
   <>
@@ -17,6 +17,13 @@ const Example = ({ inputs }) => (
       connectorLinesText={inputs?.connectorLinesText}
       warrantyText={inputs?.warrantyText}
       warrantyConnectorText={inputs?.warrantyConnectorText}
+    />
+
+    <OfferBlock
+      incentiveAmount={inputs?.incentiveAmount}
+      downPayment={inputs?.downPayment}
+      aPR={inputs?.aPR}
+      paymentMonths={inputs?.paymentMonths}
     />
   </>
 );
