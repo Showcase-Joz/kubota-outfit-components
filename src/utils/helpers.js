@@ -151,18 +151,62 @@ export const onceADummy = (input, dummyData) => {
   return { dummyData: isItADummy, class: hideADummy };
 };
 /**
- * Return dummy text and a visibility class for optional content slots.
+ * Decide whether to show dummy text and (optionally) auto-translate it.
  *
- * @param {*} input Live Outfit input.
- * @param {*} dummyData Fallback content.
+ * Behavior (unchanged by default):
+ * - Returns { dummyData, class: "show" | "hide" }.
+ * - "show" when the input is undefined OR has a non-empty value; otherwise "hide".
+ * - If `opts.translate` is not set, dummyData is returned untouched (exactly as before).
+ *
+ * Optional translation (only when opts.translate === true):
+ * - If dummyData is an Outfit-style field object { value, lang?: { [xx]: string } }:
+ *     use .lang[lang] (if available) → else .value.
+ * - Else if dummyData is a string that looks like an i18n key ("ns.path"):
+ *     try i18n.t(key); if not found, fall back to the original string.
+ * - Else return dummyData as-is.
+ *
+ * @param {*} input
+ *   The Outfit input (or similar) you check for presence.
+ * @param {*} dummyData
+ *   The fallback content (string OR Outfit-style { value, lang } object OR i18n key).
+ * @param {{ translate?: boolean, lang?: string, fallback?: string }} [opts]
+ *   translate: enable auto-translation (default: false).
+ *   lang: language override like "fr" (defaults to i18n.language → "en").
+ *   fallback: final fallback string if nothing resolves (default: "").
  * @returns {{ dummyData: *, class: "show" | "hide" }}
  */
-export const onceADummyText = (input, dummyData) => {
+export const onceADummyText = (input, dummyData, opts = {}) => {
   const localInput = checkInputExists(input, undefined);
 
   let hideADummy = "hide";
   if (localInput === undefined) hideADummy = "show";
   else if (localInput && localInput.length > 0) hideADummy = "show";
 
-  return { dummyData, class: hideADummy };
+  let resolved = dummyData;
+
+  if (opts.translate) {
+    const lang = (opts.lang || i18n?.language || "en")
+      .toLowerCase()
+      .split("-")[0];
+
+    // Case 1: Outfit-style object with { value, lang }
+    if (dummyData && typeof dummyData === "object") {
+      const byLang = dummyData?.lang?.[lang];
+      if (byLang != null && byLang !== "") resolved = byLang;
+      else if (dummyData?.value != null && dummyData.value !== "")
+        resolved = dummyData.value;
+      else resolved = opts.fallback ?? "";
+    }
+    // Case 2: i18n key string like "ns.path"
+    else if (typeof dummyData === "string" && dummyData.includes(".")) {
+      const t = i18n.t(dummyData, { defaultValue: "" });
+      resolved = t && t !== dummyData ? t : opts.fallback ?? dummyData;
+    }
+    // Case 3: primitives/other → leave as-is (or fallback if empty)
+    else if (resolved == null || resolved === "") {
+      resolved = opts.fallback ?? "";
+    }
+  }
+
+  return { dummyData: resolved, class: hideADummy };
 };
