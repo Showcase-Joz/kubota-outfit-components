@@ -88,10 +88,12 @@ const OfferBlockWrapper = styled.div`
   grid-template-rows:
     min-content
     min-content;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, max-content);
   row-gap: 0.5em;
   height: 100%;
-  align-content: end;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
   padding-bottom: 0.05em;
   font-size: var(
     --clamp-size-1,
