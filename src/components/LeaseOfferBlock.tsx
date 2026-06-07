@@ -131,7 +131,7 @@ const LeaseOfferBlockWrapper = styled.div`
   font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
 
   --border-width: 0.2vh;
-  --sub-text-size: 0.365em;
+  --sub-text-size: 0.32em;
 
   .mainArea {
     display: grid;
