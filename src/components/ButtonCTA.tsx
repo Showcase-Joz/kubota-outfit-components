@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { TextElement } from "./TextElement";
+import { TextElement } from "./TextElement.js";
 
 export type ButtonCTAField = {
   value: string;
