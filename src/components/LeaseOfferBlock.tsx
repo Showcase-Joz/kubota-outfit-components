@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import type { ReactNode } from "react";
-import { TextElement } from "./TextElement";
+import { TextElement } from "./TextElement.js";
 import {
   onceADummyText,
   checkInputExists,
   cloneInlineClick,
-} from "../utils/helpers";
+} from "../utils/helpers.js";
 export interface LeaseOfferBlockProps {
   children?: ReactNode;
   /**
