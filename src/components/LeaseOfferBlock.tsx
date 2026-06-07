@@ -120,7 +120,7 @@ const LeaseOfferBlockWrapper = styled.div`
   height: fit-content;
   align-content: center;
   justify-self: center;
-
+  width: 100cqi;
   background-color: var(--color-orange, #ff6600);
   color: var(--color-white, #ffffff);
   clip-path: polygon(0 0, 93.7% 0, 100% 100%, 0% 100%);
