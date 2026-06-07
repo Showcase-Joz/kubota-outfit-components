@@ -2,6 +2,8 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
+This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor) and `LeaseOfferBlock` (a lease-specific payment block). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
+
 This package starts with three primary exports: the responsive `WarrantyBlock`
 component, the monthly `OfferBlock` component, and the skewed
 `AnnouncementBanner` component. The current version is
@@ -32,6 +34,17 @@ Or add it to `package.json` dependencies:
   }
 }
 ```
+
+## Exports
+
+Primary exports (from `src/index.ts`):
+
+- WarrantyBlock
+- AnnouncementBanner
+- OfferBlock
+- ButtonCTA
+- LeaseOfferBlock
+
 
 ## Usage
 
@@ -79,6 +92,34 @@ import { OfferBlock } from "kubota-outfit-components";
   aPR={inputs?.aPR}
   paymentMonths={inputs?.paymentMonths}
 />;
+```
+
+Button CTA example:
+
+```tsx
+import { ButtonCTA } from "kubota-outfit-components";
+
+<ButtonCTA
+  buttonText={inputs?.buttonText}
+  fallbackContent={{ buttonText: { value: "Learn more" } }}
+/>
+```
+
+Lease offer block example:
+
+```tsx
+import { LeaseOfferBlock } from "kubota-outfit-components";
+
+<LeaseOfferBlock
+  paymentPreText={inputs?.paymentPreText}
+  paymentAmount={inputs?.paymentAmount}
+  hoursOfUse={inputs?.hoursOfUse}
+  aPR={inputs?.aPR}
+  paymentMonths={inputs?.paymentMonths}
+  downPayment={inputs?.downPayment}
+>
+  {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
+</LeaseOfferBlock>
 ```
 
 The preferred preview/default content prop is `fallbackContent`. The
