@@ -107,7 +107,6 @@ const LeaseOfferBlockWrapper = styled.div`
   grid-area: leaseOfferBlock;
 
   display: grid;
-  grid-template-columns: minmax(min-content, 80cqi);
   grid-template-rows: auto auto;
   grid-template-areas:
     "mainArea"
@@ -115,18 +114,16 @@ const LeaseOfferBlockWrapper = styled.div`
   padding: 0.4em 0.6em;
   gap: 0.2em;
   height: 100cqb;
-  /* width: 100%; */
   position: relative;
   z-index: 0;
   justify-content: start;
   height: fit-content;
   align-content: center;
   justify-self: center;
-  /* min-width: 87%; */
-  width: fit-content;
+
   background-color: var(--color-orange, #ff6600);
   color: var(--color-white, #ffffff);
-  clip-path: polygon(0 0, 83% 0, 88.9% 100%, 0% 100%);
+  clip-path: polygon(0 0, 93.7% 0, 100% 100%, 0% 100%);
   font-size: var(
     --clamp-size-1,
     clamp(0.65em, calc(-0.875rem + 7.333cqi), 11.5rem)
@@ -135,14 +132,6 @@ const LeaseOfferBlockWrapper = styled.div`
 
   --border-width: 0.2vh;
   --sub-text-size: 0.365em;
-  // TODO remove these after build
-  /* margin: 0.4em 1.3em; */
-  /* padding: 0.3em 0.4em 0.55em 0.4em; */
-  /* max-width: 86%; */
-  /* width: 100%; */
-  /* min-height: 2.95em;
-  max-height: 74cqb; */
-  /* margin: 0.7em 1.3em 1em; */
 
   .mainArea {
     display: grid;
