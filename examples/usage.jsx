@@ -1,4 +1,9 @@
-import { AnnouncementBanner, OfferBlock, WarrantyBlock } from "../src";
+import {
+  AnnouncementBanner,
+  LeaseOfferBlock,
+  OfferBlock,
+  WarrantyBlock,
+} from "../src";
 
 const Example = ({ inputs }) => (
   <>
@@ -24,6 +29,15 @@ const Example = ({ inputs }) => (
       downPayment={inputs?.downPayment}
       aPR={inputs?.aPR}
       paymentMonths={inputs?.paymentMonths}
+    />
+
+    <LeaseOfferBlock
+      paymentPreText={inputs?.paymentPreText}
+      paymentAmount={inputs?.paymentAmount}
+      hoursOfUse={inputs?.hoursOfUse}
+      aPR={inputs?.aPR}
+      paymentMonths={inputs?.paymentMonths}
+      downPayment={inputs?.downPayment}
     />
   </>
 );
