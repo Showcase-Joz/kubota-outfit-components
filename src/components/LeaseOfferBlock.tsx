@@ -103,10 +103,10 @@ const defaultLeaseOfferFallbackContent: LeaseOfferBlockFallbackContent = {
 
 const LeaseOfferBlockWrapper = styled.div`
   container-name: leaseOfferWrapper;
-  container-type: inline-size;
-  grid-area: leaseOfferBlock;
+  container-type: size;
 
   display: grid;
+  grid-area: leaseOfferBlock;
   grid-template-rows: auto auto;
   grid-template-areas:
     "mainArea"
@@ -368,7 +368,7 @@ const LeaseOfferBlockWrapper = styled.div`
   [data-overflow]:after {
     top: unset;
   }
-  @container dynamicLayout (max-aspect-ratio: 1 / 1) {
+  @container leaseOfferWrapper (max-aspect-ratio: 1 / 1) {
     > div {
       clip-path: polygon(11.2cqi 0, 100% 0, 100% 100%, 0 100%);
       padding-left: 2em;
