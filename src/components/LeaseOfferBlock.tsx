@@ -399,6 +399,8 @@ const LeaseOfferBlockWrapper = styled.div`
         width: inherit;
         justify-self: end;
         margin-top: 0.6em;
+        max-width: unset;
+
         .paymentArea {
           border-right: none;
           padding-bottom: 0.3em;
@@ -408,9 +410,6 @@ const LeaseOfferBlockWrapper = styled.div`
             }
           }
 
-          .amount {
-            font-size: 1em;
-          }
           .paymentAmount {
             justify-content: center;
             ::after {
@@ -430,8 +429,17 @@ const LeaseOfferBlockWrapper = styled.div`
           .hoursPreText {
             height: 0.3em;
           }
+          .hoursAmount {
+            .text-type--hours::after {
+              font-size: 0.3em;
+            }
+          }
+        }
+        .paymentArea,
+        .hoursArea {
+          .amount,
           .hours {
-            font-size: 1.1em;
+            font-size: 1em;
           }
         }
       }
