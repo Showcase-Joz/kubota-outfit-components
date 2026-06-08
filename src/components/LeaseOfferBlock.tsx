@@ -369,54 +369,52 @@ const LeaseOfferBlockWrapper = styled.div`
     top: unset;
   }
   @container leaseOfferWrapper (max-aspect-ratio: 1 / 1) {
-    > div {
-      clip-path: polygon(11.2cqi 0, 100% 0, 100% 100%, 0 100%);
-      padding-left: 2em;
-      padding-block: 5cqb;
-      width: fit-content;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto auto;
-      grid-template-areas:
-        "mainArea"
-        "subContent"
-        "buttonCTA";
-      width: 100%;
-      align-content: space-evenly;
+    clip-path: polygon(11.2cqi 0, 100% 0, 100% 100%, 0 100%);
+    padding-left: 2em;
+    padding-block: 5cqb;
+    width: fit-content;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "mainArea"
+      "subContent"
+      "buttonCTA";
+    width: 100%;
+    align-content: space-evenly;
 
-      max-width: 45vw;
-      min-width: 50vw;
-      .mainArea,
-      .subContent,
-      .buttonCTA {
-        justify-items: center;
-      }
-      .mainArea {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        width: inherit;
-        justify-self: end;
-        .paymentArea {
-          border-right: none;
-          .paymentAmount {
-            justify-content: center;
-            ::after {
-              margin-right: 0.4em;
-            }
+    max-width: 45vw;
+    min-width: 50vw;
+    .mainArea,
+    .subContent,
+    .buttonCTA {
+      justify-items: center;
+    }
+    .mainArea {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      width: inherit;
+      justify-self: end;
+      .paymentArea {
+        border-right: none;
+        .paymentAmount {
+          justify-content: center;
+          ::after {
+            margin-right: 0.4em;
           }
         }
-        .hoursArea {
-          border-bottom: none;
-        }
       }
-      .subContent {
-        width: inherit;
-        text-wrap-style: balance;
-        text-align: center;
+      .hoursArea {
+        border-bottom: none;
       }
-      .buttonCTA {
-        display: inline-block;
-        margin-top: 0.5em;
-      }
+    }
+    .subContent {
+      width: inherit;
+      text-wrap-style: balance;
+      text-align: center;
+    }
+    .buttonCTA {
+      display: inline-block;
+      margin-top: 0.5em;
     }
   }
 `;
