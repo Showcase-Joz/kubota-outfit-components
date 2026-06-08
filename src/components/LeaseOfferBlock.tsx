@@ -373,9 +373,10 @@ const LeaseOfferBlockWrapper = styled.div`
     }
   }
   @container leaseOfferWrapper (max-aspect-ratio: 1 / 1) {
+    --sub-text-size: 0.27em;
     .leaseOfferBlockWrapper {
       clip-path: polygon(20.2cqi 0, 100% 0, 100% 100%, 0 100%);
-      padding-left: 2em;
+      padding-left: 1.3em;
       padding-block: 5cqb;
       width: fit-content;
       grid-template-columns: 1fr;
@@ -385,7 +386,8 @@ const LeaseOfferBlockWrapper = styled.div`
         "subContent"
         "buttonCTA";
       width: 100%;
-      align-content: space-evenly;
+
+      align-content: start;
       .mainArea,
       .subContent,
       .buttonCTA {
@@ -396,17 +398,34 @@ const LeaseOfferBlockWrapper = styled.div`
         grid-template-rows: 1fr 1fr;
         width: inherit;
         justify-self: end;
+        margin-top: 0.6em;
         .paymentArea {
           border-right: none;
+          padding-bottom: 0.2em;
+          .paymentPreText {
+            .text-type--paymentPreText {
+              font-size: 1.15em;
+            }
+          }
+
+          .amount {
+            font-size: 1.1em;
+          }
           .paymentAmount {
             justify-content: center;
             ::after {
               margin-right: 0.4em;
             }
+            ::before,
+            ::after {
+              font-size: 0.3em;
+            }
           }
         }
         .hoursArea {
           border-bottom: none;
+          padding-top: 0.1em;
+          padding-bottom: unset;
         }
       }
       .subContent {
@@ -416,7 +435,10 @@ const LeaseOfferBlockWrapper = styled.div`
       }
       .buttonCTA {
         display: inline-block;
-        margin-top: 0.5em;
+        margin-top: unset;
+        font-size: 1.1rem;
+        min-width: 54cqi;
+        padding: 1.9em 1.5em;
       }
     }
   }
