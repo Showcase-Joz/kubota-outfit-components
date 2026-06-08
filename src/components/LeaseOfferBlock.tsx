@@ -113,11 +113,10 @@ const LeaseOfferBlockWrapper = styled.div`
     "subContent";
   padding: 0.4em 0.6em;
   gap: 0.2em;
-  height: 100cqb;
   position: relative;
   z-index: 0;
   justify-content: start;
-  height: fit-content;
+  height: inherit;
   align-content: center;
   justify-self: center;
   width: 100cqi;
@@ -369,7 +368,7 @@ const LeaseOfferBlockWrapper = styled.div`
   [data-overflow]:after {
     top: unset;
   }
-  @container leaseOfferWrapper (max-aspect-ratio: 2.8 / 1) {
+  @container leaseOfferWrapper (max-aspect-ratio: 1 / 1) {
     clip-path: polygon(11.2cqi 0, 100% 0, 100% 100%, 0 100%);
     padding-left: 2em;
     padding-block: 5cqb;
