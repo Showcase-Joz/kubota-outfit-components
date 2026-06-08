@@ -114,6 +114,7 @@ const LeaseOfferBlockWrapper = styled.div`
   height: inherit;
   --border-width: 0.2vh;
   --sub-text-size: 0.32em;
+
   .leaseOfferBlockWrapper {
     display: grid;
     grid-template-rows: auto auto;
@@ -373,7 +374,7 @@ const LeaseOfferBlockWrapper = styled.div`
   }
   @container leaseOfferWrapper (max-aspect-ratio: 1 / 1) {
     .leaseOfferBlockWrapper {
-      clip-path: polygon(11.2cqi 0, 100% 0, 100% 100%, 0 100%);
+      clip-path: polygon(20.2cqi 0, 100% 0, 100% 100%, 0 100%);
       padding-left: 2em;
       padding-block: 5cqb;
       width: fit-content;
