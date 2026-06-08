@@ -368,7 +368,7 @@ const LeaseOfferBlockWrapper = styled.div`
   [data-overflow]:after {
     top: unset;
   }
-  @container leaseOfferWrapper (max-aspect-ratio: 97 / 100) {
+  @container leaseOfferWrapper (max-aspect-ratio: 1 / 1) {
     > div {
       clip-path: polygon(11.2cqi 0, 100% 0, 100% 100%, 0 100%);
       padding-left: 2em;
