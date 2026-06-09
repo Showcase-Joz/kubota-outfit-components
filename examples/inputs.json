@@ -630,6 +630,22 @@
     ]
   },
   {
+    "backgroundImage Inputs": [
+      {
+        "tag": "backgroundImage",
+        "type": "Variables::Image",
+        "custom_title": "Lifestyle Image - Required!",
+        "hint": "Select a lifestyle image. An image is required, the warning will be present until one is added.",
+        "position": 0,
+        "definition": {
+          "resizable": true,
+          "show_resizable_preview": true,
+          "allow_team_images": false
+        }
+      }
+    ]
+  },
+  {
     "NextNewBlock Inputs": []
   }
 ]

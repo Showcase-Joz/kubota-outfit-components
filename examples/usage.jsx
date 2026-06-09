@@ -38,6 +38,12 @@ const Example = ({ inputs }) => (
       aPR={inputs?.aPR}
       paymentMonths={inputs?.paymentMonths}
       downPayment={inputs?.downPayment}
+      /** {children} can be used to add additional content inside the block */
+    />
+
+    <BackgroundImageBlock
+      backgroundImage={inputs?.backgroundImage}
+      /** {children} can be used to add additional content inside the block, like the AnnouncementBanner and HeadlineBlock */
     />
   </>
 );

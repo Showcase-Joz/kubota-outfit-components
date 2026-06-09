@@ -3,6 +3,7 @@ export { AnnouncementBanner } from "./components/AnnouncementBanner.js";
 export { OfferBlock } from "./components/OfferBlock.js";
 export { ButtonCTA } from "./components/ButtonCTA.js";
 export { LeaseOfferBlock } from "./components/LeaseOfferBlock.js";
+export { BackgroundImageBlock } from "./components/BackgroundImageBlock.js";
 export type {
   WarrantyBlockFallbackContent,
   WarrantyBlockField,
@@ -29,3 +30,8 @@ export type {
   LeaseOfferBlockField,
   LeaseOfferBlockProps,
 } from "./components/LeaseOfferBlock.js";
+export type {
+  BackgroundImageBlockFallbackContent,
+  BackgroundImageBlockField,
+  BackgroundImageBlockProps,
+} from "./components/BackgroundImageBlock.js";

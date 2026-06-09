@@ -2,7 +2,7 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
-This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor) and `LeaseOfferBlock` (a lease-specific payment block). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
+This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), and `BackgroundImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
 
 This package starts with three primary exports: the responsive `WarrantyBlock`
 component, the monthly `OfferBlock` component, and the skewed
@@ -44,26 +44,10 @@ Primary exports (from `src/index.ts`):
 - OfferBlock
 - ButtonCTA
 - LeaseOfferBlock
+- BackgroundImageBlock
 
 
 ## Usage
-
-`AnnouncementBanner` is a lightweight single-line banner for short template
-messages. It accepts Outfit-style text input objects, plus preview/default
-content through `fallbackContent` or the compatibility alias `dummyData`.
-
-Announcement banner example:
-
-```tsx
-import { AnnouncementBanner } from "kubota-outfit-components";
-
-<AnnouncementBanner
-  announcementMessage={announcementMessage}
-  fallbackContent={{
-    announcementMessage: { value: "this is an announcement" },
-  }}
-/>
-```
 
 Warranty block example:
 
@@ -113,13 +97,49 @@ import { LeaseOfferBlock } from "kubota-outfit-components";
 <LeaseOfferBlock
   paymentPreText={inputs?.paymentPreText}
   paymentAmount={inputs?.paymentAmount}
-  hoursOfUse={inputs?.hoursOfUse}
+  hoursOfUse={inputs?.hours}
   aPR={inputs?.aPR}
   paymentMonths={inputs?.paymentMonths}
   downPayment={inputs?.downPayment}
 >
   {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
 </LeaseOfferBlock>
+```
+
+
+Background Image block example:
+
+```tsx
+import { BackgroundImageBlock } from "kubota-outfit-components";
+
+<LeaseOfferBlock
+  backgroundImage={inputs?.backgroundImage}
+  dynamicBackgroundImageClassName="additional class names"
+  altTag="altTag string"
+  imageLayout="cover || contain etc"
+  imagePosition="center top || left bottom etc"
+  
+>
+  {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
+</LeaseOfferBlock>
+```
+
+Announcement banner example:
+
+`AnnouncementBanner` is a lightweight single-line banner for short template
+messages. It accepts Outfit-style text input objects, plus preview/default
+content through `fallbackContent` or the compatibility alias `dummyData`.
+
+
+```tsx
+import { AnnouncementBanner } from "kubota-outfit-components";
+
+<AnnouncementBanner
+  announcementMessage={announcementMessage}
+  fallbackContent={{
+    announcementMessage: { value: "this is an announcement" },
+  }}
+/>
 ```
 
 The preferred preview/default content prop is `fallbackContent`. The
@@ -203,7 +223,7 @@ offset of `calc(-1 * (8mm) - 3mm)`.
 
 The banner displays its message through `src/components/TextElement.jsx`.
 
-`TextElement` handles the shared Outfit text behavior: fallback text resolution
+`TextElement` handles the shared Outfit text behaviour: fallback text resolution
 via `checkInputExists`, inline editing via `onInlineEditClick`, limiter
 support, HTML parsing, and money formatting for the existing finance-related
 text classes.
@@ -262,6 +282,22 @@ Example `fallbackContent` value:
 />
 ```
 
+Usage example:
+
+```tsx
+import { WarrantyBlock } from "kubota-outfit-components";
+
+<WarrantyBlock
+  aPR={inputs?.aPR}
+  incentiveConnectorText={inputs?.incentiveConnectorText}
+  incentivePreText={inputs?.incentivePreText}
+  incentiveText={inputs?.incentiveText}
+  connectorLinesText={inputs?.connectorLinesText}
+  warrantyText={inputs?.warrantyText}
+  warrantyConnectorText={inputs?.warrantyConnectorText}
+/>
+```
+
 ## OfferBlock Props
 
 - `incentiveAmount`: Main monthly offer amount. Rendered as the large value in
@@ -285,6 +321,89 @@ Example `fallbackContent` value:
     paymentMonths: { value: "84" },
   }}
 />
+```
+
+Usage example:
+
+```tsx
+import { OfferBlock } from "kubota-outfit-components";
+
+<OfferBlock
+  incentiveAmount={inputs?.incentiveAmount}
+  downPayment={inputs?.downPayment}
+  aPR={inputs?.aPR}
+  paymentMonths={inputs?.paymentMonths}
+  fallbackContent={{ incentiveAmount: { value: "XXXX" } }}
+/>
+```
+
+---
+
+## LeaseOfferBlock Props
+
+- `paymentPreText`: Small label shown before the payment amount.
+- `paymentAmount`: Main payment amount value.
+- `hoursOfUse`: Hours or usage indicator (optional).
+- `aPR`: APR string for lease finance if applicable.
+- `paymentMonths`: Lease term in months.
+- `downPayment`: Down payment value.
+- `fallbackContent`: Optional preview/default content.
+
+Usage example:
+
+```tsx
+import { LeaseOfferBlock } from "kubota-outfit-components";
+
+<LeaseOfferBlock
+  paymentPreText={inputs?.paymentPreText}
+  paymentAmount={inputs?.paymentAmount}
+  hoursOfUse={inputs?.hours}
+  aPR={inputs?.aPR}
+  paymentMonths={inputs?.paymentMonths}
+  downPayment={inputs?.downPayment}
+>
+  {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
+</LeaseOfferBlock>
+```
+
+---
+
+## ButtonCTA Props
+
+- `buttonText`: Outfit-style text input for the button label.
+- `href`: Optional destination URL.
+- `fallbackContent`: Optional preview/default content.
+
+Usage example:
+
+```tsx
+import { ButtonCTA } from "kubota-outfit-components";
+
+<ButtonCTA
+  buttonText={inputs?.buttonText}
+  fallbackContent={{ buttonText: { value: "Learn more" } }}
+/>
+```
+
+---
+
+## BackgroundImageBlock Props
+
+- `backgroundImage`: Image input object or URL.
+- `dynamicBackgroundImageClassName`: Additional class names applied to the dynamic image container.
+- `altTag`: Alt text for accessibility.
+- `imageLayout`: Layout mode (cover, contain, etc.).
+- `imagePosition`: Positioning string (e.g. `center top`).
+- `fallbackContent`: Optional preview/default content.
+
+Usage example:
+
+```tsx
+import { BackgroundImageBlock } from "kubota-outfit-components";
+
+<BackgroundImageBlock backgroundImage={inputs?.backgroundImage} altTag="Tractor in field">
+  {/* children such as AnnouncementBanner or LeaseOfferBlock */}
+</BackgroundImageBlock>
 ```
 
 ## Styling
