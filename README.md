@@ -2,7 +2,7 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
-This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), and `BackgroundImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
+This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
 
 This package starts with three primary exports: the responsive `WarrantyBlock`
 component, the monthly `OfferBlock` component, and the skewed
@@ -44,7 +44,7 @@ Primary exports (from `src/index.ts`):
 - OfferBlock
 - ButtonCTA
 - LeaseOfferBlock
-- BackgroundImageBlock
+- ImageBlock
 
 
 ## Usage
@@ -370,7 +370,7 @@ import { ButtonCTA } from "kubota-outfit-components";
 
 ---
 
-## BackgroundImageBlock Props
+## ImageBlock Props
 
 - `backgroundImage`: Image input object or URL.
 - `dynamicBackgroundImageClassName`: Additional class names applied to the dynamic image container.
@@ -383,9 +383,9 @@ import { ButtonCTA } from "kubota-outfit-components";
 example. usage:
 
 ```tsx
-import { BackgroundImageBlock } from "kubota-outfit-components";
+import { ImageBlock } from "kubota-outfit-components";
 
-<BackgroundImageBlock
+<ImageBlock
   backgroundImage={inputs?.backgroundImage}
   dynamicBackgroundImageClassName="additional class names"
   altTag="altTag string"
@@ -394,7 +394,7 @@ import { BackgroundImageBlock } from "kubota-outfit-components";
   
 >
   {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
-</BackgroundImageBlock>
+</ImageBlock>
 ```
 
 ## Styling

@@ -41,7 +41,7 @@ const Example = ({ inputs }) => (
       /** {children} can be used to add additional content inside the block */
     />
 
-    <BackgroundImageBlock
+    <ImageBlock
       backgroundImage={inputs?.backgroundImage}
       /** {children} can be used to add additional content inside the block, like the AnnouncementBanner and HeadlineBlock */
     />
