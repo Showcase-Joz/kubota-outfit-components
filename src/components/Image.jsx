@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { checkInputExists } from "../utils/helpers";
+import { checkInputExists } from "../utils/helpers.js";
 import { onInlineEditClick } from "@outfit.io/react";
 
 const ImageWrapper = styled.div`
