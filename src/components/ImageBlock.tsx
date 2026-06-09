@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { Image } from "./Image";
+import { Image } from "./Image.js";
 import type { ReactNode } from "react";
 import { onceADummy } from "../utils/helpers.js";
 
