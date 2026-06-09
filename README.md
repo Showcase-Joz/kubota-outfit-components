@@ -107,23 +107,6 @@ import { LeaseOfferBlock } from "kubota-outfit-components";
 ```
 
 
-Background Image block example:
-
-```tsx
-import { BackgroundImageBlock } from "kubota-outfit-components";
-
-<LeaseOfferBlock
-  backgroundImage={inputs?.backgroundImage}
-  dynamicBackgroundImageClassName="additional class names"
-  altTag="altTag string"
-  imageLayout="cover || contain etc"
-  imagePosition="center top || left bottom etc"
-  
->
-  {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
-</LeaseOfferBlock>
-```
-
 Announcement banner example:
 
 `AnnouncementBanner` is a lightweight single-line banner for short template
@@ -396,13 +379,21 @@ import { ButtonCTA } from "kubota-outfit-components";
 - `imagePosition`: Positioning string (e.g. `center top`).
 - `fallbackContent`: Optional preview/default content.
 
-Usage example:
+
+example. usage:
 
 ```tsx
 import { BackgroundImageBlock } from "kubota-outfit-components";
 
-<BackgroundImageBlock backgroundImage={inputs?.backgroundImage} altTag="Tractor in field">
-  {/* children such as AnnouncementBanner or LeaseOfferBlock */}
+<BackgroundImageBlock
+  backgroundImage={inputs?.backgroundImage}
+  dynamicBackgroundImageClassName="additional class names"
+  altTag="altTag string"
+  imageLayout="cover || contain etc"
+  imagePosition="center top || left bottom etc"
+  
+>
+  {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
 </BackgroundImageBlock>
 ```
 
