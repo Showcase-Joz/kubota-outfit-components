@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { TextElement } from "./TextElement.jsx";
+import { TextElement } from "./TextElement.js";
 import { checkInputExists, onceADummyText } from "../utils/helpers.js";
 import { ReactNode } from "react";
 
