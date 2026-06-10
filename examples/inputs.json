@@ -646,6 +646,39 @@
     ]
   },
   {
+    "headlineBlock Inputs": [
+      {
+        "tag": "headlineText",
+        "type": "Variables::Text",
+        "custom_title": "Headline",
+        "hint": "Max 4 line. Orange text (can be selected and) is recommended for part of the headline, but is not required.",
+        "position": 0,
+        "definition": {
+          "paragraph": false,
+          "heading_level_one": false,
+          "heading_level_two": false,
+          "heading_level_three": false,
+          "heading_level_four": false,
+          "heading_level_five": false,
+          "heading_level_six": false,
+          "unordered_list": false,
+          "ordered_list": false,
+          "no_formatting": false,
+          "hyperlink": false,
+          "text_color_style": true,
+          "remove_formatting": false,
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "strikethrough": false,
+          "alignment": false,
+          "disable_inline_edit": false,
+          "special_characters": false
+        }
+      }
+    ]
+  },
+  {
     "NextNewBlock Inputs": []
   }
 ]

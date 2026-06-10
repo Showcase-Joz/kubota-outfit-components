@@ -31,6 +31,15 @@ export interface ImageBlockProps {
    * @example
    * {
    *   sourceImage: { value: "https://example.com/image.jpg" }
+   *   imageType: "studio"
+   *   layout: "cover"
+   *   position: "absolute"
+   *   height: "100cqb"
+   *   width: "100cqi"
+   *   top: "0"
+   *   left: "0"
+   *   right: "0"
+   *   bottom: "0"
    * }
    */
   fallbackContent?: ImageBlockFallbackContent;

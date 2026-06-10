@@ -42,8 +42,21 @@ const Example = ({ inputs }) => (
     />
 
     <ImageBlock
-      backgroundImage={inputs?.backgroundImage}
-      /** {children} can be used to add additional content inside the block, like the AnnouncementBanner and HeadlineBlock */
+      sourceImage={inputs?.featuredImage}
+      imageType="Lifestyle"
+      altTag="Lifestyle image"
+      imagePosition="center"
+      dynamicSourceImageClassName="lifestyle-image"
+    />
+
+    <HeadlineBlock
+      headlineText={inputs?.headlineText}
+      dynamicClassName="headline-block"
+      maxWidthInParent={"70cqi"}
+      maxLines={4}
+      headlinePlacement={inputs?.headlinePlacement}
+      textWrapStyle="balanced"
+      hideTextOption={false}
     />
   </>
 );
