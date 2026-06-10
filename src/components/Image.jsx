@@ -6,7 +6,7 @@ import { onInlineEditClick } from "@outfit.io/react";
 const ImageWrapper = styled.div`
   width: inherit;
   height: inherit;
-  position: relative;
+  position: fixed;
   img {
     object-fit: ${({ imageLayout }) => imageLayout || "cover"};
     object-position: ${({ imagePosition }) => imagePosition || "center"};
