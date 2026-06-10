@@ -94,7 +94,7 @@ const HeadlineBlockWrapper = styled.div<{
     text-transform: uppercase;
     height: fit-content;
     max-width: ${(props) => props.maxWidthInParent || "70%"};
-    place-self: ${(props) => props.headlinePlacementValue || "center"};
+    place-self: ${(props) => props.headlinePlacementValue};
     position: relative;
     &.headline--hide {
       display: none;
@@ -143,7 +143,7 @@ const HeadlineBlock = ({
   return (
     <HeadlineBlockWrapper
       className={`${dynamicClassName} headline-block-wrapper`}
-      headlinePlacementValue={headlinePlacementValue}
+      headlinePlacementValue={headlinePlacementValue?.value || "center"}
       textWrapStyle={textWrapStyle}
       maxWidthInParent={maxWidthInParent}
     >
