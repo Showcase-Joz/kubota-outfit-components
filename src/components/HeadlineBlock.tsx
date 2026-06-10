@@ -137,7 +137,6 @@ const HeadlineBlock = ({
   const headlinePlacementValue = checkInputExists(
     headlinePlacement,
     content.headlinePlacement?.value,
-    "center",
   );
 
   return (
