@@ -102,6 +102,9 @@ const ImageBlockWrapper = styled.div<{
   position: ${(props) => props.$position || "relative"};
   height: ${(props) => props.$height};
   width: ${(props) => props.$width};
+  .image-wrapper:has([data-before]) [data-before]::before {
+    background-color: rgba(from blue 200 g b / 0.5);
+  }
 `;
 
 const ImageBlock = ({
