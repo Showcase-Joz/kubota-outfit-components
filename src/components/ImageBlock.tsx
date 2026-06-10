@@ -105,6 +105,11 @@ const ImageBlockWrapper = styled.div<{
   .image-wrapper:has([data-before]) [data-before]::before {
     background-color: rgba(from blue 200 g b / 0.5);
   }
+  .image-wrapper:has(img[src]:not([src=""])) [data-before]::before,
+  .image-wrapper:has(img[src]:not([src=""])) [data-before]::after {
+    background-color: transparent;
+    content: none;
+  }
 `;
 
 const ImageBlock = ({
