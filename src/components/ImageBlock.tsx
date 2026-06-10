@@ -46,13 +46,13 @@ export interface ImageBlockProps {
    */
   sourceImage?: ImageBlockField;
   /**
-   * e.g. "studio", "editorial", etc., used for the 'image required' message.
+   * e.g. "studio", "editorial", etc., used for the 'image required' message. which can also be set in foreign languages using the `lang` prop. Additionally, this can be used as a container name for targeting specific styles with container queries based on the image type or content category, allowing for more dynamic and context-aware styling of the image block and its contents.
    */
   imageType?: string;
   /**
    * Class name applied to the inner Image component, which can be targeted by container queries for dynamic styling based on layout conditions.
    */
-  dynamicBackgroundImageClassName?: string;
+  dynamicSourceImageClassName?: string;
   /**
    * alt text for the image, used for accessibility. If not provided, it will default to "Background image".
    */
@@ -83,6 +83,14 @@ export interface ImageBlockProps {
 
   height?: string;
   width?: string;
+
+  /**
+   * When using absolute positioning, the `top`, `left`, `right`, and `bottom` properties can be used to specify the offset of the image from its containing block. These values can be set in any valid CSS unit (e.g., "10px", "5%", "2em", etc.) and will determine the final position of the image within the layout. For example, setting `top: "10px"` and `left: "20px"` would position the image 10 pixels from the top and 20 pixels from the left of its containing block. Ideally these are locked in at development time to ensure consistent layouts, but they can also be dynamically adjusted based on layout conditions using range slider inputs.
+   */
+  top: string;
+  left: string;
+  right: string;
+  bottom: string;
 }
 
 const ImageBlockWrapper = styled.div<{
@@ -90,18 +98,22 @@ const ImageBlockWrapper = styled.div<{
   $height?: string;
   $width?: string;
   $imageType?: string;
+  $top?: string;
+  $left?: string;
+  $right?: string;
+  $bottom?: string;
 }>`
   container-name: ${(props) =>
     props.$imageType ? `${props.$imageType}-image` : "imageBlock"};
   container-type: size;
-  /* background-size: cover;
-  background-position: center;
- */
-  /* width: 100cqi;
-  height: 100cqb; */
+  // INFO if set to absolute, the image will be taken out of the normal document flow and positioned according to the top, right, bottom, and left properties. This allows for more flexible layouts, but requires careful handling to ensure that the image is positioned correctly across different screen sizes and content arrangements. When using absolute positioning, it's important to consider the containing block and how it affects the layout of other elements on the page.
   position: ${(props) => props.$position || "relative"};
   height: ${(props) => props.$height};
   width: ${(props) => props.$width};
+  top: ${(props) => props.$top};
+  left: ${(props) => props.$left};
+  right: ${(props) => props.$right};
+  bottom: ${(props) => props.$bottom};
   .image-wrapper:has([data-before]) [data-before]::before {
     background-color: rgba(from blue 200 g b / 0.5);
   }
@@ -118,7 +130,7 @@ const ImageBlock = ({
   dummyData,
   sourceImage,
   imageType = "Lifestyle",
-  dynamicBackgroundImageClassName,
+  dynamicSourceImageClassName,
   altTag,
   imageLayout = "cover",
   imagePosition = "center",
@@ -126,6 +138,10 @@ const ImageBlock = ({
   position = "relative",
   height = "100cqb",
   width = "100cqi",
+  top = "unset",
+  left = "unset",
+  right = "unset",
+  bottom = "unset",
 }: ImageBlockProps) => {
   const content =
     fallbackContent || dummyData || defaultImageBlockFallbackContent;
@@ -137,13 +153,17 @@ const ImageBlock = ({
       $height={height}
       $width={width}
       $position={position}
+      $top={top}
+      $left={left}
+      $right={right}
+      $bottom={bottom}
       className={`${imageType}${!!lang ? `--${lang}` : ""} image-wrapper`}
     >
       <Image
         alt={altTag || `${imageType} Image`}
         imageProp={sourceImage}
         dummyImg={content.sourceImage?.value}
-        dynamicClassName={dynamicBackgroundImageClassName}
+        dynamicClassName={dynamicSourceImageClassName}
         imageLayout={imageLayout}
         imagePosition={imagePosition}
         imageType={imageType}

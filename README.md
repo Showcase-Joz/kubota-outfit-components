@@ -372,11 +372,20 @@ import { ButtonCTA } from "kubota-outfit-components";
 
 ## ImageBlock Props
 
-- `backgroundImage`: Image input object or URL.
-- `dynamicBackgroundImageClassName`: Additional class names applied to the dynamic image container.
+- `sourceImage`: Image input object or URL.
+- `dynamicSourceImageClassName`: Additional class names applied to the dynamic image container.
 - `altTag`: Alt text for accessibility.
+- `imageType`: Used to set the image type on 'required' statements.
 - `imageLayout`: Layout mode (cover, contain, etc.).
 - `imagePosition`: Positioning string (e.g. `center top`).
+- `lang`: Used to set the language automatically on the class name.
+- `position`: Sets the position value, defaults to 'relative'.
+- `height`: Sets the height value in conjunction with 'position'.
+- `width`: Sets the width value in conjunction with 'position'.
+- `top`: Sets the top value in conjunction with absolute position, defaults to 'unset'.
+- `left`: Sets the left value in conjunction with absolute position, defaults to 'unset'.
+- `right`: Sets the right value in conjunction with absolute position, defaults to 'unset'.
+- `bottom`: Sets the bottom value in conjunction with absolute position, defaults to 'unset'.
 - `fallbackContent`: Optional preview/default content.
 
 
@@ -386,12 +395,20 @@ example. usage:
 import { ImageBlock } from "kubota-outfit-components";
 
 <ImageBlock
-  backgroundImage={inputs?.backgroundImage}
-  dynamicBackgroundImageClassName="additional class names"
+  sourceImage={inputs?.sourceImage}
+  dynamicSourceImageClassName="additional class names"
   altTag="altTag string"
+  imageType="Studio"
   imageLayout="cover || contain etc"
   imagePosition="center top || left bottom etc"
-  
+  lang="fr"
+  position="absolute"
+  height="20cqb"
+  width="35%"
+  top="2em"
+  left="50px"
+  bottom="6cqb"
+  right="24%" 
 >
   {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
 </ImageBlock>

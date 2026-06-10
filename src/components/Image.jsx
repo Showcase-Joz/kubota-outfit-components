@@ -89,6 +89,16 @@ const Image = ({
   imagePosition,
   imageType,
 }) => {
+  const handleInlineEditClick = (e) => {
+    const ids = imageProp?.ids;
+    const inlineEditId = ids?.value_id || ids?.id || ids?.input_id;
+
+    if (!inlineEditId || typeof onInlineEditClick !== "function") {
+      return;
+    }
+
+    onInlineEditClick({ ...ids, id: inlineEditId }, e);
+  };
   return (
     <ImageWrapper
       data-before={`Add a ${imageType || "Lifestyle"} Image`}
@@ -99,7 +109,7 @@ const Image = ({
       imageLayout={imageLayout}
       imagePosition={imagePosition}
       theme={theme}
-      onClick={(e) => onInlineEditClick(imageProp.ids, e)}
+      onClick={handleInlineEditClick}
       className={dynamicClassName}
     >
       <img src={checkInputExists(imageProp, dummyImg)} alt={alt} />
