@@ -132,7 +132,7 @@ const ImageBlock = ({
       $height={height}
       $width={width}
       $position={position}
-      className={`${imageType}${!!lang ? `--${lang}` : ""}`}
+      className={`${imageType}${!!lang ? `--${lang}` : ""} image-wrapper`}
     >
       <Image
         alt={altTag || `${imageType} Image`}
