@@ -675,6 +675,55 @@
           "disable_inline_edit": false,
           "special_characters": false
         }
+      },
+      {
+        "tag": "headlinePlacement",
+        "type": "Variables::Choice",
+        "custom_title": "Headline Placement",
+        "hint": "Position of the headline. If left unselected, the default position will be used. Be aware of how the placement of the headline will impact the legibility of the text over the featured image.",
+        "position": 1,
+        "definition": {
+          "choices": [
+            {
+              "label": "top left",
+              "value": "start start"
+            },
+            {
+              "label": "top center",
+              "value": "start center"
+            },
+            {
+              "label": "top right",
+              "value": "start end"
+            },
+            {
+              "label": "center left",
+              "value": "center start"
+            },
+            {
+              "label": "center center",
+              "value": "center center"
+            },
+            {
+              "label": "center right",
+              "value": "center end"
+            },
+            {
+              "label": "bottom left",
+              "value": "end start"
+            },
+            {
+              "label": "bottom center",
+              "value": "end center"
+            },
+            {
+              "label": "bottom right",
+              "value": "end end"
+            }
+          ],
+          "multi": false,
+          "optional_text": false
+        }
       }
     ]
   },
