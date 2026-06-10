@@ -143,7 +143,7 @@ const HeadlineBlock = ({
   return (
     <HeadlineBlockWrapper
       className={`${dynamicClassName} headline-block-wrapper`}
-      headlinePlacementValue={headlinePlacementValue?.value || "center"}
+      headlinePlacementValue={headlinePlacementValue || "center"}
       textWrapStyle={textWrapStyle}
       maxWidthInParent={maxWidthInParent}
     >
