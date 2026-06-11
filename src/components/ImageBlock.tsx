@@ -130,8 +130,8 @@ const ImageBlockWrapper = styled.div<{
     );
     background-color: rgba(0, 0, 255, 1);
   }
-  .image-wrapper [data-after*="REQUIRED!"]:has(img:not([src=""]))::before,
-  .image-wrapper [data-after*="REQUIRED!"]:has(img:not([src=""]))::after {
+  .image-wrapper.image--present > ::before,
+  .image-wrapper.image--present > ::after {
     background-color: transparent;
     content: none;
   }
@@ -158,7 +158,6 @@ const ImageBlock = ({
 }: ImageBlockProps) => {
   const content =
     fallbackContent || dummyData || defaultImageBlockFallbackContent;
-  const sourceImageValue = onceADummy(sourceImage, content.sourceImage?.value);
   return (
     <ImageBlockWrapper
       $imageType={imageType}
@@ -169,7 +168,9 @@ const ImageBlock = ({
       $left={left}
       $right={right}
       $bottom={bottom}
-      className={`${imageType}${!!lang ? `--${lang}` : ""} image-wrapper`}
+      className={`${imageType}${!!lang ? `--${lang}` : ""} image-wrapper ${
+        !!sourceImage?.value ? "image--present" : "image--missing"
+      }`}
     >
       <Image
         alt={altTag || `${imageType} Image`}
