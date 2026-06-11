@@ -45,10 +45,12 @@ const ImageWrapper = styled.div`
     font-weight: 600;
     font-size: clamp(8px, 3cqw, 4vw);
     z-index: 1;
-    align-content: center;
     text-align: center;
     margin-top: 1.6em;
     align-content: center;
+    height: fit-content;
+    align-self: center;
+    top: 2em;
   }
 
   .image-wrapper.image--present &::before,
