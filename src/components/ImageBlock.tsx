@@ -130,11 +130,6 @@ const ImageBlockWrapper = styled.div<{
     );
     background-color: rgba(0, 0, 255, 1);
   }
-  .image-wrapper.image--present > ::before,
-  .image-wrapper.image--present > ::after {
-    background-color: transparent;
-    content: none;
-  }
 `;
 
 const ImageBlock = ({

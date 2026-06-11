@@ -49,6 +49,11 @@ const ImageWrapper = styled.div`
     text-align: center;
     margin-top: 1.6em;
   }
+  .image-wrapper.image--present &::before,
+  .image-wrapper.image--present &::after {
+    background-color: transparent;
+    content: none;
+  }
   [class*="-fr"] & {
     &::before {
       content: attr(data-before-fr);
