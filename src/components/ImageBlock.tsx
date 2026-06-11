@@ -123,6 +123,7 @@ const ImageBlockWrapper = styled.div<{
   left: ${(props) => props.$left};
   right: ${(props) => props.$right};
   bottom: ${(props) => props.$bottom};
+  isolation: auto;
   .image-wrapper:has([data-before]) [data-before]::before {
     background-color: hsla(
       from var(--color-orange, blue) h s calc(l + -30) / 40%
