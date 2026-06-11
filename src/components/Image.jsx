@@ -31,6 +31,7 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     background-color: hsl(from var(--color-orange, green) h s calc(l + 20));
+    background-color: rgba(0, 255, 0, 1);
     z-index: 1;
   }
   &::after {

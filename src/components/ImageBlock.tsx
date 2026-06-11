@@ -127,6 +127,7 @@ const ImageBlockWrapper = styled.div<{
     background-color: hsla(
       from var(--color-orange, blue) h s calc(l + -30) / 40%
     );
+    background-color: rgba(0, 0, 255, 1);
   }
   .image-wrapper:has(img[src]:not([src=""])) [data-before]::before,
   .image-wrapper:has(img[src]:not([src=""])) [data-before]::after {
