@@ -103,13 +103,15 @@ const HeadlineBlockWrapper = styled.div<{
       position: relative;
       text-wrap-style: ${(props) => props.textWrapStyle || "auto"};
 
-      span[class="tinymce_style--dark"] {
+      span.tinymce_style--dark {
         color: var(--color-orange);
       }
-      [class="tinymce_style--light"] {
+
+      span.tinymce_style--light {
         color: var(--color-white);
       }
-      span[class="tinymce_style--dark"]&[class="tinymce_style--light"] {
+
+      span.tinymce_style--dark.tinymce_style--light {
         color: var(--color-sub-text-gray);
       }
     }
