@@ -35,7 +35,7 @@ export interface HeadlineBlockProps {
    *   headlinePlacement: { value: "center" }
    *   maxWidthInParent: { value: "70%" }
    *   maxLines: 3
-   *   textWrapStyle: "balanced"
+   *   textWrapStyle: "balance"
    *   maxWidthInParent: { value: "70%" }
    *   hideTextOption: true
    *   additional CSS properties for headline styling and placement can be added as needed within the parent container or through dynamicClassName
@@ -66,7 +66,7 @@ export interface HeadlineBlockProps {
    */
   maxLines?: number;
   /**
-   * Optional CSS string to control text wrapping behavior, it controls how text inside an element is wrapped, providing alternate ways of determining where to create line breaks in order to fit the content within a block element. options include "auto", "balanced", "pretty", etc.
+   * Optional CSS string to control text wrapping behavior, it controls how text inside an element is wrapped, providing alternate ways of determining where to create line breaks in order to fit the content within a block element. options include "auto", "balance", "pretty", etc.
    */
   textWrapStyle?: string;
   //* Allows you to set a maximum width for the headline block relative to its parent container, which can help maintain design consistency and prevent the headline from becoming too wide on larger screens. Accepts any valid CSS width value (e.g., "70%", "500px", "50vw", etc.).
@@ -103,14 +103,14 @@ const HeadlineBlockWrapper = styled.div<{
       position: relative;
       text-wrap-style: ${(props) => props.textWrapStyle || "auto"};
 
-      [class="tinymce_style--dark"] {
+      [class*="tinymce_style--dark"] {
         color: var(--color-orange);
       }
-      [class="tinymce_style--light"] {
+      [class*="tinymce_style--light"] {
         color: var(--color-white);
       }
-      [class="tinymce_style--light"][class="tinymce_style--dark"] {
-        color: var(--color-black);
+      [class*="tinymce_style--dark"]&[class*="tinymce_style--light"] {
+        color: var(--color-sub-text-gray);
       }
     }
   }
@@ -154,7 +154,7 @@ const HeadlineBlock = ({
         <TextElement
           dummyData={headlineTextValue?.dummyData || ""}
           destructedProp={headlineText}
-          dynamicClassName={`headline ${dynamicClassName}`}
+          dynamicClassName={`headline`}
           height={undefined}
           lines={maxLines}
           chars={undefined}

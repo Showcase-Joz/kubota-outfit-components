@@ -30,7 +30,7 @@ const ImageWrapper = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: var(--color-orange);
+    background-color: hsl(from var(--color-orange, green) h s calc(l + 20));
     z-index: 1;
   }
   &::after {

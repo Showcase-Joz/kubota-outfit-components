@@ -124,7 +124,9 @@ const ImageBlockWrapper = styled.div<{
   right: ${(props) => props.$right};
   bottom: ${(props) => props.$bottom};
   .image-wrapper:has([data-before]) [data-before]::before {
-    background-color: rgba(from blue 200 g b / 0.5);
+    background-color: hsla(
+      from var(--color-orange, blue) h s calc(l + -30) / 40%
+    );
   }
   .image-wrapper:has(img[src]:not([src=""])) [data-before]::before,
   .image-wrapper:has(img[src]:not([src=""])) [data-before]::after {
@@ -155,7 +157,6 @@ const ImageBlock = ({
   const content =
     fallbackContent || dummyData || defaultImageBlockFallbackContent;
   const sourceImageValue = onceADummy(sourceImage, content.sourceImage?.value);
-  console.log("ImageBlock content:", sourceImageValue);
   return (
     <ImageBlockWrapper
       $imageType={imageType}
