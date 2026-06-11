@@ -48,6 +48,7 @@ const ImageWrapper = styled.div`
     align-content: center;
     text-align: center;
     margin-top: 1.6em;
+    align-content: center;
   }
 
   .image-wrapper.image--present &::before,
