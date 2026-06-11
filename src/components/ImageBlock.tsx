@@ -130,8 +130,8 @@ const ImageBlockWrapper = styled.div<{
     );
     background-color: rgba(0, 0, 255, 1);
   }
-  .image-wrapper:has(img[src]:not([src=""]))::before,
-  .image-wrapper:has(img[src]:not([src=""]))::after {
+  .image-wrapper [data-after*="REQUIRED!"]:has(img[src=""])::before,
+  .image-wrapper [data-after*="REQUIRED!"]:has(img[src=""])::after {
     background-color: transparent;
     content: none;
   }
