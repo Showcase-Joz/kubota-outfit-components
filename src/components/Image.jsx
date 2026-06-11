@@ -6,7 +6,7 @@ import { onInlineEditClick } from "@outfit.io/react";
 const ImageWrapper = styled.div`
   width: inherit;
   height: inherit;
-  position: fixed;
+  position: relative;
   img {
     object-fit: ${({ imageLayout }) => imageLayout || "cover"};
     object-position: ${({ imagePosition }) => imagePosition || "center"};
@@ -30,8 +30,8 @@ const ImageWrapper = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: hsl(from var(--color-orange, green) h s calc(l + 20));
-    background-color: rgba(0, 255, 0, 1);
+    background-color: ${({ beforeBackgroundColor }) =>
+      beforeBackgroundColor || "var(--color-orange)"};
     z-index: 1;
   }
   &::after {
@@ -49,6 +49,7 @@ const ImageWrapper = styled.div`
     text-align: center;
     margin-top: 1.6em;
   }
+
   .image-wrapper.image--present &::before,
   .image-wrapper.image--present &::after {
     background-color: transparent;
@@ -80,7 +81,8 @@ const ImageWrapper = styled.div`
  *   alt: string
  *   imageLayout?: string,
  *   imagePosition?: string
- *   imageType?: string
+ *   imageType?: string,
+ *   beforeBackgroundColor?: string
  * }} props
  */
 
@@ -94,6 +96,7 @@ const Image = ({
   imageLayout,
   imagePosition,
   imageType,
+  beforeBackgroundColor,
 }) => {
   const handleInlineEditClick = (e) => {
     const ids = imageProp?.ids;
@@ -112,6 +115,7 @@ const Image = ({
       data-before-fr={`Ajouter une image de ${imageType || "style de vie"}`}
       data-after-fr={`Image de ${imageType || "style de vie"} REQUISE!`}
       imageType={imageType}
+      beforeBackgroundColor={beforeBackgroundColor}
       imageLayout={imageLayout}
       imagePosition={imagePosition}
       theme={theme}

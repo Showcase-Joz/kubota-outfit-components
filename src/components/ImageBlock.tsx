@@ -2,7 +2,6 @@
 import styled from "@emotion/styled";
 import { Image } from "./Image.js";
 import type { ReactNode } from "react";
-import { onceADummy } from "../utils/helpers.js";
 
 export type ImageBlockField = {
   value: string;
@@ -31,15 +30,6 @@ export interface ImageBlockProps {
    * @example
    * {
    *   sourceImage: { value: "https://example.com/image.jpg" }
-   *   imageType: "studio"
-   *   layout: "cover"
-   *   position: "absolute"
-   *   height: "100cqb"
-   *   width: "100cqi"
-   *   top: "0"
-   *   left: "0"
-   *   right: "0"
-   *   bottom: "0"
    * }
    */
   fallbackContent?: ImageBlockFallbackContent;
@@ -55,7 +45,7 @@ export interface ImageBlockProps {
    */
   sourceImage?: ImageBlockField;
   /**
-   * e.g. "studio", "editorial", etc., used for the 'image required' message. which can also be set in foreign languages using the `lang` prop. Additionally, this can be used as a container name for targeting specific styles with container queries based on the image type or content category, allowing for more dynamic and context-aware styling of the image block and its contents.
+   * e.g. "studio", "editorial", etc., used for the 'image required' message.
    */
   imageType?: string;
   /**
@@ -78,6 +68,10 @@ export interface ImageBlockProps {
    */
   imagePosition?: string;
   /**
+   * Background color used for the image placeholder pseudo-element.
+   */
+  beforeBackgroundColor?: string;
+  /**
    * Optional language code to apply language-specific container query styles. When required image is missing, message will be displayed in the specified language.
    */
   lang?: string;
@@ -92,7 +86,6 @@ export interface ImageBlockProps {
 
   height?: string;
   width?: string;
-
   /**
    * When using absolute positioning, the `top`, `left`, `right`, and `bottom` properties can be used to specify the offset of the image from its containing block. These values can be set in any valid CSS unit (e.g., "10px", "5%", "2em", etc.) and will determine the final position of the image within the layout. For example, setting `top: "10px"` and `left: "20px"` would position the image 10 pixels from the top and 20 pixels from the left of its containing block. Ideally these are locked in at development time to ensure consistent layouts, but they can also be dynamically adjusted based on layout conditions using range slider inputs.
    */
@@ -123,13 +116,6 @@ const ImageBlockWrapper = styled.div<{
   left: ${(props) => props.$left};
   right: ${(props) => props.$right};
   bottom: ${(props) => props.$bottom};
-  isolation: auto;
-  .image-wrapper:has([data-before]) [data-before]::before {
-    background-color: hsla(
-      from var(--color-orange, blue) h s calc(l + -30) / 40%
-    );
-    background-color: rgba(0, 0, 255, 1);
-  }
 `;
 
 const ImageBlock = ({
@@ -150,9 +136,11 @@ const ImageBlock = ({
   left = "unset",
   right = "unset",
   bottom = "unset",
+  beforeBackgroundColor = "rgba(from blue 200 g b / 0.5)",
 }: ImageBlockProps) => {
   const content =
     fallbackContent || dummyData || defaultImageBlockFallbackContent;
+
   return (
     <ImageBlockWrapper
       $imageType={imageType}
@@ -175,6 +163,7 @@ const ImageBlock = ({
         imageLayout={imageLayout}
         imagePosition={imagePosition}
         imageType={imageType}
+        beforeBackgroundColor={beforeBackgroundColor}
       ></Image>
       {children}
     </ImageBlockWrapper>
