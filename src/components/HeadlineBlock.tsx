@@ -18,7 +18,7 @@ const defaultHeadlineBlockFallbackContent: HeadlineBlockFallbackContent = {
     value: "multi line headline here - Required!", // You can set a default image URL here for local development or preview purposes
   },
   headlinePlacement: {
-    value: "center",
+    value: "inherit", // You can set a default image URL here for local development or preview purposes
   },
 };
 
