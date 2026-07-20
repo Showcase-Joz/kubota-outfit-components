@@ -386,8 +386,8 @@ Example `fallbackContent` value:
 ```tsx
 <HeadlineBlock
   fallbackContent={{
-    headlineText: { value: "multi line headline here - Required!" },
-    headlinePlacement: { value: "center" },
+    headlineText: { { value: "multi line headline here - Required!" } },
+    headlinePlacement: { { value: "center" } },
   }}
 />
 ```
