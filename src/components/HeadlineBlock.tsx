@@ -103,7 +103,7 @@ const HeadlineBlockWrapper = styled.div<{
       text-wrap: ${(props) => props.textWrapStyle || "auto"};
 
       span.tinymce_style--dark {
-        color: var(--color-orange);
+        color: var(--color-black);
       }
 
       span.tinymce_style--light {
@@ -111,7 +111,7 @@ const HeadlineBlockWrapper = styled.div<{
       }
 
       span.tinymce_style--dark.tinymce_style--light {
-        color: var(--color-sub-text-gray);
+        color: var(--color-orange);
       }
     }
   }
