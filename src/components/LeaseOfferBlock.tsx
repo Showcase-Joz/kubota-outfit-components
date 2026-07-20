@@ -445,7 +445,7 @@ const LeaseOfferBlockWrapper = styled.div`
       }
       .subContent {
         width: inherit;
-        text-wrap-style: balance;
+        text-wrap: balance;
         text-align: center;
         font-size: 0.27em;
         line-height: 1.4;

@@ -274,7 +274,7 @@ const WarrantyBlockWrapper = styled.div`
         font-weight: 700;
         color: var(--color-black-tint-55, rgba(0, 0, 0, 0.55));
         text-align: center;
-        text-wrap-style: balance;
+        text-wrap: balance;
       }
     }
   }
@@ -439,7 +439,7 @@ const WarrantyBlockWrapper = styled.div`
       .warrantyConnectorText {
         max-width: 5.5em;
         justify-self: center;
-        text-wrap-style: balance;
+        text-wrap: balance;
       }
     }
 
@@ -493,7 +493,7 @@ const WarrantyBlockWrapper = styled.div`
       .warrantyText {
         .text-type--warrantyText {
           font-size: 1.16em;
-          text-wrap-style: balance;
+          text-wrap: balance;
           max-width: 85cqi;
         }
       }
@@ -607,9 +607,17 @@ const WarrantyBlock = ({
   return (
     <WarrantyBlockWrapper
       className={`warrantyBlock
-      aPR--${testAprValue === "notApplicable" ? "hide" : "show"} aPR--${testAprValue !== "0" ? "long" : "short"} special-aPR-value--${
+      aPR--${testAprValue === "notApplicable" ? "hide" : "show"} aPR--${
+        testAprValue !== "0" ? "long" : "short"
+      } special-aPR-value--${
         testAprValue === "available" ? "show" : "hide"
-      } incentivePreText--${incentivePreTextValue?.class} incentiveConnectorText--${incentiveConnectorTextValue?.class} incentiveText--${incentiveTextValue?.class} connectorLinesText--${connectorLinesTextValue?.class} warrantyConnectorText--${warrantyConnectorTextValue?.class}`}
+      } incentivePreText--${
+        incentivePreTextValue?.class
+      } incentiveConnectorText--${
+        incentiveConnectorTextValue?.class
+      } incentiveText--${incentiveTextValue?.class} connectorLinesText--${
+        connectorLinesTextValue?.class
+      } warrantyConnectorText--${warrantyConnectorTextValue?.class}`}
     >
       <div className="incentiveWrapper">
         <div className="aPR">

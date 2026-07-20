@@ -33,7 +33,6 @@ export interface HeadlineBlockProps {
    * {
    *   headlineText: { value: "Your headline text here" }
    *   headlinePlacement: { value: "center" }
-   *   maxWidthInParent: { value: "70%" }
    *   maxLines: 3
    *   textWrapStyle: "balance"
    *   maxWidthInParent: { value: "70%" }
@@ -93,15 +92,15 @@ const HeadlineBlockWrapper = styled.div<{
   .headline-wrapper {
     text-transform: uppercase;
     height: fit-content;
-    max-width: ${(props) => props.maxWidthInParent || "70%"};
-    place-self: ${(props) => props.headlinePlacementValue};
+    max-width: ${(props) => props.maxWidthInParent || "100%"};
+    place-self: ${(props) => props.headlinePlacementValue || "inherit"};
     position: relative;
     &.headline--hide {
       display: none;
     }
     .text-type--headline {
       position: relative;
-      text-wrap-style: ${(props) => props.textWrapStyle || "auto"};
+      text-wrap: ${(props) => props.textWrapStyle || "auto"};
 
       span.tinymce_style--dark {
         color: var(--color-orange);
