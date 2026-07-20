@@ -22,10 +22,11 @@ const ImageWrapper = styled.div`
   &::before {
     display: grid;
     place-items: center;
+    text-align: center;
     color: var(--color-white);
     font-family: var(--font-family-inter-default);
     font-weight: 600;
-    font-size: clamp(16px, 5cqw, 7.5vw);
+    font-size: clamp(13px, 5cqw, 7.5vw);
     content: attr(data-before);
     position: absolute;
     width: 100%;
@@ -50,7 +51,7 @@ const ImageWrapper = styled.div`
     align-content: center;
     height: fit-content;
     align-self: center;
-    top: 2em;
+    top: 3em;
   }
 
   .image-wrapper.image--present &::before,
