@@ -2,15 +2,13 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
-This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
+This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
 
-This package starts with three primary exports: the responsive `WarrantyBlock`
-component, the monthly `OfferBlock` component, and the skewed
-`AnnouncementBanner` component. The current version is
-intentionally Kubota-shaped: it includes Kubota-oriented defaults, responsive
-layout rules, and Outfit input guidance. Future versions can separate theming
-more aggressively if the same component patterns need to be forked for another
-client.
+This package starts with the primary exports documented below. The current
+version is intentionally Kubota-shaped: it includes Kubota-oriented defaults,
+responsive layout rules, and Outfit input guidance. Future versions can
+separate theming more aggressively if the same component patterns need to be
+forked for another client.
 
 ## Install
 
@@ -39,13 +37,13 @@ Or add it to `package.json` dependencies:
 
 Primary exports (from `src/index.ts`):
 
-- WarrantyBlock
-- AnnouncementBanner
-- OfferBlock
-- ButtonCTA
-- LeaseOfferBlock
-- ImageBlock
-
+- [WarrantyBlock](#warrantyblock-props)
+- [AnnouncementBanner](#announcementbanner-props)
+- [OfferBlock](#offerblock-props)
+- [ButtonCTA](#buttoncta-props)
+- [LeaseOfferBlock](#leaseofferblock-props)
+- [HeadlineBlock](#headlineblock-props)
+- [ImageBlock](#imageblock-props)
 
 ## Usage
 
@@ -86,7 +84,7 @@ import { ButtonCTA } from "kubota-outfit-components";
 <ButtonCTA
   buttonText={inputs?.buttonText}
   fallbackContent={{ buttonText: { value: "Learn more" } }}
-/>
+/>;
 ```
 
 Lease offer block example:
@@ -103,16 +101,14 @@ import { LeaseOfferBlock } from "kubota-outfit-components";
   downPayment={inputs?.downPayment}
 >
   {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
-</LeaseOfferBlock>
+</LeaseOfferBlock>;
 ```
-
 
 Announcement banner example:
 
 `AnnouncementBanner` is a lightweight single-line banner for short template
 messages. It accepts Outfit-style text input objects, plus preview/default
 content through `fallbackContent` or the compatibility alias `dummyData`.
-
 
 ```tsx
 import { AnnouncementBanner } from "kubota-outfit-components";
@@ -122,7 +118,7 @@ import { AnnouncementBanner } from "kubota-outfit-components";
   fallbackContent={{
     announcementMessage: { value: "this is an announcement" },
   }}
-/>
+/>;
 ```
 
 The preferred preview/default content prop is `fallbackContent`. The
@@ -131,7 +127,9 @@ shape:
 
 ```js
 {
-  announcementMessage: { value: "announcement" }
+  announcementMessage: {
+    value: "announcement";
+  }
 }
 ```
 
@@ -153,10 +151,7 @@ positioning when the `absolute` prop is supplied.
 Relative mode is used when no `absolute` prop is passed:
 
 ```tsx
-<AnnouncementBanner
-  announcementMessage={announcementMessage}
-  maxWidth="78vw"
-/>
+<AnnouncementBanner announcementMessage={announcementMessage} maxWidth="78vw" />
 ```
 
 In relative mode the banner stays in normal document flow. The `maxWidth` prop
@@ -278,7 +273,7 @@ import { WarrantyBlock } from "kubota-outfit-components";
   connectorLinesText={inputs?.connectorLinesText}
   warrantyText={inputs?.warrantyText}
   warrantyConnectorText={inputs?.warrantyConnectorText}
-/>
+/>;
 ```
 
 ## OfferBlock Props
@@ -317,7 +312,7 @@ import { OfferBlock } from "kubota-outfit-components";
   aPR={inputs?.aPR}
   paymentMonths={inputs?.paymentMonths}
   fallbackContent={{ incentiveAmount: { value: "XXXX" } }}
-/>
+/>;
 ```
 
 ---
@@ -346,7 +341,7 @@ import { LeaseOfferBlock } from "kubota-outfit-components";
   downPayment={inputs?.downPayment}
 >
   {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
-</LeaseOfferBlock>
+</LeaseOfferBlock>;
 ```
 
 ---
@@ -365,7 +360,50 @@ import { ButtonCTA } from "kubota-outfit-components";
 <ButtonCTA
   buttonText={inputs?.buttonText}
   fallbackContent={{ buttonText: { value: "Learn more" } }}
+/>;
+```
+
+---
+
+## HeadlineBlock Props
+
+- `headlineText`: Main headline copy shown inside the block.
+- `headlinePlacement`: Controls how the headline is placed within the parent
+  container. Accepts values such as `center`, `start center`, and
+  `end center`.
+- `maxLines`: Optional line limit for the headline text.
+- `textWrapStyle`: Optional text wrapping mode such as `auto`, `balance`, or
+  `pretty`.
+- `maxWidthInParent`: Optional max width for the headline block relative to its
+  parent container.
+- `hideTextOption`: Optional visibility toggle for preview/layout testing.
+- `fallbackContent`: Optional preview/default content using the same field
+  shape.
+- `dummyData`: Compatibility alias for `fallbackContent`.
+
+Example `fallbackContent` value:
+
+```tsx
+<HeadlineBlock
+  fallbackContent={{
+    headlineText: { value: "multi line headline here - Required!" },
+    headlinePlacement: { value: "center" },
+  }}
 />
+```
+
+Usage example:
+
+```tsx
+import { HeadlineBlock } from "kubota-outfit-components";
+
+<HeadlineBlock
+  headlineText={inputs?.headlineText}
+  headlinePlacement={inputs?.headlinePlacement}
+  maxLines={inputs?.maxLines}
+  textWrapStyle="balance"
+  maxWidthInParent="70%"
+/>;
 ```
 
 ---
@@ -388,7 +426,6 @@ import { ButtonCTA } from "kubota-outfit-components";
 - `bottom`: Sets the bottom value in conjunction with absolute position, defaults to 'unset'.
 - `fallbackContent`: Optional preview/default content.
 
-
 example. usage:
 
 ```tsx
@@ -408,10 +445,10 @@ import { ImageBlock } from "kubota-outfit-components";
   top="2em"
   left="50px"
   bottom="6cqb"
-  right="24%" 
+  right="24%"
 >
   {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
-</ImageBlock>
+</ImageBlock>;
 ```
 
 ## Styling
@@ -532,12 +569,13 @@ Suggested release body:
 - Intended for direct consumption from template projects via a pinned Git tag.
 
 ## Install
+
 npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0
 
 Or add this to `package.json`:
 
 "dependencies": {
-  "kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0"
+"kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0"
 }
 ```
 
@@ -545,7 +583,7 @@ If you want a release checklist, keep this order:
 
 1. Finish code changes.
 2. Optional sanity check: run `npm run preversion` (release scripts run this automatically).
-3. Run the appropriate release script __(npm run release:patch, npm run release:minor, npm run release:major)__.
+3. Run the appropriate release script **(npm run release:patch, npm run release:minor, npm run release:major)**.
 4. Create the GitHub release and paste the notes.
 
 ## Consume a Release in Template Projects
