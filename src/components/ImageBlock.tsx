@@ -136,7 +136,7 @@ const ImageBlock = ({
   left = "unset",
   right = "unset",
   bottom = "unset",
-  beforeBackgroundColor = "rgba(from blue 200 g b / 0.5)",
+  beforeBackgroundColor = "var(--color-warning-1)",
 }: ImageBlockProps) => {
   const content =
     fallbackContent || dummyData || defaultImageBlockFallbackContent;
