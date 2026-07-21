@@ -270,8 +270,9 @@ const WarrantyBlockWrapper = styled.div`
     .warrantyConnectorText {
       .text-type--warrantyConnectorText {
         text-transform: uppercase;
-        font-size: 0.33em;
+        font-size: clamp(6.5px, 0.33em, 0.5em);
         font-weight: 700;
+        line-height: 1.15;
         color: var(--color-black-tint-55, rgba(0, 0, 0, 0.55));
         text-align: center;
         text-wrap: balance;
@@ -499,7 +500,7 @@ const WarrantyBlockWrapper = styled.div`
       }
       .warrantyConnectorText {
         .text-type--warrantyConnectorText {
-          font-size: 0.36em;
+          font-size: clamp(7.5px, 0.36em, 0.5em);
         }
       }
     }
