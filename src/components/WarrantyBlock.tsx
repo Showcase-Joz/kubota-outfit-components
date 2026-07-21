@@ -438,7 +438,7 @@ const WarrantyBlockWrapper = styled.div`
         }
       }
       .warrantyConnectorText {
-        max-width: 5.5em;
+        max-width: 90cqi;
         justify-self: center;
         text-wrap: balance;
       }
