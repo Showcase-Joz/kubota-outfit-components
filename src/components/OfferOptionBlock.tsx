@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import { TextElement } from "./TextElement";
+import { TextElement } from "./TextElement.js";
 import {
   onceADummyText,
   checkInputExists,
   cloneInlineClick,
-} from "../utils/helpers";
+} from "../utils/helpers.js";
 export interface OfferOptionBlockProps {
   /**
    * Overrides the built-in preview fallback content.
