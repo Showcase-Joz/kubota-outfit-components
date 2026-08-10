@@ -163,7 +163,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
 
     &.square--content {
       &::after {
-        clip-path: polygon(0 0, 93% 0, 100% 100%, 0% 100%);
+        clip-path: polygon(0 0, 87% 0, 100% 100%, 0% 100%);
       }
     }
     &.theme--black {
@@ -465,7 +465,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         "offerOptionContent";
       .financingContent {
         width: fit-content;
-        place-self: end center;
+        place-self: end start;
         padding-left: unset;
         .apr-wrapper[class*="--available"] {
           grid-template-columns: min-content min-content min-content;
@@ -516,7 +516,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         align-items: center;
         justify-items: unset;
         gap: 0.5em;
-        max-width: 72cqi;
+        /* max-width: 72cqi; */
         place-self: center;
 
         .text-type--connectorLines {
@@ -544,6 +544,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         );
 
         .offerOptionContent-top {
+          justify-self: start;
           [data-testid="limiter"]:nth-child(1) {
             .text-type--pre-saving-amount {
               font-size: 1.3em;
@@ -631,8 +632,8 @@ const OfferOptionBlock = ({
     fontUnit: "cqi",
   };
   const squareTextfitConfig = {
-    minFontSize: 3.5,
-    maxFontSize: 5,
+    minFontSize: 3.2,
+    maxFontSize: 4,
     widthOnly: true,
     fontUnit: "cqi",
   };
