@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import { TextElement } from "./TextElement.js";
+import { TextElement } from "./TextElement";
 import {
   onceADummyText,
   checkInputExists,
   cloneInlineClick,
-} from "../utils/helpers.js";
+} from "../utils/helpers";
 export interface OfferOptionBlockProps {
   /**
    * Overrides the built-in preview fallback content.
@@ -84,7 +84,6 @@ export interface OfferOptionBlockProps {
 
 export type OfferOptionBlockField = {
   value: string;
-  ids?: unknown;
 };
 export type MaxLinesBlockField = {
   square: number;
@@ -134,22 +133,49 @@ const OfferOptionBlockWrapper = styled.div<{}>`
   width: 100%;
   --offerOptionBlockWrapperPadding: 1em;
   .offerOptionBlockWrapper {
-    height: 100%;
+    height: inherit;
     padding: calc(var(--offerOptionBlockWrapperPadding));
+    padding: calc(var(--offerOptionBlockWrapperPadding))
+      calc(var(--offerOptionBlockWrapperPadding) * 2)
+      calc(var(--offerOptionBlockWrapperPadding))
+      calc(var(--offerOptionBlockWrapperPadding));
     display: grid;
     grid-template-columns: minmax(0, auto) minmax(auto, 2em) 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "financingOption connectorContent offerOptionContent";
     gap: 0.6em;
-    background-color: initial;
+    background-color: inherit;
     font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
+    position: relative;
+    z-index: 0;
 
+    &::after {
+      content: "";
+      position: absolute;
+      height: 100.1%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      /* transform: skewX(10deg); */
+      clip-path: polygon(0 0, 95% 0, 100% 100%, 0% 100%);
+      z-index: -1;
+    }
+
+    &.square--content {
+      &::after {
+        clip-path: polygon(0 0, 93% 0, 100% 100%, 0% 100%);
+      }
+    }
     &.theme--black {
-      background-color: var(--color-black, black);
+      &::after {
+        background-color: var(--color-black, black);
+      }
       color: var(--color-white, white);
     }
     &.theme--white {
-      background-color: var(--color-white, white);
+      &::after {
+        background-color: var(--color-white, white);
+      }
       color: var(--color-black, black);
     }
 
@@ -669,7 +695,7 @@ const OfferOptionBlock = ({
             : testPaymentMonthsValue === "notApplicable"
             ? "months--not-applicable"
             : ""
-        }`}
+        } ${isSquare ? "square" : "landscape"}--content`}
       >
         <div className="financingContent">
           <div
