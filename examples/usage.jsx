@@ -58,6 +58,18 @@ const Example = ({ inputs }) => (
       textWrapStyle="balanced"
       hideTextOption={false}
     />
+
+    <OfferOptionBlock
+      backgroundColor={inputs?.offerTheming}
+      aPR={inputs?.aPR}
+      aprPaymentMonthsConnectorText={inputs?.aprPaymentMonthsConnectorText}
+      paymentMonths={inputs?.paymentMonths}
+      connectorLinesText={inputs?.connectorLinesText}
+      savingAmountPreText={inputs?.savingAmountPreText}
+      savingAmount={inputs?.savingAmount}
+      savingAmountPostText={inputs?.savingAmountPostText}
+      maxSavingAmountPostText={{ square: 3, landscape: 2 }}
+    />
   </>
 );
 

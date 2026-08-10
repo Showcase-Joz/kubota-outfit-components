@@ -2,7 +2,7 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
-This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
+This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `OfferOptionBlock` (a multi-column finance and savings block), `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
 
 This package starts with the primary exports documented below. The current
 version is intentionally Kubota-shaped: it includes Kubota-oriented defaults,
@@ -40,6 +40,7 @@ Primary exports (from `src/index.ts`):
 - [WarrantyBlock](#warrantyblock-props)
 - [AnnouncementBanner](#announcementbanner-props)
 - [OfferBlock](#offerblock-props)
+- [OfferOptionBlock](#offeroptionblock-props)
 - [ButtonCTA](#buttoncta-props)
 - [LeaseOfferBlock](#leaseofferblock-props)
 - [HeadlineBlock](#headlineblock-props)
@@ -317,6 +318,61 @@ import { OfferBlock } from "kubota-outfit-components";
 
 ---
 
+## OfferOptionBlock Props
+
+- `backgroundColor`: Theme choice for the block. Use `black` or `white`.
+- `aPR`: APR percentage value. Keep to 5 characters or fewer. Use `available`
+  to render the fallback `0% APR` treatment, or `notApplicable` to hide the APR section.
+- `aprPaymentMonthsConnectorText`: Short connector text between the APR and payment months.
+- `paymentMonths`: Payment months (term) value.
+- `connectorLinesText`: Connector text between the APR/payment months and the saving amount.
+- `savingAmountPreText`: Short connector text above the saving amount.
+- `savingAmount`: Main saving amount.
+- `savingAmountPostText`: Descriptive text below the saving amount.
+- `maxSavingAmountPostText`: Optional line limits for the post-saving amount text, keyed by layout.
+- `fallbackContent`: Optional preview/default content using the same field shape.
+- `dummyData`: Compatibility alias for `fallbackContent`.
+
+Example `fallbackContent` value:
+
+```tsx
+<OfferOptionBlock
+  fallbackContent={{
+    backgroundColor: { value: "black" },
+    aPR: { value: "4.99" },
+    aprPaymentMonthsConnectorText: { value: "up to" },
+    paymentMonths: { value: "84" },
+    connectorLinesText: { value: "or" },
+    savingAmountPreText: { value: "save up to" },
+    savingAmount: { value: "X,XXX" },
+    savingAmountPostText: {
+      value: "when you bundle a LX Series with Snow Attachments",
+    },
+    maxSavingAmountPostText: { square: 2, landscape: 2 },
+  }}
+/>
+```
+
+Usage example:
+
+```tsx
+import { OfferOptionBlock } from "kubota-outfit-components";
+
+<OfferOptionBlock
+  backgroundColor={inputs?.offerTheming}
+  aPR={inputs?.aPR}
+  aprPaymentMonthsConnectorText={inputs?.aprPaymentMonthsConnectorText}
+  paymentMonths={inputs?.paymentMonths}
+  connectorLinesText={inputs?.connectorLinesText}
+  savingAmountPreText={inputs?.savingAmountPreText}
+  savingAmount={inputs?.savingAmount}
+  savingAmountPostText={inputs?.savingAmountPostText}
+  maxSavingAmountPostText={inputs?.maxSavingAmountPostText}
+/>;
+```
+
+---
+
 ## LeaseOfferBlock Props
 
 - `paymentPreText`: Small label shown before the payment amount.
@@ -479,6 +535,9 @@ definitions and hints. Each outer object in inputs.json hosts the suggested inpu
   },
   {
     "offerBlock Inputs": [**...use these**]
+  },
+  {
+    "OfferOptionBlock Inputs": [**...use these**]
   }
 ]
 ```

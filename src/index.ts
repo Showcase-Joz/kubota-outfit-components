@@ -5,6 +5,7 @@ export { ButtonCTA } from "./components/ButtonCTA.js";
 export { LeaseOfferBlock } from "./components/LeaseOfferBlock.js";
 export { ImageBlock } from "./components/ImageBlock.js";
 export { HeadlineBlock } from "./components/HeadlineBlock.js";
+export { OfferOptionBlock } from "./components/OfferOptionBlock.js";
 export type {
   WarrantyBlockFallbackContent,
   WarrantyBlockField,
@@ -41,3 +42,9 @@ export type {
   HeadlineBlockField,
   HeadlineBlockProps,
 } from "./components/HeadlineBlock.js";
+export type {
+  OfferOptionBlockFallbackContent,
+  OfferOptionBlockField,
+  MaxLinesBlockField,
+  OfferOptionBlockProps,
+} from "./components/OfferOptionBlock.js";

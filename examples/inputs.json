@@ -728,6 +728,278 @@
     ]
   },
   {
+    "OfferOptionBlock Inputs": [
+      {
+        "tag": "offerTheming",
+        "type": "Variables::Choice",
+        "custom_title": "Offer Theming",
+        "hint": "Select the theming option for the offer. This affects the color scheme of the offer block and its texts.",
+        "position": 0,
+        "definition": {
+          "choices": [
+            {
+              "label": "Dark",
+              "value": "black"
+            },
+            {
+              "label": "Light",
+              "value": "white"
+            }
+          ],
+          "multi": false,
+          "optional_text": false
+        }
+      },
+      {
+        "tag": "aPR",
+        "type": "Variables::Choice",
+        "custom_title": "APR",
+        "hint": "Keep to 5 characters or fewer. Select 0% Available to render the fallback 0% APR treatment. Hidden when the APR is not applicable and/or the Payment Months is not applicable.",
+        "position": 1,
+        "definition": {
+          "choices": [
+            {
+              "label": "Not Applicable",
+              "value": "notApplicable"
+            },
+            {
+              "label": "0% Available",
+              "value": "available"
+            },
+            {
+              "label": "0%",
+              "value": "0"
+            },
+            {
+              "label": "0.99%",
+              "value": "0.99"
+            },
+            {
+              "label": "1.99%",
+              "value": "1.99"
+            },
+            {
+              "label": "2.99%",
+              "value": "2.99"
+            },
+            {
+              "label": "3.99%",
+              "value": "3.99"
+            },
+            {
+              "label": "4.99%",
+              "value": "4.99"
+            }
+          ],
+          "multi": false,
+          "optional_text": true
+        }
+      },
+      {
+        "tag": "paymentMonths",
+        "type": "Variables::Choice",
+        "custom_title": "Payment Months",
+        "hint": "Hidden when the APR is not applicable and/or the Payment Months is not applicable.",
+        "position": 2,
+        "definition": {
+          "choices": [
+            {
+              "label": "Not Applicable",
+              "value": "notApplicable"
+            },
+            {
+              "label": "12",
+              "value": "12"
+            },
+            {
+              "label": "24",
+              "value": "24"
+            },
+            {
+              "label": "36",
+              "value": "36"
+            },
+            {
+              "label": "48",
+              "value": "48"
+            },
+            {
+              "label": "54",
+              "value": "54"
+            },
+            {
+              "label": "60",
+              "value": "60"
+            },
+            {
+              "label": "72",
+              "value": "72"
+            },
+            {
+              "label": "84",
+              "value": "84"
+            }
+          ],
+          "multi": false,
+          "optional_text": false
+        }
+      },
+      {
+        "tag": "aprPaymentMonthsConnectorText",
+        "type": "Variables::Choice",
+        "custom_title": "APR / Months Connector Text",
+        "hint": "Conditional on the presence of both APR and Payment Months.",
+        "position": 3,
+        "definition": {
+          "choices": [
+            {
+              "label": "Up To",
+              "value": "upTo"
+            },
+            {
+              "label": "For",
+              "value": "for"
+            }
+          ],
+          "multi": false,
+          "optional_text": false
+        }
+      },
+      {
+        "tag": "connectorLinesText",
+        "type": "Variables::Choice",
+        "custom_title": "Offer Connector Text",
+        "hint": "",
+        "position": 4,
+        "definition": {
+          "choices": [
+            {
+              "label": "Or",
+              "value": "or"
+            },
+            {
+              "label": "And",
+              "value": "and"
+            },
+            {
+              "label": "Or",
+              "value": "or"
+            },
+            {
+              "label": "With",
+              "value": "with"
+            },
+            {
+              "label": "Plus",
+              "value": "plus"
+            },
+            {
+              "label": "From",
+              "value": "from"
+            },
+            {
+              "label": "At",
+              "value": "at"
+            },
+            {
+              "label": "Blank (no text)",
+              "value": "hide-text"
+            }
+          ],
+          "multi": false,
+          "optional_text": false
+        }
+      },
+      {
+        "tag": "savingAmountPreText",
+        "type": "Variables::Text",
+        "custom_title": "Saving Amount Pre-Text",
+        "hint": "Max 1 line. Hidden if removed.",
+        "position": 5,
+        "definition": {
+          "paragraph": false,
+          "heading_level_one": false,
+          "heading_level_two": false,
+          "heading_level_three": false,
+          "heading_level_four": false,
+          "heading_level_five": false,
+          "heading_level_six": false,
+          "unordered_list": false,
+          "ordered_list": false,
+          "no_formatting": true,
+          "hyperlink": false,
+          "text_color_style": false,
+          "remove_formatting": false,
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "strikethrough": false,
+          "alignment": false,
+          "disable_inline_edit": false,
+          "special_characters": false
+        }
+      },
+      {
+        "tag": "savingAmount",
+        "type": "Variables::Text",
+        "custom_title": "Saving Amount",
+        "hint": "Max 5 characters (6 including the comma). A saving amount is always required.",
+        "position": 6,
+        "definition": {
+          "paragraph": false,
+          "heading_level_one": false,
+          "heading_level_two": false,
+          "heading_level_three": false,
+          "heading_level_four": false,
+          "heading_level_five": false,
+          "heading_level_six": false,
+          "unordered_list": false,
+          "ordered_list": false,
+          "no_formatting": true,
+          "hyperlink": false,
+          "text_color_style": false,
+          "remove_formatting": false,
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "strikethrough": false,
+          "alignment": false,
+          "disable_inline_edit": false,
+          "special_characters": false
+        }
+      },
+      {
+        "tag": "savingAmountPostText",
+        "type": "Variables::Text",
+        "custom_title": "Saving Amount Post-Text",
+        "hint": "Max 2 line. Will shrink the text slightly to fit the area if its is too long.",
+        "position": 7,
+        "definition": {
+          "paragraph": false,
+          "heading_level_one": false,
+          "heading_level_two": false,
+          "heading_level_three": false,
+          "heading_level_four": false,
+          "heading_level_five": false,
+          "heading_level_six": false,
+          "unordered_list": false,
+          "ordered_list": false,
+          "no_formatting": true,
+          "hyperlink": false,
+          "text_color_style": false,
+          "remove_formatting": false,
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "strikethrough": false,
+          "alignment": false,
+          "disable_inline_edit": false,
+          "special_characters": false
+        }
+      }
+    ]
+  },
+  {
     "NextNewBlock Inputs": []
   }
 ]
