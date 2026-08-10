@@ -516,8 +516,8 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         align-items: center;
         justify-items: unset;
         gap: 0.5em;
-        /* max-width: 72cqi; */
-        place-self: center;
+        max-width: 72cqi;
+        place-self: center start;
 
         .text-type--connectorLines {
           font-size: 0.9em;
