@@ -121,6 +121,7 @@ const defaultOfferOptionFallbackContent: OfferOptionBlockFallbackContent = {
 };
 
 const OfferOptionBlockWrapper = styled.div<{}>`
+  --offerOptionBlockWrapperPadding: 1em;
   container-type: size;
   container-name: offerOptionBlock;
   grid-area: offerOptionBlock;
@@ -131,7 +132,6 @@ const OfferOptionBlockWrapper = styled.div<{}>`
   font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
   height: inherit;
   width: 100%;
-  --offerOptionBlockWrapperPadding: 1em;
   .offerOptionBlockWrapper {
     height: inherit;
     padding: calc(var(--offerOptionBlockWrapperPadding));
@@ -455,6 +455,8 @@ const OfferOptionBlockWrapper = styled.div<{}>`
   }
   @container offerOptionBlock (max-aspect-ratio: 1.5 / 1) {
     .offerOptionBlockWrapper {
+      --offerOptionBlockWrapperPadding: 3em;
+
       grid-template-rows: minmax(0, 28%) minmax(0, 11%) 1fr;
       grid-template-columns: 1fr;
       grid-template-areas:
@@ -522,7 +524,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         span.connector-line {
           display: inline-block;
           width: inherit;
-          height: min(3.5px, 0.08em);
+          height: min(3.5px, 0.15em);
           margin: unset;
         }
       }
