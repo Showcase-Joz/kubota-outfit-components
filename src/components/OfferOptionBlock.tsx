@@ -136,7 +136,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
     height: inherit;
     padding: calc(var(--offerOptionBlockWrapperPadding));
     padding: calc(var(--offerOptionBlockWrapperPadding))
-      calc(var(--offerOptionBlockWrapperPadding) * 2)
+      calc(var(--offerOptionBlockWrapperPadding) * 1)
       calc(var(--offerOptionBlockWrapperPadding))
       calc(var(--offerOptionBlockWrapperPadding));
     display: grid;
@@ -455,7 +455,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
   }
   @container offerOptionBlock (max-aspect-ratio: 1.5 / 1) {
     .offerOptionBlockWrapper {
-      --offerOptionBlockWrapperPadding: 3em;
+      --offerOptionBlockWrapperPadding: 2em;
 
       grid-template-rows: minmax(0, 28%) minmax(0, 11%) 1fr;
       grid-template-columns: 1fr;
@@ -516,6 +516,8 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         align-items: center;
         justify-items: unset;
         gap: 0.5em;
+        max-width: 72cqi;
+        place-self: center;
 
         .text-type--connectorLines {
           font-size: 0.9em;
@@ -554,7 +556,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
           }
         }
         .offerOptionContent-bottom {
-          max-width: 72cqi;
+          max-width: 80cqi;
           .text-type--post-saving-amount {
             text-wrap-style: balance;
           }
@@ -630,7 +632,7 @@ const OfferOptionBlock = ({
   };
   const squareTextfitConfig = {
     minFontSize: 3.5,
-    maxFontSize: 5.5,
+    maxFontSize: 5,
     widthOnly: true,
     fontUnit: "cqi",
   };
