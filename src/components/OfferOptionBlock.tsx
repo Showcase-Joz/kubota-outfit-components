@@ -537,9 +537,11 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         left: unset;
         justify-self: center;
         align-content: center;
-        height: fit-content;
-        gap: 1em;
+        /* height: fit-content;
+        gap: 1em; */
         width: 100%;
+        height: 100%;
+        align-content: center;
         justify-items: center;
         /* max-width: calc(
           100cqi - calc(var(--offerOptionBlockWrapperPadding) * 2)
