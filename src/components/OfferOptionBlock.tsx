@@ -423,7 +423,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
           line-height: 1.18;
           letter-spacing: -0.02em;
           font-weight: 700;
-          text-wrap-style: pretty;
+          text-wrap-style: balance;
         }
       }
 
