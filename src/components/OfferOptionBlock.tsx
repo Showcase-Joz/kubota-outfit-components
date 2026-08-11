@@ -463,8 +463,8 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         "financingOption"
         "connectorContent"
         "offerOptionContent";
-      padding: unset;
-      padding-left: 1.5em;
+      padding-left: 2em;
+      padding-top: 0.5em;
       .financingContent {
         width: fit-content;
         place-self: end start;
@@ -541,9 +541,9 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         gap: 1em;
         width: 100%;
         justify-items: center;
-        max-width: calc(
+        /* max-width: calc(
           100cqi - calc(var(--offerOptionBlockWrapperPadding) * 2)
-        );
+        ); */
 
         .offerOptionContent-top {
           justify-self: start;
@@ -559,7 +559,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
           }
         }
         .offerOptionContent-bottom {
-          max-width: 80cqi;
+          /* max-width: 80cqi; */
           .text-type--post-saving-amount {
             text-wrap-style: balance;
           }
