@@ -488,6 +488,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
             .term-labels {
               min-width: 100%;
               font-size: 0.65em;
+              margin-left: 1em;
             }
           }
           .text-type--offerAPR,
