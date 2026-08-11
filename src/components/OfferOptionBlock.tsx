@@ -157,13 +157,24 @@ const OfferOptionBlockWrapper = styled.div<{}>`
       top: 0;
       right: 0;
       /* transform: skewX(10deg); */
-      clip-path: polygon(0 0, 95% 0, 100% 100%, 0% 100%);
       z-index: -1;
     }
 
-    &.square--content {
+    .right-edge &::after {
+      clip-path: polygon(0 0, 95% 0, 100% 100%, 0% 100%);
+    }
+    .left-edge &::after {
+      clip-path: polygon(5% 0%, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .right-edge &.square--content {
       &::after {
         clip-path: polygon(0 0, 87% 0, 100% 100%, 0% 100%);
+      }
+    }
+    .left-edge &.square--content {
+      &::after {
+        clip-path: polygon(13% 0, 100% 0, 100% 100%, 0% 100%);
       }
     }
     &.theme--black {
