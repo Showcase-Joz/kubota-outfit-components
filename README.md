@@ -670,4 +670,4 @@ npm install
 ```
 
 To move to a newer release later, update the tag (for example `#v0.2.1`) and run
-`npm install` again.
+_`npm update`_ again.
