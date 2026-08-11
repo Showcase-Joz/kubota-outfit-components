@@ -463,8 +463,9 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         "financingOption"
         "connectorContent"
         "offerOptionContent";
+      padding: unset;
       padding-left: 2em;
-      padding-top: 0.5em;
+      padding-block: 1em;
       .financingContent {
         width: fit-content;
         place-self: end start;
@@ -541,7 +542,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         gap: 1em; */
         width: 100%;
         height: 100%;
-        align-content: center;
+        align-content: space-around;
         justify-items: center;
         /* max-width: calc(
           100cqi - calc(var(--offerOptionBlockWrapperPadding) * 2)
