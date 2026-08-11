@@ -463,6 +463,8 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         "financingOption"
         "connectorContent"
         "offerOptionContent";
+      padding: unset;
+      padding-left: 1.5em;
       .financingContent {
         width: fit-content;
         place-self: end start;
