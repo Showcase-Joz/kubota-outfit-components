@@ -107,7 +107,7 @@ export type OfferOptionBlockFallbackContent = {
 };
 
 const defaultOfferOptionFallbackContent: OfferOptionBlockFallbackContent = {
-  aPR: { value: "X.X" },
+  aPR: { value: "X" },
   backgroundColor: { value: "black" },
   aprPaymentMonthsConnectorText: { value: "up to" },
   paymentMonths: { value: "XX" },
