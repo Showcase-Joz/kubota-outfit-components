@@ -368,6 +368,7 @@ import { OfferOptionBlock } from "kubota-outfit-components";
   savingAmount={inputs?.savingAmount}
   savingAmountPostText={inputs?.savingAmountPostText}
   maxSavingAmountPostText={inputs?.maxSavingAmountPostText}
+    {/* optional children, e.g. a ButtonCTA instance for smaller containers */}
 />;
 ```
 
@@ -407,6 +408,8 @@ import { LeaseOfferBlock } from "kubota-outfit-components";
 - `buttonText`: Outfit-style text input for the button label.
 - `href`: Optional destination URL.
 - `fallbackContent`: Optional preview/default content.
+- `dummyData`: Compatibility alias for `fallbackContent`.
+- `dynamicClassName`: Optional additional class name for the button, which can be used for styling or targeting in container queries.
 
 Usage example:
 
@@ -416,6 +419,7 @@ import { ButtonCTA } from "kubota-outfit-components";
 <ButtonCTA
   buttonText={inputs?.buttonText}
   fallbackContent={{ buttonText: { value: "Learn more" } }}
+  dynamicClassName="additional class names for styling or container queries"
 />;
 ```
 

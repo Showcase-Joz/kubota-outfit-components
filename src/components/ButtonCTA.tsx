@@ -39,6 +39,10 @@ export interface ButtonCTAProps {
   dummyData?: ButtonCTAFallbackContent;
   /** Text to display on the button. */
   buttonText?: ButtonCTAField;
+  /**
+   * Additional class name for the button, which can be used for styling or targeting in container queries.
+   */
+  dynamicClassName?: string;
 }
 
 const ButtonCTAWrapper = styled.a`
@@ -63,12 +67,13 @@ const ButtonCTA = ({
   fallbackContent,
   dummyData,
   buttonText,
+  dynamicClassName,
 }: ButtonCTAProps) => {
   const content =
     fallbackContent || dummyData || defaultButtonCTAFallbackContent;
 
   return (
-    <ButtonCTAWrapper className="buttonCTA">
+    <ButtonCTAWrapper className={`buttonCTA ${dynamicClassName || ""}`}>
       <TextElement
         dummyData={content?.buttonText?.value || ""}
         destructedProp={buttonText}

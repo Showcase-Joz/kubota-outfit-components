@@ -626,7 +626,6 @@ const OfferOptionBlock = ({
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [isSquare, setIsSquare] = useState(false);
-  console.log("is square:", isSquare);
 
   useEffect(() => {
     const el = wrapperRef.current;
