@@ -337,6 +337,9 @@ const OfferOptionBlockWrapper = styled.div<{}>`
             text-transform: unset;
             .text-type--pre-saving-amount {
               font-size: 1.5em;
+              &::first-letter {
+                text-transform: uppercase;
+              }
             }
           }
           [data-testid="limiter"]:nth-child(2) {
