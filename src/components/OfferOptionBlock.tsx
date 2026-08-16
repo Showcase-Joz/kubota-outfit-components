@@ -467,7 +467,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
       }
     }
   }
-  @container offerOptionBlock (max-aspect-ratio: 1.5 / 1) {
+  @container offerOptionBlock (max-aspect-ratio: 1.6 / 1) {
     .offerOptionBlockWrapper {
       --offerOptionBlockWrapperPadding: 2em;
 
