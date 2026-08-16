@@ -646,12 +646,12 @@ const OfferOptionBlock = ({
 
   const landscapeTextfitConfig = {
     minFontSize: 1.4,
-    maxFontSize: 2.7,
+    maxFontSize: 2.5,
     heightOnly: true,
     fontUnit: "cqi",
   };
   const squareTextfitConfig = {
-    minFontSize: 3.2,
+    minFontSize: 3.4,
     maxFontSize: 4,
     widthOnly: true,
     fontUnit: "cqi",
