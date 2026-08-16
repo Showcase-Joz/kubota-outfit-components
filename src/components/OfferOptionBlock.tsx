@@ -646,7 +646,7 @@ const OfferOptionBlock = ({
 
   const landscapeTextfitConfig = {
     minFontSize: 1.4,
-    maxFontSize: 2.5,
+    maxFontSize: 2.7,
     heightOnly: true,
     fontUnit: "cqi",
   };
