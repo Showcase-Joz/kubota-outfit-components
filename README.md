@@ -410,6 +410,7 @@ import { LeaseOfferBlock } from "kubota-outfit-components";
 - `fallbackContent`: Optional preview/default content.
 - `dummyData`: Compatibility alias for `fallbackContent`.
 - `dynamicClassName`: Optional additional class name for the button, which can be used for styling or targeting in container queries.
+- `maxLines`: Optional maximum number of lines allowed in the button text. If the text exceeds this limit, it will be set with a warning.
 
 Usage example:
 
@@ -420,6 +421,7 @@ import { ButtonCTA } from "kubota-outfit-components";
   buttonText={inputs?.buttonText}
   fallbackContent={{ buttonText: { value: "Learn more" } }}
   dynamicClassName="additional class names for styling or container queries"
+  maxLines={2}
 />;
 ```
 

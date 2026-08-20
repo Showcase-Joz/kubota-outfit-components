@@ -43,6 +43,10 @@ export interface ButtonCTAProps {
    * Additional class name for the button, which can be used for styling or targeting in container queries.
    */
   dynamicClassName?: string;
+  /**
+   * Maximum number of lines allowed in the button text. If the text exceeds this limit, it will be set with a warning.
+   */
+  maxLines?: number;
 }
 
 const ButtonCTAWrapper = styled.a`
@@ -68,6 +72,7 @@ const ButtonCTA = ({
   dummyData,
   buttonText,
   dynamicClassName,
+  maxLines,
 }: ButtonCTAProps) => {
   const content =
     fallbackContent || dummyData || defaultButtonCTAFallbackContent;
@@ -79,7 +84,7 @@ const ButtonCTA = ({
         destructedProp={buttonText}
         dynamicClassName={`buttonText`}
         height={undefined}
-        lines={1}
+        lines={maxLines || undefined}
         chars={undefined}
         textfit={false}
         textfitConfig={undefined}
