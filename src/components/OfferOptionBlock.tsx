@@ -629,6 +629,7 @@ const OfferOptionBlock = ({
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [isSquare, setIsSquare] = useState(false);
+  const [wrapperWidth, setWrapperWidth] = useState<number | null>(null);
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -638,6 +639,7 @@ const OfferOptionBlock = ({
         const w = e.contentRect.width;
         const h = e.contentRect.height || 1;
         setIsSquare(w / h <= 1.5);
+        setWrapperWidth(w);
       }
     });
     ro.observe(el);
@@ -653,6 +655,12 @@ const OfferOptionBlock = ({
   const squareTextfitConfig = {
     minFontSize: 3.2,
     maxFontSize: 4,
+    widthOnly: true,
+    fontUnit: "cqi",
+  };
+  const squareSmallTextfitConfig = {
+    minFontSize: 4,
+    maxFontSize: 5,
     widthOnly: true,
     fontUnit: "cqi",
   };
@@ -841,7 +849,11 @@ const OfferOptionBlock = ({
               chars={undefined}
               textfit={true}
               textfitConfig={
-                isSquare ? squareTextfitConfig : landscapeTextfitConfig
+                isSquare && wrapperWidth && wrapperWidth <= 600
+                  ? squareSmallTextfitConfig
+                  : isSquare
+                  ? squareTextfitConfig
+                  : landscapeTextfitConfig
               }
             ></TextElement>
           </div>
