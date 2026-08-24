@@ -653,8 +653,8 @@ const OfferOptionBlock = ({
     fontUnit: "cqi",
   };
   const landscapeSmallTextfitConfig = {
-    minFontSize: 6.7,
-    maxFontSize: 4.5,
+    minFontSize: 4.5,
+    maxFontSize: 6.7,
     heightOnly: true,
     fontUnit: "cqi",
   };
@@ -665,8 +665,8 @@ const OfferOptionBlock = ({
     fontUnit: "cqi",
   };
   const squareSmallTextfitConfig = {
-    minFontSize: 6.7,
-    maxFontSize: 4.5,
+    minFontSize: 4.5,
+    maxFontSize: 6.7,
     widthOnly: true,
     fontUnit: "cqi",
   };
