@@ -652,6 +652,12 @@ const OfferOptionBlock = ({
     heightOnly: true,
     fontUnit: "cqi",
   };
+  const landscapeSmallTextfitConfig = {
+    minFontSize: 6.7,
+    maxFontSize: 4.5,
+    heightOnly: true,
+    fontUnit: "cqi",
+  };
   const squareTextfitConfig = {
     minFontSize: 3.2,
     maxFontSize: 4,
@@ -674,6 +680,8 @@ const OfferOptionBlock = ({
       ? squareSmallTextfitConfig
       : isSquare
       ? squareTextfitConfig
+      : !isSquare && wrapperWidth && wrapperWidth <= 600
+      ? landscapeSmallTextfitConfig
       : landscapeTextfitConfig,
   );
 
