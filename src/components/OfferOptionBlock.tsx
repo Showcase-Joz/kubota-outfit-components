@@ -659,8 +659,8 @@ const OfferOptionBlock = ({
     fontUnit: "cqi",
   };
   const squareSmallTextfitConfig = {
-    minFontSize: 7,
-    maxFontSize: 8,
+    minFontSize: 6.7,
+    maxFontSize: 4.5,
     widthOnly: true,
     fontUnit: "cqi",
   };
