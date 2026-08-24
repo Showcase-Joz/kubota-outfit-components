@@ -665,6 +665,18 @@ const OfferOptionBlock = ({
     fontUnit: "cqi",
   };
 
+  console.log(
+    "isSquare",
+    isSquare,
+    "wrapperWidth",
+    wrapperWidth,
+    isSquare && wrapperWidth && wrapperWidth <= 600
+      ? squareSmallTextfitConfig
+      : isSquare
+      ? squareTextfitConfig
+      : landscapeTextfitConfig,
+  );
+
   const backgroundColorValue = checkInputExists(
     backgroundColor,
     content.backgroundColor?.value,
