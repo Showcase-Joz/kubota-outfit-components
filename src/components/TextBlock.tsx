@@ -141,14 +141,12 @@ const TextBlockWrapper = styled.div<{
       }
     }
     .text-type--copy-text {
-      .gradient-overlay--black {
-        span.tinymce_style--dark {
-          color: var(--color-white);
-        }
+      .gradient-overlay--black & {
+        color: var(--color-white);
+      }
 
-        span.tinymce_style--light {
-          color: var(--color-black);
-        }
+      .gradient-overlay--white & {
+        color: var(--color-black);
       }
     }
   }
