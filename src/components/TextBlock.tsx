@@ -105,7 +105,8 @@ const TextBlockWrapper = styled.div<{
   container-name: textBlock;
   --base-font-size: ${(props) => props.baseFontSize || "inherit"};
   container-type: size;
-  height: inherit;
+  align-content: end;
+  height: 100%;
   width: inherit;
   display: grid;
   font-family: var(--font-family-inter-default);
@@ -137,6 +138,17 @@ const TextBlockWrapper = styled.div<{
 
       span.tinymce_style--dark.tinymce_style--light {
         color: var(--color-orange);
+      }
+    }
+    .text-type--copy-text {
+      .gradient-overlay--black {
+        span.tinymce_style--dark {
+          color: var(--color-white);
+        }
+
+        span.tinymce_style--light {
+          color: var(--color-black);
+        }
       }
     }
   }
