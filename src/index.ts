@@ -6,6 +6,7 @@ export { LeaseOfferBlock } from "./components/LeaseOfferBlock.js";
 export { ImageBlock } from "./components/ImageBlock.js";
 export { HeadlineBlock } from "./components/HeadlineBlock.js";
 export { OfferOptionBlock } from "./components/OfferOptionBlock.js";
+export { TextBlock } from "./components/TextBlock.js";
 export type {
   WarrantyBlockFallbackContent,
   WarrantyBlockField,
