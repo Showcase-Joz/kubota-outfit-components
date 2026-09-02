@@ -105,8 +105,8 @@ const TextBlockWrapper = styled.div<{
   container-name: textBlock;
   --base-font-size: ${(props) => props.baseFontSize || "inherit"};
   container-type: size;
-  height: 100cqb;
-  width: 100cqi;
+  height: inherit;
+  width: inherit;
   display: grid;
   font-family: var(--font-family-inter-default);
   font-size: var(
