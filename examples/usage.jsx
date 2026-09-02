@@ -59,6 +59,18 @@ const Example = ({ inputs }) => (
       hideTextOption={false}
     />
 
+    <TextBlock
+      copyText={inputs?.copyText}
+      copyTextPlacement={inputs?.copyTextPlacement}
+      maxLines={10}
+      maxChars={undefined}
+      baseFontSize={"1em"}
+      hideTextOption={false}
+      copyTextWrapStyle="balance"
+      maxWidthInParent="70%"
+      dynamicClassName="text-area"
+    />
+
     <OfferOptionBlock
       backgroundColor={inputs?.offerTheming}
       aPR={inputs?.aPR}

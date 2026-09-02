@@ -48,3 +48,8 @@ export type {
   MaxLinesBlockField,
   OfferOptionBlockProps,
 } from "./components/OfferOptionBlock.js";
+export type {
+  TextBlockFallbackContent,
+  TextBlockField,
+  TextProps,
+} from "./components/TextBlock.js";

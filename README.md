@@ -2,7 +2,7 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
-This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `OfferOptionBlock` (a multi-column finance and savings block), `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
+This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `OfferOptionBlock` (a multi-column finance and savings block), `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), `TextBlock` (flexible text content with layout controls), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
 
 This package starts with the primary exports documented below. The current
 version is intentionally Kubota-shaped: it includes Kubota-oriented defaults,
@@ -44,6 +44,7 @@ Primary exports (from `src/index.ts`):
 - [ButtonCTA](#buttoncta-props)
 - [LeaseOfferBlock](#leaseofferblock-props)
 - [HeadlineBlock](#headlineblock-props)
+- [TextBlock](#textblock-props)
 - [ImageBlock](#imageblock-props)
 
 ## Usage
@@ -467,6 +468,69 @@ import { HeadlineBlock } from "kubota-outfit-components";
   maxWidthInParent="70%"
 />;
 ```
+
+---
+
+## TextBlock Props
+
+- `copyText`: Outfit-style text input for the block content.
+- `copyTextPlacement`: CSS grid placement string to position the text within the container (e.g., `center`, `start start`, `end center`).
+- `copyTextWrapStyle`: Optional CSS text wrapping mode such as `auto`, `balance`, or `pretty`.
+- `baseFontSize`: Base font size for the text block. Defaults to `1em`.
+- `maxLines`: Optional line limit for the text. If the text exceeds this limit, it will be set with a warning.
+- `maxChars`: Optional character limit for the text. If the text exceeds this limit, it will be set with a warning.
+- `maxWidthInParent`: Optional max width for the text block relative to its parent container. Accepts any valid CSS width value (e.g., `70%`, `500px`, `50vw`).
+- `hideTextOption`: Optional visibility toggle for preview/layout testing. When set to true, the text is hidden after initial dummy data view.
+- `dynamicClassName`: Optional additional class name for the text block, which can be used for styling or targeting in container queries.
+- `fallbackContent`: Optional preview/default content using the same field shape.
+- `dummyData`: Compatibility alias for `fallbackContent`.
+
+Example `fallbackContent` value:
+
+```tsx
+<TextBlock
+  fallbackContent={{
+    copyText: { value: "Text should be added here." },
+    copyTextPlacement: { value: "start start" },
+    baseFontSize: { value: "1em" },
+    hideTextOption: false,
+    maxLines: 10,
+    maxChars: undefined,
+    maxWidthInParent: { value: "70%" },
+  }}
+/>
+```
+
+Usage example:
+
+```tsx
+import { TextBlock } from "kubota-outfit-components";
+
+<TextBlock
+  copyText={inputs?.copyText}
+  copyTextPlacement={inputs?.copyTextPlacement}
+  baseFontSize="1em"
+  maxLines={10}
+  maxChars={undefined}
+  textWrapStyle="balance"
+  maxWidthInParent="70%"
+  dynamicClassName="text-area"
+  hideTextOption={false}
+/>;
+```
+
+### TextElement association
+
+The text block displays its content through `src/components/TextElement.jsx`.
+
+`TextElement` handles the shared Outfit text behaviour: fallback text resolution
+via `checkInputExists`, inline editing via `onInlineEditClick`, limiter
+support, HTML parsing, and money formatting for the existing finance-related
+text classes.
+
+`TextBlock` uses `onceADummyText` from `src/utils/helpers.js` to decide
+whether the fallback preview text should be shown or whether an empty/null live
+input should hide the text block.
 
 ---
 
