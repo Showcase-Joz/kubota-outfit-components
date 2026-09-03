@@ -473,14 +473,19 @@ import { HeadlineBlock } from "kubota-outfit-components";
 
 ## TextBlock Props
 
+- `headingText`: Optional Outfit-style text input rendered as the heading.
+- `headingTextWrapStyle`: Optional CSS text wrapping mode for the heading, such as `auto`, `balance`, or `pretty`.
+- `headingMaxHeight`: Optional heading height in pixels.
+- `headingMaxWidthInParent`: Optional max width for the heading relative to its parent.
 - `copyText`: Outfit-style text input for the block content.
-- `copyTextPlacement`: CSS grid placement string to position the text within the container (e.g., `center`, `start start`, `end center`).
+- `textPlacement`: Outfit-style value containing a CSS grid placement string for both heading and copy (e.g., `center`, `start start`, `end center`).
 - `copyTextWrapStyle`: Optional CSS text wrapping mode such as `auto`, `balance`, or `pretty`.
 - `baseFontSize`: Base font size for the text block. Defaults to `1em`.
 - `maxLines`: Optional line limit for the text. If the text exceeds this limit, it will be set with a warning.
 - `maxChars`: Optional character limit for the text. If the text exceeds this limit, it will be set with a warning.
 - `maxWidthInParent`: Optional max width for the text block relative to its parent container. Accepts any valid CSS width value (e.g., `70%`, `500px`, `50vw`).
-- `hideTextOption`: Optional visibility toggle for preview/layout testing. When set to true, the text is hidden after initial dummy data view.
+- `hideHeadingTextOption`: Optional visibility toggle for the heading. When set to true, the heading is hidden while its layout space remains available.
+- `hideCopyTextOption`: Optional visibility toggle for the copy. When set to true, the copy is hidden while its layout space remains available.
 - `dynamicClassName`: Optional additional class name for the text block, which can be used for styling or targeting in container queries.
 - `fallbackContent`: Optional preview/default content using the same field shape.
 - `dummyData`: Compatibility alias for `fallbackContent`.
@@ -490,13 +495,20 @@ Example `fallbackContent` value:
 ```tsx
 <TextBlock
   fallbackContent={{
+    headingText: { value: "Headline should be added here." },
+    headingTextWrapStyle: "balance",
+    headingMaxHeight: 200,
+    headingMaxWidthInParent: "100%",
     copyText: { value: "Text should be added here." },
-    copyTextPlacement: { value: "start start" },
-    baseFontSize: { value: "1em" },
-    hideTextOption: false,
+    textPlacement: { value: "end start" },
+    copyTextWrapStyle: "pretty",
+    baseFontSize: "1em",
+    hideHeadingTextOption: false,
+    hideCopyTextOption: false,
     maxLines: 10,
     maxChars: undefined,
-    maxWidthInParent: { value: "70%" },
+    maxWidthInParent: "70%",
+    dynamicClassName: "text-area",
   }}
 />
 ```
@@ -507,17 +519,31 @@ Usage example:
 import { TextBlock } from "kubota-outfit-components";
 
 <TextBlock
+  headingText={inputs?.headingText}
   copyText={inputs?.copyText}
-  copyTextPlacement={inputs?.copyTextPlacement}
+  textPlacement={inputs?.textPlacement}
   baseFontSize="1em"
   maxLines={10}
   maxChars={undefined}
-  textWrapStyle="balance"
+  headingTextWrapStyle="balance"
+  copyTextWrapStyle="balance"
+  headingMaxHeight={200}
+  headingMaxWidthInParent="100%"
   maxWidthInParent="70%"
   dynamicClassName="text-area"
-  hideTextOption={false}
+  hideHeadingTextOption={false}
+  hideCopyTextOption={false}
 />;
 ```
+
+`fallbackContent` supplies preview content and defaults for the block. The
+individual props take precedence when provided. `fallbackContent` is preferred
+for new templates; `dummyData` remains available as a compatibility alias.
+
+`TextBlock` renders a heading and copy area through `TextElement`. Empty or
+unconfigured Outfit inputs show the corresponding fallback text in preview,
+while populated inputs replace it. A null input can hide fallback text after
+the input has previously received a value.
 
 ### TextElement association
 

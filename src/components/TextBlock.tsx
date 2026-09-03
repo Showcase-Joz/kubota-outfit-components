@@ -8,13 +8,20 @@ export type TextField = {
 };
 
 export type TextBlockFallbackContent = {
-  copyText?: TextField;
-  copyTextPlacement?: TextField;
-  baseFontSize?: TextField;
-  hideTextOption?: boolean;
-  maxLines?: number | null;
-  maxChars?: number | null;
-  maxWidthInParent?: TextField;
+  headingText?: TextBlockField;
+  headingTextWrapStyle?: string;
+  headingMaxHeight?: number | undefined;
+  headingMaxWidthInParent?: string;
+  copyText?: TextBlockField;
+  copyTextWrapStyle?: string;
+  textPlacement?: TextBlockField;
+  baseFontSize?: string;
+  hideHeadingTextOption?: boolean;
+  hideCopyTextOption?: boolean;
+  maxLines?: number | undefined;
+  maxChars?: number | undefined;
+  maxWidthInParent?: string;
+  dynamicClassName?: string;
 };
 export type TextBlockField = {
   value: string;
@@ -22,21 +29,24 @@ export type TextBlockField = {
 };
 
 const defaultTextFallbackContent: TextBlockFallbackContent = {
+  headingText: {
+    value: "Headline should be added here.",
+  },
+  headingTextWrapStyle: "auto",
+  headingMaxWidthInParent: "100%",
   copyText: {
     value: "Text should be added here.",
   },
-  copyTextPlacement: {
-    value: "start start",
+  copyTextWrapStyle: "auto",
+  textPlacement: {
+    value: "end start",
   },
-  baseFontSize: {
-    value: "1em",
-  },
-  hideTextOption: false,
+  baseFontSize: "1em",
+  hideHeadingTextOption: false,
+  hideCopyTextOption: false,
   maxLines: 10,
   maxChars: undefined,
-  maxWidthInParent: {
-    value: "70%",
-  },
+  dynamicClassName: "custom-class",
 };
 
 export interface TextProps {
@@ -46,15 +56,20 @@ export interface TextProps {
    *
    * @example
    * {
+   *   headingText: { value: "Headline should be added here." }
+   *   headingTextWrapStyle: "auto" | "balance" | "pretty"
+   *   headingMaxHeight: 200 | 250 | undefined
+   *   headingMaxWidthInParent: "100%"
+   *   textPlacement: { value: "start start" }
    *   copyText: { value: "Text should be added here." }
-   *   copyTextPlacement: { value: "start start" }
-   *   baseFontSize: { value: "1em" }
-   *   hideTextOption: { value: false }
-   *   maxLines: {  3 }
-   *   maxChars: {  undefined }
-   *   maxWidthInParent: { value: "70%" }
-   *   baseFontSize: { value: "1em" }
-   *   hideTextOption: { value: false }
+   *   dynamicClassName: "custom-class"
+   *   hideHeadingTextOption: false | true
+   *   hideCopyTextOption: false | true
+   *   maxLines: 3 | 5 | 10 | undefined
+   *   maxChars: undefined | 10 | 20 | 500
+   *   copyTextWrapStyle: "auto" | "balance" | "pretty"
+   *   maxWidthInParent: "70%" | "500px" | "50vw" | null
+   *   baseFontSize: "1em" | "16px" | "1rem" | null
    * }
    */
   fallbackContent?: TextBlockFallbackContent;
@@ -64,82 +79,151 @@ export interface TextProps {
    * `{ fieldName: { value: "..." } }` shape.
    */
   dummyData?: TextBlockFallbackContent;
-  /** Text to display. */
-  copyText?: string[];
+  /** heading text to display, can be h1 and/or h2 */
+  headingText?: TextBlockField;
   /**
-   * Additional class name for the button, which can be used for styling or targeting in container queries.
+   * Optional CSS string to control heading text wrapping behavior, it controls how text inside an element is wrapped, providing alternate ways of determining where to create line breaks in order to fit the content within a block element. options include "auto", "balance", "pretty", etc.
    */
-  dynamicClassName?: string;
+  headingTextWrapStyle?: string;
+  /** Maximum heading height in pixels. */
+  headingMaxHeight?: number | undefined;
   /**
-   * Maximum number of lines allowed in the button text. If the text exceeds this limit, it will be set with a warning.
+   * Maximum width for the heading relative to its parent container. Accepts any
+   * valid CSS width value, such as "70%", "500px", or "50vw".
    */
-  maxLines?: number | null;
-  /**
-   * Maximum number of characters allowed in the button text. If the text exceeds this limit, it will be set with a warning.
-   */
-  maxChars?: number | null;
-  /**
-   * Optional CSS string to control text wrapping behavior, it controls how text inside an element is wrapped, providing alternate ways of determining where to create line breaks in order to fit the content within a block element. options include "auto", "balance", "pretty", etc.
-   */
-  copyTextPlacement?: TextBlockField;
+  headingMaxWidthInParent?: string;
+  /** Copy text to display in the text block. */
+  copyText?: TextBlockField;
   /**
    * Optional CSS string to control text wrapping behavior, it controls how text inside an element is wrapped, providing alternate ways of determining where to create line breaks in order to fit the content within a block element. options include "auto", "balance", "pretty", etc.
    */
   copyTextWrapStyle?: string;
-  //* Allows you to set a maximum width for the headline block relative to its parent container, which can help maintain design consistency and prevent the headline from becoming too wide on larger screens. Accepts any valid CSS width value (e.g., "70%", "500px", "50vw", etc.).
-  maxWidthInParent?: string;
-  //* Prop to control text visibility, when set to true, it will apply a class that hides the headline text after initial 'dummy data' view, allowing for layout testing or scenarios where the headline is not needed but the space should be preserved.
-  hideTextOption?: boolean; // New prop to control text visibility
+  /** allows the user to specify the placement of both the heading and the copy text within the component's area. */
+  textPlacement?: TextBlockField;
   /**
-   * The base font size for the text.
+   * The base font size for the block. Heading 2 is 1.65 times smaller and copy
+   * text is half the base size.
    */
   baseFontSize?: string;
+  /** Hide the heading while preserving its layout area. */
+  hideHeadingTextOption?: boolean;
+  /** Hide the copy while preserving its layout area. */
+  hideCopyTextOption?: boolean;
+  /**
+   * Maximum number of lines allowed in the copy text. If the text exceeds this
+   * limit, TextElement applies its limiter behavior.
+   */
+  maxLines?: number | undefined;
+  /**
+   * Maximum number of characters allowed in the copy text. If the text exceeds
+   * this limit, TextElement applies its limiter behavior.
+   */
+  maxChars?: number | undefined;
+
+  /** Maximum width for the text block relative to its parent container. */
+  maxWidthInParent?: string;
+  /**
+   * Additional class name for styling or targeting in container queries. It can
+   * also be used to customize the heading and copy font families.
+   */
+  dynamicClassName?: string;
 }
 
 const TextBlockWrapper = styled.div<{
+  headingTextWrapStyle?: string;
+  headingMaxHeight?: number | null;
+  headingMaxWidthInParent?: string;
   baseFontSize?: string;
-  copyTextPlacement?: string;
+  textPlacement?: string;
   copyTextWrapStyle?: string;
   maxWidthInParent?: string;
 }>`
   container-name: textBlock;
+  --gap: 0.5em;
   --base-font-size: ${(props) => props.baseFontSize || "inherit"};
-  container-type: size;
-  align-content: end;
-  height: 100%;
-  width: inherit;
+  container-type: inline-size;
+  height: 100cqb;
+  width: 100cqi;
   display: grid;
+
   font-family: var(--font-family-inter-default);
   font-size: var(
     --clamp-size-1,
     clamp(0.45em, calc(-0.875rem + 7.333cqi), 1.5rem)
   );
-  .copy-text-wrapper {
-    height: fit-content;
+  .text-wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    gap: var(--gap);
+    grid-template-areas:
+      "heading"
+      "copy";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    align-content: end;
     max-width: ${(props) => props.maxWidthInParent || "100%"};
-    place-self: ${(props) => props.copyTextPlacement || "inherit"};
+    place-self: ${(props) => props.textPlacement || "inherit"};
     position: relative;
-    &.copy-text--hide {
+    font-size: inherit;
+    .heading-text--hide,
+    .copy-text--hide {
       display: none;
     }
-    .text-type--copy-text {
-      position: relative;
-      line-height: 1.4;
-      font-size: var(--base-font-size, 1rem);
-      text-wrap-style: ${(props) => props.copyTextWrapStyle || "auto"};
+    .heading-text-wrapper {
+      grid-area: heading;
+      font-family: var(--font-family-arial-black-default);
+      font-size: inherit;
+      .text-type--heading-text {
+        max-height: ${(props) => props.headingMaxHeight || 200}px;
+        text-wrap-style: ${(props) => props.headingTextWrapStyle || "auto"};
+        max-width: ${(props) => props.headingMaxWidthInParent || "100%"};
+        display: grid;
+        row-gap: var(--gap);
+        span.tinymce_style--dark {
+          color: var(--color-black);
+        }
 
-      span.tinymce_style--dark {
-        color: var(--color-black);
-      }
+        span.tinymce_style--light {
+          color: var(--color-white);
+        }
 
-      span.tinymce_style--light {
-        color: var(--color-white);
-      }
+        span.tinymce_style--dark.tinymce_style--light {
+          color: var(--color-orange);
+        }
 
-      span.tinymce_style--dark.tinymce_style--light {
-        color: var(--color-orange);
+        > h1 {
+          line-height: 1.4;
+          font-size: var(--base-font-size, 2rem);
+        }
+        > h2 {
+          line-height: 1.2;
+          font-size: calc(var(--base-font-size, 2rem) / 1.65);
+        }
       }
     }
+    .copy-text-wrapper {
+      grid-area: copy;
+      font-size: inherit;
+      .text-type--copy-text {
+        line-height: 1.2;
+        font-size: calc(var(--base-font-size, 1rem) / 2);
+        text-wrap-style: ${(props) => props.copyTextWrapStyle || "auto"};
+
+        span.tinymce_style--dark {
+          color: var(--color-black);
+        }
+
+        span.tinymce_style--light {
+          color: var(--color-white);
+        }
+
+        span.tinymce_style--dark.tinymce_style--light {
+          color: var(--color-orange);
+        }
+      }
+    }
+    .text-type--heading-text,
     .text-type--copy-text {
       .gradient-overlay--black & {
         color: var(--color-white);
@@ -153,48 +237,93 @@ const TextBlockWrapper = styled.div<{
 `;
 
 const TextBlock = ({
-  baseFontSize,
   fallbackContent,
   dummyData,
+  headingText,
+  headingTextWrapStyle,
+  headingMaxHeight,
+  headingMaxWidthInParent,
+  textPlacement,
   copyText,
   dynamicClassName,
-  maxWidthInParent,
-  copyTextPlacement,
-  copyTextWrapStyle,
-  hideTextOption,
   maxLines,
   maxChars,
+  copyTextWrapStyle,
+  maxWidthInParent,
+  hideHeadingTextOption,
+  hideCopyTextOption,
+  baseFontSize,
 }: TextProps) => {
   const content = fallbackContent || dummyData || defaultTextFallbackContent;
 
-  const copyTextValue = onceADummyText(copyText, content.copyText?.value);
-  const copyTextPlacementValue = checkInputExists(
-    copyTextPlacement,
-    content.copyTextPlacement?.value,
+  const headingTextValue = onceADummyText(
+    headingText,
+    content.headingText?.value,
   );
+  const copyTextValue = onceADummyText(copyText, content.copyText?.value);
+  const textPlacementValue = checkInputExists(
+    textPlacement,
+    content.textPlacement?.value,
+  );
+  const resolvedCopyTextWrapStyle =
+    copyTextWrapStyle ?? content.copyTextWrapStyle;
+  const resolvedBaseFontSize = baseFontSize ?? content.baseFontSize;
+  const resolvedMaxLines = maxLines ?? content.maxLines;
+  const resolvedMaxChars = maxChars ?? content.maxChars;
+  const resolvedMaxWidthInParent = maxWidthInParent ?? content.maxWidthInParent;
+  const resolvedDynamicClassName = dynamicClassName ?? content.dynamicClassName;
   return (
     <TextBlockWrapper
-      copyTextPlacement={copyTextPlacementValue || "inherit"}
-      copyTextWrapStyle={copyTextWrapStyle}
-      maxWidthInParent={maxWidthInParent}
-      baseFontSize={baseFontSize}
-      className={`${dynamicClassName || ""}`}
+      headingTextWrapStyle={
+        headingTextWrapStyle || content.headingTextWrapStyle
+      }
+      headingMaxWidthInParent={
+        headingMaxWidthInParent || content.headingMaxWidthInParent
+      }
+      headingMaxHeight={headingMaxHeight ?? content.headingMaxHeight}
+      textPlacement={textPlacementValue || "inherit"}
+      copyTextWrapStyle={resolvedCopyTextWrapStyle}
+      maxWidthInParent={resolvedMaxWidthInParent}
+      baseFontSize={resolvedBaseFontSize}
+      className={`${resolvedDynamicClassName || ""}`}
     >
-      <div
-        className={`copy-text-wrapper  ${
-          hideTextOption ? `copy-text--${copyTextValue.class}` : ""
-        }`}
-      >
-        <TextElement
-          dummyData={content?.copyText?.value || ""}
-          destructedProp={copyText}
-          dynamicClassName={`copy-text`}
-          height={undefined}
-          lines={maxLines || undefined}
-          chars={maxChars || undefined}
-          textfit={false}
-          textfitConfig={undefined}
-        ></TextElement>{" "}
+      <div className="text-wrapper">
+        <div
+          className={`heading-text-wrapper  ${
+            hideHeadingTextOption ?? content.hideHeadingTextOption
+              ? "heading-text--hide"
+              : `heading-text--${headingTextValue.class}`
+          }`}
+        >
+          <TextElement
+            dummyData={content?.headingText?.value || ""}
+            destructedProp={headingText}
+            dynamicClassName={`heading-text`}
+            height="self"
+            lines={undefined}
+            chars={undefined}
+            textfit={false}
+            textfitConfig={undefined}
+          ></TextElement>
+        </div>
+        <div
+          className={`copy-text-wrapper  ${
+            hideCopyTextOption ?? content.hideCopyTextOption
+              ? "copy-text--hide"
+              : `copy-text--${copyTextValue.class}`
+          }`}
+        >
+          <TextElement
+            dummyData={content?.copyText?.value || ""}
+            destructedProp={copyText}
+            dynamicClassName={`copy-text`}
+            height={undefined}
+            lines={resolvedMaxLines}
+            chars={resolvedMaxChars}
+            textfit={false}
+            textfitConfig={undefined}
+          ></TextElement>
+        </div>
       </div>
     </TextBlockWrapper>
   );

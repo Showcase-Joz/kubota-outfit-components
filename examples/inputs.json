@@ -985,11 +985,40 @@
   {
     "TextBlock Inputs": [
       {
+        "tag": "headingText",
+        "type": "Variables::Text",
+        "custom_title": "Heading Text",
+        "hint": "Allows for various heading text in Heading 1 and 2. The height will be set with the prop.headingMaxHeight value",
+        "position": 0,
+        "definition": {
+          "paragraph": false,
+          "heading_level_one": true,
+          "heading_level_two": true,
+          "heading_level_three": false,
+          "heading_level_four": false,
+          "heading_level_five": false,
+          "heading_level_six": false,
+          "unordered_list": false,
+          "ordered_list": false,
+          "no_formatting": false,
+          "hyperlink": false,
+          "text_color_style": true,
+          "remove_formatting": false,
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "strikethrough": false,
+          "alignment": false,
+          "disable_inline_edit": false,
+          "special_characters": false
+        }
+      },
+      {
         "tag": "copyText",
         "type": "Variables::Text",
         "custom_title": "Copy Text",
-        "hint": "Allows for various copy text.",
-        "position": 0,
+        "hint": "Allows for various copy text. Max can be set in either prop.maxLines or prop.maxChars.",
+        "position": 1,
         "definition": {
           "paragraph": false,
           "heading_level_one": false,
@@ -1014,7 +1043,7 @@
         }
       },
       {
-        "tag": "copyTextPlacement",
+        "tag": "textPlacement",
         "type": "Variables::Choice",
         "custom_title": "Copy Text Placement",
         "hint": "Position of the copy text. If left unselected, the default position will be used. Be aware of how the placement of the copy text will impact the legibility of the text over the featured image.",

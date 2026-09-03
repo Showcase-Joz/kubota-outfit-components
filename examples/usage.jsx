@@ -60,13 +60,18 @@ const Example = ({ inputs }) => (
     />
 
     <TextBlock
+      headingText={inputs?.headingText}
+      headingTextWrapStyle="pretty"
+      headingMaxHeight={200}
+      headingMaxWidthInParent="100%"
       copyText={inputs?.copyText}
-      copyTextPlacement={inputs?.copyTextPlacement}
+      copyTextWrapStyle="balance"
+      textPlacement={inputs?.copyTextPlacement}
+      baseFontSize={"2em"}
+      hideHeadingTextOption={false} // Set to true to hide the text after initial view
+      hideCopyTextOption={false} // Set to true to hide the text after initial view
       maxLines={10}
       maxChars={undefined}
-      baseFontSize={"1em"}
-      hideTextOption={false}
-      copyTextWrapStyle="balance"
       maxWidthInParent="70%"
       dynamicClassName="text-area"
     />
