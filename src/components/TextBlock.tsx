@@ -152,7 +152,7 @@ const TextBlockWrapper = styled.div<{
     clamp(0.45em, calc(-0.875rem + 7.333cqi), 1.5rem)
   );
   .text-wrapper {
-    height: 100%;
+    height: fit-content;
     width: 100%;
     display: grid;
     gap: var(--gap);
@@ -162,7 +162,6 @@ const TextBlockWrapper = styled.div<{
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     align-content: end;
-    max-width: ${(props) => props.maxWidthInParent || "100%"};
     place-self: ${(props) => props.textPlacement || "inherit"};
     position: relative;
     font-size: inherit;
@@ -206,8 +205,10 @@ const TextBlockWrapper = styled.div<{
       grid-area: copy;
       font-size: inherit;
       .text-type--copy-text {
-        line-height: 1.2;
-        font-size: calc(var(--base-font-size, 1rem) / 2);
+        line-height: 1.4;
+        font-size: calc(var(--base-font-size, 1rem) / 1.8);
+        max-width: ${(props) => props.maxWidthInParent || "100%"};
+
         text-wrap-style: ${(props) => props.copyTextWrapStyle || "auto"};
 
         span.tinymce_style--dark {
