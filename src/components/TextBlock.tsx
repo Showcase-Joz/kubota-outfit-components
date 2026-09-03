@@ -142,7 +142,7 @@ const TextBlockWrapper = styled.div<{
   --gap: 0.5em;
   --base-font-size: ${(props) => props.baseFontSize || "inherit"};
   container-type: inline-size;
-  height: 100cqb;
+  height: inherit;
   width: 100cqi;
   display: grid;
 
