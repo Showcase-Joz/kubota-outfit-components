@@ -845,11 +845,23 @@
         }
       },
       {
+        "tag": "downPayment",
+        "type": "Variables::Number",
+        "custom_title": "Down Payment",
+        "hint": "Max 5 characters (6 including the comma). A down payment is optional, removing it's contents will hide down payment.",
+        "position": 3,
+        "definition": {
+          "min": 0,
+          "max": 99999,
+          "appearance": "field"
+        }
+      },
+      {
         "tag": "aprPaymentMonthsConnectorText",
         "type": "Variables::Choice",
         "custom_title": "APR / Months Connector Text",
         "hint": "Conditional on the presence of both APR and Payment Months.",
-        "position": 3,
+        "position": 4,
         "definition": {
           "choices": [
             {
@@ -870,7 +882,7 @@
         "type": "Variables::Choice",
         "custom_title": "Offer Connector Text",
         "hint": "",
-        "position": 4,
+        "position": 5,
         "definition": {
           "choices": [
             {
@@ -915,7 +927,7 @@
         "type": "Variables::Text",
         "custom_title": "Saving Amount Pre-Text",
         "hint": "Max 1 line. Hidden if removed.",
-        "position": 5,
+        "position": 6,
         "definition": {
           "paragraph": false,
           "heading_level_one": false,
@@ -944,7 +956,7 @@
         "type": "Variables::Number",
         "custom_title": "Saving Amount",
         "hint": "Max 5 characters (6 including the comma). A saving amount is always required.",
-        "position": 6,
+        "position": 7,
         "definition": {
           "min": 0,
           "max": 99999,
@@ -956,7 +968,7 @@
         "type": "Variables::Text",
         "custom_title": "Saving Amount Post-Text",
         "hint": "Max 2 line. Will shrink the text slightly to fit the area if its is too long.",
-        "position": 7,
+        "position": 8,
         "definition": {
           "paragraph": false,
           "heading_level_one": false,

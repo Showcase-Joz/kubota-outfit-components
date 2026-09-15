@@ -81,6 +81,7 @@ const Example = ({ inputs }) => (
       aPR={inputs?.aPR}
       aprPaymentMonthsConnectorText={inputs?.aprPaymentMonthsConnectorText}
       paymentMonths={inputs?.paymentMonths}
+      downPayment={inputs?.downPayment}
       connectorLinesText={inputs?.connectorLinesText}
       savingAmountPreText={inputs?.savingAmountPreText}
       savingAmount={inputs?.savingAmount}

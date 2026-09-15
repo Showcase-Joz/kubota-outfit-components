@@ -326,6 +326,7 @@ import { OfferBlock } from "kubota-outfit-components";
   to render the fallback `0% APR` treatment, or `notApplicable` to hide the APR section.
 - `aprPaymentMonthsConnectorText`: Short connector text between the APR and payment months.
 - `paymentMonths`: Payment months (term) value.
+- `downPayment`: Down payment value shown after the payment term.
 - `connectorLinesText`: Connector text between the APR/payment months and the saving amount.
 - `savingAmountPreText`: Short connector text above the saving amount.
 - `savingAmount`: Main saving amount.
@@ -343,6 +344,7 @@ Example `fallbackContent` value:
     aPR: { value: "4.99" },
     aprPaymentMonthsConnectorText: { value: "up to" },
     paymentMonths: { value: "84" },
+    downPayment: { value: "0" },
     connectorLinesText: { value: "or" },
     savingAmountPreText: { value: "save up to" },
     savingAmount: { value: "X,XXX" },
@@ -364,6 +366,7 @@ import { OfferOptionBlock } from "kubota-outfit-components";
   aPR={inputs?.aPR}
   aprPaymentMonthsConnectorText={inputs?.aprPaymentMonthsConnectorText}
   paymentMonths={inputs?.paymentMonths}
+  downPayment={inputs?.downPayment}
   connectorLinesText={inputs?.connectorLinesText}
   savingAmountPreText={inputs?.savingAmountPreText}
   savingAmount={inputs?.savingAmount}

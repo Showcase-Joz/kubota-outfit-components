@@ -65,7 +65,7 @@ const TextElement = ({
       >
         {dynamicClassName === "incentive-amount" ||
         dynamicClassName === "aPR" ||
-        dynamicClassName === "downPayment" ||
+        dynamicClassName === "down-payment" ||
         dynamicClassName === "paymentAmount" ||
         dynamicClassName === "hours"
           ? formatMoney(text, lang, dummyData)
