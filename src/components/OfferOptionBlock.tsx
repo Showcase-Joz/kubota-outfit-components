@@ -307,15 +307,22 @@ const OfferOptionBlockWrapper = styled.div<{}>`
           font-size: inherit;
         }
       }
-      .payment-months--hide {
+      &:has(.payment-months--hide) {
         .payment-months-wrapper,
         .text-type--apr-payment-months-connector {
           display: none;
         }
       }
-      .down-payment--hide {
+      &:has(.down-payment--hide) {
         .down-payment-wrapper {
           display: none;
+        }
+      }
+      &:has(.hide--available.payment-months--hide.down-payment--hide) {
+        height: fit-content;
+        display: flex;
+        .term-labels {
+          margin-left: 0.3em;
         }
       }
 
@@ -330,8 +337,8 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         height: 100%;
         padding-block: unset;
         .apr-wrapper + .term-labels {
-          min-width: 136%;
-          font-size: 0.38em;
+          max-width: 95%;
+          font-size: 0.9em;
 
           > * {
             font-size: inherit;
