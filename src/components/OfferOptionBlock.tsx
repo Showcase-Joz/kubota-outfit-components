@@ -254,7 +254,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
       .term-labels {
         font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
         font-weight: 800;
-        font-size: 0.48em;
+        font-size: 1.1em;
         line-height: 1.2;
         text-transform: uppercase;
         display: flex;
