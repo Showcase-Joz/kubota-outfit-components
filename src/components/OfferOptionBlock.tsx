@@ -318,11 +318,16 @@ const OfferOptionBlockWrapper = styled.div<{}>`
           display: none;
         }
       }
-      &:has(.hide--available.payment-months--hide.down-payment--hide) {
+      &:has(
+          .hide--available.payment-months--hide.down-payment--hide:not(
+              .text-type--offerAPR--longer
+            )
+        ) {
         height: fit-content;
         display: flex;
         .term-labels {
-          margin-left: 0.3em;
+          left: 0.3em;
+          position: relative;
         }
       }
 
