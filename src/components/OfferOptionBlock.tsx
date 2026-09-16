@@ -338,7 +338,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         padding-block: unset;
         .apr-wrapper + .term-labels {
           max-width: 95%;
-          font-size: 0.9em;
+          font-size: 0.38em;
 
           > * {
             font-size: inherit;
