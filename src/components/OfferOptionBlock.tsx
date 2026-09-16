@@ -259,9 +259,10 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         text-transform: uppercase;
         display: flex;
         flex-wrap: wrap;
-        width: 124%;
         gap: 0 0.4em;
         align-content: end;
+        justify-content: center;
+        justify-self: center;
         .apr-available {
           display: none;
         }
@@ -322,8 +323,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         height: 100%;
         padding-block: unset;
         .apr-wrapper + .term-labels {
-          font-size: 0.45em;
-          min-width: 108%;
+          font-size: 1.1em;
         }
       }
       &:has(.show--available:not(.payment-months--hide)) {
