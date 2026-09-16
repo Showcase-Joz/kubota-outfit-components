@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, ReactNode } from "react";
 import styled from "@emotion/styled";
 import { TextElement } from "./TextElement.js";
 import {
@@ -7,6 +7,7 @@ import {
   cloneInlineClick,
 } from "../utils/helpers.js";
 export interface OfferOptionBlockProps {
+  children?: ReactNode;
   /**
    * Overrides the built-in preview fallback content.
    * Use this for project-specific local previews, template defaults, or empty-state copy.
@@ -205,18 +206,15 @@ const OfferOptionBlockWrapper = styled.div<{}>`
       padding-left: 0.5em;
       justify-self: start;
       height: 100%;
+      display: grid;
+      align-content: space-between;
       .apr-wrapper {
         font-family: var(--font-family-arial-black-default);
         display: grid;
         grid-template-columns: min-content min-content;
         grid-template-columns: min-content min-content 1fr 1fr;
         grid-template-areas: "apr percentage";
-        grid-template-areas:
-          "apr percentage"
-          "termLabels termLabels";
-        row-gap: 0.325em;
         gap: unset;
-        height: inherit;
         justify-content: space-between;
         .percentage {
           grid-area: percentage;
@@ -234,70 +232,38 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         &.text-type--offerAPR--long {
           .text-type--offerAPR,
           .percentage {
-            font-size: 1.75em;
-          }
-          .term-labels {
-            font-size: 0.55em;
+            font-size: 1.7em;
           }
         }
         &.text-type--offerAPR--longer {
           .text-type--offerAPR,
           .percentage {
-            font-size: 1.55em;
-          }
-          .term-labels {
-            font-size: 0.6em;
+            font-size: 1.5em;
           }
         }
-        .term-labels {
-          font-family: var(
-            --font-family-inter-default,
-            Inter,
-            Arial,
-            sans-serif
-          );
-          font-weight: 800;
-          font-size: 0.55em;
-          line-height: 1.2;
-          text-transform: uppercase;
-          display: flex;
-          flex-wrap: wrap;
-          grid-area: termLabels;
-          gap: 0 0.4em;
-          align-content: end;
+        &.hide--available .apr-text {
+          display: inline-block;
         }
+        &.show--available .apr-text {
+          display: none;
+        }
+        &.apr--not-applicable {
+          display: none;
+        }
+      }
+      .term-labels {
+        font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
+        font-weight: 800;
+        font-size: 0.48em;
+        line-height: 1.2;
+        text-transform: uppercase;
+        display: flex;
+        flex-wrap: wrap;
+        width: 124%;
+        gap: 0 0.4em;
+        align-content: end;
         .apr-available {
           display: none;
-          grid-area: available;
-        }
-        &.hide--available {
-          .apr-available {
-            display: none;
-          }
-          .apr-text {
-            display: inline-block;
-          }
-        }
-        &.show--available {
-          grid-template-areas:
-            "apr percentage"
-            "termLabels termLabels";
-          .apr-available {
-            display: inline-block;
-          }
-          .apr-text {
-            display: none;
-          }
-        }
-
-        &.show--available:not(.payment-months--hide) {
-          .term-labels {
-            min-width: 136%;
-            font-size: 0.38em;
-            > * {
-              font-size: inherit;
-            }
-          }
         }
         .payment-months-wrapper,
         .down-payment-wrapper {
@@ -308,10 +274,8 @@ const OfferOptionBlockWrapper = styled.div<{}>`
             font-size: inherit;
           }
         }
-        .payment-months-wrapper {
-          .text-type--apr-payment-months-connector {
-            width: max-content;
-          }
+        .payment-months-wrapper .text-type--apr-payment-months-connector {
+          width: max-content;
         }
         .down-payment-wrapper {
           .term-label {
@@ -320,14 +284,26 @@ const OfferOptionBlockWrapper = styled.div<{}>`
           }
           .text-type--down-payment {
             font-size: inherit;
-
             &::before {
               content: "$";
             }
           }
         }
-        &.apr--not-applicable {
-          display: none;
+      }
+      .apr-wrapper.text-type--offerAPR--long + .term-labels {
+        /* font-size: 0.55em; */
+      }
+      .apr-wrapper.text-type--offerAPR--longer + .term-labels {
+        /* font-size: 0.6em; */
+      }
+      .apr-wrapper.show--available + .term-labels .apr-available {
+        display: inline-block;
+      }
+      .apr-wrapper.show--available:not(.payment-months--hide) + .term-labels {
+        min-width: 136%;
+        font-size: 0.38em;
+        > * {
+          font-size: inherit;
         }
       }
       .payment-months--hide {
@@ -341,26 +317,24 @@ const OfferOptionBlockWrapper = styled.div<{}>`
           display: none;
         }
       }
+
       &:has(.down-payment--show) {
         height: 100%;
         padding-block: unset;
-        .apr-wrapper {
-          .term-labels {
-            font-size: 0.45em;
-            min-width: 108%;
-          }
+        .apr-wrapper + .term-labels {
+          font-size: 0.45em;
+          min-width: 108%;
         }
       }
       &:has(.show--available:not(.payment-months--hide)) {
         height: 100%;
         padding-block: unset;
-        .apr-wrapper {
-          .term-labels {
-            min-width: 136%;
-            font-size: 0.38em;
-            > * {
-              font-size: inherit;
-            }
+        .apr-wrapper + .term-labels {
+          min-width: 136%;
+          font-size: 0.38em;
+
+          > * {
+            font-size: inherit;
           }
         }
       }
@@ -398,9 +372,6 @@ const OfferOptionBlockWrapper = styled.div<{}>`
             text-transform: unset;
             .text-type--pre-saving-amount {
               font-size: 1.5em;
-              &::first-letter {
-                text-transform: uppercase;
-              }
             }
           }
           [data-testid="limiter"]:nth-child(2) {
@@ -432,7 +403,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
       gap: 0.3em;
       span.connector-line {
         height: inherit;
-        width: 0.1em;
+        width: min(1.5px, 0.1em);
         background-color: var(--color-orange);
       }
 
@@ -531,7 +502,6 @@ const OfferOptionBlockWrapper = styled.div<{}>`
   @container offerOptionBlock (max-aspect-ratio: 1.6 / 1) {
     .offerOptionBlockWrapper {
       --offerOptionBlockWrapperPadding: 2em;
-
       grid-template-rows: minmax(0, 28%) minmax(0, 11%) 1fr;
       grid-template-columns: 1fr;
       grid-template-areas:
@@ -605,7 +575,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         span.connector-line {
           display: inline-block;
           width: inherit;
-          height: min(3.5px, 0.15em);
+          height: min(2px, 0.1em);
           margin: unset;
         }
       }
@@ -614,8 +584,8 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         left: unset;
         justify-self: center;
         align-content: center;
-        /* height: fit-content;
-        gap: 1em; */
+        /* height: fit-content; */
+        /* gap: 1em; */
         width: 100%;
         height: 100%;
         align-content: space-around;
@@ -673,6 +643,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
 `;
 
 const OfferOptionBlock = ({
+  children,
   fallbackContent,
   dummyData,
   backgroundColor,
@@ -739,15 +710,14 @@ const OfferOptionBlock = ({
   );
 
   const testAprValue = checkInputExists(aPR, content?.aPR?.value);
-  const aprInput: OfferOptionBlockField | undefined = aPR || content?.aPR;
+  const aprInput = aPR || content?.aPR;
 
   const standInAprInput: OfferOptionBlockField = aprInput
     ? (cloneInlineClick(aprInput, {
         value: "0",
       }) as OfferOptionBlockField)
     : { value: "0" };
-  const checkedAprInput: OfferOptionBlockField | undefined =
-    testAprValue === "available" ? standInAprInput : aPR;
+  const checkedAprInput = testAprValue === "available" ? standInAprInput : aPR;
 
   const testPaymentMonthsValue = checkInputExists(
     paymentMonths,
@@ -842,51 +812,48 @@ const OfferOptionBlock = ({
             <span className="percentage">
               <strong>%</strong>
             </span>
-            <div className="term-labels">
-              <span className="term-label apr-text">apr</span>
-
-              <span className="term-label apr-available">
-                financing available
-              </span>
-              <div className="payment-months-wrapper">
-                <TextElement
-                  dummyData={
-                    content?.aprPaymentMonthsConnectorText?.value || ""
-                  }
-                  destructedProp={aprPaymentMonthsConnectorText}
-                  dynamicClassName="apr-payment-months-connector"
-                  height={undefined}
-                  lines={2}
-                  chars={undefined}
-                  textfit={false}
-                  textfitConfig={undefined}
-                ></TextElement>
-                <TextElement
-                  dummyData={content?.paymentMonths?.value || ""}
-                  destructedProp={paymentMonths}
-                  dynamicClassName="payment-months"
-                  height={undefined}
-                  lines={undefined}
-                  chars={3}
-                  textfit={false}
-                  textfitConfig={undefined}
-                ></TextElement>
-                <span className="term-label">months</span>
-              </div>
-              <div className="down-payment-wrapper">
-                <span className="term-label">with </span>
-                <TextElement
-                  dummyData={content?.downPayment?.value || ""}
-                  destructedProp={downPayment}
-                  dynamicClassName="down-payment"
-                  height={undefined}
-                  lines={undefined}
-                  chars={6}
-                  textfit={false}
-                  textfitConfig={undefined}
-                ></TextElement>
-                <span className="term-label">down</span>
-              </div>
+          </div>
+          <div className="term-labels">
+            <span className="term-label apr-text">apr</span>
+            <span className="term-label apr-available">
+              financing available
+            </span>
+            <div className="payment-months-wrapper">
+              <TextElement
+                dummyData={content?.aprPaymentMonthsConnectorText?.value || ""}
+                destructedProp={aprPaymentMonthsConnectorText}
+                dynamicClassName="apr-payment-months-connector"
+                height={undefined}
+                lines={2}
+                chars={undefined}
+                textfit={false}
+                textfitConfig={undefined}
+              ></TextElement>
+              <TextElement
+                dummyData={content?.paymentMonths?.value || ""}
+                destructedProp={paymentMonths}
+                dynamicClassName="payment-months"
+                height={undefined}
+                lines={undefined}
+                chars={3}
+                textfit={false}
+                textfitConfig={undefined}
+              ></TextElement>
+              <span className="term-label">months</span>
+            </div>
+            <div className="down-payment-wrapper">
+              <span className="term-label">with </span>
+              <TextElement
+                dummyData={content?.downPayment?.value || ""}
+                destructedProp={downPayment}
+                dynamicClassName="down-payment"
+                height={undefined}
+                lines={undefined}
+                chars={6}
+                textfit={false}
+                textfitConfig={undefined}
+              ></TextElement>
+              <span className="term-label">down</span>
             </div>
           </div>
         </div>
@@ -958,6 +925,7 @@ const OfferOptionBlock = ({
             ></TextElement>
           </div>
         </div>
+        {children}
       </div>
     </OfferOptionBlockWrapper>
   );
