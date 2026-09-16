@@ -254,7 +254,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
       .term-labels {
         font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
         font-weight: 800;
-        font-size: 1.1em;
+        font-size: 0.48em;
         line-height: 1.2;
         text-transform: uppercase;
         display: flex;
@@ -330,7 +330,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         height: 100%;
         padding-block: unset;
         .apr-wrapper + .term-labels {
-          font-size: 1.1em;
+          font-size: 0.48em;
         }
       }
       &:has(.show--available:not(.payment-months--hide)) {
