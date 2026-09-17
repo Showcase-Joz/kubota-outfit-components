@@ -86,7 +86,7 @@ const Example = ({ inputs }) => (
       savingAmountPreText={inputs?.savingAmountPreText}
       savingAmount={inputs?.savingAmount}
       savingAmountPostText={inputs?.savingAmountPostText}
-      maxSavingAmountPostText={{ square: 3, landscape: 2 }}
+      maxSavingAmountPostText={{ square: 3, landscape: 2, min: 50 }} // optional min font size (percentage) for textfit
     />
   </>
 );

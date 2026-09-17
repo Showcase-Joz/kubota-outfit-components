@@ -331,7 +331,7 @@ import { OfferBlock } from "kubota-outfit-components";
 - `savingAmountPreText`: Short connector text above the saving amount.
 - `savingAmount`: Main saving amount.
 - `savingAmountPostText`: Descriptive text below the saving amount.
-- `maxSavingAmountPostText`: Optional line limits for the post-saving amount text, keyed by layout.
+- `maxSavingAmountPostText`: Optional line limits for the post-saving amount text, keyed by layout orientation. Structure: `{ square: 3, landscape: 2, min: 50 }`. If not provided, the default maxLines will be used for each field which is 2. The `min` property is optional and sets the minimum font size (as a percentage) for the textfit. Must set a font-size on the parent container for the min font size to take effect.
 - `fallbackContent`: Optional preview/default content using the same field shape.
 - `dummyData`: Compatibility alias for `fallbackContent`.
 
@@ -351,7 +351,7 @@ Example `fallbackContent` value:
     savingAmountPostText: {
       value: "when you bundle a LX Series with Snow Attachments",
     },
-    maxSavingAmountPostText: { square: 2, landscape: 2 },
+    maxSavingAmountPostText: { square: 2, landscape: 2, min: 50 },
   }}
 />
 ```

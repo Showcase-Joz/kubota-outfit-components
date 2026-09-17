@@ -85,6 +85,7 @@ export interface OfferOptionBlockProps {
    * Optional prop to limit the number of lines for the savingAmountPostText text field. If the text exceeds the maxLines, it will show the overflow warning.
    * structure: {  square: 3, landscape: 2 }
    * if maxLines is not provided, the default maxLines will be used for each field which is 2.
+   * The min property is optional and sets the minimum font size (as a percentage) for the textfit.
    */
   maxSavingAmountPostText?: MaxLinesBlockField;
 }
@@ -95,6 +96,7 @@ export type OfferOptionBlockField = {
 export type MaxLinesBlockField = {
   square: number;
   landscape: number;
+  min?: number; // optional min font size (percentage) for textfit
 };
 
 /**
@@ -126,7 +128,7 @@ const defaultOfferOptionFallbackContent: OfferOptionBlockFallbackContent = {
   savingAmountPostText: {
     value: "when you bundle a LX Series with Snow Attachments",
   },
-  maxSavingAmountPostText: { square: 2, landscape: 2 },
+  maxSavingAmountPostText: { square: 2, landscape: 2, min: 50 },
 };
 
 const OfferOptionBlockWrapper = styled.div<{}>`
@@ -477,6 +479,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
 
       .offerOptionContent-bottom {
         grid-area: postSavingAmount;
+        font-size: 1em;
         .text-type--post-saving-amount {
           line-height: 1.18;
           letter-spacing: -0.02em;
@@ -690,31 +693,6 @@ const OfferOptionBlock = ({
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-
-  const landscapeTextfitConfig = {
-    minFontSize: 1.4,
-    maxFontSize: 2.5,
-    heightOnly: true,
-    fontUnit: "cqi",
-  };
-  const landscapeSmallTextfitConfig = {
-    minFontSize: 2.6,
-    maxFontSize: 3.3,
-    heightOnly: true,
-    fontUnit: "cqi",
-  };
-  const squareTextfitConfig = {
-    minFontSize: 3.2,
-    maxFontSize: 4,
-    widthOnly: true,
-    fontUnit: "cqi",
-  };
-  const squareSmallTextfitConfig = {
-    minFontSize: 4.5,
-    maxFontSize: 6.7,
-    widthOnly: true,
-    fontUnit: "cqi",
-  };
 
   console.log(
     "wrapperWidth",
@@ -936,15 +914,9 @@ const OfferOptionBlock = ({
               }
               chars={undefined}
               textfit={true}
-              textfitConfig={
-                isSquare && wrapperWidth && wrapperWidth <= 600
-                  ? squareSmallTextfitConfig
-                  : isSquare
-                  ? squareTextfitConfig
-                  : wrapperWidth && wrapperWidth <= 300
-                  ? landscapeSmallTextfitConfig
-                  : landscapeTextfitConfig
-              }
+              textfitConfig={{
+                minFontSize: maxSavingAmountPostText?.min,
+              }}
             ></TextElement>
           </div>
         </div>
