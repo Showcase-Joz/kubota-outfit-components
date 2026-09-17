@@ -698,8 +698,8 @@ const OfferOptionBlock = ({
     fontUnit: "cqi",
   };
   const landscapeSmallTextfitConfig = {
-    minFontSize: 5.5,
-    maxFontSize: 6.7,
+    minFontSize: 2.4,
+    maxFontSize: 3.5,
     heightOnly: true,
     fontUnit: "cqi",
   };
