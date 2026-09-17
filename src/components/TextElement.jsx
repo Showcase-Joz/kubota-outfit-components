@@ -7,7 +7,7 @@ const TextElementWrapper = styled.div``;
 
 /**
  * @typedef {object} TextElementProps
- * @property {*} destrucvvtedProp
+ * @property {*} destructedProp
  * @property {string} dynamicClassName
  * @property {number | undefined} [lines]
  * @property {number | undefined} [chars]
