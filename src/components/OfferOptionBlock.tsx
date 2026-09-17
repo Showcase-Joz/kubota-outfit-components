@@ -941,6 +941,8 @@ const OfferOptionBlock = ({
                   ? squareSmallTextfitConfig
                   : isSquare
                   ? squareTextfitConfig
+                  : wrapperWidth && wrapperWidth <= 300
+                  ? landscapeSmallTextfitConfig
                   : landscapeTextfitConfig
               }
             ></TextElement>
