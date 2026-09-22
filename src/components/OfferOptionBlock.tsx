@@ -86,6 +86,7 @@ export interface OfferOptionBlockProps {
    * structure: {  square: 3, landscape: 2 }
    * if maxLines is not provided, the default maxLines will be used for each field which is 2.
    * The min property is optional and sets the minimum font size (as a percentage) for the textfit.
+   * The max property is optional and sets the maximum font size (as a percentage) for the textfit.
    */
   maxSavingAmountPostText?: MaxLinesBlockField;
 }
@@ -97,6 +98,7 @@ export type MaxLinesBlockField = {
   square: number;
   landscape: number;
   min?: number; // optional min font size (percentage) for textfit
+  max?: number; // optional max font size (percentage) for textfit
 };
 
 /**
@@ -128,7 +130,7 @@ const defaultOfferOptionFallbackContent: OfferOptionBlockFallbackContent = {
   savingAmountPostText: {
     value: "when you bundle a LX Series with Snow Attachments",
   },
-  maxSavingAmountPostText: { square: 2, landscape: 2, min: 50 },
+  maxSavingAmountPostText: { square: 2, landscape: 2, min: 50, max: 100 },
 };
 
 const OfferOptionBlockWrapper = styled.div<{}>`
@@ -916,6 +918,7 @@ const OfferOptionBlock = ({
               textfit={true}
               textfitConfig={{
                 minFontSize: maxSavingAmountPostText?.min,
+                maxFontSize: maxSavingAmountPostText?.max,
               }}
             ></TextElement>
           </div>
