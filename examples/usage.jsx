@@ -84,6 +84,7 @@ const Example = ({ inputs }) => (
       downPayment={inputs?.downPayment}
       connectorLinesText={inputs?.connectorLinesText}
       savingAmountPreText={inputs?.savingAmountPreText}
+      maxSavingAmountText={inputs?.maxSavingAmountText}
       savingAmount={inputs?.savingAmount}
       savingAmountPostText={inputs?.savingAmountPostText}
       maxSavingAmountPostText={{ square: 3, landscape: 2, min: 50, max: 100 }} // optional min font size (percentage) for textfit

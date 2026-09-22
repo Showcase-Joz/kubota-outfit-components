@@ -329,6 +329,7 @@ import { OfferBlock } from "kubota-outfit-components";
 - `downPayment`: Down payment value shown after the payment term.
 - `connectorLinesText`: Connector text between the APR/payment months and the saving amount.
 - `savingAmountPreText`: Short connector text above the saving amount.
+- `maxSavingAmountText`: Optional line limits for the saving amount text, keyed by layout orientation.
 - `savingAmount`: Main saving amount.
 - `savingAmountPostText`: Descriptive text below the saving amount.
 - `maxSavingAmountPostText`: Optional line limits for the post-saving amount text, keyed by layout orientation. Structure: `{ square: 3, landscape: 2, min: 50, max: 100 }`. If not provided, the default maxLines will be used for each field which is 2. The `min` property is optional and sets the minimum font size (as a percentage) for the textfit. The `max` property is optional and sets the maximum font size (as a percentage) for the textfit. Must set a font-size on the parent container for the min font size to take effect.
@@ -369,6 +370,7 @@ import { OfferOptionBlock } from "kubota-outfit-components";
   downPayment={inputs?.downPayment}
   connectorLinesText={inputs?.connectorLinesText}
   savingAmountPreText={inputs?.savingAmountPreText}
+  maxSavingAmountText={inputs?.maxSavingAmountText}
   savingAmount={inputs?.savingAmount}
   savingAmountPostText={inputs?.savingAmountPostText}
   maxSavingAmountPostText={inputs?.maxSavingAmountPostText}

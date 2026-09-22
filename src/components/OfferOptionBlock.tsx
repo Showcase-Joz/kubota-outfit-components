@@ -69,6 +69,10 @@ export interface OfferOptionBlockProps {
    */
   savingAmountPreText?: OfferOptionBlockField;
   /**
+   * Optional prop to set the maximum lines of the savingAmount text field. If the text exceeds the maxLines, it will show the overflow warning.
+   */
+  maxSavingAmountText?: number;
+  /**
    * Saving amount.
    * Recommended max: 6 characters.
    * Always required. If removed a warning will be displayed.
@@ -113,6 +117,7 @@ export type OfferOptionBlockFallbackContent = {
   downPayment?: OfferOptionBlockField;
   connectorLinesText?: OfferOptionBlockField;
   savingAmountPreText?: OfferOptionBlockField;
+  maxSavingAmountText?: number;
   savingAmount?: OfferOptionBlockField;
   savingAmountPostText?: OfferOptionBlockField;
   maxSavingAmountPostText?: MaxLinesBlockField;
@@ -126,6 +131,7 @@ const defaultOfferOptionFallbackContent: OfferOptionBlockFallbackContent = {
   downPayment: { value: "XX" },
   connectorLinesText: { value: "or" },
   savingAmountPreText: { value: "save up to" },
+  maxSavingAmountText: 1,
   savingAmount: { value: "X,XXX" },
   savingAmountPostText: {
     value: "when you bundle a LX Series with Snow Attachments",
@@ -670,6 +676,7 @@ const OfferOptionBlock = ({
   downPayment,
   connectorLinesText,
   savingAmountPreText,
+  maxSavingAmountText,
   savingAmount,
   savingAmountPostText,
   maxSavingAmountPostText,
@@ -887,7 +894,7 @@ const OfferOptionBlock = ({
               destructedProp={savingAmountPreText}
               dynamicClassName="pre-saving-amount"
               height={undefined}
-              lines={1}
+              lines={maxSavingAmountText}
               chars={undefined}
               textfit={false}
               textfitConfig={undefined}
