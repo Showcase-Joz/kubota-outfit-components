@@ -510,6 +510,7 @@ const OfferOptionBlockWrapper = styled.div<{}>`
         grid-template-areas: "preAndSavingAmount";
         align-content: center;
         .offerOptionContent-bottom {
+          display: none;
           [data-testid="limiter"] {
             display: none;
           }
