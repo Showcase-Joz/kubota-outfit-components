@@ -54,3 +54,19 @@ export type {
   TextBlockField,
   TextProps,
 } from "./components/TextBlock.js";
+
+// V2 is additive: OfferOptionBlock and its original types remain above.
+export {
+  OfferOptionBlockV2,
+  DEFAULT_OFFER_OPTION_V2_PRESET,
+  defaultOfferOptionBlockV2FallbackContent,
+  offerOptionBlockV2TextSettings,
+} from "./components/OfferOptionBlockV2.js";
+export type {
+  OfferOptionBlockV2FallbackContent,
+  OfferOptionBlockV2Field,
+  OfferOptionBlockV2Preset,
+  OfferOptionBlockV2Props,
+  OfferOptionBlockV2TextLimits,
+  OfferOptionBlockV2TextSettings,
+} from "./components/OfferOptionBlockV2.js";

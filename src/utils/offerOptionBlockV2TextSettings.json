@@ -1,0 +1,85 @@
+{
+  "print": {
+    "savingAmountPreText": {
+      "lines": 1
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": true,
+      "min": 95,
+      "max": 100
+    }
+  },
+  "tractru": {
+    "savingAmountPreText": {
+      "lines": 1
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": true,
+      "min": 90,
+      "max": 100
+    }
+  },
+  "web-banner": {
+    "savingAmountPreText": {
+      "lines": 2
+    },
+    "savingAmountPostText": {
+      "lines": 3,
+      "textfit": true,
+      "min": 90,
+      "max": 100
+    }
+  },
+  "300x600": {
+    "savingAmountPreText": {
+      "lines": 2
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": true,
+      "min": 90,
+      "max": 100
+    }
+  },
+  "160x600": {
+    "termLabels": {
+      "lines": 3,
+      "textfit": true,
+      "min": 90,
+      "max": 100
+    },
+    "savingAmountPreText": {
+      "lines": 1
+    },
+    "savingAmountPostText": {
+      "lines": 3,
+      "textfit": true,
+      "min": 90,
+      "max": 100
+    }
+  },
+  "300x250": {
+    "savingAmountPreText": {
+      "lines": 1
+    },
+    "savingAmountPostText": {
+      "lines": 3,
+      "textfit": true,
+      "min": 90,
+      "max": 100
+    }
+  },
+  "728x90": {
+    "savingAmountPreText": {
+      "lines": 1
+    },
+    "savingAmountPostText": {
+      "lines": 3,
+      "textfit": true,
+      "min": 90,
+      "max": 100
+    }
+  }
+}
