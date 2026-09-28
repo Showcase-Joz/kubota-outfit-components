@@ -41,6 +41,7 @@ Primary exports (from `src/index.ts`):
 - [AnnouncementBanner](#announcementbanner-props)
 - [OfferBlock](#offerblock-props)
 - [OfferOptionBlock](#offeroptionblock-props)
+- [OfferOptionBlockV2](docs/offer-option-block-v2.md) — separate preset-based component; the original remains available.
 - [ButtonCTA](#buttoncta-props)
 - [LeaseOfferBlock](#leaseofferblock-props)
 - [HeadlineBlock](#headlineblock-props)
