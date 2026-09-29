@@ -973,6 +973,10 @@ const OfferOptionBlockV2Wrapper = styled.div`
 
     &[data-has-savings="false"] {
       gap: 0.625rem;
+      .financingContent {
+        width: fit-content;
+        justify-self: center;
+      }
     }
   }
   &[data-preset="160x600"] .offerOptionBlockWrapper {
