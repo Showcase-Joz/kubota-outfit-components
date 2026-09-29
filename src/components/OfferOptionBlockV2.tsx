@@ -208,7 +208,14 @@ const OfferOptionBlockV2Wrapper = styled.div`
   .offerOptionChildren {
     min-width: 0;
   }
-
+  &[data-preset="300x600"],
+  &[data-preset="160x600"],
+  &[data-preset="300x250"],
+  &[data-preset="728x90"] {
+    .offerOptionBlockWrapper {
+      z-index: 1;
+    }
+  }
   /* Print, tractru and leaderboard: finance | connector | offer. */
   .offerOptionBlockWrapper {
     min-width: 0;
@@ -219,12 +226,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
     grid-template-areas: "financingOption connectorContent offerOptionContent";
     align-items: center;
 
-    &[data-preset="300x600"],
-    &[data-preset="160x600"],
-    &[data-preset="300x250"],
-    &[data-preset="728x90"] {
-      z-index: 1;
-    }
+  
   }
   .financingContent {
     grid-area: financingOption;
