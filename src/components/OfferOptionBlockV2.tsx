@@ -214,6 +214,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
   &[data-preset="728x90"] {
     .offerOptionBlockWrapper {
       z-index: 1;
+      background-color: transparent;
     }
   }
   /* Print, tractru and leaderboard: finance | connector | offer. */
