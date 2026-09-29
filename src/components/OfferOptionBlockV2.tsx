@@ -200,7 +200,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
   &.theme--white {
     --offer-background: var(--color-white, #fff);
     --offer-foreground: var(--color-black, #000);
-    --offer-number-color: var(--color-orange, #ff5000);
+    --offer-number-color: var(--color-orange, #dc4405);
   }
   &.has-children {
     grid-template-rows: minmax(0, 1fr) auto;
@@ -218,6 +218,13 @@ const OfferOptionBlockV2Wrapper = styled.div`
     grid-template-rows: minmax(0, 1fr);
     grid-template-areas: "financingOption connectorContent offerOptionContent";
     align-items: center;
+
+    &[data-preset="300x600"],
+    &[data-preset="160x600"],
+    &[data-preset="300x250"],
+    &[data-preset="728x90"] {
+      z-index: 1;
+    }
   }
   .financingContent {
     grid-area: financingOption;
@@ -883,6 +890,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
       justify-content: center;
       align-items: end;
       gap: 0.23969rem;
+      
 
       .apr-wrapper {
         line-height: 1.1;
@@ -890,13 +898,6 @@ const OfferOptionBlockV2Wrapper = styled.div`
         .percentage {
           font-size: 2.25rem;
           letter-spacing: -0.045rem;
-        }
-      }
-      :has(.apr-available) {
-        justify-self: center;
-        .term-labels {
-          font-size: 0.875rem;
-          width: 9ch;
         }
       }
       .term-labels {
@@ -973,10 +974,6 @@ const OfferOptionBlockV2Wrapper = styled.div`
 
     &[data-has-savings="false"] {
       gap: 0.625rem;
-      .financingContent {
-        width: fit-content;
-        justify-self: center;
-      }
     }
   }
   &[data-preset="160x600"] .offerOptionBlockWrapper {
