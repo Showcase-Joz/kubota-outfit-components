@@ -892,6 +892,13 @@ const OfferOptionBlockV2Wrapper = styled.div`
           letter-spacing: -0.045rem;
         }
       }
+      :has(.apr-available) {
+        justify-self: center;
+        .term-labels {
+          font-size: 0.875rem;
+          width: 9ch;
+        }
+      }
       .term-labels {
         text-align: left;
         justify-self: stretch;
