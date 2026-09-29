@@ -913,6 +913,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
     .offerOptionContent {
       gap: 0.35956rem;
       justify-self: center;
+      width: 100%;
     }
 
     .offerOptionContent-top {
