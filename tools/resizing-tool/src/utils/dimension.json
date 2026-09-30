@@ -1,0 +1,37 @@
+{
+  "print": {
+    "label": "Print advert",
+    "width": 598,
+    "height": 181
+  },
+  "tractru": {
+    "label": "Tractru",
+    "width": 750.2,
+    "height": 192.2
+  },
+  "web-banner": {
+    "label": "Website banner",
+    "width": 584,
+    "height": 600
+  },
+  "300x600": {
+    "label": "Digital ad 300 × 600",
+    "width": 300,
+    "height": 164
+  },
+  "160x600": {
+    "label": "Digital ad 160 × 600",
+    "width": 160,
+    "height": 198
+  },
+  "300x250": {
+    "label": "Digital ad 300 × 250",
+    "width": 144,
+    "height": 194
+  },
+  "728x90": {
+    "label": "Digital ad 728 × 90",
+    "width": 240,
+    "height": 90
+  }
+}

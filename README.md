@@ -2,6 +2,17 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
+## Local component development
+
+The resizing tool is included in `tools/resizing-tool` and imports the shared
+library directly. From this repository root, run `pnpm install`, then `pnpm dev`
+for the existing Outfit / single-spa preview on port 8081. Use `pnpm dev:preview`
+for the local comparison page on port 8088.
+
+Edit components in `src/components` and text settings in `src/utils`; the preview
+rebuilds automatically. Run `pnpm check` before committing. See the
+[workspace and release guide](docs/component-workspace.md) for the complete flow.
+
 This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `OfferOptionBlock` (a multi-column finance and savings block), `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), `TextBlock` (flexible text content with layout controls), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
 
 This package starts with the primary exports documented below. The current
@@ -12,8 +23,8 @@ forked for another client.
 
 ## Install
 
-This repo is private/package-in-progress. For now, consume it from source or use
-it as the source of truth for copying components into a Kubota Outfit template.
+This repository is private. Templates install the component library from a
+pinned Git tag; component development uses the local workspace above.
 
 Install directly from a tagged GitHub release in a template project:
 
