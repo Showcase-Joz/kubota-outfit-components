@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import { Limiter, onInlineEditClick } from "@outfit.io/react";
-import { TextElement } from "../src/components/offerOptionBlockV2/TextElement";
+import { TextElement } from "../src/components/sharedV2/TextElement";
 
 // Test our input semantics independently of Outfit's layout measurement.
 jest.mock("@outfit.io/react", () => ({

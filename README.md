@@ -6,12 +6,17 @@ Kubota-specific reusable UI components for Outfit template projects.
 
 The resizing tool is included in `tools/resizing-tool` and imports the shared
 library directly. From this repository root, run `pnpm install`, then `pnpm dev`
-for the existing Outfit / single-spa preview on port 8081. Use `pnpm dev:preview`
+for the existing Outfit / single-spa preview on port 8081. `npm run start` is an
+alias for that same library watcher and preview server. Use `pnpm dev:preview`
 for the local comparison page on port 8088.
 
 Edit components in `src/components` and text settings in `src/utils`; the preview
 rebuilds automatically. Run `pnpm check` before committing. See the
 [workspace and release guide](docs/component-workspace.md) for the complete flow.
+
+Run `npm run deploy` from this root to upload the nested resizing template and
+its inputs to the existing Outfit testing workspace. This is separate from a
+component-library release.
 
 This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `OfferOptionBlock` (a multi-column finance and savings block), `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), `TextBlock` (flexible text content with layout controls), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
 
@@ -49,6 +54,7 @@ Or add it to `package.json` dependencies:
 Primary exports (from `src/index.ts`):
 
 - [WarrantyBlock](#warrantyblock-props)
+- [WarrantyBlockV2](docs/warranty-block-v2.md) — additive layout skeleton, ready for the warranty design pass.
 - [AnnouncementBanner](#announcementbanner-props)
 - [OfferBlock](#offerblock-props)
 - [OfferOptionBlock](#offeroptionblock-props)

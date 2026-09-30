@@ -1,3 +1,25 @@
+# Shared component preview
+
+WarrantyBlockV2 is the default selection in the standalone preview. It uses the
+same seven boxes as OfferOptionBlockV2, which remains available in the Component
+selector. Inputs persist separately per component and layout.
+
+Start styling in `../../src/components/WarrantyBlockV2.tsx`, in the `300x600`
+preset block. Its starting sizes and spacing are provisional. See the
+[warranty guide](../../docs/warranty-block-v2.md) for the savings/discount switch,
+service choices, and component-owned text settings.
+
+Warranty artwork URLs go in `src/components/WarrantyPlaceholder.jsx`, using the
+same commented-image / `hide` / `offset={false}` workflow as the existing offer
+Placeholder in `Container.jsx`. Optional per-layout starting values go in
+`src/dummy/warrantyData.js`.
+
+The new Outfit fields are listed in `public/inputs.json`. Run `npm run deploy`
+from the library root or this folder to upload the resizing template and these
+inputs to the existing Outfit testing workspace. Deployment builds the shared
+library first. The standalone preview reads the same definitions locally.
+Production template repositories have not been changed.
+
 # Resizing tool
 
 This is the component library's nested comparison workspace. It imports

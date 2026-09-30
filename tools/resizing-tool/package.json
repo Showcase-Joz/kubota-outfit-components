@@ -17,7 +17,8 @@
     "deploy": "outfit-scripts deploy",
     "prezip": "npm run build",
     "zip": "outfit-scripts zip",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prebuild": "npm --prefix ../.. run build"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

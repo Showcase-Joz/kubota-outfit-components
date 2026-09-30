@@ -43,7 +43,7 @@ module.exports = (webpackConfigEnv, argv) => {
       plugins: [
         new HtmlWebpackPlugin({
           template: "public/index.html",
-          title: "Offer option comparison",
+          title: "Component comparison",
         }),
       ],
       devServer: { host: "127.0.0.1", hot: false, liveReload: true },

@@ -121,7 +121,7 @@ V2 does not create or replace a CTA component.
 ## Source ownership
 
 Make V2 changes in `src/components/OfferOptionBlockV2.tsx` and its private
-`src/components/offerOptionBlockV2/TextElement.jsx`. Shared layout rules appear
+`src/components/sharedV2/TextElement.jsx`. Shared layout rules appear
 above preset-specific `&[data-has-savings="false"]` overrides. Font sizes remain
 on the wrapper above each fitted text element so Outfit's Limiter can resize it.
 

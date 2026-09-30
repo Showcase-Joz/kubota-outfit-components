@@ -1,0 +1,146 @@
+{
+  "print": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "tractru": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "web-banner": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "300x600": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": true,
+      "min": 50,
+      "max": 100
+    },
+    "discountText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "160x600": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "300x250": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "728x90": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  }
+}

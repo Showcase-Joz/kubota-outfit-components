@@ -1,0 +1,15 @@
+import { Placeholder } from "@outfit.io/react";
+
+// Keep your warranty artwork image props together here and uncomment one at a time.
+// Use a component-only export at its agreed dimensions, without the angled edge.
+export const WarrantyPlaceholder = () => (
+  <Placeholder
+    image="https://files.outfit.io/media_library_items/696914/Financing%252BTerm%252BCashDiscount_Warranty_W.png"
+    // image="https://files.outfit.io/media_library_items/696919/Financing%252BCashDiscount_Warranty.png"
+    // image="https://files.outfit.io/media_library_items/696915/Financing%252BTerm%252B_StackedNarrow.png"
+    // image="https://files.outfit.io/media_library_items/696916/Financing%252BTerm%252BCashDiscount_Warranty_W.png"
+    // image="https://files.outfit.io/media_library_items/696917/Financing%252BTerm%252BCashDiscount_Warranty_W.png"
+    show
+    offset={false}
+  />
+);

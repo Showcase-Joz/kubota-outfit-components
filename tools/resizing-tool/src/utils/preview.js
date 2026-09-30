@@ -9,37 +9,11 @@ import { data } from "../dummy/data";
 export const DEFAULT_PRESET = DEFAULT_OFFER_OPTION_V2_PRESET;
 export const PREVIEW_STORAGE_KEY = "offer-option-v2:inputs";
 
-export const resolvePreset = (value) =>
-  Object.prototype.hasOwnProperty.call(dimensions, value)
-    ? value
-    : DEFAULT_PRESET;
-
-/** Mirror component defaults plus the template's optional dummyData in the UI. */
-export const getDefaultPreviewInputs = (preset = DEFAULT_PRESET) => {
-  const activePreset = resolvePreset(preset);
-  const { backgroundColor, buttonText, ...offerContent } = {
-    ...defaultOfferOptionBlockV2FallbackContent,
-    ...defaultButtonCTAFallbackContent,
-    ...data[activePreset],
-  };
-  return {
-    ...offerContent,
-    aspect_selection: { value: activePreset },
-    size_model: { value: "aspect" },
-    offerTheming: backgroundColor,
-    showCTA: { value: "show" },
-    callToActionText: buttonText,
-  };
-};
-
-export const defaultPreviewInputs = getDefaultPreviewInputs();
-
-// Aspect scales the exact component uniformly; the surrounding stage reserves its visual size.
+// Aspect scales the exact component uniformly, including text and spacing.
 export const getStageSize = (preset, mode) =>
   mode === "exact"
     ? { width: preset.width, height: preset.height }
     : { width: "100%", aspectRatio: `${preset.width} / ${preset.height}` };
-
 export const getPreviewScale = (preset, mode, renderedWidth) =>
   mode === "aspect" && renderedWidth > 0 ? renderedWidth / preset.width : 1;
 
@@ -51,103 +25,140 @@ export const readSaved = (key, fallback) => {
   }
 };
 
-export const sanitizePreviewInputs = (inputs) => {
-  const preset = resolvePreset(inputs?.aspect_selection?.value);
-  const defaults = getDefaultPreviewInputs(preset);
-  const fields = Object.fromEntries(
-    Object.keys(defaults).map((key) => [
-      key,
-      { value: inputs?.[key]?.value ?? defaults[key].value },
-    ])
+/** Shared persistence mechanics; each component owns its defaults and storage key. */
+export const createPreviewModel = ({
+  storageKey,
+  defaultPreset,
+  getDefaults,
+}) => {
+  const resolvePreset = (value) =>
+    Object.prototype.hasOwnProperty.call(dimensions, value)
+      ? value
+      : defaultPreset;
+  const getDefaultPreviewInputs = (preset = defaultPreset) => {
+    const activePreset = resolvePreset(preset);
+    const { backgroundColor, buttonText, ...content } =
+      getDefaults(activePreset);
+    return {
+      ...content,
+      aspect_selection: { value: activePreset },
+      size_model: { value: "aspect" },
+      offerTheming: backgroundColor,
+      showCTA: { value: "show" },
+      callToActionText: buttonText,
+    };
+  };
+  const contentKeys = Object.keys(getDefaultPreviewInputs()).filter(
+    (key) => !["aspect_selection", "size_model"].includes(key)
   );
-  fields.aspect_selection.value = preset;
-  fields.size_model.value =
-    fields.size_model.value === "exact" ? "exact" : "aspect";
-  // Migrate older saved previews; the input now stores display text directly.
-  if (fields.aprPaymentMonthsConnectorText.value === "upTo") {
-    fields.aprPaymentMonthsConnectorText.value = "up to";
-  }
-  return fields;
-};
-
-// Store only edited fields per layout, so untouched inputs continue to follow
-// data.js after a reload. Blank strings and zero are deliberate edits, too.
-const contentKeys = Object.keys(defaultPreviewInputs).filter(
-  (key) => !["aspect_selection", "size_model"].includes(key)
-);
-
-const sanitizeOverrides = (inputs) =>
-  Object.fromEntries(
-    contentKeys
-      .filter((key) => inputs?.[key]?.value != null)
-      .map((key) => [
+  const normalize = (key, value) =>
+    key === "aprPaymentMonthsConnectorText" && value === "upTo"
+      ? "up to"
+      : value;
+  const sanitizePreviewInputs = (inputs) => {
+    const preset = resolvePreset(inputs?.aspect_selection?.value);
+    const defaults = getDefaultPreviewInputs(preset);
+    const fields = Object.fromEntries(
+      Object.keys(defaults).map((key) => [
         key,
         {
-          value:
-            key === "aprPaymentMonthsConnectorText" &&
-            inputs[key].value === "upTo"
-              ? "up to"
-              : inputs[key].value,
+          value: normalize(key, inputs?.[key]?.value ?? defaults[key].value),
         },
       ])
-  );
-
-export const readPreviewState = () => {
-  const saved = readSaved(PREVIEW_STORAGE_KEY, {});
-  if (saved.version === 2) {
+    );
+    fields.aspect_selection.value = preset;
+    fields.size_model.value =
+      fields.size_model.value === "exact" ? "exact" : "aspect";
+    return fields;
+  };
+  const sanitizeOverrides = (inputs) =>
+    Object.fromEntries(
+      contentKeys
+        .filter((key) => inputs?.[key]?.value != null)
+        .map((key) => [key, { value: normalize(key, inputs[key].value) }])
+    );
+  const readPreviewState = () => {
+    const saved = readSaved(storageKey, {});
+    if (saved.version === 2)
+      return {
+        version: 2,
+        preset: resolvePreset(saved.preset),
+        sizeModel: saved.sizeModel === "exact" ? "exact" : "aspect",
+        layouts: Object.fromEntries(
+          Object.keys(dimensions)
+            .filter((preset) => saved.layouts?.[preset])
+            .map((preset) => [preset, sanitizeOverrides(saved.layouts[preset])])
+        ),
+      };
+    // Preserve legacy flat offer previews under their original selected layout.
+    const preset = resolvePreset(saved.aspect_selection?.value);
     return {
       version: 2,
-      preset: resolvePreset(saved.preset),
-      sizeModel: saved.sizeModel === "exact" ? "exact" : "aspect",
-      layouts: Object.fromEntries(
-        Object.keys(dimensions)
-          .filter((preset) => saved.layouts?.[preset])
-          .map((preset) => [preset, sanitizeOverrides(saved.layouts[preset])])
-      ),
+      preset,
+      sizeModel: saved.size_model?.value === "exact" ? "exact" : "aspect",
+      layouts: { [preset]: sanitizeOverrides(saved) },
     };
-  }
-  // Preserve the previous flat saved form under its selected layout. Its values
-  // may be user edits, so do not silently replace them with the new baselines.
-  const preset = resolvePreset(saved.aspect_selection?.value);
-  return {
-    version: 2,
-    preset,
-    sizeModel: saved.size_model?.value === "exact" ? "exact" : "aspect",
-    layouts: { [preset]: sanitizeOverrides(saved) },
   };
-};
-
-export const getPreviewInputs = (state) =>
-  sanitizePreviewInputs({
-    ...state.layouts[state.preset],
-    aspect_selection: { value: state.preset },
-    size_model: { value: state.sizeModel },
-  });
-
-export const readPreviewInputs = () => getPreviewInputs(readPreviewState());
-
-export const setPreviewInput = (state, tag, value) => {
-  if (tag === "aspect_selection") {
-    return { ...state, preset: resolvePreset(value) };
-  }
-  if (tag === "size_model") {
-    return { ...state, sizeModel: value === "exact" ? "exact" : "aspect" };
-  }
-  if (!contentKeys.includes(tag)) return state;
-  return {
-    ...state,
-    layouts: {
-      ...state.layouts,
-      [state.preset]: {
-        ...state.layouts[state.preset],
-        [tag]: { value },
+  const getPreviewInputs = (state) =>
+    sanitizePreviewInputs({
+      ...state.layouts[state.preset],
+      aspect_selection: { value: state.preset },
+      size_model: { value: state.sizeModel },
+    });
+  const setPreviewInput = (state, tag, value) => {
+    if (tag === "aspect_selection")
+      return { ...state, preset: resolvePreset(value) };
+    if (tag === "size_model")
+      return { ...state, sizeModel: value === "exact" ? "exact" : "aspect" };
+    if (!contentKeys.includes(tag)) return state;
+    return {
+      ...state,
+      layouts: {
+        ...state.layouts,
+        [state.preset]: {
+          ...state.layouts[state.preset],
+          [tag]: { value },
+        },
       },
-    },
+    };
+  };
+  const resetPreviewLayout = (state) => ({
+    ...state,
+    layouts: { ...state.layouts, [state.preset]: {} },
+  });
+  return {
+    storageKey,
+    defaultPreset,
+    resolvePreset,
+    getDefaultPreviewInputs,
+    sanitizePreviewInputs,
+    readPreviewState,
+    getPreviewInputs,
+    readPreviewInputs: () => getPreviewInputs(readPreviewState()),
+    setPreviewInput,
+    resetPreviewLayout,
   };
 };
 
-/** Clear only the current layout's edits; other layouts and sizing mode remain. */
-export const resetPreviewLayout = (state) => ({
-  ...state,
-  layouts: { ...state.layouts, [state.preset]: {} },
+export const offerPreview = createPreviewModel({
+  storageKey: PREVIEW_STORAGE_KEY,
+  defaultPreset: DEFAULT_PRESET,
+  getDefaults: (preset) => ({
+    ...defaultOfferOptionBlockV2FallbackContent,
+    ...defaultButtonCTAFallbackContent,
+    ...data[preset],
+  }),
 });
+
+// Keep the existing offer preview API and saved values intact.
+export const {
+  resolvePreset,
+  getDefaultPreviewInputs,
+  sanitizePreviewInputs,
+  readPreviewState,
+  getPreviewInputs,
+  readPreviewInputs,
+  setPreviewInput,
+  resetPreviewLayout,
+} = offerPreview;
+export const defaultPreviewInputs = getDefaultPreviewInputs();

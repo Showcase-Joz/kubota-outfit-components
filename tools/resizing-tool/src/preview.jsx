@@ -5,13 +5,14 @@ import { Container } from "./components/Container";
 import GlobalStyles from "./style/GlobalStyles";
 import { Minireset } from "./components/minireset";
 import definitions from "../public/inputs.json";
+import { readSaved } from "./utils/preview";
 import {
-  PREVIEW_STORAGE_KEY,
-  getPreviewInputs,
-  readPreviewState,
-  setPreviewInput,
-  resetPreviewLayout,
-} from "./utils/preview";
+  COMPONENT_STORAGE_KEY,
+  DEFAULT_COMPONENT,
+  previewComponents,
+  resolveComponent,
+  isPreviewInputVisible,
+} from "./utils/workspace";
 
 const PreviewShell = styled.div`
   display: grid;
@@ -87,21 +88,28 @@ const PreviewShell = styled.div`
   }
 `;
 
-const PreviewApp = () => {
+const ComponentPreview = ({ component, onComponentChange }) => {
+  const { label, model } = previewComponents[component];
+  const {
+    readPreviewState,
+    getPreviewInputs,
+    setPreviewInput,
+    resetPreviewLayout,
+  } = model;
   const [previewState, setPreviewState] = useState(readPreviewState);
   const inputs = getPreviewInputs(previewState);
   const [storageError, setStorageError] = useState(false);
   useEffect(() => {
     try {
       window.localStorage.setItem(
-        PREVIEW_STORAGE_KEY,
-        JSON.stringify(previewState),
+        model.storageKey,
+        JSON.stringify(previewState)
       );
       setStorageError(false);
     } catch {
       setStorageError(true);
     }
-  }, [previewState]);
+  }, [previewState, model]);
 
   const setValue = (tag, value) =>
     setPreviewState((previous) => setPreviewInput(previous, tag, value));
@@ -111,7 +119,20 @@ const PreviewApp = () => {
       <Minireset />
       <PreviewShell>
         <aside aria-label="Preview inputs">
-          <h2>OfferOptionBlock V2</h2>
+          <h2>{label}</h2>
+          <label>
+            Component
+            <select
+              value={component}
+              onChange={(event) => onComponentChange(event.target.value)}
+            >
+              {Object.entries(previewComponents).map(([id, item]) => (
+                <option key={id} value={id}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
           <p>
             Each layout starts with its template defaults. Your edits are saved
             separately for each layout.
@@ -129,10 +150,12 @@ const PreviewApp = () => {
             </p>
           )}
           {definitions
-            .filter(
-              (input) =>
-                !["showCTA", "callToActionText"].includes(input.tag) ||
-                inputs.aspect_selection.value === "web-banner",
+            .filter((input) =>
+              isPreviewInputVisible(
+                input.tag,
+                component,
+                inputs.aspect_selection.value
+              )
             )
             .map((input) => {
               const { tag, definition, custom_title: title } = input;
@@ -150,7 +173,7 @@ const PreviewApp = () => {
                         </option>
                       ))}
                     </select>
-                  ) : tag === "savingAmountPostText" ? (
+                  ) : ["savingAmountPostText", "warrantyText"].includes(tag) ? (
                     <textarea rows="3" value={value} onChange={change} />
                   ) : (
                     <>
@@ -177,7 +200,9 @@ const PreviewApp = () => {
                   )}
                   {tag === "aPR" && (
                     <small>
-                      Use a percentage, “available”, or “notApplicable”.
+                      {component === "warranty"
+                        ? "This rollout is styled for 0% financing available. Other finance values remain available for later development."
+                        : "Use a percentage, “available”, or “notApplicable”."}
                     </small>
                   )}
                 </label>
@@ -189,9 +214,33 @@ const PreviewApp = () => {
             brand fonts.
           </small>
         </aside>
-        <Container inputs={inputs} />
+        <Container
+          inputs={{ ...inputs, component_selection: { value: component } }}
+        />
       </PreviewShell>
     </>
+  );
+};
+
+const PreviewApp = () => {
+  const [component, setComponent] = useState(() =>
+    resolveComponent(readSaved(COMPONENT_STORAGE_KEY, DEFAULT_COMPONENT))
+  );
+  const changeComponent = (value) => {
+    const next = resolveComponent(value);
+    setComponent(next);
+    try {
+      window.localStorage.setItem(COMPONENT_STORAGE_KEY, JSON.stringify(next));
+    } catch {
+      /* Inputs show their own storage warning. */
+    }
+  };
+  return (
+    <ComponentPreview
+      key={component}
+      component={component}
+      onComponentChange={changeComponent}
+    />
   );
 };
 

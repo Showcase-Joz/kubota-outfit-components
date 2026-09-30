@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Limiter } from "@outfit.io/react";
 import styled from "@emotion/styled";
-import { TextElement } from "./offerOptionBlockV2/TextElement.js";
+import { TextElement } from "./sharedV2/TextElement.js";
 import rawOfferOptionBlockV2TextSettings from "../utils/offerOptionBlockV2TextSettings.json" with { type: "json" };
 import { checkInputExists, cloneInlineClick } from "../utils/helpers.js";
 

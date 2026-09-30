@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { OfferOptionBlockV2 } from "kubota-outfit-components";
+import { OfferOptionBlockV2, WarrantyBlockV2 } from "kubota-outfit-components";
 import { PreviewButtonCTA } from "./PreviewButtonCTA";
 import { Placeholder } from "@outfit.io/react";
 import dimensions from "../utils/dimension.json";
-import { data } from "../dummy/data";
-import { getStageSize, getPreviewScale, resolvePreset } from "../utils/preview";
+import { previewComponents, resolveComponent } from "../utils/workspace";
+import { WarrantyPlaceholder } from "./WarrantyPlaceholder";
+import { getStageSize, getPreviewScale } from "../utils/preview";
 
 const Workspace = styled.main`
   padding: 24px;
@@ -61,9 +62,12 @@ const Workspace = styled.main`
 `;
 
 export const Container = ({ inputs = {} }) => {
-  const presetId = resolvePreset(inputs.aspect_selection?.value);
+  const component = resolveComponent(inputs.component_selection?.value);
+  const { label, model, data } = previewComponents[component];
+  const presetId = model.resolvePreset(inputs.aspect_selection?.value);
   const preset = dimensions[presetId];
   const dummyData = data[presetId];
+  const Block = component === "warranty" ? WarrantyBlockV2 : OfferOptionBlockV2;
   const mode = inputs.size_model?.value === "exact" ? "exact" : "aspect";
   const size = getStageSize(preset, mode);
   const stageRef = useRef(null);
@@ -92,12 +96,12 @@ export const Container = ({ inputs = {} }) => {
     };
   }, []);
 
-  const showCTA = preset.supportsCTA && inputs.showCTA?.value !== "hide";
+  const showCTA = presetId === "web-banner" && inputs.showCTA?.value !== "hide";
   return (
     <Workspace>
       <header className="comparison-heading">
         <div>
-          <h1>Offer option comparison</h1>
+          <h1>{label} comparison</h1>
           <p>
             {preset.label} · target {preset.width} × {preset.height} px · no
             angled edges
@@ -118,23 +122,29 @@ export const Container = ({ inputs = {} }) => {
           data-mode={mode}
           style={size}
         >
-          <Placeholder
-            // image="https://files.outfit.io/media_library_items/696363/300x600.png"
-            // image="https://files.outfit.io/media_library_items/696550/Financing%252BTerm%252B_Stacked.png"
-            // image="https://files.outfit.io/media_library_items/696359/160x600.png"
-            // image="https://files.outfit.io/media_library_items/696551/Financing%252BTerm%252B_StackedNarrow.png"
-            // image="https://files.outfit.io/media_library_items/696361/300x250.png"
-            // image="https://files.outfit.io/media_library_items/696552/Financing%252BTerm%252B_StackedNarrow.png"
-            // image="https://files.outfit.io/media_library_items/696362/728x90.png"
-            image="https://files.outfit.io/media_library_items/696553/Financing%252BTerm_WideNarrow.png"
-            // image="https://files.outfit.io/media_library_items/696364/tractru.png"
-            // image="https://files.outfit.io/media_library_items/696365/non-tractru.png"
-            // image="https://files.outfit.io/media_library_items/696532/Frame%25207%2520%25281%2529.png"
-            // image="https://files.outfit.io/media_library_items/696360/print-ad.png"
-            // image="https://files.outfit.io/media_library_items/696540/Frame%25207.png"
-            hide
-            offset={false}
-          />
+          {component === "warranty" ? (
+            <WarrantyPlaceholder />
+          ) : (
+            <Placeholder
+              // image="https://files.outfit.io/media_library_items/696363/300x600.png"
+              // image="https://files.outfit.io/media_library_items/696550/Financing%252BTerm%252B_Stacked.png"
+              // image="https://files.outfit.io/media_library_items/696359/160x600.png"
+              // image="https://files.outfit.io/media_library_items/696551/Financing%252BTerm%252B_StackedNarrow.png"
+              // image="https://files.outfit.io/media_library_items/696361/300x250.png"
+              // image="https://files.outfit.io/media_library_items/696552/Financing%252BTerm%252B_StackedNarrow.png"
+              // image="https://files.outfit.io/media_library_items/696362/728x90.png"
+              // image="https://files.outfit.io/media_library_items/696553/Financing%252BTerm_WideNarrow.png"
+              // image="https://files.outfit.io/media_library_items/696364/tractru.png"
+              // image="https://files.outfit.io/media_library_items/696365/non-tractru.png"
+              // image="https://files.outfit.io/media_library_items/696532/Frame%25207%2520%25281%2529.png"
+              // image="https://files.outfit.io/media_library_items/696360/print-ad.png"
+              // image="https://files.outfit.io/media_library_items/696540/Frame%25207.png"
+              // offerOptionBlockV2TextSettings={rawOfferOptionBlockV2TextSettings} ^^
+
+              show
+              offset={false}
+            />
+          )}
           <div
             className="component-preview"
             style={{
@@ -143,7 +153,7 @@ export const Container = ({ inputs = {} }) => {
               transform: `scale(${previewScale})`,
             }}
           >
-            <OfferOptionBlockV2
+            <Block
               preset={presetId}
               dummyData={dummyData}
               backgroundColor={inputs.offerTheming}
@@ -157,6 +167,13 @@ export const Container = ({ inputs = {} }) => {
               savingAmountPreText={inputs.savingAmountPreText}
               savingAmount={inputs.savingAmount}
               savingAmountPostText={inputs.savingAmountPostText}
+              {...(component === "warranty"
+                ? {
+                    discountText: inputs.discountText,
+                    warrantyText: inputs.warrantyText,
+                    serviceType: inputs.serviceType,
+                  }
+                : {})}
             >
               {showCTA && (
                 <PreviewButtonCTA
@@ -164,12 +181,14 @@ export const Container = ({ inputs = {} }) => {
                   dummyData={dummyData}
                 />
               )}
-            </OfferOptionBlockV2>
+            </Block>
           </div>
         </div>
       </div>
       <p className="comparison-note">
-        Editing the shared library component. Artwork and inputs belong to this preview.
+        {component === "warranty"
+          ? "Warranty skeleton: add measured styling in WarrantyBlockV2.tsx, starting with 300×600."
+          : "Editing the shared library component. Artwork and inputs belong to this preview."}
         {mode === "aspect" &&
           " Aspect scales the exact-size component uniformly to fit this view."}
       </p>
