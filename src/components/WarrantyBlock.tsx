@@ -123,7 +123,7 @@ const WarrantyBlockWrapper = styled.div`
     clamp(0.65em, calc(-0.875rem + 7.333cqi), 8.5rem)
   );
   font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
-  color: var(--color-orange, #ff6600);
+  color: var(--color-orange, #dc4405);
 
   .incentiveWrapper {
     font-size: 10cqi;
@@ -149,7 +149,7 @@ const WarrantyBlockWrapper = styled.div`
           sans-serif
         );
         text-transform: uppercase;
-        color: var(--color-orange, #ff6600);
+        color: var(--color-orange, #dc4405);
         position: relative;
         width: fit-content;
         line-height: 0.7;
@@ -217,7 +217,7 @@ const WarrantyBlockWrapper = styled.div`
             Helvetica,
             sans-serif
           );
-          color: var(--color-orange, #ff6600);
+          color: var(--color-orange, #dc4405);
           width: fit-content;
         }
       }
@@ -263,7 +263,7 @@ const WarrantyBlockWrapper = styled.div`
           Helvetica,
           sans-serif
         );
-        color: var(--color-orange, #ff6600);
+        color: var(--color-orange, #dc4405);
         text-align: center;
       }
     }

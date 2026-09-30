@@ -631,7 +631,7 @@ override these variables:
   --clamp-size-1: clamp(0.65em, calc(-0.875rem + 7.333cqi), 8.5rem);
   --font-family-inter-default: "Inter", Arial, sans-serif;
   --font-family-arial-black-default: "Arial Black", Arial, Helvetica, sans-serif;
-  --color-orange: #ff6600;
+  --color-orange: #dc4405;
   --color-black-tint-55: rgba(0, 0, 0, 0.55);
 }
 ```
