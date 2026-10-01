@@ -69,6 +69,15 @@ each layout is styled. The `textSettings` prop can override individual fields:
 />
 ```
 
+Warranty text supports an optional `withoutServiceType` block inside its settings,
+e.g. `"warrantyText": { "lines": 1, "withoutServiceType": { "lines": 2 } }`.
+When service type is hidden or empty, the component merges this block over the
+preset's base limits. Showing the service again restores the base limits without
+changing the copy. The override supports `lines`, `textfit`, `min` and `max`.
+Manual `textSettings` values take precedence over both preset layers; their own
+`warrantyText.withoutServiceType` settings apply last when service type is absent.
+Line limits validate overflow; CSS controls the space available for the text.
+
 `tools/resizing-tool/src/dummy/warrantyData.js` is the preview template's optional
 per-layout starting data. The real defaults remain in the component. To see the
 cash-discount example, clear Saving Amount and choose Orange Protection Extended

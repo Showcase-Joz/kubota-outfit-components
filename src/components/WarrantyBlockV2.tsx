@@ -38,11 +38,15 @@ export type WarrantyBlockV2TextSettings = Partial<
     | "savingAmountPreText"
     | "savingAmountPostText"
     | "discountText"
-    | "warrantyText"
     | "serviceType",
     WarrantyBlockV2TextLimits
   >
->;
+> & {
+  warrantyText?: WarrantyBlockV2TextLimits & {
+    /** Merged over the base limits when service type is hidden or empty. */
+    withoutServiceType?: WarrantyBlockV2TextLimits;
+  };
+};
 
 export const warrantyBlockV2TextSettings: Record<
   WarrantyBlockV2Preset,
@@ -80,7 +84,8 @@ export interface WarrantyBlockV2Props extends WarrantyBlockV2FallbackContent {
   dummyData?: WarrantyBlockV2FallbackContent;
   /** Alternative to dummyData; takes precedence when both are supplied. */
   fallbackContent?: WarrantyBlockV2FallbackContent;
-  /** Per-field outlier overrides, merged with the selected preset's JSON settings.
+  /** Per-field outlier overrides, applied after the preset's base and visibility settings.
+   * A warrantyText.withoutServiceType override applies last when service type is absent.
    * @example textSettings={{ savingAmountPostText: { lines: 3, textfit: false } }}
    */
   textSettings?: WarrantyBlockV2TextSettings;
@@ -647,7 +652,104 @@ const WarrantyBlockV2Wrapper = styled.div`
   }
   &[data-preset="300x250"] {
     .warrantyBlockWrapper {
-      /* Preset-specific measured styles go here. */
+      padding: 0.75rem 0.5rem 1rem 0.5rem;
+      gap: 0.3rem;
+    } /* Finance sizing and description type are common to both populated modes. */
+    &[data-offer-mode="savings"],
+    &[data-offer-mode="discount"] {
+      .warrantyOfferContent {
+        gap: 0.5rem;
+        .financingContent {
+          gap: 0.125rem;
+          .apr-wrapper {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 1.375rem;
+              letter-spacing: -0.0275rem;
+            }
+          }
+          .term-labels {
+            font-size: 0.45rem;
+          }
+          :has(.apr-available.has-months),
+          :has(.apr-available.has-down-payment) {
+            .term-labels {
+              width: 17ch;
+            }
+          }
+          :has(.apr-available.has-months.has-down-payment) {
+            .term-labels {
+              width: 24ch;
+            }
+          }
+          :has(.apr-text) {
+            .term-labels {
+              width: fit-content;
+            }
+          }
+          :has(.apr-text.has-months) {
+            .term-labels {
+              width: 10.2ch;
+            }
+          }
+          :has(.apr-text.has-down-payment) {
+            .term-labels {
+              width: 11.5ch;
+            }
+          }
+          :has(.apr-text.has-months.has-down-payment) {
+            .term-labels {
+              width: 17ch;
+            }
+          }
+        }
+        .offerContent {
+          text-align: center;
+          .offerValue {
+            .savingContent {
+              gap: unset;
+              .text-type--pre-saving-amount {
+                font-size: 0.6275rem;
+              }
+              .text-type--saving-amount {
+                font-size: 1.25rem;
+              }
+            }
+          }
+        }
+        .offerDescription {
+          font-size: 0.45rem;
+          .text-type--post-saving-amount {
+            text-align: center;
+          }
+        }
+      }
+
+      .connectorWrapper {
+        gap: 0.3125rem;
+        padding-top: 0.125rem;
+        .connector-line {
+          width: 2.9375rem;
+          height: 0.03838rem;
+        }
+        .text-type--connectorLines {
+          font-size: 0.5625rem;
+        }
+      }
+      .warrantyContent {
+        gap: 0.0625rem;
+        .warrantyHeading {
+          .text-type--warranty-text {
+            font-size: 1.25rem;
+            letter-spacing: -0.0275rem;
+          }
+        }
+        .serviceType {
+          .text-type--service-type {
+            font-size: 0.51rem;
+          }
+        }
+      }
     }
   }
   &[data-preset="728x90"] {
@@ -718,18 +820,6 @@ export const WarrantyBlockV2 = (props: WarrantyBlockV2Props) => {
     })
   ) as Required<WarrantyBlockV2FallbackContent>;
 
-  const limits = (key: keyof WarrantyBlockV2TextSettings) => {
-    const settings = {
-      ...warrantyBlockV2TextSettings[preset][key],
-      ...textSettings?.[key],
-    };
-    return {
-      lines: settings.lines,
-      textfit: settings.textfit ?? false,
-      textfitConfig: { minFontSize: settings.min, maxFontSize: settings.max },
-    };
-  };
-  const termLimits = limits("termLabels");
   const available = fields.aPR.value === "available";
   const aprInput = available ? { ...fields.aPR, value: "0" } : fields.aPR;
   const hasNumericAprGreaterThanZero =
@@ -754,6 +844,22 @@ export const WarrantyBlockV2 = (props: WarrantyBlockV2Props) => {
     ? warrantyBlockV2ServiceTypes[service as WarrantyBlockV2ServiceType]
     : "";
   const hasServiceType = hasContent(serviceLabel);
+  const limits = (key: keyof WarrantyBlockV2TextSettings) => {
+    const withoutServiceType = key === "warrantyText" && !hasServiceType;
+    const settings = {
+      ...warrantyBlockV2TextSettings[preset][key],
+      ...(withoutServiceType &&
+        warrantyBlockV2TextSettings[preset].warrantyText?.withoutServiceType),
+      ...textSettings?.[key],
+      ...(withoutServiceType && textSettings?.warrantyText?.withoutServiceType),
+    };
+    return {
+      lines: settings.lines,
+      textfit: settings.textfit ?? false,
+      textfitConfig: { minFontSize: settings.min, maxFontSize: settings.max },
+    };
+  };
+  const termLimits = limits("termLabels");
   const hasWarrantyText = hasContent(fields.warrantyText.value);
   const hasWarranty = hasWarrantyText || hasServiceType;
   const connector = fields.connectorLinesText.value;

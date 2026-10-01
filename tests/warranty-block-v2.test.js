@@ -217,6 +217,7 @@ it("supports text-only and whole-connector hiding, and removes it when its offer
 });
 
 it("keeps fitting off by default and merges outlier settings without mutating the preset", () => {
+  const originalSettings = JSON.stringify(warrantyBlockV2TextSettings);
   const { container, rerender } = render(<WarrantyBlockV2 />);
   const headingLimiter = () =>
     container
@@ -226,10 +227,88 @@ it("keeps fitting off by default and merges outlier settings without mutating th
   rerender(<WarrantyBlockV2 textSettings={{ warrantyText: { lines: 2 } }} />);
   expect(headingLimiter()).toHaveAttribute("data-textfit", "false");
   expect(headingLimiter()).toHaveAttribute("data-lines", "2");
-  expect(
-    warrantyBlockV2TextSettings["300x600"].warrantyText.lines
-  ).toBeUndefined();
+  expect(JSON.stringify(warrantyBlockV2TextSettings)).toBe(originalSettings);
   expect(defaultWarrantyBlockV2FallbackContent.warrantyText.value).toBe(
     "2-Year"
   );
+});
+
+it.each([
+  ["160x600", 2],
+  ["300x600", 1],
+])(
+  "updates %s warranty limits as service visibility changes",
+  (preset, hiddenLines) => {
+    const warrantyText = { value: "Extended\nWarranty" };
+    const { container, rerender } = render(
+      <WarrantyBlockV2 preset={preset} warrantyText={warrantyText} />
+    );
+    for (const value of [
+      "k-maintenance",
+      "hide",
+      "orange-protection",
+      "",
+      "k-maintenance",
+    ]) {
+      const visible =
+        value === "k-maintenance" || value === "orange-protection";
+      rerender(
+        <WarrantyBlockV2
+          preset={preset}
+          warrantyText={warrantyText}
+          serviceType={{ value }}
+        />
+      );
+      const heading = container.querySelector(".text-type--warranty-text");
+      const limiter = heading.closest('[data-testid="limiter"]');
+      expect(limiter).toHaveAttribute(
+        "data-lines",
+        String(visible ? 1 : hiddenLines)
+      );
+      expect(limiter).toHaveAttribute("data-textfit", "false");
+      expect(heading.textContent).toBe(warrantyText.value);
+      expect(container.querySelector(".serviceType") !== null).toBe(visible);
+    }
+  }
+);
+
+it("lets manual warranty settings override preset visibility limits and supports conditional fit settings", () => {
+  const originalSettings = JSON.stringify(warrantyBlockV2TextSettings);
+  const textSettings = {
+    warrantyText: { lines: 3, textfit: true, min: 80, max: 100 },
+  };
+  const { container, rerender } = render(
+    <WarrantyBlockV2
+      preset="160x600"
+      serviceType={{ value: "hide" }}
+      textSettings={textSettings}
+    />
+  );
+  const limiter = () =>
+    container
+      .querySelector(".text-type--warranty-text")
+      .closest('[data-testid="limiter"]');
+  expect(limiter()).toHaveAttribute("data-lines", "3");
+  const conditionalSettings = {
+    warrantyText: {
+      ...textSettings.warrantyText,
+      withoutServiceType: { lines: 4, min: 90 },
+    },
+  };
+  rerender(
+    <WarrantyBlockV2
+      preset="160x600"
+      serviceType={{ value: "hide" }}
+      textSettings={conditionalSettings}
+    />
+  );
+  expect(limiter()).toHaveAttribute("data-lines", "4");
+  expect(limiter()).toHaveAttribute("data-textfit", "true");
+  expect(limiter()).toHaveAttribute("data-min", "90");
+  rerender(
+    <WarrantyBlockV2 preset="160x600" textSettings={conditionalSettings} />
+  );
+  expect(limiter()).toHaveAttribute("data-lines", "3");
+  expect(limiter()).toHaveAttribute("data-min", "80");
+  expect(JSON.stringify(warrantyBlockV2TextSettings)).toBe(originalSettings);
 });
