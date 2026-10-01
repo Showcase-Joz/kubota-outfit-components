@@ -405,6 +405,7 @@ const WarrantyBlockV2Wrapper = styled.div`
         .offerDescription {
           .text-type--post-saving-amount {
             text-align: center;
+            text-wrap: balance;
           }
         }
       }
