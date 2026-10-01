@@ -12,8 +12,9 @@ export const WarrantyPlaceholder = () => (
     // image="https://files.outfit.io/media_library_items/697003/Financing%252BCashDiscount_Warranty.png"
     // image="https://files.outfit.io/media_librar y_items/697010/Financing%252BTerm%252BCashDiscount_Warranty_W.png"
     // image="https://files.outfit.io/media_library_items/697011/Financing%252BCashDiscount_Warranty.png"
-    image="https://files.outfit.io/media_library_items/697022/Frame%25207.png"
-    // image="https://files.outfit.io/media_library_items/697021/Frame%25207.png"
+    // image="https://files.outfit.io/media_library_items/697022/Frame%25207.png"
+
+    image="https://files.outfit.io/media_library_items/697021/Frame%25207.png"
     show
     offset={false}
   />
