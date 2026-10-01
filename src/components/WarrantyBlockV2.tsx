@@ -792,6 +792,7 @@ const WarrantyBlockV2Wrapper = styled.div`
             :has(.apr-text.has-months) {
               .term-labels {
                 width: 10.2ch;
+                text-wrap-style: balance;
               }
             }
             :has(.apr-text.has-down-payment) {
@@ -854,6 +855,39 @@ const WarrantyBlockV2Wrapper = styled.div`
           grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 1fr);
         }
         .warrantyOfferContent {
+          .financingContent {
+            .term-labels {
+              text-align: start;
+            }
+            :has(.apr-length--long + .apr-text.has-months.has-down-payment),
+            :has(.apr-length--long + .apr-text.has-down-payment),
+            :has(.apr-length--long + .apr-text.has-months),
+            :has(
+              .apr-length--short + .apr-available.has-months.has-down-payment
+            ) {
+              .apr-wrapper .text-type--offerAPR,
+              .percentage {
+                font-size: 0.88rem;
+              }
+            }
+            :has(.apr-length--long + .apr-text.has-months.has-down-payment) {
+              .term-labels {
+                font-size: 0.375rem;
+              }
+            }
+
+            :has(.apr-text.has-months.has-down-payment) {
+              .term-labels {
+                font-size: 0.475rem;
+              }
+            }
+            :has(.apr-available.has-months),
+            :has(.apr-available.has-down-payment) {
+              .term-labels {
+                font-size: 0.45rem;
+              }
+            }
+          }
           .offerContent {
             .offerValue {
               .text-type--discount-text {
