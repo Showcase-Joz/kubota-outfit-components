@@ -401,12 +401,12 @@ const WarrantyBlockV2Wrapper = styled.div`
               gap: unset;
             }
           }
-        }
-        .offerDescription {
-          .text-type--post-saving-amount {
-            text-align: center;
-            text-wrap-style: balance;
-            text-wrap: balance;
+          .offerDescription {
+            .text-type--post-saving-amount {
+              text-align: center;
+              text-wrap-style: balance;
+              text-wrap: balance;
+            }
           }
         }
       }
