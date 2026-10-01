@@ -226,8 +226,6 @@ const OfferOptionBlockV2Wrapper = styled.div`
     grid-template-rows: minmax(0, 1fr);
     grid-template-areas: "financingOption connectorContent offerOptionContent";
     align-items: center;
-
-  
   }
   .financingContent {
     grid-area: financingOption;
@@ -520,7 +518,13 @@ const OfferOptionBlockV2Wrapper = styled.div`
     }
 
     &[data-has-savings="false"] {
-      /* Print overrides for the shared layout without savings. */
+      .offerOptionContent {
+        .offerOptionContent-bottom {
+          .text-type--post-saving-amount {
+            white-space: normal;
+          }
+        }
+      }
     }
   }
 
@@ -893,7 +897,6 @@ const OfferOptionBlockV2Wrapper = styled.div`
       justify-content: center;
       align-items: end;
       gap: 0.23969rem;
-      
 
       .apr-wrapper {
         line-height: 1.1;
@@ -1099,7 +1102,7 @@ const OfferOptionBlockV2 = ({
 }: OfferOptionBlockV2Props) => {
   const activePreset = Object.prototype.hasOwnProperty.call(
     offerOptionBlockV2TextSettings,
-    preset,
+    preset
   )
     ? preset
     : DEFAULT_OFFER_OPTION_V2_PRESET;
@@ -1140,19 +1143,19 @@ const OfferOptionBlockV2 = ({
     Number(aprValue) > 0;
   const hasFinancing = hasContent(aprValue);
   const hasMonths = hasContent(
-    checkInputExists(paymentMonths, content.paymentMonths?.value),
+    checkInputExists(paymentMonths, content.paymentMonths?.value)
   );
   const hasDownPayment = hasContent(
-    checkInputExists(downPayment, content.downPayment?.value),
+    checkInputExists(downPayment, content.downPayment?.value)
   );
   const hasPreText = hasContent(
-    checkInputExists(savingAmountPreText, content.savingAmountPreText?.value),
+    checkInputExists(savingAmountPreText, content.savingAmountPreText?.value)
   );
   const hasSavingAmount = hasContent(
-    checkInputExists(savingAmount, content.savingAmount?.value),
+    checkInputExists(savingAmount, content.savingAmount?.value)
   );
   const hasDescription = hasContent(
-    checkInputExists(savingAmountPostText, content.savingAmountPostText?.value),
+    checkInputExists(savingAmountPostText, content.savingAmountPostText?.value)
   );
   /** Savings heading or amount. A description alone does not count as savings. */
   const hasSavings = hasPreText || hasSavingAmount;
@@ -1160,7 +1163,7 @@ const OfferOptionBlockV2 = ({
   const hasOfferContent = hasSavings || hasDescription;
   const connectorValue = checkInputExists(
     connectorLinesText,
-    content.connectorLinesText?.value,
+    content.connectorLinesText?.value
   );
   const hasConnector =
     hasFinancing &&
