@@ -402,11 +402,19 @@ const WarrantyBlockV2Wrapper = styled.div`
             }
           }
           .offerDescription {
-            text-wrap-style: pretty;
             .text-type--post-saving-amount {
               text-align: center;
-              text-wrap-style: pretty;
+              max-inline-size: 19ch;
+              margin-inline: auto;
             }
+          }
+        }
+      }
+      .warrantyContent {
+        .serviceType {
+          .text-type--service-type {
+            max-inline-size: 19ch;
+            margin-inline: auto;
           }
         }
       }
