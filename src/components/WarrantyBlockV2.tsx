@@ -292,7 +292,10 @@ const WarrantyBlockV2Wrapper = styled.div`
   &[data-preset="160x600"],
   &[data-preset="300x250"],
   &[data-preset="728x90"] {
-    background: color-mix(in srgb, var(--offer-background) 80%, transparent);
+    .warrantyBlockWrapper {
+      z-index: 1;
+      background-color: transparent;
+    }
   }
 
   /* Vertical content flow; finance orientation is specified separately below. */
