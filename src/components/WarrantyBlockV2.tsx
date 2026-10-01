@@ -705,7 +705,7 @@ const WarrantyBlockV2Wrapper = styled.div`
           }
         }
         .offerDescription {
-          font-size: 0.45rem;
+          font-size: 0.5rem;
         }
       }
     }
