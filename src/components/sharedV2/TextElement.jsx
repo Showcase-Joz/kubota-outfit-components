@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { useEffect, useRef } from "react";
 import { Limiter, onInlineEditClick, runValidation } from "@outfit.io/react";
 import parse from "html-react-parser";
+import { FitOnOverflowLimiter } from "./FitOnOverflowLimiter.js";
 import { checkInputExists, formatMoney } from "../../utils/helpers.js";
 const TextElementWrapper = styled.div``;
 const InlineCharacterLimitWrapper = styled.span`
@@ -34,6 +35,8 @@ const InlineCharacterLimiter = ({ children, maxChars, overflowMessage }) => {
  * Block text has its own Limiter. Inline text shares its parent's line/text-fit
  * settings, but `chars` can still validate this field's formatted characters.
  * Character limits report overflow; they do not truncate text or block input.
+ * `fitOnlyOnOverflow` preserves the authored font size when it already fits.
+ * Its fitting bounds are percentages, like the V2 text settings.
  *
  * @param {{
  *   destructedProp?: any,
@@ -45,6 +48,7 @@ const InlineCharacterLimiter = ({ children, maxChars, overflowMessage }) => {
  *   property?: any,
  *   options?: any,
  *   textfit?: boolean,
+ *   fitOnlyOnOverflow?: boolean,
  *   textfitConfig?: any,
  *   lang?: string,
  *   overflowMessage?: string | null,
@@ -61,6 +65,7 @@ const TextElement = ({
   property = undefined,
   options = undefined,
   textfit = false,
+  fitOnlyOnOverflow = false,
   textfitConfig,
   lang = "en",
   overflowMessage = null,
@@ -103,8 +108,9 @@ const TextElement = ({
       element
     );
   }
+  const BlockLimiter = textfit && fitOnlyOnOverflow ? FitOnOverflowLimiter : Limiter;
   return (
-    <Limiter
+    <BlockLimiter
       maxLines={lines}
       maxChars={chars}
       maxHeight={height}
@@ -113,7 +119,7 @@ const TextElement = ({
       overflowMessage={overflowMessage}
     >
       {element}
-    </Limiter>
+    </BlockLimiter>
   );
 };
 

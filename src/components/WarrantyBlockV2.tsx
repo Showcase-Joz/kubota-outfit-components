@@ -333,10 +333,15 @@ const WarrantyBlockV2Wrapper = styled.div`
   /* Shared narrow-format structure and sizing; preset differences stay below. */
   &[data-preset="160x600"],
   &[data-preset="300x250"] {
-    .offerDescription .text-type--post-saving-amount {
-      text-align: center;
+    .offerDescription {
+      font-size: 0.5rem;
+      // Constrain the unfitted box so shrinking text can create more room.
+      inline-size: 100%;
       max-inline-size: 26ch;
       margin-inline: auto;
+      .text-type--post-saving-amount {
+        text-align: center;
+      }
     }
     .warrantyBlockWrapper {
       grid-template-rows: auto 1fr auto;
@@ -659,9 +664,6 @@ const WarrantyBlockV2Wrapper = styled.div`
             }
           }
         }
-        .offerDescription {
-          font-size: 0.5rem;
-        }
       }
     }
 
@@ -703,9 +705,6 @@ const WarrantyBlockV2Wrapper = styled.div`
               }
             }
           }
-        }
-        .offerDescription {
-          font-size: 0.5rem;
         }
       }
     }
@@ -929,6 +928,172 @@ const WarrantyBlockV2Wrapper = styled.div`
     .warrantyBlockWrapper {
       /* Preset-specific measured styles go here. */
     }
+
+    &[data-offer-mode="savings"],
+    &[data-offer-mode="discount"] {
+      .warrantyBlockWrapper {
+        padding: unset;
+        .warrantyOfferContent {
+          .financingContent {
+            justify-self: start;
+            gap: 0.125rem;
+            .apr-wrapper {
+              .text-type--offerAPR,
+              .percentage {
+                font-size: 1.25rem;
+                letter-spacing: -0.025rem;
+              }
+            }
+            :has(.apr-available.has-months),
+            :has(.apr-available.has-down-payment) {
+              .term-labels {
+                width: 17ch;
+              }
+            }
+            :has(.apr-available.has-months.has-down-payment) {
+              .term-labels {
+                width: 22ch;
+                font-size: 0.375rem;
+              }
+            }
+            :has(.apr-text) {
+              .term-labels {
+                width: fit-content;
+              }
+            }
+            :has(.apr-text.has-months) {
+              .term-labels {
+                width: 10.2ch;
+                text-wrap-style: balance;
+              }
+            }
+            :has(.apr-text.has-down-payment) {
+              .term-labels {
+                width: 11.5ch;
+              }
+            }
+            :has(.apr-text.has-months.has-down-payment) {
+              .term-labels {
+                width: 17ch;
+              }
+            }
+
+            :has(.apr-length--long + .apr-text.has-months.has-down-payment),
+            :has(.apr-length--long + .apr-text.has-down-payment),
+            :has(.apr-length--long + .apr-text.has-months),
+            :has(
+              .apr-length--short + .apr-available.has-months.has-down-payment
+            ) {
+              .apr-wrapper .text-type--offerAPR,
+              .percentage {
+                font-size: 1rem;
+              }
+              .term-labels {
+                text-align: start;
+              }
+            }
+            :has(.apr-length--long + .apr-text.has-months.has-down-payment) {
+              .term-labels {
+                font-size: 0.375rem;
+              }
+            }
+          }
+          .offerContent {
+            .offerValue {
+              .savingContent {
+                .text-type--pre-saving-amount {
+                  /* font-size: 0.37rem;
+                min-width: 6.3ch;
+                width: min-content; */
+                  font-size: 0.51906rem;
+                }
+                .text-type--saving-amount {
+                  font-size: 1.2rem;
+                  letter-spacing: -0.025rem;
+                }
+              }
+            }
+            .offerDescription {
+              font-size: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+
+    &[data-offer-mode="discount"] {
+      .warrantyBlockWrapper {
+        &[data-has-connector="true"] {
+          grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 1fr);
+        }
+        .warrantyOfferContent {
+          .financingContent {
+            .term-labels {
+              text-align: start;
+            }
+            :has(.apr-length--long + .apr-text.has-months.has-down-payment),
+            :has(.apr-length--long + .apr-text.has-down-payment),
+            :has(.apr-length--long + .apr-text.has-months),
+            :has(
+              .apr-length--short + .apr-available.has-months.has-down-payment
+            ) {
+              .apr-wrapper .text-type--offerAPR,
+              .percentage {
+                font-size: 0.88rem;
+              }
+            }
+            :has(.apr-length--long + .apr-text.has-months.has-down-payment) {
+              .term-labels {
+                font-size: 0.375rem;
+              }
+            }
+
+            :has(.apr-text.has-months.has-down-payment) {
+              .term-labels {
+                font-size: 0.475rem;
+              }
+            }
+            :has(.apr-available.has-months),
+            :has(.apr-available.has-down-payment) {
+              .term-labels {
+                font-size: 0.45rem;
+              }
+            }
+          }
+          .offerContent {
+            .offerValue {
+              .text-type--discount-text {
+                font-size: 0.685rem;
+                /* letter-spacing: -0.02rem; */
+              }
+            }
+          }
+        }
+      }
+    }
+    .connectorWrapper {
+      gap: 0.319rem;
+      .connector-line {
+        width: 0.03988rem;
+        height: 1.556rem;
+      }
+      .text-type--connectorLines {
+        font-size: 0.4375rem;
+      }
+    }
+    .warrantyContent {
+      .warrantyHeading {
+        .text-type--warranty-text {
+          font-size: 1.125rem;
+          letter-spacing: -0.0225rem;
+        }
+      }
+      .serviceType {
+        .text-type--service-type {
+          font-size: 0.4rem;
+        }
+      }
+    }
   }
   &[data-preset="tractru"] {
     .warrantyBlockWrapper {
@@ -1141,6 +1306,9 @@ export const WarrantyBlockV2 = (props: WarrantyBlockV2Props) => {
                 <TextElement
                   destructedProp={fields.savingAmountPostText}
                   dynamicClassName="post-saving-amount"
+                  fitOnlyOnOverflow={
+                    preset === "160x600" || preset === "300x250"
+                  }
                   {...limits("savingAmountPostText")}
                 />
               </div>

@@ -7,8 +7,9 @@ import {
 } from "kubota-outfit-components";
 
 jest.mock("@outfit.io/react", () => ({
-  Limiter: ({ children, maxLines, textfit, textfitConfig }) => (
+  Limiter: jest.requireActual("react").forwardRef(({ children, maxLines, textfit, textfitConfig }, ref) => (
     <div
+      ref={ref}
       data-testid="limiter"
       data-lines={maxLines}
       data-textfit={String(textfit)}
@@ -16,7 +17,7 @@ jest.mock("@outfit.io/react", () => ({
     >
       {children}
     </div>
-  ),
+  )),
   onInlineEditClick: jest.fn(),
   runValidation: jest.fn(),
 }));

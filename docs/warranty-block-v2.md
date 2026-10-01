@@ -215,6 +215,10 @@ authored font size, not pixels, and only apply with `textfit: true`. Fitted text
 must inherit its font size from the parent rather than have a fixed size on the
 inner text element. Warranty heading fitting remains off in the current presets.
 
+For the 160×600 and 300×250 offer descriptions, fitting runs only when the
+text exceeds its limits. Copy that already fits keeps its authored `0.5rem` size;
+longer copy can shrink within the configured percentage bounds.
+
 For one template outlier, supply only the settings to change:
 
 ```tsx
