@@ -1102,6 +1102,8 @@ const WarrantyBlockV2Wrapper = styled.div`
       .serviceType {
         .text-type--service-type {
           font-size: 1rem;
+          text-wrap: balance;
+          text-wrap-style: balance;
         }
       }
     }
