@@ -20,7 +20,10 @@
     "docs/offer-option-block-v2.md",
     "examples/offerOptionBlockV2",
     "docs/component-workspace.md",
-    "docs/warranty-block-v2.md"
+    "docs/warranty-block-v2.md",
+    "examples/warrantyBlockV2",
+    "examples/inputs.json",
+    "examples/usage.jsx"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",

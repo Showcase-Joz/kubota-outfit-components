@@ -18,7 +18,7 @@ Run `npm run deploy` from this root to upload the nested resizing template and
 its inputs to the existing Outfit testing workspace. This is separate from a
 component-library release.
 
-This package provides several reusable components tailored for Kubota templates: responsive `WarrantyBlock`, monthly `OfferBlock`, `OfferOptionBlock` (a multi-column finance and savings block), `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), `TextBlock` (flexible text content with layout controls), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
+This package provides several reusable components tailored for Kubota templates: `WarrantyBlockV2` (preset-based finance, savings/discount and service layouts), responsive `WarrantyBlock`, monthly `OfferBlock`, `OfferOptionBlockV2` (standard and no-savings presets), `OfferOptionBlock` (a multi-column finance and savings block), `AnnouncementBanner`, plus `ButtonCTA` (simple CTA anchor), `LeaseOfferBlock` (a lease-specific payment block), `HeadlineBlock` (a configurable headline layout block), `TextBlock` (flexible text content with layout controls), and `ImageBlock` (a full-bleed background image wrapper with optional overlay content). The components ship with sensible preview fallback content and are written to consume Outfit-style inputs.
 
 This package starts with the primary exports documented below. The current
 version is intentionally Kubota-shaped: it includes Kubota-oriented defaults,
@@ -34,7 +34,7 @@ pinned Git tag; component development uses the local workspace above.
 Install directly from a tagged GitHub release in a template project:
 
 ```bash
-npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0
+npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v1.1.0
 ```
 
 Check the [tag history](https://github.com/Showcase-Joz/kubota-outfit-components/tags)
@@ -44,7 +44,7 @@ Or add it to `package.json` dependencies:
 ```json
 {
   "dependencies": {
-    "kubota-outfit-components": "git+ssh://github:Showcase-Joz/kubota-outfit-components#v0.2.0"
+    "kubota-outfit-components": "github:Showcase-Joz/kubota-outfit-components#v1.1.0"
   }
 }
 ```
@@ -54,20 +54,126 @@ Or add it to `package.json` dependencies:
 Primary exports (from `src/index.ts`):
 
 - [WarrantyBlock](#warrantyblock-props)
-- [WarrantyBlockV2](docs/warranty-block-v2.md) — additive layout skeleton, ready for the warranty design pass.
+- [WarrantyBlockV2](#warrantyblockv2) — added in v1.1.0; completed digital presets for savings, cash discount and warranty/service content.
 - [AnnouncementBanner](#announcementbanner-props)
 - [OfferBlock](#offerblock-props)
 - [OfferOptionBlock](#offeroptionblock-props)
-- [OfferOptionBlockV2](docs/offer-option-block-v2.md) — separate preset-based component; the original remains available.
+- [OfferOptionBlockV2](#offeroptionblockv2) — preset-based standard and no-savings layouts; the original remains available.
 - [ButtonCTA](#buttoncta-props)
 - [LeaseOfferBlock](#leaseofferblock-props)
 - [HeadlineBlock](#headlineblock-props)
 - [TextBlock](#textblock-props)
 - [ImageBlock](#imageblock-props)
 
+## OfferOptionBlockV2
+
+`OfferOptionBlockV2` is the separate V2 offer component. It contains the completed
+standard and “No Save up to and no price” layouts for `print`, `tractru`,
+`web-banner`, `300x600`, `160x600`, `300x250` and `728x90`. Pass the preset explicitly;
+the default is `print`. The original `OfferOptionBlock` remains available.
+
+```tsx
+import { OfferOptionBlockV2 } from "kubota-outfit-components";
+
+// Print component rectangle, excluding its decorative edge; 1rem = 16px.
+<div style={{ width: 598, height: 181 }}>
+  <OfferOptionBlockV2
+    preset="print"
+    backgroundColor={inputs.offerTheming}
+    aPR={inputs.aPR}
+    aprPaymentMonthsConnectorText={inputs.aprPaymentMonthsConnectorText}
+    paymentMonths={inputs.paymentMonths}
+    downPayment={inputs.downPayment}
+    connectorLinesText={inputs.connectorLinesText}
+    savingAmountPreText={inputs.savingAmountPreText}
+    savingAmount={inputs.savingAmount}
+    savingAmountPostText={inputs.savingAmountPostText}
+  />
+</div>;
+```
+
+To select the layout without savings, pass empty strings for **both** savings
+fields. Financing and the offer description remain, and the connector hides:
+
+```tsx
+<OfferOptionBlockV2
+  preset="print"
+  savingAmountPreText={{ value: "" }}
+  savingAmount={{ value: "" }}
+  savingAmountPostText={{ value: "on select Kubota BX Series equipment" }}
+/>;
+```
+
+- Fields use `{ value, ids? }`. Explicit empty strings hide content; zero remains
+  valid. This component uses fallback copy for null/undefined values, so normalize
+  intentionally cleared null fields to `{ value: "" }` as the usage example does.
+- Optional `dummyData` / `fallbackContent` provides per-layout starting values.
+- `offerOptionBlockV2TextSettings.json` is included and imported internally.
+  Manual overrides use `maxSavingAmountText` (heading lines),
+  `maxSavingAmountPostText` (`lines`, `textfit`, `min`, `max`) and `maxTermLabelsText`.
+  The old `square` / `landscape` limit shape is not used by V2.
+- Unlike WarrantyBlockV2, the offer block has no `discountText` or `serviceType`;
+  its no-savings layout requires clearing both savings fields.
+
+See the [full guide](docs/offer-option-block-v2.md),
+[copyable JSX](examples/offerOptionBlockV2/usage.jsx),
+[Outfit input definitions](examples/offerOptionBlockV2/inputs.json) and
+[per-layout starting data](examples/offerOptionBlockV2/data.js).
+
+## WarrantyBlockV2
+
+`WarrantyBlockV2` is a separate export introduced in **v1.1.0**. The four digital
+presets (`300x600`, `160x600`, `300x250`, `728x90`) have completed component styling.
+Print, Tractru and web-banner presets have their structure in place and await their
+design passes. The original `WarrantyBlock` remains available.
+
+```tsx
+import { WarrantyBlockV2 } from "kubota-outfit-components";
+
+// Component rectangle for a 300x600 advert; styles use 1rem = 16px.
+<div style={{ width: 300, height: 164 }}>
+  <WarrantyBlockV2
+    preset="300x600"
+    backgroundColor={inputs.offerTheming}
+    aPR={inputs.aPR}
+    aprPaymentMonthsConnectorText={inputs.aprPaymentMonthsConnectorText}
+    paymentMonths={inputs.paymentMonths}
+    downPayment={inputs.downPayment}
+    savingAmountPreText={inputs.savingAmountPreText}
+    savingAmount={inputs.savingAmount}
+    discountText={inputs.discountText}
+    savingAmountPostText={inputs.savingAmountPostText}
+    connectorLinesText={inputs.connectorLinesText}
+    warrantyText={inputs.warrantyText}
+    serviceType={inputs.serviceType}
+  />
+</div>;
+```
+
+Inputs use Outfit's `{ value, ids? }` shape. Pass complete objects so inline
+editing works, and preserve explicit empty values so clearing inputs hides content.
+
+- Savings amount takes priority over discount text. Clear the amount to hide it
+  and its pre-text and reveal the discount text. Zero remains a valid amount.
+- Service type is `orange-protection`, `k-maintenance` or `hide`. Hiding it releases
+  space and applies the preset's conditional warranty-text line limit.
+- Optional `dummyData` / `fallbackContent` supplies starting copy. Explicit inputs
+  take precedence, including `{ value: "" }`.
+- `warrantyBlockV2TextSettings.json` ships with the library and is imported internally.
+  Select `preset`; use the `textSettings` prop only for template-specific overrides.
+- Digital backgrounds retain 80% opacity. Fonts, the containing rectangle and
+  decorative left/right edges are supplied by the template.
+
+See the [full usage, props and sizing guide](docs/warranty-block-v2.md),
+[copyable JSX](examples/warrantyBlockV2/usage.jsx),
+[Outfit input definitions](examples/warrantyBlockV2/inputs.json) and
+[per-layout starting data](examples/warrantyBlockV2/data.js).
+Installing a release brings the component and its settings; the template still
+needs its component wiring and Outfit input definitions updated once.
+
 ## Usage
 
-Warranty block example:
+Original warranty block example (use `WarrantyBlockV2` above for the new designs):
 
 ```tsx
 import { WarrantyBlock } from "kubota-outfit-components";
@@ -644,22 +750,23 @@ override these variables:
 
 ## Outfit Inputs
 
-See [`examples/inputs.json`](examples/inputs.json) for suggested input
-definitions and hints. Each outer object in inputs.json hosts the suggested inputs, choices, hints and definitions. ie...
+V2 examples are provided separately and also included in the combined input catalogue:
 
-```json
-[
-  {
-    "warrantyBlock Inputs": [**...use these**]
-  },
-  {
-    "offerBlock Inputs": [**...use these**]
-  },
-  {
-    "OfferOptionBlock Inputs": [**...use these**]
-  }
-]
-```
+- [WarrantyBlockV2 inputs](examples/warrantyBlockV2/inputs.json) and
+  [usage](examples/warrantyBlockV2/usage.jsx): twelve content fields including discount text and service type.
+- [OfferOptionBlockV2 inputs](examples/offerOptionBlockV2/inputs.json) and
+  [usage](examples/offerOptionBlockV2/usage.jsx): nine content fields for standard and no-savings offers.
+
+Each V2 input file is a definition array for a template block; neither includes
+resizing-tool controls. Merge definitions into the intended template block and
+adapt its tag-to-prop mapping. Do not add duplicate tags to the same input scope.
+
+The [combined catalogue](examples/inputs.json) also retains the original component
+inputs. Its `warrantyBlockV2 Inputs` and `offerOptionBlockV2 Inputs` groups match the
+separate V2 files above. Copy the selected group's definition array into the
+appropriate template block; the catalogue's grouping keys are documentation labels,
+not Outfit input tags. [examples/usage.jsx](examples/usage.jsx) exports the V2 usage
+examples alongside the original component examples.
 
 ## Local Checks
 
@@ -672,8 +779,9 @@ npm run build
 
 ## Version + Tag Release
 
-Use one of these scripts to bump the package version, create a git commit, create
-the matching tag, and push branch plus tags to `origin/main`:
+Merge completed changes into `main`, pull, and commit any remaining documentation
+changes before releasing. From a clean `main`, use one of these scripts to bump the
+package version, create a commit and tag, and push `main` plus tags to origin:
 
 ```bash
 npm run release:patch
@@ -728,32 +836,31 @@ Steps:
 1. Go to the repository on GitHub.
 2. Open the `Releases` page.
 3. Click `Draft a new release`.
-4. Select the tag you just pushed, for example `v0.2.0`.
-5. Set the release title to the same version, for example `v0.2.0`.
+4. Select the tag you just pushed, for example `v1.1.0`.
+5. Set the release title to the same version, for example `v1.1.0`.
 6. Paste the release notes template below.
 7. Publish the release.
 
 Suggested release body:
 
 ```md
-## v0.2.0
+## v1.1.0
 
-- Added `WarrantyBlock` as the primary export.
-- Added `AnnouncementBanner` as a secondary export for short callout banners
-  with relative and absolute positioning modes, preview fallback content, and
-  TextElement-based rendering.
-- Supports Outfit-style inputs for APR, incentive copy, connector lines, and warranty copy.
-- Ships with responsive layout rules and fallback preview content.
-- Intended for direct consumption from template projects via a pinned Git tag.
+- Added `WarrantyBlockV2` alongside the existing components.
+- Completed the 300x600, 160x600, 300x250 and 728x90 digital presets.
+- Supports savings and cash-discount treatments, warranty copy and service choices.
+- Includes preset text limits and conditional warranty limits when service is hidden.
+- Retains optional template starting values and explicit input-clearing behaviour.
+- Print, Tractru and web-banner styling remains a separate design pass.
 
 ## Install
 
-npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0
+npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v1.1.0
 
 Or add this to `package.json`:
 
 "dependencies": {
-"kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0"
+"kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v1.1.0"
 }
 ```
 
@@ -771,7 +878,7 @@ When a new release is published, template projects should pin to that exact tag.
 Install a specific release directly:
 
 ```bash
-npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0
+npm i git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v1.1.0
 ```
 
 Or pin in `package.json` and then run install:
@@ -779,7 +886,7 @@ Or pin in `package.json` and then run install:
 ```json
 {
   "dependencies": {
-    "kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v0.2.0"
+    "kubota-outfit-components": "git+ssh://git@github.com/Showcase-Joz/kubota-outfit-components.git#v1.1.0"
   }
 }
 ```

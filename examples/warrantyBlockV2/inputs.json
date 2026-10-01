@@ -1,0 +1,348 @@
+[
+  {
+    "tag": "offerTheming",
+    "type": "Variables::Choice",
+    "custom_title": "Offer Theming",
+    "hint": "Select the theming option for the offer. This affects the color scheme of the offer block and its texts.",
+    "position": 1,
+    "definition": {
+      "choices": [
+        {
+          "label": "Dark",
+          "value": "black"
+        },
+        {
+          "label": "Light",
+          "value": "white"
+        }
+      ],
+      "multi": false,
+      "optional_text": false
+    }
+  },
+  {
+    "tag": "aPR",
+    "type": "Variables::Choice",
+    "custom_title": "APR",
+    "hint": "Available displays 0% financing available, the approved rollout example. Other APR and term combinations need checking in the chosen layout. Not Applicable hides financing.",
+    "position": 2,
+    "definition": {
+      "choices": [
+        {
+          "label": "Not Applicable",
+          "value": "notApplicable"
+        },
+        {
+          "label": "0% Available",
+          "value": "available"
+        },
+        {
+          "label": "0%",
+          "value": "0"
+        },
+        {
+          "label": "0.99%",
+          "value": "0.99"
+        },
+        {
+          "label": "1.99%",
+          "value": "1.99"
+        },
+        {
+          "label": "2.99%",
+          "value": "2.99"
+        },
+        {
+          "label": "3.99%",
+          "value": "3.99"
+        },
+        {
+          "label": "4.99%",
+          "value": "4.99"
+        }
+      ],
+      "multi": false,
+      "optional_text": true
+    }
+  },
+  {
+    "tag": "aprPaymentMonthsConnectorText",
+    "type": "Variables::Choice",
+    "custom_title": "APR / Months Connector Text",
+    "hint": "Conditional on the presence of both APR and Payment Months.",
+    "position": 3,
+    "definition": {
+      "choices": [
+        {
+          "label": "Up To",
+          "value": "up to"
+        },
+        {
+          "label": "For",
+          "value": "for"
+        }
+      ],
+      "multi": false,
+      "optional_text": false
+    }
+  },
+  {
+    "tag": "paymentMonths",
+    "type": "Variables::Choice",
+    "custom_title": "Payment Months",
+    "hint": "Select Not Applicable to omit the payment term.",
+    "position": 4,
+    "definition": {
+      "choices": [
+        {
+          "label": "Not Applicable",
+          "value": "notApplicable"
+        },
+        {
+          "label": "12",
+          "value": "12"
+        },
+        {
+          "label": "24",
+          "value": "24"
+        },
+        {
+          "label": "36",
+          "value": "36"
+        },
+        {
+          "label": "48",
+          "value": "48"
+        },
+        {
+          "label": "54",
+          "value": "54"
+        },
+        {
+          "label": "60",
+          "value": "60"
+        },
+        {
+          "label": "72",
+          "value": "72"
+        },
+        {
+          "label": "84",
+          "value": "84"
+        }
+      ],
+      "multi": false,
+      "optional_text": false
+    }
+  },
+  {
+    "tag": "downPayment",
+    "type": "Variables::Number",
+    "custom_title": "Down Payment",
+    "hint": "Optional. Clear to hide; zero displays $0 down. Up to five digits, or six displayed characters including the comma.",
+    "position": 5,
+    "definition": {
+      "min": 0,
+      "max": 99999,
+      "appearance": "field"
+    }
+  },
+  {
+    "tag": "savingAmountPreText",
+    "type": "Variables::Text",
+    "custom_title": "Saving Amount Pre-Text",
+    "hint": "Optional savings heading. Automatically hidden when Saving Amount is empty. Type any leading OR yourself.",
+    "position": 6,
+    "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
+      "no_formatting": true,
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
+    }
+  },
+  {
+    "tag": "savingAmount",
+    "type": "Variables::Number",
+    "custom_title": "Saving Amount",
+    "hint": "Clear to hide the amount and savings heading and reveal Discount text. Zero is a valid amount and keeps savings visible.",
+    "position": 7,
+    "definition": {
+      "min": 0,
+      "max": 99999,
+      "appearance": "field"
+    }
+  },
+  {
+    "tag": "discountText",
+    "type": "Variables::Text",
+    "custom_title": "Discount text",
+    "hint": "Shown only when Saving Amount is empty. Type any leading OR yourself.",
+    "position": 8,
+    "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
+      "no_formatting": true,
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
+    }
+  },
+  {
+    "tag": "savingAmountPostText",
+    "type": "Variables::Text",
+    "custom_title": "Offer description",
+    "hint": "Offer description shared by savings and discount treatments. Clear independently to hide.",
+    "position": 9,
+    "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
+      "no_formatting": true,
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
+    }
+  },
+  {
+    "tag": "connectorLinesText",
+    "type": "Variables::Choice",
+    "custom_title": "Offer Connector Text",
+    "hint": "Joins the offer and warranty/service regions. Blank (no text) keeps the lines; Hide connector removes the whole divider.",
+    "position": 10,
+    "definition": {
+      "choices": [
+        {
+          "label": "Or",
+          "value": "or"
+        },
+        {
+          "label": "And",
+          "value": "and"
+        },
+        {
+          "label": "With",
+          "value": "with"
+        },
+        {
+          "label": "Plus",
+          "value": "plus"
+        },
+        {
+          "label": "From",
+          "value": "from"
+        },
+        {
+          "label": "At",
+          "value": "at"
+        },
+        {
+          "label": "Blank (no text)",
+          "value": "hide-text"
+        },
+        {
+          "label": "Hide connector",
+          "value": "hide-element"
+        }
+      ],
+      "multi": false,
+      "optional_text": false
+    }
+  },
+  {
+    "tag": "warrantyText",
+    "type": "Variables::Text",
+    "custom_title": "Warranty text",
+    "hint": "Large warranty heading, e.g. 2-Year. Line limits depend on the layout and whether Service type is hidden. Text fitting is off by default.",
+    "position": 11,
+    "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
+      "no_formatting": true,
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
+    }
+  },
+  {
+    "tag": "serviceType",
+    "type": "Variables::Choice",
+    "custom_title": "Service type",
+    "hint": "Select the service label or hide it to give warranty text the available space.",
+    "position": 12,
+    "definition": {
+      "choices": [
+        {
+          "label": "Orange Protection Extended Warranty",
+          "value": "orange-protection"
+        },
+        {
+          "label": "K-MAINTENANCE Service on Us",
+          "value": "k-maintenance"
+        },
+        {
+          "label": "Hide service type",
+          "value": "hide"
+        }
+      ],
+      "multi": false,
+      "optional_text": false
+    }
+  }
+]

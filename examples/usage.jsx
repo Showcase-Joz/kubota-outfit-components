@@ -1,12 +1,70 @@
+// V2 examples include their field mapping and optional per-layout starting data.
+export {
+  WarrantyExample,
+  Digital300x600Example,
+} from "./warrantyBlockV2/usage.jsx";
+export {
+  OfferOptionExample,
+  OfferPrintExample,
+} from "./offerOptionBlockV2/usage.jsx";
+
+// Direct input-wiring examples for both V2 and original components follow.
 import {
   AnnouncementBanner,
+  HeadlineBlock,
+  ImageBlock,
+  OfferOptionBlock,
+  OfferOptionBlockV2,
+  TextBlock,
   LeaseOfferBlock,
   OfferBlock,
   WarrantyBlock,
-} from "../src";
+  WarrantyBlockV2,
+} from "kubota-outfit-components";
+import { data as warrantyData } from "./warrantyBlockV2/data.js";
+import { data as offerData } from "./offerOptionBlockV2/data.js";
 
+// Each input is an Outfit field, e.g. { value: "3000", ids: { ... } }.
+// Keep complete field objects for inline editing. Use { value: "" } to clear.
 const Example = ({ inputs }) => (
   <>
+    {/* Warranty V2: 300x600 advert, 300x164 component box; 1rem = 16px. */}
+    <div style={{ width: 300, height: 164 }}>
+      <WarrantyBlockV2
+        preset="300x600"
+        dummyData={warrantyData["300x600"]}
+        backgroundColor={inputs?.offerTheming}
+        aPR={inputs?.aPR}
+        aprPaymentMonthsConnectorText={inputs?.aprPaymentMonthsConnectorText}
+        paymentMonths={inputs?.paymentMonths}
+        downPayment={inputs?.downPayment}
+        savingAmountPreText={inputs?.savingAmountPreText}
+        savingAmount={inputs?.savingAmount}
+        discountText={inputs?.discountText}
+        savingAmountPostText={inputs?.savingAmountPostText}
+        connectorLinesText={inputs?.connectorLinesText}
+        warrantyText={inputs?.warrantyText}
+        serviceType={inputs?.serviceType}
+      />
+    </div>
+
+    {/* Offer V2: clear both savings fields to use the no-savings layout. */}
+    <div style={{ width: 598, height: 181 }}>
+      <OfferOptionBlockV2
+        preset="print"
+        dummyData={offerData.print}
+        backgroundColor={inputs?.offerTheming}
+        aPR={inputs?.aPR}
+        aprPaymentMonthsConnectorText={inputs?.aprPaymentMonthsConnectorText}
+        paymentMonths={inputs?.paymentMonths}
+        downPayment={inputs?.downPayment}
+        connectorLinesText={inputs?.connectorLinesText}
+        savingAmountPreText={inputs?.savingAmountPreText}
+        savingAmount={inputs?.savingAmount}
+        savingAmountPostText={inputs?.savingAmountPostText}
+      />
+    </div>
+
     <AnnouncementBanner
       announcementMessage={inputs?.announcementMessage}
       fallbackContent={{
@@ -38,7 +96,7 @@ const Example = ({ inputs }) => (
       aPR={inputs?.aPR}
       paymentMonths={inputs?.paymentMonths}
       downPayment={inputs?.downPayment}
-      /** {children} can be used to add additional content inside the block */
+      // Optional children can add content inside the block.
     />
 
     <ImageBlock

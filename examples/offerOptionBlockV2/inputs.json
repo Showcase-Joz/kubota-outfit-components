@@ -118,7 +118,7 @@
     "tag": "downPayment",
     "type": "Variables::Number",
     "custom_title": "Down Payment",
-    "hint": "Max 5 characters (6 including the comma). A down payment is optional, removing it's contents will hide down payment.",
+    "hint": "Optional. Clear to hide; zero displays $0 down. Up to five digits, or six displayed characters including the comma.",
     "position": 5,
     "definition": {
       "min": 0,
@@ -151,7 +151,7 @@
     "tag": "connectorLinesText",
     "type": "Variables::Choice",
     "custom_title": "Offer Connector Text",
-    "hint": "",
+    "hint": "Joins finance to savings. Hides when finance or both savings fields are empty. Blank (no text) keeps the lines; Hide connector removes the divider.",
     "position": 7,
     "definition": {
       "choices": [
@@ -182,6 +182,10 @@
         {
           "label": "Blank (no text)",
           "value": "hide-text"
+        },
+        {
+          "label": "Hide connector",
+          "value": "hide-element"
         }
       ],
       "multi": false,
