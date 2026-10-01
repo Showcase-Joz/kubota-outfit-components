@@ -250,7 +250,8 @@ const WarrantyBlockV2Wrapper = styled.div`
   .offerDescription {
     font-weight: 600;
     .text-type--post-saving-amount {
-      text-wrap-style: balance;
+      /* The shorthand also works in Chromium before text-wrap-style support. */
+      text-wrap: balance;
       text-align: start;
     }
   }
@@ -332,6 +333,11 @@ const WarrantyBlockV2Wrapper = styled.div`
   /* Shared narrow-format structure and sizing; preset differences stay below. */
   &[data-preset="160x600"],
   &[data-preset="300x250"] {
+    .offerDescription .text-type--post-saving-amount {
+      text-align: center;
+      max-inline-size: 26ch;
+      margin-inline: auto;
+    }
     .warrantyBlockWrapper {
       grid-template-rows: auto 1fr auto;
       .financingContent {
@@ -401,13 +407,6 @@ const WarrantyBlockV2Wrapper = styled.div`
               gap: unset;
             }
           }
-          .offerDescription {
-            .text-type--post-saving-amount {
-              text-align: center;
-              max-inline-size: 26ch;
-              margin-inline: auto;
-            }
-          }
         }
       }
       .warrantyContent {
@@ -456,13 +455,6 @@ const WarrantyBlockV2Wrapper = styled.div`
               justify-self: center;
               width: 9.5rem;
             }
-          }
-        }
-        .offerDescription {
-          .text-type--post-saving-amount {
-            text-wrap-style: pretty;
-            max-inline-size: 26ch;
-            margin-inline: auto;
           }
         }
       }
@@ -722,11 +714,6 @@ const WarrantyBlockV2Wrapper = styled.div`
       gap: 0.4rem;
       .warrantyOfferContent {
         gap: 0.3125rem;
-        .offerDescription {
-          .text-type--post-saving-amount {
-            font-size: 0.45rem;
-          }
-        }
       }
       .warrantyContent {
         .warrantyHeading {
