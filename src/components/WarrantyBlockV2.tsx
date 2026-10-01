@@ -136,7 +136,20 @@ const WarrantyBlockV2Wrapper = styled.div`
   &.has-children {
     grid-template-rows: minmax(0, 1fr) auto;
   }
-  .warrantyChildren {
+
+  /* Let these grid/flex regions shrink within the component box. */
+  .warrantyChildren,
+  .warrantyBlockWrapper,
+  .warrantyOfferContent,
+  .financingContent,
+  .term-labels,
+  .offerContent,
+  .offerValue,
+  .offerDescription,
+  .savingContent,
+  .warrantyContent,
+  .warrantyHeading,
+  .serviceType {
     min-width: 0;
   }
 
@@ -147,7 +160,6 @@ const WarrantyBlockV2Wrapper = styled.div`
     grid-template-areas: "offer connector warranty";
     gap: 0.5rem;
     align-items: center;
-    min-width: 0;
     min-height: 0;
     padding: 0.5rem;
     &[data-has-connector="false"] {
@@ -167,21 +179,23 @@ const WarrantyBlockV2Wrapper = styled.div`
     grid-area: offer;
     display: grid;
     gap: 0.25rem;
-    min-width: 0;
   }
   .financingContent {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: 0.25rem;
-    min-width: 0;
     width: fit-content;
     justify-self: center;
+  }
+  .apr-wrapper,
+  .text-type--saving-amount,
+  .warrantyHeading {
+    font-size: 1.5rem;
   }
   .apr-wrapper {
     display: flex;
     align-items: baseline;
-    font-size: 1.5rem;
   }
   .apr-wrapper,
   .text-type--saving-amount,
@@ -195,34 +209,22 @@ const WarrantyBlockV2Wrapper = styled.div`
       sans-serif
     );
     font-weight: 900;
-    line-height: 1;
   }
-  .text-type--offerAPR {
-    line-height: 1.1;
-  }
-  .term-labels {
-    min-width: 0;
+  .term-labels,
+  .serviceType {
     font-weight: 800;
-    line-height: 1.1;
   }
   .offerContent {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 0.25rem;
-    min-width: 0;
-  }
-  .offerValue,
-  .offerDescription {
-    min-width: 0;
   }
   .savingContent {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    min-width: 0;
   }
-  .text-type--pre-saving-amount,
-  .text-type--discount-text {
+  .text-type--pre-saving-amount {
     font-weight: 900;
   }
   .text-type--discount-text {
@@ -230,7 +232,6 @@ const WarrantyBlockV2Wrapper = styled.div`
     white-space: pre-line;
   }
   .text-type--saving-amount {
-    font-size: 1.5rem;
     white-space: nowrap;
     &::before {
       content: "$";
@@ -243,6 +244,10 @@ const WarrantyBlockV2Wrapper = styled.div`
   }
   .offerDescription {
     font-weight: 600;
+    .text-type--post-saving-amount {
+      text-wrap-style: balance;
+      text-align: start;
+    }
   }
   .connectorWrapper {
     grid-area: connector;
@@ -254,6 +259,9 @@ const WarrantyBlockV2Wrapper = styled.div`
     font-size: 0.5rem;
     font-weight: 700;
   }
+  .text-type--connectorLines {
+    line-height: 1.2;
+  }
   .connector-line {
     flex: 1;
     width: 1px;
@@ -264,20 +272,14 @@ const WarrantyBlockV2Wrapper = styled.div`
     display: grid;
     align-content: center;
     gap: 0.25rem;
-    min-width: 0;
-  }
-  .warrantyHeading,
-  .serviceType {
-    min-width: 0;
-  }
-  .warrantyHeading {
-    font-size: 1.5rem;
+    .serviceType {
+      .text-type--service-type {
+        text-wrap-style: balance;
+      }
+    }
   }
   .text-type--warranty-text {
     white-space: pre-line;
-  }
-  .serviceType {
-    font-weight: 800;
   }
 
   /* Digital overlay keeps the feature image visible through the background. */
@@ -322,19 +324,25 @@ const WarrantyBlockV2Wrapper = styled.div`
   /* These finance rows stay stacked in BOTH savings and discount modes. */
   &[data-preset="160x600"],
   &[data-preset="300x250"] {
-    .financingContent {
-      grid-template-columns: minmax(0, 1fr);
-      justify-items: center;
-      text-align: center;
-    }
-    .savingContent {
-      flex-direction: column;
-    }
-    .offerContent {
-      text-align: center;
+    .warrantyBlockWrapper {
+      grid-template-rows: auto 1fr auto;
+      .financingContent {
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: center;
+        text-align: center;
+
+        .term-labels {
+          justify-self: center;
+        }
+      }
+      .savingContent {
+        flex-direction: column;
+      }
+      .offerContent {
+        text-align: center;
+      }
     }
   }
-
   /* Discount replaces the heading/amount, while description remains independent. */
   &[data-offer-mode="discount"] {
     .financingContent {
@@ -347,130 +355,16 @@ const WarrantyBlockV2Wrapper = styled.div`
         }
       }
     }
-    .offerContent {
-      grid-template-columns: minmax(0, 1fr);
-      .text-type--discount-text {
-        font-size: 1rem;
-      }
-    }
   }
 
-  /* Start the measured styling pass here. Keep shared values above this point. */
+  /* Shared preset values first, then the differences between offer modes. */
   &[data-preset="300x600"] {
     .warrantyBlockWrapper {
       padding: 16px 32px;
     }
-    &[data-offer-mode="savings"] .warrantyOfferContent {
-      .financingContent {
-        gap: 0.3125rem;
-        justify-self: start;
-        .apr-wrapper {
-          .text-type--offerAPR,
-          .percentage {
-            font-size: 1.8125rem;
-          }
-        }
-        .term-labels {
-          font-size: 0.75rem;
-        }
-        :has(.apr-available.has-months),
-        :has(.apr-available.has-down-payment) {
-          .term-labels {
-            width: 17ch;
-            text-align: start;
-          }
-        }
-        :has(.apr-available.has-months.has-down-payment) {
-          .term-labels {
-            width: 24ch;
-            text-align: start;
-          }
-        }
-        :has(.apr-text) {
-          .term-labels {
-            width: fit-content;
-          }
-        }
-        :has(.apr-text.has-months) {
-          .term-labels {
-            width: 10.2ch;
-            text-align: start;
-          }
-        }
-        :has(.apr-text.has-down-payment) {
-          .term-labels {
-            width: 11.5ch;
-            text-align: start;
-          }
-        }
-        :has(.apr-text.has-months.has-down-payment) {
-          .term-labels {
-            width: 17ch;
-          }
-        }
-      }
 
-      .offerContent {
-        grid-template-columns: max-content minmax(0, 1fr);
-        align-items: end;
-        &[data-has-description="false"] {
-          grid-template-columns: minmax(0, 1fr);
-        }
-        gap: 0.25rem;
-        text-align: center;
-        .offerValue {
-          .savingContent {
-            .text-type--pre-saving-amount {
-              font-size: 0.75rem;
-              line-height: 1.1;
-            }
-            .text-type--saving-amount {
-              letter-spacing: -0.03625rem;
-              font-size: 1.8125rem;
-              line-height: 1.1;
-            }
-          }
-        }
-        .offerDescription {
-          font-size: 0.66rem;
-          padding-bottom: 0.1875rem;
-          .text-type--post-saving-amount {
-            text-align: start;
-            text-wrap-style: balance;
-          }
-        }
-      }
-    }
-    .connectorWrapper {
-      gap: 0.47944rem;
-      .connector-line {
-        width: 6.08306rem;
-        height: 0.05994rem;
-      }
-      .text-type--connectorLines {
-        font-size: 0.625rem;
-        line-height: 1.2;
-      }
-    }
-    .warrantyContent {
-      gap: 0.3rem;
-      .warrantyHeading {
-        .text-type--warranty-text {
-          font-size: 1.812rem;
-          letter-spacing: -0.03625rem;
-        }
-      }
-      .serviceType {
-        .text-type--service-type {
-          font-size: 0.625rem;
-        }
-      }
-    }
-
-    .savingContent {
-      flex-direction: column;
-      align-items: start;
-    }
+    /* Finance sizing and description type are common to both populated modes. */
+    &[data-offer-mode="savings"],
     &[data-offer-mode="discount"] {
       .warrantyOfferContent {
         .financingContent {
@@ -494,7 +388,6 @@ const WarrantyBlockV2Wrapper = styled.div`
           :has(.apr-available.has-months.has-down-payment) {
             .term-labels {
               width: 24ch;
-              text-align: center;
             }
           }
           :has(.apr-text) {
@@ -520,63 +413,236 @@ const WarrantyBlockV2Wrapper = styled.div`
             }
           }
         }
-
         .offerContent {
-          gap: 0.25rem;
           text-align: center;
-          .offerValue {
-            .text-type--discount-text {
-              letter-spacing: -0.02rem;
-              font-size: 1rem;
-              line-height: 1.1;
-            }
-          }
-          .offerDescription {
-            font-size: 0.66rem;
-          }
         }
-      }
-      .connectorWrapper {
-        gap: 0.47944rem;
-        .connector-line {
-          width: 6.08306rem;
-          height: 0.05994rem;
-        }
-        .text-type--connectorLines {
-          font-size: 0.625rem;
-          line-height: 1.2;
-        }
-      }
-      .warrantyContent {
-        gap: 0.3rem;
-        .warrantyHeading {
-          .text-type--warranty-text {
-            font-size: 1.812rem;
-            letter-spacing: -0.03625rem;
-          }
-        }
-        .serviceType {
-          .text-type--service-type {
-            font-size: 0.625rem;
-          }
+        .offerDescription {
+          font-size: 0.66rem;
         }
       }
     }
-    .text-type--post-saving-amount {
+
+    /* Savings sit beside the description; finance starts at the left edge. */
+    &[data-offer-mode="savings"] .warrantyOfferContent {
+      .financingContent {
+        justify-self: start;
+      }
+      .offerContent {
+        grid-template-columns: max-content minmax(0, 1fr);
+        align-items: end;
+        &[data-has-description="false"] {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .text-type--pre-saving-amount {
+          font-size: 0.75rem;
+        }
+        .text-type--saving-amount {
+          letter-spacing: -0.03625rem;
+          font-size: 1.8125rem;
+        }
+        .offerDescription {
+          padding-bottom: 0.1875rem;
+        }
+      }
+    }
+
+    /* Discount keeps its centered finance exception and tighter lettering. */
+    &[data-offer-mode="discount"] .warrantyOfferContent {
+      .financingContent:has(.apr-available.has-months.has-down-payment) {
+        .term-labels {
+          text-align: center;
+        }
+      }
+      .offerContent .text-type--discount-text {
+        letter-spacing: -0.02rem;
+        font-size: 1rem;
+      }
+    }
+
+    .savingContent {
+      flex-direction: column;
+      align-items: start;
+    }
+    .connectorWrapper {
+      gap: 0.47944rem;
+      .connector-line {
+        width: 6.08306rem;
+        height: 0.05994rem;
+      }
+      .text-type--connectorLines {
+        font-size: 0.625rem;
+      }
     }
     .warrantyContent {
       grid-template-columns: max-content minmax(0, 1fr);
       align-items: center;
       text-align: left;
-    }
-    .warrantyContent[data-has-service-type="false"],
-    .warrantyContent[data-has-warranty-text="false"] {
-      grid-template-columns: minmax(0, 1fr);
+      gap: 0.3rem;
+      .warrantyHeading {
+        .text-type--warranty-text {
+          font-size: 1.812rem;
+          letter-spacing: -0.03625rem;
+        }
+      }
+      .serviceType {
+        .text-type--service-type {
+          font-size: 0.625rem;
+        }
+      }
+      &[data-has-service-type="false"],
+      &[data-has-warranty-text="false"] {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   }
   &[data-preset="160x600"] {
     .warrantyBlockWrapper {
-      /* Preset-specific measured styles go here. */
+      padding: 0.75rem 1rem 1rem 1rem;
+      gap: 0.3125rem;
+    }
+    /* Finance sizing and description type are common to both populated modes. */
+    &[data-offer-mode="savings"],
+    &[data-offer-mode="discount"] {
+      .warrantyOfferContent {
+        gap: 0.3125rem;
+        .financingContent {
+          gap: 0.125rem;
+          .apr-wrapper {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 1.375rem;
+              letter-spacing: -0.0275rem;
+            }
+          }
+          .term-labels {
+            font-size: 0.5rem;
+          }
+          :has(.apr-available.has-months),
+          :has(.apr-available.has-down-payment) {
+            .term-labels {
+              width: 17ch;
+            }
+          }
+          :has(.apr-available.has-months.has-down-payment) {
+            .term-labels {
+              width: 24ch;
+            }
+          }
+          :has(.apr-text) {
+            .term-labels {
+              width: fit-content;
+            }
+          }
+          :has(.apr-text.has-months) {
+            .term-labels {
+              width: 10.2ch;
+            }
+          }
+          :has(.apr-text.has-down-payment) {
+            .term-labels {
+              width: 11.5ch;
+            }
+          }
+          :has(.apr-text.has-months.has-down-payment) {
+            .term-labels {
+              width: 17ch;
+            }
+          }
+        }
+        .offerContent {
+          text-align: center;
+          .offerValue {
+            .savingContent {
+              gap: unset;
+              .text-type--pre-saving-amount {
+                font-size: 0.6875rem;
+              }
+              .text-type--saving-amount {
+                font-size: 1.375rem;
+                letter-spacing: -0.0275rem;
+              }
+            }
+          }
+        }
+        .offerDescription {
+          font-size: 0.5rem;
+          .text-type--post-saving-amount {
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    &[data-offer-mode="discount"] .warrantyBlockWrapper {
+      grid-template-rows: auto max-content auto;
+      .warrantyOfferContent {
+        .financingContent {
+          grid-template-columns: minmax(0, 1fr) auto;
+          :has(.apr-text.has-months.has-down-payment),
+          :has(.apr-available.has-down-payment),
+          :has(.apr-available.has-months) {
+            gap: 0.3125rem;
+          }
+          .term-labels {
+            text-align: start;
+          }
+
+          :has(.apr-length--long + .apr-text.has-months.has-down-payment),
+          :has(.apr-length--long + .apr-text.has-down-payment),
+          :has(.apr-length--long + .apr-text.has-months),
+          :has(
+            .apr-length--short + .apr-available.has-months.has-down-payment
+          ) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0.125rem;
+            .term-labels {
+              text-align: center;
+            }
+          }
+        }
+
+        .offerContent {
+          .offerValue {
+            .text-type--discount-text {
+              font-size: 0.9rem;
+              letter-spacing: -0.0275rem;
+              justify-self: center;
+              width: 9.5rem;
+            }
+          }
+        }
+        .offerDescription {
+          .text-type--post-saving-amount {
+            text-wrap-style: pretty;
+          }
+        }
+      }
+    }
+    .connectorWrapper {
+      gap: 0.3125rem;
+      padding-top: 0.125rem;
+      .connector-line {
+        width: 2.9375rem;
+        height: 0.03838rem;
+      }
+      .text-type--connectorLines {
+        font-size: 0.5625rem;
+      }
+    }
+
+    .warrantyContent {
+      gap: 0.0625rem;
+      .warrantyHeading {
+        .text-type--warranty-text {
+          font-size: 1.375rem;
+          letter-spacing: -0.0275rem;
+        }
+      }
+      .serviceType {
+        .text-type--service-type {
+          font-size: 0.5625rem;
+        }
+      }
     }
   }
   &[data-preset="300x250"] {
@@ -666,6 +732,10 @@ export const WarrantyBlockV2 = (props: WarrantyBlockV2Props) => {
   const termLimits = limits("termLabels");
   const available = fields.aPR.value === "available";
   const aprInput = available ? { ...fields.aPR, value: "0" } : fields.aPR;
+  const hasNumericAprGreaterThanZero =
+    hasContent(aprInput?.value) &&
+    Number.isFinite(Number(aprInput?.value)) &&
+    Number(aprInput?.value) > 0;
   const hasFinancing = hasContent(fields.aPR.value);
   const hasMonths = hasContent(fields.paymentMonths.value);
   const hasDownPayment = hasContent(fields.downPayment.value);
@@ -713,7 +783,11 @@ export const WarrantyBlockV2 = (props: WarrantyBlockV2Props) => {
       >
         <div className="warrantyOfferContent" hidden={!hasOfferSection}>
           <div className="financingContent" hidden={!hasFinancing}>
-            <div className="apr-wrapper">
+            <div
+              className={`apr-wrapper apr-length--${
+                hasNumericAprGreaterThanZero ? "long" : "short"
+              }`}
+            >
               <TextElement
                 destructedProp={aprInput}
                 dynamicClassName="offerAPR"
