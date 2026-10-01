@@ -234,7 +234,8 @@ const WarrantyBlockV2Wrapper = styled.div`
   }
   .text-type--discount-text {
     font-size: 0.875rem;
-    white-space: pre-line;
+    text-wrap: balance;
+    text-wrap-style: balance;
   }
   .text-type--saving-amount {
     white-space: nowrap;
@@ -285,7 +286,8 @@ const WarrantyBlockV2Wrapper = styled.div`
     }
   }
   .text-type--warranty-text {
-    white-space: pre-line;
+    text-wrap: balance;
+    text-wrap-style: balance;
   }
 
   /* Digital overlay keeps the feature image visible through the background. */
