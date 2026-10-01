@@ -402,10 +402,9 @@ const WarrantyBlockV2Wrapper = styled.div`
             }
           }
           .offerDescription {
+            text-wrap-style: balance;
             .text-type--post-saving-amount {
               text-align: center;
-              text-wrap-style: balance;
-              text-wrap: balance;
             }
           }
         }
