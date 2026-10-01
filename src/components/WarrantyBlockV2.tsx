@@ -621,16 +621,16 @@ const WarrantyBlockV2Wrapper = styled.div`
       grid-template-columns: max-content minmax(0, 1fr);
       align-items: center;
       text-align: left;
-      gap: 0.3rem;
+      gap: 0.25rem;
       .warrantyHeading {
         .text-type--warranty-text {
-          font-size: 1.812rem;
+          font-size: 1.67rem;
           letter-spacing: -0.03625rem;
         }
       }
       .serviceType {
         .text-type--service-type {
-          font-size: 0.625rem;
+          font-size: 0.57rem;
         }
       }
       &[data-has-service-type="false"],
