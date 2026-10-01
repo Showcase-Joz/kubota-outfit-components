@@ -70,3 +70,21 @@ export type {
   OfferOptionBlockV2TextLimits,
   OfferOptionBlockV2TextSettings,
 } from "./components/OfferOptionBlockV2.js";
+
+// Warranty V2 is additive; the original WarrantyBlock remains available.
+export {
+  WarrantyBlockV2,
+  DEFAULT_WARRANTY_V2_PRESET,
+  defaultWarrantyBlockV2FallbackContent,
+  warrantyBlockV2TextSettings,
+  warrantyBlockV2ServiceTypes,
+} from "./components/WarrantyBlockV2.js";
+export type {
+  WarrantyBlockV2Preset,
+  WarrantyBlockV2Field,
+  WarrantyBlockV2ServiceType,
+  WarrantyBlockV2FallbackContent,
+  WarrantyBlockV2Props,
+  WarrantyBlockV2TextLimits,
+  WarrantyBlockV2TextSettings,
+} from "./components/WarrantyBlockV2.js";

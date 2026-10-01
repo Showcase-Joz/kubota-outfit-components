@@ -11,13 +11,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./utils/offerOptionBlockV2TextSettings.json": "./dist/utils/offerOptionBlockV2TextSettings.json"
+    "./utils/offerOptionBlockV2TextSettings.json": "./dist/utils/offerOptionBlockV2TextSettings.json",
+    "./utils/warrantyBlockV2TextSettings.json": "./dist/utils/warrantyBlockV2TextSettings.json"
   },
   "files": [
     "dist",
     "README.md",
     "docs/offer-option-block-v2.md",
-    "examples/offerOptionBlockV2"
+    "examples/offerOptionBlockV2",
+    "docs/component-workspace.md",
+    "docs/warranty-block-v2.md"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
@@ -26,7 +29,19 @@
     "preversion": "npm run typecheck && npm run build",
     "release:patch": "npm run preversion && npm version patch && git push origin main --follow-tags",
     "release:minor": " npm run preversion && npm version minor && git push origin main --follow-tags",
-    "release:major": "npm run preversion && npm version major && git push origin main --follow-tags"
+    "release:major": "npm run preversion && npm version major && git push origin main --follow-tags",
+    "dev": "node scripts/dev.mjs",
+    "dev:preview": "node scripts/dev.mjs --preview",
+    "dev:standalone": "node scripts/dev.mjs --standalone",
+    "test": "pnpm run build && pnpm --dir tools/resizing-tool test --runInBand",
+    "build:resizer": "pnpm run build && pnpm --dir tools/resizing-tool run build:webpack",
+    "build:preview": "pnpm run build && pnpm --dir tools/resizing-tool exec webpack --env preview --mode production",
+    "check": "pnpm test && pnpm run typecheck:resizer && pnpm --dir tools/resizing-tool run build:webpack && pnpm --dir tools/resizing-tool exec webpack --env preview --mode production",
+    "typecheck:resizer": "pnpm --dir tools/resizing-tool run typecheck",
+    "deploy": "npm --prefix tools/resizing-tool run deploy",
+    "start": "node scripts/dev.mjs",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
   "peerDependencies": {
     "@emotion/react": ">=11",
@@ -43,8 +58,10 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "html-react-parser": "^1.4.1",
+    "prettier": "^3.9.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "typescript": "^6.0.2"
-  }
+  },
+  "packageManager": "pnpm@10.11.1"
 }

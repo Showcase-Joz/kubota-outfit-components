@@ -100,7 +100,7 @@ const OfferBlockWrapper = styled.div`
     clamp(0.65em, calc(-0.875rem + 7.333cqi), 8.5rem)
   );
   font-family: var(--font-family-inter-default, sans-serif);
-  color: var(--color-orange, #ff6600);
+  color: var(--color-orange, #dc4405);
 
   .amount-block-wrapper {
     grid-area: amount;
@@ -112,7 +112,7 @@ const OfferBlockWrapper = styled.div`
     column-gap: 0.08em;
     max-width: 100%;
 
-    color: var(--color-orange, #ff6600);
+    color: var(--color-orange, #dc4405);
     font-family: var(--font-family-inter-default, sans-serif);
     .currency-symbol,
     .term-frequency {

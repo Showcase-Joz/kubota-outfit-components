@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "src": "dist/jolyon-demo-resizing_tool.js",
+      "dist": "jolyon-demo-resizing_tool.js"
+    },
+    {
+      "src": "dist/jolyon-demo-resizing_tool.js.map",
+      "dist": "jolyon-demo-resizing_tool.js.map"
+    },
+    {
+      "src": "public/importmap.json",
+      "dist": "importmap.json"
+    },
+    {
+      "src": "public/index.html",
+      "dist": "index.html"
+    },
+    {
+      "src": "public/templates.js",
+      "dist": "templates.js"
+    },
+    {
+      "src": "README.md",
+      "dist": "README.md"
+    },
+    {
+      "src": "public/inputs.json",
+      "dist": "inputs.json"
+    }
+  ]
+}

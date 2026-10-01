@@ -1,0 +1,179 @@
+{
+  "print": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "tractru": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "web-banner": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "textfit": false
+    },
+    "discountText": {
+      "textfit": false
+    },
+    "warrantyText": {
+      "textfit": false
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "300x600": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 1,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": true,
+      "min": 85,
+      "max": 100
+    },
+    "discountText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "warrantyText": {
+      "lines": 1,
+      "textfit": false
+    },
+    "serviceType": {
+      "lines": 2,
+      "textfit": false
+    }
+  },
+  "160x600": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 1,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": true,
+      "min": 85,
+      "max": 100
+    },
+    "discountText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "warrantyText": {
+      "lines": 1,
+      "textfit": false,
+      "withoutServiceType": {
+        "lines": 2
+      }
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "300x250": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 1,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": true,
+      "min": 85,
+      "max": 100
+    },
+    "discountText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "warrantyText": {
+      "lines": 1,
+      "textfit": false,
+      "withoutServiceType": {
+        "lines": 2
+      }
+    },
+    "serviceType": {
+      "textfit": false
+    }
+  },
+  "728x90": {
+    "termLabels": {
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": true,
+      "min": 85,
+      "max": 100
+    },
+    "discountText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "warrantyText": {
+      "lines": 1,
+      "textfit": false,
+      "withoutServiceType": {
+        "lines": 3
+      }
+    },
+    "serviceType": {
+      "lines": 2,
+      "textfit": true,
+      "min": 85,
+      "max": 100
+    }
+  }
+}
