@@ -461,6 +461,8 @@ const WarrantyBlockV2Wrapper = styled.div`
         .offerDescription {
           .text-type--post-saving-amount {
             text-wrap-style: pretty;
+            max-inline-size: 26ch;
+            margin-inline: auto;
           }
         }
       }
