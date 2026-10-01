@@ -404,7 +404,7 @@ const WarrantyBlockV2Wrapper = styled.div`
           .offerDescription {
             .text-type--post-saving-amount {
               text-align: center;
-              max-inline-size: 19ch;
+              max-inline-size: 26ch;
               margin-inline: auto;
             }
           }
@@ -413,7 +413,7 @@ const WarrantyBlockV2Wrapper = styled.div`
       .warrantyContent {
         .serviceType {
           .text-type--service-type {
-            max-inline-size: 19ch;
+            max-inline-size: 26ch;
             margin-inline: auto;
           }
         }
