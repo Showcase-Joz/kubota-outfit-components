@@ -313,3 +313,27 @@ it("lets manual warranty settings override preset visibility limits and supports
   expect(limiter()).toHaveAttribute("data-min", "80");
   expect(JSON.stringify(warrantyBlockV2TextSettings)).toBe(originalSettings);
 });
+
+it.each([
+  ["orange-protection", ["Orange Protection", "Extended Warranty"]],
+  ["k-maintenance", ["K-MAINTENANCE", "Service on Us"]],
+])("groups the print %s service label into phrases without enabling fitting", (value, phrases) => {
+  const ids = { value_id: "service" };
+  const { container, rerender } = render(<WarrantyBlockV2
+    preset="print"
+    serviceType={{ value, ids }}
+  />);
+  const label = container.querySelector(".text-type--service-type");
+  expect([...label.querySelectorAll(".service-type-phrase")].map(node => node.textContent)).toEqual(phrases);
+  expect(label.textContent).toBe(phrases.join(" "));
+  expect(label.closest('[data-testid="limiter"]')).toHaveAttribute("data-textfit", "false");
+  fireEvent.click(label.querySelector(".service-type-phrase"));
+  expect(onInlineEditClick).toHaveBeenCalledWith(ids, expect.anything());
+
+  rerender(<WarrantyBlockV2 preset="300x600" serviceType={{ value, ids }} />);
+  expect(container.querySelector(".service-type-phrase")).toBeNull();
+  expect(container.querySelector(".text-type--service-type").textContent).toBe(phrases.join(" "));
+
+  rerender(<WarrantyBlockV2 preset="print" serviceType={{ value: "hide", ids }} />);
+  expect(container.querySelector(".serviceType")).toBeNull();
+});

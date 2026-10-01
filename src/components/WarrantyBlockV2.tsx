@@ -1100,17 +1100,123 @@ const WarrantyBlockV2Wrapper = styled.div`
         }
       }
       .serviceType {
+        max-width: 30ch;
         .text-type--service-type {
           font-size: 1rem;
           text-wrap: balance;
           text-wrap-style: balance;
+          .service-type-phrase {
+            display: inline-block;
+            max-inline-size: 100%;
+            vertical-align: top;
+          }
         }
       }
     }
   }
   &[data-preset="tractru"] {
     .warrantyBlockWrapper {
-      /* Preset-specific measured styles go here. */
+      padding: 1.88088rem 1.25394rem 1.88088rem 2.50781rem;
+    }
+    &[data-offer-mode="savings"],
+    &[data-offer-mode="discount"] {
+      .warrantyBlockWrapper {
+        grid-template-columns: max-content auto minmax(0, 1fr);
+        gap: 1.3rem;
+        .warrantyOfferContent {
+          gap: 0.8125rem;
+          .financingContent {
+            justify-self: start;
+            gap: 0.375rem;
+            .apr-wrapper {
+              .text-type--offerAPR,
+              .percentage {
+                font-size: 2.82131rem;
+                letter-spacing: -0.05644rem;
+              }
+            }
+            .term-labels {
+              font-size: 1.25rem;
+              text-wrap: balance;
+              text-wrap-style: balance;
+            }
+            :has(.apr-available) {
+              .term-labels {
+                width: 9ch;
+              }
+            }
+            :has(.apr-available.has-months),
+            :has(.apr-available.has-down-payment) {
+              .term-labels {
+                width: 17ch;
+              }
+            }
+            :has(.apr-available.has-months.has-down-payment) {
+              .term-labels {
+                width: 24ch;
+              }
+            }
+            :has(.apr-text) {
+              .term-labels {
+                width: fit-content;
+              }
+            }
+            :has(.apr-text.has-months) {
+              .term-labels {
+                width: 10.2ch;
+              }
+            }
+            :has(.apr-text.has-down-payment) {
+              .term-labels {
+                width: 11.5ch;
+              }
+            }
+            :has(.apr-text.has-months.has-down-payment) {
+              .term-labels {
+                width: 17ch;
+              }
+            }
+
+            :has(.apr-length--long + .apr-text.has-months.has-down-payment),
+            :has(.apr-length--long + .apr-text.has-down-payment),
+            :has(.apr-length--long + .apr-text.has-months),
+            :has(
+              .apr-length--short + .apr-available.has-months.has-down-payment
+            ) {
+              .apr-wrapper .text-type--offerAPR,
+              .percentage {
+                font-size: 2rem;
+              }
+              .term-labels {
+                text-align: start;
+              }
+            }
+          }
+          .offerContent {
+            grid-template-columns: minmax(auto, min-content);
+            .offerValue {
+              .savingContent {
+                gap: 0.375rem;
+                width: fit-content;
+                .text-type--pre-saving-amount {
+                  min-width: 6.5ch;
+                  font-size: 1rem;
+                }
+                .text-type--saving-amount {
+                  font-size: 2.25rem;
+                  letter-spacing: -0.045rem;
+                  ::after {
+                    font-size: 0.525rem;
+                  }
+                }
+              }
+            }
+            .offerDescription {
+              font-size: 0.8125rem;
+            }
+          }
+        }
+      }
     }
   }
   &[data-preset="web-banner"] {
@@ -1177,6 +1283,15 @@ export const WarrantyBlockV2 = (props: WarrantyBlockV2Props) => {
     ? warrantyBlockV2ServiceTypes[service as WarrantyBlockV2ServiceType]
     : "";
   const hasServiceType = hasContent(serviceLabel);
+  // These fixed print labels wrap between phrases even when the export engine
+  // does not apply CSS balancing. Other presets keep their existing markup.
+  const serviceContent =
+    preset === "print"
+      ? serviceLabel.replace(
+          /^(.+) (Extended Warranty|Service on Us)$/,
+          '<span class="service-type-phrase">$1</span> <span class="service-type-phrase">$2</span>'
+        )
+      : serviceLabel;
   const limits = (key: keyof WarrantyBlockV2TextSettings) => {
     const withoutServiceType = key === "warrantyText" && !hasServiceType;
     const settings = {
@@ -1357,7 +1472,10 @@ export const WarrantyBlockV2 = (props: WarrantyBlockV2Props) => {
           {hasServiceType && (
             <div className="serviceType">
               <TextElement
-                destructedProp={{ ...fields.serviceType, value: serviceLabel }}
+                destructedProp={{
+                  ...fields.serviceType,
+                  value: serviceContent,
+                }}
                 dynamicClassName="service-type"
                 {...limits("serviceType")}
               />
