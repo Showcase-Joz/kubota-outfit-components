@@ -6,7 +6,7 @@
     "savingAmountPostText": {
       "lines": 2,
       "textfit": true,
-      "min": 95,
+      "min": 90,
       "max": 100
     }
   },

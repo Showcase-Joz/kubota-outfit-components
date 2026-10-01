@@ -514,17 +514,14 @@ const OfferOptionBlockV2Wrapper = styled.div`
       .offerOptionContent-bottom {
         font-size: 0.875rem;
         line-height: 1.1;
+        .text-type--post-saving-amount {
+          white-space: normal;
+          letter-spacing: unset;
+        }
       }
     }
 
     &[data-has-savings="false"] {
-      .offerOptionContent {
-        .offerOptionContent-bottom {
-          .text-type--post-saving-amount {
-            white-space: normal;
-          }
-        }
-      }
     }
   }
 
