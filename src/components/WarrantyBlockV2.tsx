@@ -254,6 +254,9 @@ const WarrantyBlockV2Wrapper = styled.div`
       /* The shorthand also works in Chromium before text-wrap-style support. */
       text-wrap: balance;
       text-align: start;
+      white-space: normal;
+      letter-spacing: unset;
+      font-kerning: none;
     }
   }
   .connectorWrapper {
@@ -1201,24 +1204,55 @@ const WarrantyBlockV2Wrapper = styled.div`
                 width: fit-content;
                 .text-type--pre-saving-amount {
                   min-width: 6.5ch;
-                  font-size: 1rem;
+                  font-size: 1.25rem;
                 }
                 .text-type--saving-amount {
-                  font-size: 2.25rem;
-                  letter-spacing: -0.045rem;
+                  font-size: 2.82131rem;
+                  letter-spacing: -0.05644rem;
                   ::after {
-                    font-size: 0.525rem;
+                    font-size: 0.75rem;
                   }
                 }
               }
             }
             .offerDescription {
-              font-size: 0.8125rem;
+              font-size: 1.125rem;
               .text-type--post-saving-amount {
-                font-size: 1.125rem;
-                text-wrap: pretty;
-                text-wrap-style: pretty;
+                text-wrap: balance;
+                text-wrap-style: balance;
               }
+            }
+          }
+        }
+      }
+      .connectorWrapper {
+        gap: 0.77063rem;
+        .connector-line {
+          width: 0.09631rem;
+          height: 3.652rem;
+        }
+        .text-type--connectorLines {
+          font-size: 1.17756rem;
+        }
+      }
+      .warrantyContent {
+        gap: 0.3135rem;
+        .warrantyHeading {
+          .text-type--warranty-text {
+            font-size: 2.97806rem;
+            letter-spacing: -0.05956rem;
+          }
+        }
+        .serviceType {
+          max-width: 35ch;
+          .text-type--service-type {
+            font-size: 1.25rem;
+            text-wrap: balance;
+            text-wrap-style: balance;
+            .service-type-phrase {
+              display: inline-block;
+              max-inline-size: 100%;
+              vertical-align: top;
             }
           }
         }

@@ -32,16 +32,24 @@
       "textfit": false
     },
     "savingAmountPreText": {
+      "lines": 2,
       "textfit": false
     },
     "savingAmountPostText": {
-      "textfit": false
+      "lines": 2,
+      "textfit": false,
+      "min": 85,
+      "max": 100
     },
     "discountText": {
       "textfit": false
     },
     "warrantyText": {
-      "textfit": false
+      "lines": 1,
+      "textfit": false,
+      "withoutServiceType": {
+        "lines": 3
+      }
     },
     "serviceType": {
       "textfit": false
