@@ -724,30 +724,90 @@ const WarrantyBlockV2Wrapper = styled.div`
           }
         }
       }
+    }
 
-      .connectorWrapper {
+    &[data-offer-mode="discount"] .warrantyBlockWrapper {
+      grid-template-rows: auto max-content auto;
+      gap: 0.4rem;
+      .warrantyOfferContent {
         gap: 0.3125rem;
-        padding-top: 0.125rem;
-        .connector-line {
-          width: 2.9375rem;
-          height: 0.03838rem;
+        .financingContent {
+          grid-template-columns: minmax(0, 1fr) auto;
+          :has(.apr-text.has-months.has-down-payment),
+          :has(.apr-available.has-down-payment),
+          :has(.apr-available.has-months) {
+            gap: 0.3125rem;
+          }
+          .term-labels {
+            text-align: start;
+          }
+
+          :has(.apr-length--long + .apr-text.has-months.has-down-payment),
+          :has(.apr-length--long + .apr-text.has-down-payment),
+          :has(.apr-length--long + .apr-text.has-months),
+          :has(
+            .apr-length--short + .apr-available.has-months.has-down-payment
+          ) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0.125rem;
+            .term-labels {
+              text-align: center;
+            }
+          }
         }
-        .text-type--connectorLines {
-          font-size: 0.5625rem;
+
+        .offerContent {
+          .offerValue {
+            .text-type--discount-text {
+              font-size: 0.9rem;
+              letter-spacing: -0.0275rem;
+              justify-self: center;
+              width: 9.5rem;
+            }
+          }
+        }
+        .offerDescription {
+          .text-type--post-saving-amount {
+            font-size: 0.45rem;
+            text-wrap-style: pretty;
+          }
         }
       }
       .warrantyContent {
-        gap: 0.0625rem;
         .warrantyHeading {
           .text-type--warranty-text {
-            font-size: 1.25rem;
-            letter-spacing: -0.0275rem;
+            font-size: 1.35rem;
           }
         }
         .serviceType {
           .text-type--service-type {
-            font-size: 0.51rem;
+            font-size: 0.55rem;
           }
+        }
+      }
+    }
+    .connectorWrapper {
+      gap: 0.3125rem;
+      padding-top: 0.125rem;
+      .connector-line {
+        width: 2.9375rem;
+        height: 0.03838rem;
+      }
+      .text-type--connectorLines {
+        font-size: 0.5625rem;
+      }
+    }
+    .warrantyContent {
+      gap: 0.0625rem;
+      .warrantyHeading {
+        .text-type--warranty-text {
+          font-size: 1.25rem;
+          letter-spacing: -0.0275rem;
+        }
+      }
+      .serviceType {
+        .text-type--service-type {
+          font-size: 0.51rem;
         }
       }
     }
