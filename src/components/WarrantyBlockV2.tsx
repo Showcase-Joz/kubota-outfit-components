@@ -1116,7 +1116,7 @@ const WarrantyBlockV2Wrapper = styled.div`
   }
   &[data-preset="tractru"] {
     .warrantyBlockWrapper {
-      padding: 1.88088rem 1.25394rem 1.88088rem 2.50781rem;
+      padding: 0.9375rem 1.25394rem 0.9375rem 2.50781rem;
     }
     &[data-offer-mode="savings"],
     &[data-offer-mode="discount"] {
@@ -1194,9 +1194,10 @@ const WarrantyBlockV2Wrapper = styled.div`
           }
           .offerContent {
             grid-template-columns: minmax(auto, min-content);
+            gap: 0.6875rem;
             .offerValue {
               .savingContent {
-                gap: 0.375rem;
+                gap: 0.35rem;
                 width: fit-content;
                 .text-type--pre-saving-amount {
                   min-width: 6.5ch;
@@ -1213,6 +1214,11 @@ const WarrantyBlockV2Wrapper = styled.div`
             }
             .offerDescription {
               font-size: 0.8125rem;
+              .text-type--post-saving-amount {
+                font-size: 1.125rem;
+                text-wrap: pretty;
+                text-wrap-style: pretty;
+              }
             }
           }
         }

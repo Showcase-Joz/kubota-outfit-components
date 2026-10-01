@@ -517,6 +517,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
         .text-type--post-saving-amount {
           white-space: normal;
           letter-spacing: unset;
+          font-kerning: none;
         }
       }
     }
