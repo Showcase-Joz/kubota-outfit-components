@@ -120,16 +120,25 @@
       "textfit": false
     },
     "savingAmountPreText": {
+      "lines": 1,
       "textfit": false
     },
     "savingAmountPostText": {
-      "textfit": false
+      "lines": 2,
+      "textfit": true,
+      "min": 85,
+      "max": 100
     },
     "discountText": {
+      "lines": 2,
       "textfit": false
     },
     "warrantyText": {
-      "textfit": false
+      "lines": 1,
+      "textfit": false,
+      "withoutServiceType": {
+        "lines": 2
+      }
     },
     "serviceType": {
       "textfit": false
@@ -140,19 +149,30 @@
       "textfit": false
     },
     "savingAmountPreText": {
+      "lines": 2,
       "textfit": false
     },
     "savingAmountPostText": {
-      "textfit": false
+      "lines": 2,
+      "textfit": true,
+      "min": 85,
+      "max": 100
     },
     "discountText": {
       "textfit": false
     },
     "warrantyText": {
-      "textfit": false
+      "lines": 1,
+      "textfit": false,
+      "withoutServiceType": {
+        "lines": 3
+      }
     },
     "serviceType": {
-      "textfit": false
+      "lines": 2,
+      "textfit": true,
+      "min": 85,
+      "max": 100
     }
   }
 }
