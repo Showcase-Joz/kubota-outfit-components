@@ -723,6 +723,7 @@ const WarrantyBlockV2Wrapper = styled.div`
     }
 
     &[data-offer-mode="discount"] .warrantyBlockWrapper {
+      padding: 0.75rem 0.4rem 1rem 0.5rem;
       gap: 0.4rem;
       .warrantyOfferContent {
         gap: 0.3125rem;
