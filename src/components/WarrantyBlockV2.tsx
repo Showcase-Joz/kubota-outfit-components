@@ -465,6 +465,7 @@ const WarrantyBlockV2Wrapper = styled.div`
         .offerContent {
           .offerValue {
             justify-items: center;
+            width: 100%;
             .text-type--discount-text {
               font-size: 0.9rem;
               letter-spacing: -0.0275rem;
