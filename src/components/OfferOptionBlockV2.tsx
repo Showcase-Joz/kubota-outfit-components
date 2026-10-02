@@ -344,6 +344,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
         }
 
         .term-labels {
+          text-wrap: pretty;
           text-wrap-style: pretty;
           text-align: center;
           justify-self: center;
@@ -463,6 +464,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
       :has(.apr-text.has-down-payment) {
         .term-labels {
           width: 12ch;
+          text-wrap: pretty;
           text-wrap-style: pretty;
         }
       }
@@ -556,6 +558,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
         font-size: 1.875rem;
         line-height: 1.1;
         text-align: left;
+        text-wrap: balance;
         text-wrap-style: balance;
       }
       :has(.apr-available) {
@@ -571,17 +574,20 @@ const OfferOptionBlockV2Wrapper = styled.div`
       :has(.apr-available.has-down-payment) {
         .term-labels {
           width: 12.7ch;
+          text-wrap: pretty;
           text-wrap-style: pretty;
+          
         }
       }
       :has(.apr-available.has-down-payment.has-months) {
         .term-labels {
-          width: 13.5ch;
+          width: 17ch;
         }
       }
       :has(.apr-text.has-down-payment.has-months) {
         .term-labels {
           width: 11.5ch;
+          text-wrap: balance;
           text-wrap-style: balance;
         }
       }
@@ -593,6 +599,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
       :has(.apr-text.has-down-payment) {
         .term-labels {
           width: 11.4ch;
+          text-wrap: pretty;
           text-wrap-style: pretty;
         }
       }
@@ -700,6 +707,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
       }
       .offerOptionContent-bottom {
         font-size: 1.01881rem;
+        text-wrap: balance;
         text-wrap-style: balance;
       }
     }
@@ -727,6 +735,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
       .term-labels {
         line-height: 1.1;
         font-size: 0.625rem;
+        text-wrap: pretty;
         text-wrap-style: pretty;
       }
     }
@@ -765,6 +774,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
       }
       .term-labels {
         width: 11.2ch;
+        text-wrap: balance;
         text-wrap-style: balance;
       }
     }
@@ -961,6 +971,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
       font-size: 0.625rem;
       .text-type--post-saving-amount {
         line-height: 1.1;
+        text-wrap: balance;
         text-wrap-style: balance;
       }
     }
