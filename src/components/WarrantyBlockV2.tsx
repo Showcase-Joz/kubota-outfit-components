@@ -489,6 +489,7 @@ const WarrantyBlockV2Wrapper = styled.div`
     .warrantyContent {
       gap: 0.0625rem;
       .warrantyHeading {
+        justify-items: center;
         .text-type--warranty-text {
           letter-spacing: -0.0275rem;
         }
