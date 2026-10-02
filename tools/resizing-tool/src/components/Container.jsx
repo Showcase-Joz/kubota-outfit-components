@@ -21,7 +21,9 @@ const Workspace = styled.main`
     flex-wrap: wrap;
     gap: 12px;
     margin-bottom: 16px;
-    font: 14px/1.5 Arial, sans-serif;
+    font:
+      14px/1.5 Arial,
+      sans-serif;
     h1 {
       font-size: 18px;
       font-weight: 700;
@@ -53,7 +55,9 @@ const Workspace = styled.main`
   }
   .comparison-note {
     margin-top: 14px;
-    font: 12px/1.5 Arial, sans-serif;
+    font:
+      12px/1.5 Arial,
+      sans-serif;
     color: #b9bec8;
   }
   @media (max-width: 600px) {
@@ -141,7 +145,7 @@ export const Container = ({ inputs = {} }) => {
               // image="https://files.outfit.io/media_library_items/696540/Frame%25207.png"
               // offerOptionBlockV2TextSettings={rawOfferOptionBlockV2TextSettings} ^^
 
-              show
+              hide
               offset={false}
             />
           )}
