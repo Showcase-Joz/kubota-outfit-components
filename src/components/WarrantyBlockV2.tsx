@@ -468,7 +468,7 @@ const WarrantyBlockV2Wrapper = styled.div`
               font-size: 0.9rem;
               letter-spacing: -0.0275rem;
               justify-self: center;
-              width: 9.5rem;
+              /* width: 9.5rem; */
             }
           }
         }
