@@ -147,7 +147,9 @@
     },
     "discountText": {
       "lines": 2,
-      "textfit": false
+      "textfit": true,
+      "min": 95,
+      "max": 100
     },
     "warrantyText": {
       "lines": 1,
