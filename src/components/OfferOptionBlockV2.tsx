@@ -615,7 +615,7 @@ const OfferOptionBlockV2Wrapper = styled.div`
     .offerOptionContent {
       gap: 0.9375rem;
       .offerOptionContent-top {
-        grid-template-columns: 9ch max-content;
+        grid-template-columns: 9.5ch max-content;
         justify-content: center;
         align-items: center;
         gap: 0.80938rem;
