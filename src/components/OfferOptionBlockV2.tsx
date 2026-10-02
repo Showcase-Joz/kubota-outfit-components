@@ -205,6 +205,11 @@ const OfferOptionBlockV2Wrapper = styled.div`
   &.has-children {
     grid-template-rows: minmax(0, 1fr) auto;
   }
+  [class*="text-type--"] {
+    white-space: normal;
+    letter-spacing: unset;
+    font-kerning: none;
+  }
   .offerOptionChildren {
     min-width: 0;
   }

@@ -157,6 +157,11 @@ const WarrantyBlockV2Wrapper = styled.div`
   .serviceType {
     min-width: 0;
   }
+  [class*="text-type--"] {
+    white-space: normal;
+    letter-spacing: unset;
+    font-kerning: none;
+  }
 
   /* Print, Tractru and leaderboard: offer | connector | warranty/service. */
   .warrantyBlockWrapper {
@@ -1125,7 +1130,7 @@ const WarrantyBlockV2Wrapper = styled.div`
     &[data-offer-mode="discount"] {
       .warrantyBlockWrapper {
         grid-template-columns: max-content auto minmax(0, 1fr);
-        gap: 1.3rem;
+        gap: 1.7rem;
         .warrantyOfferContent {
           gap: 0.8125rem;
           .financingContent {
