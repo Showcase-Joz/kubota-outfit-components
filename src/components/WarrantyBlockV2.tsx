@@ -1267,13 +1267,148 @@ const WarrantyBlockV2Wrapper = styled.div`
   }
   &[data-preset="web-banner"] {
     .warrantyBlockWrapper {
-      /* Provisional structure; wide artwork still needed. */
+      padding: 0 3.25rem 0 1rem;
+      gap: 1.5rem;
     }
-    .offerContent {
-      text-align: center;
+
+    &[data-offer-mode="savings"],
+    &[data-offer-mode="discount"] {
+      .warrantyOfferContent {
+        gap: 0.41913rem;
+        .financingContent {
+          gap: 0.41913rem;
+          .apr-wrapper {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 4.6875rem;
+              letter-spacing: -0.0275rem;
+            }
+          }
+          .term-labels {
+            font-size: 1.875rem;
+          }
+
+          :has(.apr-available) {
+            .term-labels {
+              width: 9ch;
+            }
+          }
+          :has(.apr-available.has-months),
+          :has(.apr-available.has-down-payment) {
+            .term-labels {
+              width: 17ch;
+            }
+          }
+          :has(.apr-available.has-months.has-down-payment) {
+            .term-labels {
+              width: 24ch;
+              font-size: 1.3rem;
+            }
+          }
+          :has(.apr-text) {
+            .term-labels {
+              width: fit-content;
+            }
+          }
+          :has(.apr-text.has-months) {
+            .term-labels {
+              width: 10.2ch;
+            }
+          }
+          :has(.apr-text.has-down-payment) {
+            .term-labels {
+              width: 11.5ch;
+            }
+          }
+          :has(.apr-text.has-months.has-down-payment) {
+            .term-labels {
+              width: 17ch;
+            }
+          }
+
+          :has(.apr-length--long + .apr-text.has-down-payment),
+          :has(.apr-length--long + .apr-text.has-months) {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 4.1rem;
+            }
+          }
+          :has(.apr-length--long + .apr-text.has-months.has-down-payment) {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 4.1rem;
+            }
+            .term-labels {
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+
+      &[data-offer-mode="discount"] .warrantyOfferContent {
+      }
+
+      .offerContent {
+        text-align: center;
+        gap: 0.77156rem;
+        .offerValue {
+          .savingContent {
+            gap: 0.625rem;
+            justify-content: center;
+            .text-type--pre-saving-amount {
+              font-size: 1.875rem;
+              max-width: 6.5ch;
+              text-align: start;
+              text-wrap: balance;
+              text-wrap-style: balance;
+            }
+            .text-type--saving-amount {
+              font-size: 4.4rem;
+              /* letter-spacing: -0.09375rem; */
+            }
+          }
+        }
+        .offerDescription {
+          font-size: 1.5625rem;
+          .text-type--post-saving-amount {
+            text-align: center;
+          }
+        }
+      }
     }
-    .savingContent {
-      justify-content: center;
+    .connectorWrapper {
+      gap: 1.04781rem;
+      padding-top: 0.41913rem;
+      width: 28.5rem;
+      justify-self: center;
+      .connector-line {
+        width: 11.17094rem;
+        height: 0.12863rem;
+      }
+      .text-type--connectorLines {
+        font-size: 1.5625rem;
+      }
+    }
+    .warrantyContent {
+      gap: 0.20956rem;
+      .warrantyHeading {
+        .text-type--warranty-text {
+          font-size: 4.6875rem;
+          letter-spacing: -0.09375rem;
+        }
+      }
+      .serviceType {
+        .text-type--service-type {
+          font-size: 1.5625rem;
+          text-wrap: balance;
+          text-wrap-style: balance;
+          .service-type-phrase {
+            display: inline-block;
+            max-inline-size: 100%;
+            vertical-align: top;
+          }
+        }
+      }
     }
   }
 `;
