@@ -464,11 +464,13 @@ const WarrantyBlockV2Wrapper = styled.div`
 
         .offerContent {
           .offerValue {
+            justify-items: center;
             .text-type--discount-text {
               font-size: 0.9rem;
               letter-spacing: -0.0275rem;
               justify-self: center;
               width: 9.5rem;
+              justify-items: center;
             }
           }
         }
@@ -489,7 +491,6 @@ const WarrantyBlockV2Wrapper = styled.div`
     .warrantyContent {
       gap: 0.0625rem;
       .warrantyHeading {
-        justify-items: center;
         .text-type--warranty-text {
           letter-spacing: -0.0275rem;
         }
