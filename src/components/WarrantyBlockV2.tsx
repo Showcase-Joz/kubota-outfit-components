@@ -157,7 +157,8 @@ const WarrantyBlockV2Wrapper = styled.div`
   .serviceType {
     min-width: 0;
   }
-  [class*="text-type--"] {
+  [class*="text-type--"],
+  .service-type-phrase {
     white-space: normal;
     letter-spacing: unset;
     font-kerning: none;
