@@ -7,6 +7,20 @@ export { ImageBlock } from "./components/ImageBlock.js";
 export { HeadlineBlock } from "./components/HeadlineBlock.js";
 export { OfferOptionBlock } from "./components/OfferOptionBlock.js";
 export { TextBlock } from "./components/TextBlock.js";
+export {
+  Section179Block,
+  DEFAULT_SECTION179_PRESET,
+  defaultSection179BlockFallbackContent,
+  section179BlockTextSettings,
+} from "./components/Section179Block.js";
+export type {
+  Section179BlockField,
+  Section179BlockFallbackContent,
+  Section179BlockPreset,
+  Section179BlockProps,
+  Section179BlockTextLimits,
+  Section179BlockTextSettings,
+} from "./components/Section179Block.js";
 // Copyable scaffold; see docs/component-starter.md before making a new component.
 export {
   ComponentStarter,

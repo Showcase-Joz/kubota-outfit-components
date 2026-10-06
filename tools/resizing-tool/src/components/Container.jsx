@@ -4,12 +4,12 @@ import {
   ComponentStarter,
   OfferOptionBlockV2,
   WarrantyBlockV2,
+  Section179Block,
 } from "kubota-outfit-components";
 import { PreviewButtonCTA } from "./PreviewButtonCTA";
-import { Placeholder } from "@outfit.io/react";
 import dimensions from "../utils/dimension.json";
 import { previewComponents, resolveComponent } from "../utils/workspace";
-import { WarrantyPlaceholder } from "./WarrantyPlaceholder";
+import { ArtworkPlaceholder } from "./ArtworkPlaceholder";
 import { getStageSize, getPreviewScale } from "../utils/preview";
 
 const Workspace = styled.main`
@@ -75,7 +75,12 @@ export const Container = ({ inputs = {} }) => {
   const presetId = model.resolvePreset(inputs.aspect_selection?.value);
   const preset = dimensions[presetId];
   const dummyData = data[presetId];
-  const Block = component === "warranty" ? WarrantyBlockV2 : OfferOptionBlockV2;
+  const Block =
+    component === "section179"
+      ? Section179Block
+      : component === "warranty"
+        ? WarrantyBlockV2
+        : OfferOptionBlockV2;
   const mode = inputs.size_model?.value === "exact" ? "exact" : "aspect";
   const size = getStageSize(preset, mode);
   const stageRef = useRef(null);
@@ -130,30 +135,7 @@ export const Container = ({ inputs = {} }) => {
           data-mode={mode}
           style={size}
         >
-          {component === "componentStarter" ? null : component ===
-            "warranty" ? (
-            <WarrantyPlaceholder />
-          ) : (
-            <Placeholder
-              // image="https://files.outfit.io/media_library_items/696363/300x600.png"
-              // image="https://files.outfit.io/media_library_items/696550/Financing%252BTerm%252B_Stacked.png"
-              // image="https://files.outfit.io/media_library_items/696359/160x600.png"
-              // image="https://files.outfit.io/media_library_items/696551/Financing%252BTerm%252B_StackedNarrow.png"
-              // image="https://files.outfit.io/media_library_items/696361/300x250.png"
-              // image="https://files.outfit.io/media_library_items/696552/Financing%252BTerm%252B_StackedNarrow.png"
-              // image="https://files.outfit.io/media_library_items/696362/728x90.png"
-              // image="https://files.outfit.io/media_library_items/696553/Financing%252BTerm_WideNarrow.png"
-              // image="https://files.outfit.io/media_library_items/696364/tractru.png"
-              // image="https://files.outfit.io/media_library_items/696365/non-tractru.png"
-              // image="https://files.outfit.io/media_library_items/696532/Frame%25207%2520%25281%2529.png"
-              // image="https://files.outfit.io/media_library_items/696360/print-ad.png"
-              // image="https://files.outfit.io/media_library_items/696540/Frame%25207.png"
-              // offerOptionBlockV2TextSettings={rawOfferOptionBlockV2TextSettings} ^^
-
-              hide
-              offset={false}
-            />
-          )}
+          <ArtworkPlaceholder component={component} preset={presetId} />
           <div
             className="component-preview"
             style={{
@@ -183,6 +165,14 @@ export const Container = ({ inputs = {} }) => {
                 savingAmountPreText={inputs.savingAmountPreText}
                 savingAmount={inputs.savingAmount}
                 savingAmountPostText={inputs.savingAmountPostText}
+                {...(component === "section179"
+                  ? {
+                      section179connectorLinesText:
+                        inputs.section179connectorLinesText,
+                      section179Text: inputs.section179Text,
+                      section179PostText: inputs.section179PostText,
+                    }
+                  : {})}
                 {...(component === "warranty"
                   ? {
                       discountText: inputs.discountText,

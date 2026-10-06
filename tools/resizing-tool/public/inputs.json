@@ -15,6 +15,10 @@
           "value": "offer"
         },
         {
+          "label": "Section179Block V2",
+          "value": "section179"
+        },
+        {
           "label": "ComponentStarter",
           "value": "componentStarter"
         }
@@ -84,17 +88,6 @@
       ],
       "multi": false,
       "optional_text": false
-    }
-  },
-  {
-    "tag": "componentStarterPlaceholderText",
-    "type": "Variables::Text",
-    "custom_title": "Component starter placeholder",
-    "hint": "Sample content for ComponentStarter. Clear to hide the text.",
-    "position": 19,
-    "definition": {
-      "no_formatting": true,
-      "disable_inline_edit": false
     }
   },
   {
@@ -444,11 +437,114 @@
     }
   },
   {
+    "tag": "section179connectorLinesText",
+    "type": "Variables::Choice",
+    "custom_title": "Section 179 Connector Text",
+    "hint": "Joins savings to section 179 . Blank (no text) keeps the lines; Hide connector removes the divider.",
+    "position": 15,
+    "definition": {
+      "choices": [
+        {
+          "label": "Or",
+          "value": "or"
+        },
+        {
+          "label": "And",
+          "value": "and"
+        },
+        {
+          "label": "With",
+          "value": "with"
+        },
+        {
+          "label": "Plus",
+          "value": "plus"
+        },
+        {
+          "label": "From",
+          "value": "from"
+        },
+        {
+          "label": "At",
+          "value": "at"
+        },
+        {
+          "label": "Blank (no text)",
+          "value": "hide-text"
+        },
+        {
+          "label": "Hide connector",
+          "value": "hide-element"
+        }
+      ],
+      "multi": false,
+      "optional_text": false
+    }
+  },
+  {
+    "tag": "section179Text",
+    "type": "Variables::Text",
+    "custom_title": "Section 179 Description",
+    "hint": "Optional. Clear to hide. Max 2 lines.",
+    "position": 16,
+    "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
+      "no_formatting": true,
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
+    }
+  },
+  {
+    "tag": "section179PostText",
+    "type": "Variables::Text",
+    "custom_title": "Section 179 Post Text",
+    "hint": "Optional. Clear to hide. Max 1 line.",
+    "position": 17,
+    "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
+      "no_formatting": true,
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
+    }
+  },
+  {
     "tag": "showCTA",
     "type": "Variables::Choice",
     "custom_title": "Website banner CTA",
     "hint": "Only applies to the 584 \u00d7 600 website banner. The CTA occupies space inside the same component rectangle.",
-    "position": 15,
+    "position": 18,
     "definition": {
       "choices": [
         {
@@ -469,7 +565,36 @@
     "type": "Variables::Text",
     "custom_title": "CTA text",
     "hint": "Only used in the website-banner comparison.",
-    "position": 16,
+    "position": 19,
+    "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
+      "no_formatting": true,
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
+    }
+  },
+  {
+    "tag": "componentStarterPlaceholderText",
+    "type": "Variables::Text",
+    "custom_title": "Component starter placeholder",
+    "hint": "Sample content for ComponentStarter. Clear to hide the text.",
+    "position": 20,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,

@@ -13,12 +13,15 @@
     },
     "./utils/offerOptionBlockV2TextSettings.json": "./dist/utils/offerOptionBlockV2TextSettings.json",
     "./utils/warrantyBlockV2TextSettings.json": "./dist/utils/warrantyBlockV2TextSettings.json",
-    "./utils/componentStarterTextSettings.json": "./dist/utils/componentStarterTextSettings.json"
+    "./utils/componentStarterTextSettings.json": "./dist/utils/componentStarterTextSettings.json",
+    "./utils/Section179BlockTextSettings.json": "./dist/utils/Section179BlockTextSettings.json"
   },
   "files": [
     "dist",
     "README.md",
     "docs/component-starter.md",
+    "docs/section179-block.md",
+    "examples/Section179Block",
     "examples/componentStarter",
     "docs/offer-option-block-v2.md",
     "examples/offerOptionBlockV2",

@@ -89,8 +89,9 @@ minimal so you can build them yourself.
 | V2 text formatting, validation and inline editing | `src/components/sharedV2/TextElement.jsx` |
 | Preset line limits and text-fit settings | `src/utils/offerOptionBlockV2TextSettings.json` |
 | Public component/type exports | `src/index.ts` |
-| Artwork Placeholder and preview composition | `tools/resizing-tool/src/components/Container.jsx` |
-| Warranty artwork Placeholder | `tools/resizing-tool/src/components/WarrantyPlaceholder.jsx` |
+| Preview composition | `tools/resizing-tool/src/components/Container.jsx` |
+| Artwork URLs by component and dimension type | `tools/resizing-tool/src/utils/artwork.js` |
+| Shared artwork Placeholder renderer | `tools/resizing-tool/src/components/ArtworkPlaceholder.jsx` |
 | Warranty preview starting values | `tools/resizing-tool/src/dummy/warrantyData.js` |
 | Component rectangle dimensions | `tools/resizing-tool/src/utils/dimension.json` |
 | Preview input definitions | `tools/resizing-tool/public/inputs.json` |

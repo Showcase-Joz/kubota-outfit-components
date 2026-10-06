@@ -15,22 +15,22 @@
     "height": 600
   },
   "300x600": {
-    "label": "Digital ad 300 × 600",
+    "label": "Digital ad 300 x 600",
     "width": 300,
     "height": 164
   },
   "160x600": {
-    "label": "Digital ad 160 × 600",
+    "label": "Digital ad 160 x 600",
     "width": 160,
     "height": 198
   },
   "300x250": {
-    "label": "Digital ad 300 × 250",
+    "label": "Digital ad 300 x 250",
     "width": 144,
     "height": 194
   },
   "728x90": {
-    "label": "Digital ad 728 × 90",
+    "label": "Digital ad 728 x 90",
     "width": 240,
     "height": 90
   }

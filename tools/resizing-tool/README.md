@@ -9,9 +9,10 @@ preset block. Its starting sizes and spacing are provisional. See the
 [warranty guide](../../docs/warranty-block-v2.md) for the savings/discount switch,
 service choices, and component-owned text settings.
 
-Warranty artwork URLs go in `src/components/WarrantyPlaceholder.jsx`, using the
-same commented-image / `hide` / `offset={false}` workflow as the existing offer
-Placeholder in `Container.jsx`. Optional per-layout starting values go in
+Artwork URLs listed by component and dimension type go in
+`src/utils/artwork.js`. One `ArtworkPlaceholder` renders the selected image,
+using the same Outfit `hide`, `opacity` and `offset={false}` behaviour.
+Optional per-layout starting values go in
 `src/dummy/warrantyData.js`.
 
 The new Outfit fields are listed in `public/inputs.json`. Run `npm run deploy`
@@ -64,12 +65,34 @@ component to the available width without changing its layout or line wrapping.
 
 ## Artwork comparison
 
-Keep artwork image URLs in the existing `<Placeholder>` block in
-`src/components/Container.jsx`. Uncomment one image at a time and remove `hide`
-(or use `hide={false}`) to show it. An optional `opacity={0.3}` makes comparison
-easier. Export artwork to the component rectangle without its angled edge.
+Edit `src/utils/artwork.js`. Under each component, the dimension types are listed
+explicitly: `print`, `tractru`, `web-banner`, `300x600`, `160x600`, `300x250` and
+`728x90`. Put the image URL directly in the matching section. Existing offer and
+warranty URLs are kept as commented image lines above their sections, ready for
+you to sort. All sections start blank and hidden.
 
-The same Container and artwork block are used by Outfit and the local comparison
+For example, under `offer`:
+
+```js
+"300x600": {
+  image: "https://files.outfit.io/media_library_items/696363/300x600.png",
+  hide: false,
+  opacity: 0.3,
+},
+```
+
+Keep alternative `image` lines commented out within the same dimension section;
+uncomment one at a time to compare different treatments. Set `hide: true` to hide
+the overlay, or adjust `opacity` from 0 to 1. Changing the component or size
+automatically uses its own section. An empty image renders nothing.
+
+For a new component, copy the `componentStarter` entry and
+use the same key as its registration in `src/utils/workspace.js`. No new renderer
+or condition in `Container.jsx` is needed. Export artwork to the component
+rectangle without its angled edge; `offset={false}` remains fixed in the shared
+`src/components/ArtworkPlaceholder.jsx`.
+
+The same Container and artwork configuration are used by Outfit and the local comparison
 page. Final typography must be checked with the brand fonts supplied by Outfit.
 
 ## Inputs and starting values

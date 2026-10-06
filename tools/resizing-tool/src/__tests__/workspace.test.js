@@ -135,3 +135,38 @@ it("shows the additional warranty fields only for warranty and CTA fields only o
     isPreviewInputVisible("callToActionText", "warranty", "web-banner")
   ).toBe(true);
 });
+
+it("tracks Section 179 inputs separately and exposes campaign fields only for its preview", () => {
+  const { section179Preview } = require("../utils/workspace");
+  const field = "section179Text";
+  let state = section179Preview.readPreviewState();
+  expect(state.preset).toBe("print");
+  state = section179Preview.setPreviewInput(state, field, "");
+  window.localStorage.setItem(
+    section179Preview.storageKey,
+    JSON.stringify(state)
+  );
+  expect(section179Preview.readPreviewInputs()[field].value).toBe("");
+  state = section179Preview.setPreviewInput(
+    state,
+    "aspect_selection",
+    "300x600"
+  );
+  expect(section179Preview.getPreviewInputs(state)[field].value).toBe(
+    "Section 179 Tax Deduction"
+  );
+  for (const tag of [
+    "section179connectorLinesText",
+    field,
+    "section179PostText",
+  ]) {
+    expect(definitions.some((input) => input.tag === tag)).toBe(true);
+    expect(isPreviewInputVisible(tag, "section179", "print")).toBe(true);
+    expect(isPreviewInputVisible(tag, "offer", "print")).toBe(false);
+    expect(isPreviewInputVisible(tag, "warranty", "print")).toBe(false);
+  }
+  expect(isPreviewInputVisible("warrantyText", "section179", "print")).toBe(
+    false
+  );
+  expect(warrantyPreview.readPreviewInputs().warrantyText.value).toBeDefined();
+});

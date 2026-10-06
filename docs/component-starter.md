@@ -82,7 +82,10 @@ For the Outfit sidebar to expose the new selector choice and sample field, use
 the existing root `npm run deploy` workflow to upload the nested resizer inputs,
 then refresh Outfit. No upload has been performed as part of this setup.
 The local comparison page reads the new inputs directly. There is no Section 179
-comparison image yet; add your reference via the existing Placeholder workflow.
+comparison image yet; add its URL to the matching dimension section in
+`tools/resizing-tool/src/utils/artwork.js`. Copy the `componentStarter` entry under
+your new component's preview registration key when renaming it. The shared
+`ArtworkPlaceholder` renders it automatically; no separate placeholder file is needed.
 `examples/componentStarter/usage.jsx` shows the equivalent template wiring.
 
 The parent template owns component dimensions, fonts, decorative edges, legal

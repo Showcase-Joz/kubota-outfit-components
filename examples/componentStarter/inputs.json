@@ -6,8 +6,26 @@
     "hint": "Replace this sample field when building your component. Clear to hide the text.",
     "position": 1,
     "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
       "no_formatting": true,
-      "disable_inline_edit": false
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
     }
   }
 ]

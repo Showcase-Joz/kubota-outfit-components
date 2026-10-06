@@ -287,8 +287,10 @@ The wrapper exposes `data-preset` and `data-offer-mode` (`savings`, `discount`,
 `empty`), and the warranty region exposes `data-has-service-type` and
 `data-has-warranty-text` for its layout rules.
 
-Keep artwork URLs in `tools/resizing-tool/src/components/WarrantyPlaceholder.jsx`,
-uncomment one `image` prop and remove `hide` to display it. Run `npm run deploy`
+Keep artwork URLs under `artwork.warranty` in
+`tools/resizing-tool/src/utils/artwork.js`. Put the URL directly in the `image`
+field of the matching dimension section and set `hide: false` to display it. The
+shared `ArtworkPlaceholder` handles all components. Run `npm run deploy`
 from the root to upload the nested resizing template and its inputs to the testing
 workspace. This is separate from releasing the component library or deploying a
 production template. Run `pnpm check` before committing design changes; see the

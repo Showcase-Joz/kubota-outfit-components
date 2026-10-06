@@ -1,0 +1,156 @@
+{
+  "print": {
+    "termLabels": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179Text": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179PostText": {
+      "lines": 2,
+      "textfit": false
+    }
+  },
+  "tractru": {
+    "termLabels": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179Text": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179PostText": {
+      "lines": 2,
+      "textfit": false
+    }
+  },
+  "web-banner": {
+    "termLabels": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179Text": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179PostText": {
+      "lines": 2,
+      "textfit": false
+    }
+  },
+  "300x600": {
+    "termLabels": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179Text": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179PostText": {
+      "lines": 2,
+      "textfit": false
+    }
+  },
+  "160x600": {
+    "termLabels": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179Text": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179PostText": {
+      "lines": 2,
+      "textfit": false
+    }
+  },
+  "300x250": {
+    "termLabels": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179Text": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179PostText": {
+      "lines": 2,
+      "textfit": false
+    }
+  },
+  "728x90": {
+    "termLabels": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPostText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179Text": {
+      "lines": 2,
+      "textfit": false
+    },
+    "section179PostText": {
+      "lines": 2,
+      "textfit": false
+    }
+  }
+}
