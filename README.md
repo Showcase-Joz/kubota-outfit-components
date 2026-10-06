@@ -2,6 +2,13 @@
 
 Kubota-specific reusable UI components for Outfit template projects.
 
+## Starting a new component
+
+Copy [ComponentStarter](src/components/ComponentStarter.tsx) and its companion
+settings/examples using the [copy-and-rename guide](docs/component-starter.md).
+It is a bare-bones scaffold with one Outfit-editable placeholder and empty
+print/digital CSS sections, ready for you to build your own markup and styles.
+
 ## Local component development
 
 The resizing tool is included in `tools/resizing-tool` and imports the shared

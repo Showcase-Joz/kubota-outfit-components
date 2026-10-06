@@ -37,8 +37,11 @@ export const createPreviewModel = ({
       : defaultPreset;
   const getDefaultPreviewInputs = (preset = defaultPreset) => {
     const activePreset = resolvePreset(preset);
-    const { backgroundColor, buttonText, ...content } =
-      getDefaults(activePreset);
+    const {
+      backgroundColor = { value: "" },
+      buttonText = { value: "" },
+      ...content
+    } = getDefaults(activePreset);
     return {
       ...content,
       aspect_selection: { value: activePreset },

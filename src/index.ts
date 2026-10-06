@@ -7,6 +7,19 @@ export { ImageBlock } from "./components/ImageBlock.js";
 export { HeadlineBlock } from "./components/HeadlineBlock.js";
 export { OfferOptionBlock } from "./components/OfferOptionBlock.js";
 export { TextBlock } from "./components/TextBlock.js";
+// Copyable scaffold; see docs/component-starter.md before making a new component.
+export {
+  ComponentStarter,
+  componentStarterTextSettings,
+  defaultComponentStarterFallbackContent,
+} from "./components/ComponentStarter.js";
+export type {
+  ComponentStarterField,
+  ComponentStarterFallbackContent,
+  ComponentStarterPreset,
+  ComponentStarterProps,
+  ComponentStarterTextSettings,
+} from "./components/ComponentStarter.js";
 export type {
   WarrantyBlockFallbackContent,
   WarrantyBlockField,

@@ -1,8 +1,52 @@
 import { offerPreview } from "../utils/preview";
-import { warrantyPreview, isPreviewInputVisible } from "../utils/workspace";
+import {
+  componentStarterPreview,
+  warrantyPreview,
+  isPreviewInputVisible,
+} from "../utils/workspace";
+import definitions from "../../public/inputs.json";
 import { warrantyData } from "../dummy/warrantyData";
 
 beforeEach(() => window.localStorage.clear());
+
+it("keeps starter edits per layout and exposes only its working controls", () => {
+  const tag = "componentStarterPlaceholderText";
+  let state = componentStarterPreview.readPreviewState();
+  expect(state.preset).toBe("print");
+  state = componentStarterPreview.setPreviewInput(state, tag, "");
+  window.localStorage.setItem(
+    componentStarterPreview.storageKey,
+    JSON.stringify(state)
+  );
+  expect(componentStarterPreview.readPreviewInputs()[tag].value).toBe("");
+  state = componentStarterPreview.setPreviewInput(
+    state,
+    "aspect_selection",
+    "300x250"
+  );
+  expect(componentStarterPreview.getPreviewInputs(state)[tag].value).toBe(
+    "Component starter"
+  );
+  state = componentStarterPreview.setPreviewInput(
+    state,
+    "aspect_selection",
+    "print"
+  );
+  expect(componentStarterPreview.getPreviewInputs(state)[tag].value).toBe("");
+  expect(offerPreview.readPreviewInputs().savingAmount.value).toBeDefined();
+  expect(warrantyPreview.readPreviewInputs().serviceType.value).toBe(
+    "k-maintenance"
+  );
+  expect(
+    definitions
+      .filter((input) =>
+        isPreviewInputVisible(input.tag, "componentStarter", "print")
+      )
+      .map((input) => input.tag)
+  ).toEqual(["aspect_selection", "size_model", tag]);
+  expect(isPreviewInputVisible(tag, "offer", "print")).toBe(false);
+  expect(isPreviewInputVisible(tag, "warranty", "print")).toBe(false);
+});
 
 it("opens warranty at 300x600 with the approved available/maintenance baseline", () => {
   const inputs = warrantyPreview.readPreviewInputs();

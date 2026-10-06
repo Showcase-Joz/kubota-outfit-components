@@ -13,6 +13,10 @@
         {
           "label": "OfferOptionBlock V2",
           "value": "offer"
+        },
+        {
+          "label": "ComponentStarter",
+          "value": "componentStarter"
         }
       ],
       "multi": false,
@@ -80,6 +84,17 @@
       ],
       "multi": false,
       "optional_text": false
+    }
+  },
+  {
+    "tag": "componentStarterPlaceholderText",
+    "type": "Variables::Text",
+    "custom_title": "Component starter placeholder",
+    "hint": "Sample content for ComponentStarter. Clear to hide the text.",
+    "position": 19,
+    "definition": {
+      "no_formatting": true,
+      "disable_inline_edit": false
     }
   },
   {

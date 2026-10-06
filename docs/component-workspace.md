@@ -76,6 +76,11 @@ library version or update the separate production template repositories.
 
 ## Where to edit
 
+For a new component, start with [ComponentStarter](component-starter.md).
+It is also selectable in the nested preview, with its own saved inputs and the
+existing component rectangles. Its markup and preset styles are intentionally
+minimal so you can build them yourself.
+
 | Concern | File in this repository |
 | --- | --- |
 | Offer layout, CSS, defaults and rendering | `src/components/OfferOptionBlockV2.tsx` |

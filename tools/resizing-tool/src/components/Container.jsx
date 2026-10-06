@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { OfferOptionBlockV2, WarrantyBlockV2 } from "kubota-outfit-components";
+import {
+  ComponentStarter,
+  OfferOptionBlockV2,
+  WarrantyBlockV2,
+} from "kubota-outfit-components";
 import { PreviewButtonCTA } from "./PreviewButtonCTA";
 import { Placeholder } from "@outfit.io/react";
 import dimensions from "../utils/dimension.json";
@@ -126,7 +130,8 @@ export const Container = ({ inputs = {} }) => {
           data-mode={mode}
           style={size}
         >
-          {component === "warranty" ? (
+          {component === "componentStarter" ? null : component ===
+            "warranty" ? (
             <WarrantyPlaceholder />
           ) : (
             <Placeholder
@@ -157,42 +162,52 @@ export const Container = ({ inputs = {} }) => {
               transform: `scale(${previewScale})`,
             }}
           >
-            <Block
-              preset={presetId}
-              dummyData={dummyData}
-              backgroundColor={inputs.offerTheming}
-              aPR={inputs.aPR}
-              aprPaymentMonthsConnectorText={
-                inputs.aprPaymentMonthsConnectorText
-              }
-              paymentMonths={inputs.paymentMonths}
-              downPayment={inputs.downPayment}
-              connectorLinesText={inputs.connectorLinesText}
-              savingAmountPreText={inputs.savingAmountPreText}
-              savingAmount={inputs.savingAmount}
-              savingAmountPostText={inputs.savingAmountPostText}
-              {...(component === "warranty"
-                ? {
-                    discountText: inputs.discountText,
-                    warrantyText: inputs.warrantyText,
-                    serviceType: inputs.serviceType,
-                  }
-                : {})}
-            >
-              {showCTA && (
-                <PreviewButtonCTA
-                  buttonText={inputs.callToActionText}
-                  dummyData={dummyData}
-                />
-              )}
-            </Block>
+            {component === "componentStarter" ? (
+              <ComponentStarter
+                preset={presetId}
+                dummyData={dummyData}
+                placeholderText={inputs.componentStarterPlaceholderText}
+              />
+            ) : (
+              <Block
+                preset={presetId}
+                dummyData={dummyData}
+                backgroundColor={inputs.offerTheming}
+                aPR={inputs.aPR}
+                aprPaymentMonthsConnectorText={
+                  inputs.aprPaymentMonthsConnectorText
+                }
+                paymentMonths={inputs.paymentMonths}
+                downPayment={inputs.downPayment}
+                connectorLinesText={inputs.connectorLinesText}
+                savingAmountPreText={inputs.savingAmountPreText}
+                savingAmount={inputs.savingAmount}
+                savingAmountPostText={inputs.savingAmountPostText}
+                {...(component === "warranty"
+                  ? {
+                      discountText: inputs.discountText,
+                      warrantyText: inputs.warrantyText,
+                      serviceType: inputs.serviceType,
+                    }
+                  : {})}
+              >
+                {showCTA && (
+                  <PreviewButtonCTA
+                    buttonText={inputs.callToActionText}
+                    dummyData={dummyData}
+                  />
+                )}
+              </Block>
+            )}
           </div>
         </div>
       </div>
       <p className="comparison-note">
-        {component === "warranty"
-          ? "Warranty skeleton: add measured styling in WarrantyBlockV2.tsx, starting with 300×600."
-          : "Editing the shared library component. Artwork and inputs belong to this preview."}
+        {component === "componentStarter"
+          ? "Edit ComponentStarter.tsx in the library. Existing component rectangles are used as your starting canvas."
+          : component === "warranty"
+            ? "Warranty skeleton: add measured styling in WarrantyBlockV2.tsx, starting with 300×600."
+            : "Editing the shared library component. Artwork and inputs belong to this preview."}
         {mode === "aspect" &&
           " Aspect scales the exact-size component uniformly to fit this view."}
       </p>

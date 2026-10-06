@@ -1724,5 +1724,20 @@
         }
       }
     ]
+  },
+  {
+    "componentStarter Inputs": [
+      {
+        "tag": "componentStarterPlaceholderText",
+        "type": "Variables::Text",
+        "custom_title": "Component starter placeholder",
+        "hint": "Replace this sample field when building your component. Clear to hide the text.",
+        "position": 1,
+        "definition": {
+          "no_formatting": true,
+          "disable_inline_edit": false
+        }
+      }
+    ]
   }
 ]

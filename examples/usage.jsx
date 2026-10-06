@@ -1,4 +1,5 @@
 // V2 examples include their field mapping and optional per-layout starting data.
+export { ComponentStarterExample } from "./componentStarter/usage.jsx";
 export {
   WarrantyExample,
   Digital300x600Example,
@@ -11,6 +12,7 @@ export {
 // Direct input-wiring examples for both V2 and original components follow.
 import {
   AnnouncementBanner,
+  ComponentStarter,
   HeadlineBlock,
   ImageBlock,
   OfferOptionBlock,
@@ -28,6 +30,14 @@ import { data as offerData } from "./offerOptionBlockV2/data.js";
 // Keep complete field objects for inline editing. Use { value: "" } to clear.
 const Example = ({ inputs }) => (
   <>
+    {/* Copy and rename this scaffold to begin a new component. */}
+    <div style={{ width: 598, height: 181 }}>
+      <ComponentStarter
+        preset="print"
+        placeholderText={inputs?.componentStarterPlaceholderText}
+      />
+    </div>
+
     {/* Warranty V2: 300x600 advert, 300x164 component box; 1rem = 16px. */}
     <div style={{ width: 300, height: 164 }}>
       <WarrantyBlockV2

@@ -1,0 +1,9 @@
+{
+  "print": { "placeholderText": { "lines": 2 } },
+  "tractru": { "placeholderText": { "lines": 2 } },
+  "web-banner": { "placeholderText": { "lines": 2 } },
+  "300x600": { "placeholderText": { "lines": 2 } },
+  "160x600": { "placeholderText": { "lines": 2 } },
+  "300x250": { "placeholderText": { "lines": 2 } },
+  "728x90": { "placeholderText": { "lines": 2 } }
+}

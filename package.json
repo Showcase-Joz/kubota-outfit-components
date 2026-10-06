@@ -12,11 +12,14 @@
       "import": "./dist/index.js"
     },
     "./utils/offerOptionBlockV2TextSettings.json": "./dist/utils/offerOptionBlockV2TextSettings.json",
-    "./utils/warrantyBlockV2TextSettings.json": "./dist/utils/warrantyBlockV2TextSettings.json"
+    "./utils/warrantyBlockV2TextSettings.json": "./dist/utils/warrantyBlockV2TextSettings.json",
+    "./utils/componentStarterTextSettings.json": "./dist/utils/componentStarterTextSettings.json"
   },
   "files": [
     "dist",
     "README.md",
+    "docs/component-starter.md",
+    "examples/componentStarter",
     "docs/offer-option-block-v2.md",
     "examples/offerOptionBlockV2",
     "docs/component-workspace.md",
