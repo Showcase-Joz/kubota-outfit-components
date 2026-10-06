@@ -1016,7 +1016,7 @@ const WarrantyBlockV2Wrapper = styled.div`
                 gap: 0.375rem;
                 width: fit-content;
                 .text-type--pre-saving-amount {
-                  min-width: 6.5ch;
+                  min-width: 6.7ch;
                   font-size: 1rem;
                 }
                 .text-type--saving-amount {
@@ -1209,7 +1209,7 @@ const WarrantyBlockV2Wrapper = styled.div`
                 gap: 0.35rem;
                 width: fit-content;
                 .text-type--pre-saving-amount {
-                  min-width: 6.5ch;
+                  min-width: 6.7ch;
                   font-size: 1.25rem;
                 }
                 .text-type--saving-amount {
