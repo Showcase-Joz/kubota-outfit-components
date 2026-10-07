@@ -1,16 +1,18 @@
 {
   "print": {
     "termLabels": {
-      "lines": 2,
+      "lines": 3,
       "textfit": false
     },
     "savingAmountPreText": {
-      "lines": 2,
+      "lines": 1,
       "textfit": false
     },
     "savingAmountPostText": {
       "lines": 2,
-      "textfit": false
+      "textfit": true,
+      "min": 75,
+      "max": 100
     },
     "section179Text": {
       "lines": 2,

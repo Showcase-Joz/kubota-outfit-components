@@ -175,17 +175,29 @@ export const defaultSection179BlockFallbackContent: Section179BlockFallbackConte
   };
 
 const Section179BlockWrapper = styled.div`
+  --offer-background: var(--color-black, #000);
+  --offer-foreground: var(--color-white, #fff);
+  --offer-number-color: var(--offer-foreground);
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   min-width: 0;
   min-height: 0;
-  color: var(--color-white, #fff);
-  background: var(--color-black, #000);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  background: var(--offer-background);
+  color: var(--offer-foreground);
+  font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
+  font-size: 1rem;
+  text-transform: uppercase;
 
+  * {
+    box-sizing: border-box;
+  }
   &.theme--white {
-    color: var(--color-black, #000);
-    background: var(--color-white, #fff);
+    --offer-background: var(--color-white, #fff);
+    --offer-foreground: var(--color-black, #000);
+    --offer-number-color: var(--color-orange, #dc4405);
   }
   font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
 
@@ -193,10 +205,179 @@ const Section179BlockWrapper = styled.div`
   .section179-block-content {
     font-size: 1rem;
   }
+  .section179-block-content {
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, auto) auto minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-areas: "financeOfferGroup section179ConnectorContent section179OptionContent";
+    align-items: center;
+    width: fit-content;
+  }
 
+  .financeOfferGroup {
+    grid-area: financeOfferGroup;
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, auto) auto minmax(0, 1fr);
+    grid-template-areas: "financingOption connectorContent offerOptionContent";
+    align-items: center;
+    align-self: stretch;
+  }
+
+  .financingContent {
+    grid-area: financingOption;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "apr" "termLabels";
+    align-content: center;
+    width: inherit;
+    height: 100%;
+    align-content: space-around;
+
+    .apr-wrapper {
+      grid-area: apr;
+      display: grid;
+      grid-template-columns: max-content max-content;
+      align-items: baseline;
+      font-family: var(
+        --font-family-arial-black-default,
+        "Arial Black",
+        Arial,
+        sans-serif
+      );
+      color: var(--offer-number-color);
+    }
+    .term-labels {
+      grid-area: termLabels;
+      font-weight: 800;
+      line-height: 1.1;
+      min-width: 0;
+      text-wrap: balance;
+      text-wrap-style: balance;
+    }
+  }
+
+  .connectorWrapper,
+  .section179connectorWrapper {
+    grid-area: connectorContent;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr auto 1fr;
+    justify-items: center;
+    align-self: stretch;
+
+    .text-type--connectorLinesText,
+    .text-type--section179connectorLinesText {
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .connector-line {
+      display: block;
+      width: 1px;
+      height: 100%;
+      background: var(--color-orange, #dc4405);
+    }
+    .connector-line:last-child {
+      grid-row: 3;
+    }
+  }
+  .connectorWrapper {
+    height: fit-content;
+    align-self: center;
+    width: fit-content;
+    justify-self: center;
+    border: 1px solid var(--color-orange, #dc4405);
+    padding: 0.438rem;
+    gap: 0.625rem;
+    .text-type--connectorLinesText {
+      font-weight: 700;
+    }
+  }
+
+  .offerOptionContent {
+    grid-area: offerOptionContent;
+    min-width: 0;
+    display: grid;
+    grid-template-rows: auto auto;
+    align-content: center;
+
+    .offerOptionContent-top {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+
+      .text-type--pre-saving-amount {
+        font-weight: 800;
+      }
+      .text-type--saving-amount {
+        max-width: fit-content;
+        font-family: var(
+          --font-family-arial-black-default,
+          "Arial Black",
+          Arial,
+          sans-serif
+        );
+        color: var(--offer-number-color);
+        &::before {
+          content: "$";
+        }
+        &::after {
+          content: "*";
+          font-size: 0.5em;
+          /* top: -0.85em; */
+          position: absolute;
+        }
+      }
+    }
+    .offerOptionContent-bottom {
+      min-width: 0;
+      /* Set preset font sizes on this wrapper so the text inherits Limiter's fitted size. */
+      .text-type--post-saving-amount {
+        font-weight: 600;
+        line-height: 1.1;
+      }
+    }
+  }
+
+  .section179connectorWrapper {
+    grid-area: section179ConnectorContent;
+  }
+
+  .section179Content {
+    display: grid;
+    grid-area: section179OptionContent;
+    gap: 0.5rem;
+    .section179Heading {
+      .text-type--section179-text {
+        font-weight: 800;
+        font-family: var(
+          --font-family-arial-black-default,
+          "Arial Black",
+          Arial,
+          sans-serif
+        );
+        font-weight: 900;
+        text-transform: uppercase;
+        color: var(--offer-number-color);
+      }
+    }
+    .section179Description {
+      max-width: 95%;
+      .text-type--section179-post-text {
+        font-weight: 800;
+        font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
+        text-transform: uppercase;
+        line-height: 1.1;
+      }
+    }
+  }
   /* Plain structural styles only; the artwork styling is yours to add. */
-  .apr-wrapper,
-  .savingAmount {
+  .apr-wrapper {
     display: flex;
     align-items: baseline;
     gap: 0.15em;
@@ -206,14 +387,142 @@ const Section179BlockWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5em;
+
+    .connector-line {
+      flex: 1;
+      border-top: 1px solid currentColor;
+    }
   }
-  .connector-line {
-    flex: 1;
-    border-top: 1px solid currentColor;
+
+  [hidden] {
+    display: none !important;
+  }
+
+  /* Vertical formats stack the three outer regions; the offer group stays together. */
+  &[data-preset="web-banner"],
+  &[data-preset="300x600"],
+  &[data-preset="160x600"],
+  &[data-preset="300x250"] {
+    .section179-block-content {
+      width: 100%;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+      grid-template-areas:
+        "financeOfferGroup"
+        "section179ConnectorContent"
+        "section179OptionContent";
+    }
   }
 
   /* TODO: Add each layout's CSS as you work through the designs. */
   &[data-preset="print"] {
+    .section179-block-content {
+      grid-template-columns: minmax(0, auto) auto minmax(0, 7.4rem);
+      gap: 1rem;
+      .financeOfferGroup {
+        gap: 1rem;
+        grid-template-columns: minmax(0, auto) auto minmax(0, 16rem);
+        .financingContent {
+          /* gap: 0.5rem; */
+
+          .apr-wrapper {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 2.5rem;
+              letter-spacing: -0.07rem;
+            }
+          }
+          .term-labels {
+            font-size: 1rem;
+          }
+          :has(.apr-available) {
+            .term-labels {
+              width: 8.5ch;
+            }
+          }
+          :has(.apr-available.has-months),
+          :has(.apr-available.has-down-payment) {
+            .term-labels {
+              font-size: 0.875rem;
+              width: 14ch;
+            }
+          }
+          :has(.apr-available.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.7rem;
+              width: 18ch;
+            }
+          }
+
+          :has(.apr-text) {
+            height: unset;
+            align-content: unset;
+          }
+          :has(.apr-text.has-months),
+          :has(.apr-text.has-down-payment) {
+            .term-labels {
+              width: 9.1ch;
+            }
+          }
+        }
+
+        .connectorWrapper {
+          gap: 0.5rem;
+          .text-type--connectorLinesText {
+            font-size: 0.8rem;
+          }
+        }
+
+        .offerOptionContent {
+          padding-left: 0.25rem;
+          gap: 0.375rem;
+          .offerOptionContent-top {
+            gap: 0.5rem;
+            .text-type--pre-saving-amount {
+              font-size: 1rem;
+            }
+            .text-type--saving-amount {
+              font-size: 2.5rem;
+              letter-spacing: -0.07rem;
+            }
+          }
+          .offerOptionContent-bottom {
+            font-size: 0.75rem;
+            .text-type--post-saving-amount {
+              white-space: normal;
+              letter-spacing: unset;
+              font-kerning: none;
+            }
+          }
+        }
+      }
+    }
+
+    .section179connectorWrapper {
+      gap: 0.5rem;
+      flex-direction: column;
+      .text-type--section179connectorLinesText {
+        font-size: 0.75rem;
+      }
+      .connector-line {
+        width: 0.07681rem;
+        height: 2.30338rem;
+      }
+    }
+    .section179Content {
+      .section179Heading {
+        max-width: 16.4ch;
+        .text-type--section179-text {
+          font-size: 1.5rem;
+          letter-spacing: -0.04rem;
+        }
+      }
+      .section179Description {
+        .text-type--section179-post-text {
+          font-size: 1rem;
+        }
+      }
+    }
   }
   &[data-preset="tractru"] {
   }
@@ -277,27 +586,19 @@ export const Section179Block = (props: Section179BlockProps) => {
       },
     };
   };
-  const text = (
-    key: Exclude<keyof Section179BlockFallbackContent, "backgroundColor">,
-    dynamicClassName: string,
-    inline = false
-  ) => (
-    <TextElement
-      destructedProp={fields[key]}
-      dynamicClassName={dynamicClassName}
-      inline={inline}
-      fitOnlyOnOverflow
-      {...limits(key)}
-    />
-  );
-
   // 3. Decide which regions have content. Numeric 0 is valid content.
   const available = fields.aPR.value === "available";
   const aprInput = available ? { ...fields.aPR, value: "0" } : fields.aPR;
+  const hasNumericAprGreaterThanZero =
+    hasContent(aprInput?.value) &&
+    Number.isFinite(Number(aprInput?.value)) &&
+    Number(aprInput?.value) > 0;
   const hasFinancing = hasContent(fields.aPR.value);
   const hasMonths = hasContent(fields.paymentMonths.value);
   const hasDownPayment = hasContent(fields.downPayment.value);
-  const hasSavings = hasContent(fields.savingAmount.value);
+  const hasPreText = hasContent(fields.savingAmountPreText.value);
+  const hasSavingAmount = hasContent(fields.savingAmount.value);
+  const hasSavings = hasPreText || hasSavingAmount;
   const hasDescription = hasContent(fields.savingAmountPostText.value);
   const hasOffer = hasSavings || hasDescription;
   const hasSection179Text = hasContent(fields.section179Text.value);
@@ -305,104 +606,175 @@ export const Section179Block = (props: Section179BlockProps) => {
   const hasSection179 = hasSection179Text || hasSection179PostText;
   const termLimits = limits("termLabels");
 
-  // Both connectors use the existing choices: blank label keeps lines;
-  // hide-element removes the whole connector. No neighbouring content => no connector.
-  const connector = (
-    key: "connectorLinesText" | "section179connectorLinesText",
-    visible: boolean
-  ) => {
-    const value = fields[key].value;
-    if (!visible || !hasContent(value) || value === "hide-element") return null;
-    return (
-      <div className={`connectorWrapper ${key}`}>
-        <span className="connector-line" />
-        {value !== "hide-text" && text(key, key)}
-        <span className="connector-line" />
-      </div>
-    );
-  };
-
-  // 4. Working markup: finance, savings, then Section 179. Style these regions above.
+  // 4. Three outer regions: finance/offer group, Section 179 connector, campaign.
   return (
     <Section179BlockWrapper
       className={`section179Block theme--${fields.backgroundColor.value === "white" ? "white" : "black"} ${className ?? ""}`}
       data-preset={preset}
     >
       <div className="section179-block-content">
-        {hasFinancing && (
-          <div className="financingContent">
-            <div className="apr-wrapper">
-              <TextElement
-                destructedProp={aprInput}
-                dynamicClassName="offerAPR"
-                chars={5}
-              />
-              <span className="percentage">%</span>
-            </div>
-            <div className="term-labels">
-              <Limiter
-                maxLines={termLimits.lines}
-                textfit={termLimits.textfit}
-                textfitConfig={termLimits.textfitConfig}
+        <div className="financeOfferGroup" hidden={!hasFinancing && !hasOffer}>
+          {hasFinancing && (
+            <div className="financingContent">
+              <div
+                className={`apr-wrapper apr-length--${
+                  hasNumericAprGreaterThanZero ? "long" : "short"
+                }`}
               >
-                <div>
-                  <span>{available ? "financing available" : "APR"}</span>
-                  {hasMonths && (
-                    <>
-                      {" "}
-                      {text(
-                        "aprPaymentMonthsConnectorText",
-                        "apr-payment-months-connector",
-                        true
-                      )}{" "}
-                      {text("paymentMonths", "payment-months", true)} months
-                    </>
-                  )}
-                  {hasDownPayment && (
-                    <>
-                      {" with $"}
-                      {text("downPayment", "down-payment", true)} down
-                    </>
-                  )}
-                </div>
-              </Limiter>
+                <TextElement
+                  destructedProp={aprInput}
+                  dynamicClassName="offerAPR"
+                  chars={5}
+                />
+                <span className="percentage">%</span>
+              </div>
+              <div
+                className={`term-labels ${hasMonths ? "has-months" : ""} ${
+                  hasDownPayment ? "has-down-payment" : ""
+                } ${available ? "apr-available" : "apr-text"} `}
+              >
+                <Limiter
+                  maxLines={termLimits.lines}
+                  textfit={termLimits.textfit}
+                  textfitConfig={termLimits.textfitConfig}
+                >
+                  <div className="term-labels-content">
+                    <span
+                      className={`term-label ${available ? "apr-available" : "apr-text"}`}
+                    >
+                      {available ? "financing available" : "APR"}
+                    </span>
+                    {hasMonths && (
+                      <>
+                        {" "}
+                        <span className="payment-months-wrapper">
+                          <TextElement
+                            inline
+                            destructedProp={
+                              fields.aprPaymentMonthsConnectorText
+                            }
+                            dynamicClassName="apr-payment-months-connector"
+                            fitOnlyOnOverflow
+                            {...limits("aprPaymentMonthsConnectorText")}
+                          />{" "}
+                          <TextElement
+                            inline
+                            chars={2}
+                            destructedProp={fields.paymentMonths}
+                            dynamicClassName="payment-months"
+                            fitOnlyOnOverflow
+                            {...limits("paymentMonths")}
+                          />{" "}
+                          months
+                        </span>
+                      </>
+                    )}
+                    {hasDownPayment && (
+                      <>
+                        {" "}
+                        <span className="down-payment-wrapper">
+                          {"with $"}
+                          <TextElement
+                            inline
+                            chars={6}
+                            destructedProp={fields.downPayment}
+                            dynamicClassName="down-payment"
+                            fitOnlyOnOverflow
+                            {...limits("downPayment")}
+                          />{" "}
+                          down
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </Limiter>
+              </div>
+            </div>
+          )}
+          {hasFinancing &&
+            hasOffer &&
+            hasContent(fields.connectorLinesText.value) &&
+            fields.connectorLinesText.value !== "hide-element" && (
+              <div className="connectorWrapper connectorLinesText">
+                {fields.connectorLinesText.value !== "hide-text" && (
+                  <TextElement
+                    destructedProp={fields.connectorLinesText}
+                    dynamicClassName="connectorLinesText"
+                    chars={20}
+                    fitOnlyOnOverflow
+                    {...limits("connectorLinesText")}
+                  />
+                )}
+              </div>
+            )}
+          <div className="offerOptionContent" hidden={!hasOffer}>
+            <div className="offerOptionContent-top" hidden={!hasSavings}>
+              {hasPreText && (
+                <TextElement
+                  destructedProp={fields.savingAmountPreText}
+                  dynamicClassName="pre-saving-amount"
+                  fitOnlyOnOverflow
+                  {...limits("savingAmountPreText")}
+                />
+              )}
+              {hasSavingAmount && (
+                <TextElement
+                  destructedProp={fields.savingAmount}
+                  dynamicClassName="saving-amount"
+                  chars={6}
+                  fitOnlyOnOverflow
+                  {...limits("savingAmount")}
+                />
+              )}
+            </div>
+            <div className="offerOptionContent-bottom" hidden={!hasDescription}>
+              <TextElement
+                destructedProp={fields.savingAmountPostText}
+                dynamicClassName="post-saving-amount"
+                fitOnlyOnOverflow
+                {...limits("savingAmountPostText")}
+              />
             </div>
           </div>
-        )}
-        {connector("connectorLinesText", hasFinancing && hasOffer)}
-        {hasOffer && (
-          <div className="offerContent">
-            {hasSavings && (
-              <div className="savingContent">
-                {hasContent(fields.savingAmountPreText.value) &&
-                  text("savingAmountPreText", "pre-saving-amount")}
-                <div className="savingAmount">
-                  <span className="currency">$</span>
-                  {text("savingAmount", "saving-amount")}
-                </div>
-              </div>
-            )}
-            {hasDescription && (
-              <div className="offerDescription">
-                {text("savingAmountPostText", "post-saving-amount")}
-              </div>
-            )}
-          </div>
-        )}
-        {connector(
-          "section179connectorLinesText",
-          (hasFinancing || hasOffer) && hasSection179
-        )}
+        </div>
+        {(hasFinancing || hasOffer) &&
+          hasSection179 &&
+          hasContent(fields.section179connectorLinesText.value) &&
+          fields.section179connectorLinesText.value !== "hide-element" && (
+            <div className="section179connectorWrapper section179connectorLinesText">
+              <span className="connector-line" />
+              {fields.section179connectorLinesText.value !== "hide-text" && (
+                <TextElement
+                  destructedProp={fields.section179connectorLinesText}
+                  dynamicClassName="section179connectorLinesText"
+                  chars={20}
+                  fitOnlyOnOverflow
+                  {...limits("section179connectorLinesText")}
+                />
+              )}
+              <span className="connector-line" />
+            </div>
+          )}
         {hasSection179 && (
           <div className="section179Content">
             {hasSection179Text && (
               <div className="section179Heading">
-                {text("section179Text", "section179-text")}
+                <TextElement
+                  destructedProp={fields.section179Text}
+                  dynamicClassName="section179-text"
+                  fitOnlyOnOverflow
+                  {...limits("section179Text")}
+                />
               </div>
             )}
             {hasSection179PostText && (
               <div className="section179Description">
-                {text("section179PostText", "section179-post-text")}
+                <TextElement
+                  destructedProp={fields.section179PostText}
+                  dynamicClassName="section179-post-text"
+                  fitOnlyOnOverflow
+                  {...limits("section179PostText")}
+                />
               </div>
             )}
           </div>

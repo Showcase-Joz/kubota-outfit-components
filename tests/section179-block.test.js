@@ -21,7 +21,13 @@ it("renders finance, formatted savings and independently editable campaign copy"
   expect(container.querySelector(".financingContent")).toHaveTextContent(
     "0%financing available for 60 months with $0 down"
   );
-  expect(container.querySelector(".savingAmount")).toHaveTextContent("$12,000");
+  expect(container.querySelector(".offerOptionContent-top .text-type--saving-amount")).toHaveTextContent("12,000");
+  const group = container.querySelector(".financeOfferGroup");
+  expect(container.querySelector(".financingContent").parentElement).toBe(group);
+  expect(container.querySelector(".connectorWrapper").parentElement).toBe(group);
+  expect(container.querySelector(".offerOptionContent").parentElement).toBe(group);
+  expect(container.querySelector(".section179connectorWrapper").parentElement).toBe(group.parentElement);
+  expect(container.querySelector(".section179Content").parentElement).toBe(group.parentElement);
   fireEvent.click(screen.getByText("Campaign heading"));
   expect(onInlineEditClick).toHaveBeenCalledWith(ids, expect.anything());
 });
@@ -33,17 +39,18 @@ it("preserves explicit blank clears over fallback content, while zero remains va
         savingAmount: { value: 9999 },
         section179Text: { value: "Fallback" },
       }}
+      savingAmountPreText={{ value: "" }}
       savingAmount={{ value: "" }}
       savingAmountPostText={{ value: "" }}
       section179Text={{ value: "" }}
       section179PostText={{ value: "" }}
     />
   );
-  expect(container.querySelector(".offerContent")).toBeNull();
+  expect(container.querySelector(".offerOptionContent")).not.toBeVisible();
   expect(container.querySelector(".section179Content")).toBeNull();
   expect(container.querySelector(".connectorWrapper")).toBeNull();
   rerender(<Section179Block savingAmount={{ value: 0 }} />);
-  expect(container.querySelector(".savingAmount")).toHaveTextContent("$0");
+  expect(container.querySelector(".offerOptionContent-top .text-type--saving-amount")).toHaveTextContent("0");
 });
 
 it("uses line limits by field and handles connector choices without printing their sentinel values", () => {

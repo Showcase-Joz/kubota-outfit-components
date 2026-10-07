@@ -1241,7 +1241,7 @@
         "tag": "aprPaymentMonthsConnectorText",
         "type": "Variables::Choice",
         "custom_title": "APR / Months Connector Text",
-        "hint": "Conditional on the presence of both APR and Payment Months.",
+        "hint": "Conditional on the presence of both APR an d Payment Months.",
         "position": 6,
         "definition": {
           "choices": [
@@ -1390,20 +1390,8 @@
               "value": "and"
             },
             {
-              "label": "With",
-              "value": "with"
-            },
-            {
               "label": "Plus",
               "value": "plus"
-            },
-            {
-              "label": "From",
-              "value": "from"
-            },
-            {
-              "label": "At",
-              "value": "at"
             },
             {
               "label": "Blank (no text)",

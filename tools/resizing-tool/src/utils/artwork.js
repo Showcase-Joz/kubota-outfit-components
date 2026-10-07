@@ -94,7 +94,10 @@ export const artwork = {
   },
   section179: {
     print: {
-      image: "https://files.outfit.io/media_library_items/697282/Incentive.png",
+      image:
+        "https://files.outfit.io/media_library_items/697385/Incentives.png",
+      // image:
+      //   "https://files.outfit.io/media_library_items/697386/Incentives-1.png",
       hide: false,
       opacity: 0.3,
     },
