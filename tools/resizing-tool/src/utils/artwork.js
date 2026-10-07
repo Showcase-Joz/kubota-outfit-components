@@ -95,7 +95,7 @@ export const artwork = {
   section179: {
     print: {
       image: "https://files.outfit.io/media_library_items/697282/Incentive.png",
-      hide: true,
+      hide: false,
       opacity: 0.3,
     },
     tractru: {

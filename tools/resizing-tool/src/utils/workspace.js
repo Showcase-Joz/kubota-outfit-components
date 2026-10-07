@@ -11,6 +11,7 @@ import { data } from "../dummy/data";
 import { warrantyData } from "../dummy/warrantyData";
 import { section179Data } from "../dummy/section179Data";
 import { componentStarterData } from "../dummy/componentStarterData";
+import section179Dimensions from "./section179Dimensions.json";
 
 export const COMPONENT_STORAGE_KEY = "component-workspace:selection";
 export const DEFAULT_COMPONENT = "warranty";
@@ -56,6 +57,7 @@ export const previewComponents = {
     label: "Section 179 V2",
     model: section179Preview,
     data: section179Data,
+    dimensionOverrides: section179Dimensions,
   },
   componentStarter: {
     label: "ComponentStarter",

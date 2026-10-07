@@ -93,9 +93,17 @@ minimal so you can build them yourself.
 | Artwork URLs by component and dimension type | `tools/resizing-tool/src/utils/artwork.js` |
 | Shared artwork Placeholder renderer | `tools/resizing-tool/src/components/ArtworkPlaceholder.jsx` |
 | Warranty preview starting values | `tools/resizing-tool/src/dummy/warrantyData.js` |
-| Component rectangle dimensions | `tools/resizing-tool/src/utils/dimension.json` |
+| Default component rectangle dimensions | `tools/resizing-tool/src/utils/dimension.json` |
+| Section 179 component rectangle overrides | `tools/resizing-tool/src/utils/section179Dimensions.json` |
 | Preview input definitions | `tools/resizing-tool/public/inputs.json` |
 | Preview template's optional starting values | `tools/resizing-tool/src/dummy/data.js` |
+
+Section 179 automatically uses its own component rectangle dimensions in both
+Exact and Aspect modes. Offer, Warranty and ComponentStarter retain the standard
+dimensions. These are component areas, not full advert sizes. Keep the existing
+dimension keys (`print`, `tractru`, `web-banner`, etc.); edit the Section 179
+override file when its allocated area changes. Production templates must allocate
+the corresponding area separately; these files configure the development preview.
 
 `dummyData` remains optional template data. The library keeps its own defaults;
 explicit inputs take precedence, including intentional empty strings and zero.

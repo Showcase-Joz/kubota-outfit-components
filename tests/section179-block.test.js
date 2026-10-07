@@ -26,17 +26,17 @@ it("renders finance, formatted savings and independently editable campaign copy"
   expect(onInlineEditClick).toHaveBeenCalledWith(ids, expect.anything());
 });
 
-it("preserves null and blank clears over fallback content, while zero remains valid", () => {
+it("preserves explicit blank clears over fallback content, while zero remains valid", () => {
   const { container, rerender } = render(
     <Section179Block
       fallbackContent={{
         savingAmount: { value: 9999 },
         section179Text: { value: "Fallback" },
       }}
-      savingAmount={{ value: null }}
+      savingAmount={{ value: "" }}
       savingAmountPostText={{ value: "" }}
       section179Text={{ value: "" }}
-      section179PostText={{ value: null }}
+      section179PostText={{ value: "" }}
     />
   );
   expect(container.querySelector(".offerContent")).toBeNull();

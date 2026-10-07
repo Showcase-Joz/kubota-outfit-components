@@ -3,12 +3,121 @@ import styled from "@emotion/styled";
 import { Limiter } from "@outfit.io/react";
 import { TextElement } from "./sharedV2/TextElement.js";
 import rawSection179BlockTextSettings from "../utils/Section179BlockTextSettings.json" with { type: "json" };
+import { checkInputExists, cloneInlineClick } from "../utils/helpers.js";
 
 // Copy this file and its companion files using docs/section179-block.md.
 // Keep declarations self-contained for templates that do not import JSON.
 export const section179BlockTextSettings = rawSection179BlockTextSettings;
 export type Section179BlockPreset = keyof typeof section179BlockTextSettings;
 export const DEFAULT_SECTION179_PRESET: Section179BlockPreset = "print";
+
+export interface Section179BlockProps extends Section179BlockFallbackContent {
+  preset?: Section179BlockPreset;
+  children?: ReactNode;
+  /**
+   * Overrides the preset's termLabels.lines for the complete inline finance phrase.
+   * If neither supplies a limit, the phrase wraps without a configured line cap.
+   *
+   * @example
+   * <OfferOptionBlockV2 preset="160x600" maxTermLabelsText={4} />
+   */
+  maxTermLabelsText?: number;
+  /**
+   * Alternative prop name for template starting content. If both this and dummyData
+   * are supplied, fallbackContent takes priority. Explicit inputs win over either.
+   *
+   * @example
+   * {
+   *   aPR: { value: "0" },
+   *   paymentMonths: { value: "60" },
+   * }
+   */
+  fallbackContent?: Section179BlockFallbackContent;
+  /**
+   * Optional starting content supplied by a template, shaped as
+   * `{ fieldName: { value: "..." } }`. Missing fields use component defaults;
+   * explicit input values (including blanks) take precedence over this content.
+   * The component does not import a template's data file or choose its content.
+   *
+   * @example
+   * <OfferOptionBlockV2 preset="160x600" dummyData={data["160x600"]} />
+   */
+  dummyData?: Section179BlockFallbackContent;
+  /**
+   * This prop allows you to set the behavior fort a specific background and text color for the OfferOptionBlockV2.
+   */
+  backgroundColor?: Section179BlockField;
+  /**
+   * APR percentage value. Keep to 5 characters or fewer.
+   * Use "available" to render the fallback 0% APR treatment.
+   * Can be omitted if not applicable to the offer.
+   */
+  aPR?: Section179BlockField;
+  /**
+   * Short connector text between the apr and the payment amount.
+   * Recommended max: 1 line.
+   * choice options: "up to", "for".
+   * Can be omitted if not applicable to the offer.
+   */
+  aprPaymentMonthsConnectorText?: Section179BlockField;
+  /**
+   * Payment months (term) value.
+   * Maximum: 2 displayed characters, checked by the inline character validator.
+   * Can be omitted if not applicable to the offer.
+   */
+  paymentMonths?: Section179BlockField;
+  /**
+   * Down payment value.
+   * Maximum: 6 displayed characters, including the thousands separator (99,999).
+   * The separate currency symbol is not counted.
+   * Can be omitted if not applicable to the offer.
+   */
+  downPayment?: Section179BlockField;
+  /**
+   * Connector text between the APR/Months and the saving amount.
+   * Choice options: "and", "or", "with", "plus", "minus", "for", "to", "from", "at", "in", "on", "over", "under".
+   * Can be omitted if not applicable to the offer.
+   */
+  connectorLinesText?: Section179BlockField;
+  /**
+   * Short connector text above the saving amount.
+   * The line limit comes from the selected preset's text settings.
+   * An explicit empty value omits the heading.
+   */
+  savingAmountPreText?: Section179BlockField;
+  /**
+   * Saving amount.
+   * Recommended max: 6 characters.
+   * An explicit empty value omits the amount and its currency marker.
+   */
+  savingAmount?: Section179BlockField;
+  /**
+   * descriptive text below the saving amount.
+   * Recommended max: 2 lines.
+   * May remain when the savings heading and amount are omitted.
+   */
+  savingAmountPostText?: Section179BlockField;
+  /**
+   * Connector text between the section 179 information and the saving amount.
+   * Choice options: "and", "or", "with", "plus", "minus", "for", "to", "from", "at", "in", "on", "over", "under".
+   * Can be omitted if not applicable to the offer.
+   */
+  section179connectorLinesText?: Section179BlockField;
+  /**
+   * Section 179 heading text.
+   * Recommended max: 2 lines.
+   * An explicit empty value omits the heading.
+   */
+  section179Text?: Section179BlockField;
+  /**
+   * Section 179 descriptive text below the heading.
+   * Recommended max: 1 line.
+   * May remain when the heading is omitted.
+   */
+  section179PostText?: Section179BlockField;
+  textSettings?: Section179BlockTextSettings;
+  className?: string;
+}
 
 export type Section179BlockField = {
   value: string | number | null;
@@ -48,16 +157,6 @@ export type Section179BlockTextSettings = Partial<
     Section179BlockTextLimits
   >
 >;
-
-export interface Section179BlockProps extends Section179BlockFallbackContent {
-  preset?: Section179BlockPreset;
-  fallbackContent?: Section179BlockFallbackContent;
-  /** Existing template alias; fallbackContent takes priority. */
-  dummyData?: Section179BlockFallbackContent;
-  textSettings?: Section179BlockTextSettings;
-  className?: string;
-  children?: ReactNode;
-}
 
 export const defaultSection179BlockFallbackContent: Section179BlockFallbackContent =
   {
@@ -145,7 +244,8 @@ export const Section179Block = (props: Section179BlockProps) => {
       ? props.preset
       : DEFAULT_SECTION179_PRESET;
 
-  // 1. Resolve every field once. Live inputs win; explicit blanks stay blank.
+  // 1. Use the existing fallback helper: null/undefined use starting data;
+  // explicit blanks and hide choices remain intact.
   const content = {
     ...defaultSection179BlockFallbackContent,
     ...(fallbackContent ?? dummyData),
@@ -154,10 +254,13 @@ export const Section179Block = (props: Section179BlockProps) => {
     keyof Section179BlockFallbackContent
   >;
   const fields = Object.fromEntries(
-    keys.map((key) => {
-      const input = props[key] === undefined ? content[key] : props[key];
-      return [key, { ...input, value: input?.value ?? "" }];
-    })
+    keys.map((key) => [
+      key,
+      {
+        ...(props[key] ?? content[key]),
+        value: checkInputExists(props[key], content[key]?.value) ?? "",
+      },
+    ])
   ) as Required<Section179BlockFallbackContent>;
 
   // 2. Read this dimension's limits; optional prop overrides win.

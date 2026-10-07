@@ -10,7 +10,9 @@
  *   & import('../components/PreviewButtonCTA').ButtonCTAFallbackContent>}
  */
 export const section179Data = {
-  "300x600": {},
+  "300x600": {
+    aPR: { value: "1.99" },
+  },
   "160x600": {},
   "300x250": {},
   "728x90": {},

@@ -1,0 +1,30 @@
+{
+  "print": {
+    "width": 638,
+    "height": 107
+  },
+  "tractru": {
+    "width": 984,
+    "height": 151
+  },
+  "web-banner": {
+    "width": 438,
+    "height": 535
+  },
+  "300x600": {
+    "width": 268,
+    "height": 138
+  },
+  "160x600": {
+    "width": 136,
+    "height": 194
+  },
+  "300x250": {
+    "width": 116,
+    "height": 173
+  },
+  "728x90": {
+    "width": 171,
+    "height": 73.7
+  }
+}

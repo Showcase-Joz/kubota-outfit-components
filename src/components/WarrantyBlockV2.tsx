@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import styled from "@emotion/styled";
 import { Limiter } from "@outfit.io/react";
 import { TextElement } from "./sharedV2/TextElement.js";
+import { checkInputExists } from "../utils/helpers.js";
 import rawTextSettings from "../utils/warrantyBlockV2TextSettings.json" with { type: "json" };
 
 export type WarrantyBlockV2Preset = keyof typeof rawTextSettings;
@@ -1428,16 +1429,19 @@ export const WarrantyBlockV2 = (props: WarrantyBlockV2Props) => {
     ...(fallbackContent ?? dummyData),
   };
 
-  // Resolve once for BOTH rendering and visibility. Only an omitted input uses
-  // example content; a supplied empty/null value stays empty and 0 stays valid.
+  // Resolve once for rendering and visibility using the same helper as Offer V2.
+  // Null/undefined use starting data; explicit blanks and zero remain intact.
   const keys = Object.keys(defaultWarrantyBlockV2FallbackContent) as Array<
     keyof WarrantyBlockV2FallbackContent
   >;
   const fields = Object.fromEntries(
-    keys.map((key) => {
-      const input = props[key] === undefined ? content[key] : props[key];
-      return [key, { ...input, value: input?.value ?? "" }];
-    })
+    keys.map((key) => [
+      key,
+      {
+        ...(props[key] ?? content[key]),
+        value: checkInputExists(props[key], content[key]?.value) ?? "",
+      },
+    ])
   ) as Required<WarrantyBlockV2FallbackContent>;
 
   const available = fields.aPR.value === "available";

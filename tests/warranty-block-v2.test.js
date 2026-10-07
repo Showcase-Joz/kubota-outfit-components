@@ -46,7 +46,7 @@ it("starts with the approved financing-available example and lets savings win", 
   );
 });
 
-it.each(["", "   ", null])(
+it.each(["", "   "])(
   "clearing amount (%p) hides its pre-text and reveals discount without losing description",
   (value) => {
     const { container, rerender } = render(

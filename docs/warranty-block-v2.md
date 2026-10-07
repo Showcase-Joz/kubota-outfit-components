@@ -174,9 +174,11 @@ payment, “or save up to” $3,000, the L02 equipment description, “plus”, 
 K-MAINTENANCE Service on Us. The stored discount default is “or instant cash
 discount”, revealed only when savings is empty.
 
-An omitted/undefined input prop uses the selected `dummyData` or `fallbackContent`
-entry, then the component default for fields absent from that entry. A supplied
-field with `value: ""` or `value: null` stays empty. Numeric zero remains valid.
+The existing `checkInputExists` helper resolves omitted inputs and null/undefined
+values using `dummyData` or `fallbackContent`, then the component default for
+fields absent from that entry. An explicit `value: ""` stays empty, including
+after editing or reloading. Numeric zero remains valid. Null means fallback,
+not an intentional clear, matching Offer V2.
 Pass cleared fields through intact; do not convert them to `undefined` or use
 `value || fallback`, which can bring the example content back.
 

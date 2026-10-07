@@ -19,8 +19,9 @@ The `text(...)` helper renders the shared V2 TextElement, preserving inline-edit
 IDs and applying the named field's text limits. Font sizes belong on its parent
 wrapper so fitted sizes can inherit. Text fitting starts off.
 
-Explicit empty strings and null field values clear content; numeric zero remains
-valid. An omitted prop uses starting content. Savings pre-text/currency hide with
+The existing `checkInputExists` helper uses starting content for omitted inputs
+and null/undefined values, matching Offer V2. Explicit empty strings clear
+content; numeric zero remains valid. Savings pre-text/currency hide with
 an empty savings amount. A connector only appears when both neighbouring regions
 have content; `hide-text` keeps its lines and `hide-element` removes it entirely.
 APR `available` displays 0% financing available; `notApplicable` hides financing.
