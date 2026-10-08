@@ -196,7 +196,7 @@
     "tag": "savingAmountPreText",
     "type": "Variables::Text",
     "custom_title": "Saving Amount Pre-Text",
-    "hint": "Optional savings heading. Its line limit is determined by the preset. Clear to hide.",
+    "hint": "Optional savings heading. Can also be used as 'large orange text' if Saving Amount is empty. Its line limit is determined by the preset. Clear to hide.",
     "position": 8,
     "definition": {
       "paragraph": false,
@@ -225,7 +225,7 @@
     "tag": "savingAmount",
     "type": "Variables::Number",
     "custom_title": "Saving Amount",
-    "hint": "Optional. Clear this and Saving Amount Pre-Text to use the layout without savings. Zero remains a valid amount.",
+    "hint": "Optional. Clear this and Saving Amount Pre-Text becomes 'large orange text'. Zero remains a valid amount.",
     "position": 9,
     "definition": {
       "min": 0,
@@ -311,7 +311,7 @@
     "tag": "section179Text",
     "type": "Variables::Text",
     "custom_title": "Section 179 Description",
-    "hint": "Optional. Clear to hide. Max 2 lines.",
+    "hint": "Optional. Clear to hide. Conditional height.",
     "position": 12,
     "definition": {
       "paragraph": false,

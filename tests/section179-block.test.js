@@ -14,6 +14,9 @@ it("renders finance, formatted savings and independently editable campaign copy"
   const ids = { input_id: "section179-heading" };
   const { container } = render(
     <Section179Block
+      aPR={{ value: "available" }}
+      aprPaymentMonthsConnectorText={{ value: "for" }}
+      downPayment={{ value: "0" }}
       savingAmount={{ value: 12000 }}
       section179Text={{ value: "Campaign heading", ids }}
     />
@@ -79,4 +82,41 @@ it("uses line limits by field and handles connector choices without printing the
   );
   expect(container.querySelector(".financingContent")).toBeNull();
   expect(container.querySelector(".section179connectorLinesText")).toBeNull();
+});
+
+
+it("promotes pre-text when the amount is cleared and restores normal treatment for zero", () => {
+  const ids = { input_id: "saving-heading" };
+  const props = { savingAmountPreText: { value: "2-Year<br/>Orange<br/>Protection*", ids } };
+  const { container, rerender } = render(<Section179Block {...props} savingAmount={{ value: 12000 }} />);
+  const offer = () => container.querySelector(".offerOptionContent");
+  const heading = () => container.querySelector(".text-type--pre-saving-amount");
+  expect(offer()).toHaveAttribute("data-offer-mode", "amount");
+  expect(heading().closest("[data-lines]")).toHaveAttribute("data-lines", "1");
+  rerender(<Section179Block {...props} savingAmount={{ value: "" }} />);
+  expect(offer()).toHaveAttribute("data-offer-mode", "text-only");
+  expect(container.querySelector(".text-type--saving-amount")).toBeNull();
+  expect(heading().querySelectorAll("br")).toHaveLength(2);
+  expect(heading().closest("[data-lines]")).toHaveAttribute("data-lines", "3");
+  fireEvent.click(heading());
+  expect(onInlineEditClick).toHaveBeenCalledWith(ids, expect.anything());
+  expect(container.querySelector(".connectorWrapper")).not.toBeNull();
+  expect(container.querySelector(".section179connectorWrapper")).not.toBeNull();
+  rerender(<Section179Block {...props} savingAmount={{ value: 0 }} />);
+  expect(offer()).toHaveAttribute("data-offer-mode", "amount");
+  expect(container.querySelector(".text-type--saving-amount")).toHaveTextContent("0");
+  expect(heading().closest("[data-lines]")).toHaveAttribute("data-lines", "1");
+});
+
+it("allows dimension-specific text-only limits and preserves empty heading behaviour", () => {
+  const { container, rerender } = render(
+    <Section179Block preset="300x600" savingAmount={{ value: "" }}
+      savingAmountPreText={{ value: "Cash rebates" }}
+      textSettings={{ savingAmountPreTextNoAmount: { lines: 4 } }} />
+  );
+  expect(container.querySelector(".text-type--pre-saving-amount").closest("[data-lines]")).toHaveAttribute("data-lines", "4");
+  rerender(<Section179Block savingAmount={{ value: "" }} savingAmountPreText={{ value: "" }} />);
+  expect(container.querySelector(".text-type--pre-saving-amount")).toBeNull();
+  expect(container.querySelector(".text-type--saving-amount")).toBeNull();
+  expect(container.querySelector(".offerOptionContent-bottom")).toBeVisible();
 });

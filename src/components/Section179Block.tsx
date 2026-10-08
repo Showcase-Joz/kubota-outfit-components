@@ -82,6 +82,7 @@ export interface Section179BlockProps extends Section179BlockFallbackContent {
   /**
    * Short connector text above the saving amount.
    * The line limit comes from the selected preset's text settings.
+   * When the savings amount is empty, this becomes the large orange headline.
    * An explicit empty value omits the heading.
    */
   savingAmountPreText?: Section179BlockField;
@@ -153,7 +154,8 @@ export type Section179BlockTextLimits = {
 export type Section179BlockTextSettings = Partial<
   Record<
     | Exclude<keyof Section179BlockFallbackContent, "backgroundColor">
-    | "termLabels",
+    | "termLabels"
+    | "savingAmountPreTextNoAmount",
     Section179BlockTextLimits
   >
 >;
@@ -341,7 +343,27 @@ const Section179BlockWrapper = styled.div`
       .text-type--post-saving-amount {
         font-weight: 600;
         line-height: 1.1;
+        white-space: normal;
+        letter-spacing: unset;
+        font-kerning: none;
       }
+    }
+  }
+
+  /* AG treatment: the existing pre-text becomes the headline when no amount is shown. */
+  .offerOptionContent[data-offer-mode="text-only"] {
+    .offerOptionContent-top .text-type--pre-saving-amount {
+      color: var(--color-orange, #dc4405);
+      font-family: var(
+        --font-family-arial-black-default,
+        "Arial Black",
+        Arial,
+        sans-serif
+      );
+      font-weight: 900;
+      font-size: 1.5rem;
+      line-height: 1;
+      white-space: normal;
     }
   }
 
@@ -369,6 +391,8 @@ const Section179BlockWrapper = styled.div`
     }
     .section179Description {
       max-width: 95%;
+      place-self: center start;
+
       .text-type--section179-post-text {
         font-weight: 800;
         font-family: var(--font-family-inter-default, Inter, Arial, sans-serif);
@@ -391,7 +415,7 @@ const Section179BlockWrapper = styled.div`
 
     .connector-line {
       flex: 1;
-      border-top: 1px solid currentColor;
+      border-top: 1px solid var(--color-orange, #dc4405);
     }
   }
 
@@ -407,11 +431,19 @@ const Section179BlockWrapper = styled.div`
     .section179-block-content {
       width: 100%;
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+      grid-template-rows: minmax(0, 1fr) auto minmax(0, max-content);
       grid-template-areas:
         "financeOfferGroup"
         "section179ConnectorContent"
         "section179OptionContent";
+
+      /* .financeOfferGroup {
+        grid-template-rows: minmax(0, auto) auto minmax(0, 1fr);
+      } */
+      .section179connectorWrapper {
+        flex-direction: row;
+        justify-content: center;
+      }
     }
   }
 
@@ -501,10 +533,13 @@ const Section179BlockWrapper = styled.div`
           }
           .offerOptionContent-bottom {
             font-size: 0.75rem;
-            .text-type--post-saving-amount {
-              white-space: normal;
-              letter-spacing: unset;
-              font-kerning: none;
+          }
+          &[data-offer-mode="text-only"] {
+            gap: 0.5rem;
+            .offerOptionContent-top .text-type--pre-saving-amount {
+              font-size: 1.75rem;
+              line-height: 1;
+              letter-spacing: -0.035rem;
             }
           }
         }
@@ -538,16 +573,152 @@ const Section179BlockWrapper = styled.div`
     }
   }
   &[data-preset="tractru"] {
+    .offerOptionContent[data-offer-mode="text-only"] {
+      /* AG: add this layout's headline size/width here; line limits live in the JSON. */
+    }
   }
   &[data-preset="web-banner"] {
+    .offerOptionContent[data-offer-mode="text-only"] {
+      /* AG: add this layout's headline size/width here; line limits live in the JSON. */
+    }
   }
   &[data-preset="300x600"] {
+    .section179-block-content {
+      padding: 1rem;
+      gap: 0.375rem;
+      width: 100%;
+      .financeOfferGroup {
+        gap: 0.4855rem;
+        .financingContent {
+          /* gap: 0.32369rem; */
+
+          .apr-wrapper {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 1.75rem;
+              letter-spacing: -0.035rem;
+            }
+            &.apr-length--long {
+              .percentage {
+                font-size: 1.6rem;
+              }
+            }
+          }
+          .term-labels {
+            font-size: 0.75rem;
+          }
+          :has(.apr-available) {
+            .term-labels {
+              width: 8.5ch;
+            }
+          }
+
+          :has(.apr-available.has-down-payment) {
+            .term-labels {
+              font-size: 0.875rem;
+              width: 12.8ch;
+            }
+          }
+          :has(.apr-available.has-months) {
+            .term-labels {
+              font-size: 0.875rem;
+              width: 11.5ch;
+            }
+          }
+          :has(.apr-available.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.7rem;
+              width: 18ch;
+            }
+          }
+
+          :has(.apr-text) {
+            height: unset;
+            align-content: unset;
+            gap: 0.5rem;
+          }
+          :has(.apr-text.has-months),
+          :has(.apr-text.has-down-payment) {
+            .term-labels {
+              width: 9.1ch;
+            }
+          }
+        }
+        .connectorWrapper {
+          padding: 0.28319rem 0.32369rem;
+          .text-type--connectorLinesText {
+            font-size: 0.5rem;
+          }
+        }
+        .offerOptionContent {
+          padding-left: 0.16181rem;
+          gap: 0.24275rem;
+          .offerOptionContent-top {
+            .text-type--pre-saving-amount {
+              font-size: 0.75rem;
+            }
+            .text-type--saving-amount {
+              font-size: 1.75rem;
+              letter-spacing: -0.07rem;
+            }
+          }
+          .offerOptionContent-bottom {
+            font-size: 0.5625rem;
+          }
+          &[data-offer-mode="text-only"] {
+            .offerOptionContent-top {
+              .text-type--pre-saving-amount {
+                font-size: 1em;
+              }
+              .text-type--saving-amount {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+      .section179connectorWrapper {
+        padding-top: 0.125rem;
+        gap: 0.5rem;
+        .connector-line {
+          width: 7.0625rem;
+          height: 0.05994rem;
+        }
+        .text-type--section179connectorLinesText {
+          font-size: 0.625rem;
+        }
+      }
+      .section179Content {
+        gap: 0.125rem;
+        grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+        .section179Heading {
+          .text-type--section179-text {
+            font-size: 1.375rem;
+            letter-spacing: -0.0275rem;
+          }
+        }
+        .section179Description {
+          .text-type--section179-post-text {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
   }
   &[data-preset="160x600"] {
+    .offerOptionContent[data-offer-mode="text-only"] {
+      /* AG: add this layout's headline size/width here; line limits live in the JSON. */
+    }
   }
   &[data-preset="300x250"] {
+    .offerOptionContent[data-offer-mode="text-only"] {
+      /* AG: add this layout's headline size/width here; line limits live in the JSON. */
+    }
   }
   &[data-preset="728x90"] {
+    .offerOptionContent[data-offer-mode="text-only"] {
+      /* AG: add this layout's headline size/width here; line limits live in the JSON. */
+    }
   }
 `;
 
@@ -614,11 +785,20 @@ export const Section179Block = (props: Section179BlockProps) => {
   const hasSavings = hasPreText || hasSavingAmount;
   const hasDescription = hasContent(fields.savingAmountPostText.value);
   const hasOffer = hasSavings || hasDescription;
+  const offerMode = hasSavingAmount
+    ? "amount"
+    : hasPreText
+      ? "text-only"
+      : "empty";
+  const preTextLimits = limits(
+    offerMode === "text-only"
+      ? "savingAmountPreTextNoAmount"
+      : "savingAmountPreText"
+  );
   const hasSection179Text = hasContent(fields.section179Text.value);
   const hasSection179PostText = hasContent(fields.section179PostText.value);
   const hasSection179 = hasSection179Text || hasSection179PostText;
   const termLimits = limits("termLabels");
-
   // 4. Three outer regions: finance/offer group, Section 179 connector, campaign.
   return (
     <Section179BlockWrapper
@@ -720,14 +900,18 @@ export const Section179Block = (props: Section179BlockProps) => {
                 )}
               </div>
             )}
-          <div className="offerOptionContent" hidden={!hasOffer}>
+          <div
+            className="offerOptionContent"
+            data-offer-mode={offerMode}
+            hidden={!hasOffer}
+          >
             <div className="offerOptionContent-top" hidden={!hasSavings}>
               {hasPreText && (
                 <TextElement
                   destructedProp={fields.savingAmountPreText}
                   dynamicClassName="pre-saving-amount"
                   fitOnlyOnOverflow
-                  {...limits("savingAmountPreText")}
+                  {...preTextLimits}
                 />
               )}
               {hasSavingAmount && (

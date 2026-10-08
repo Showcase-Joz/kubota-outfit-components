@@ -8,6 +8,10 @@
       "lines": 1,
       "textfit": false
     },
+    "savingAmountPreTextNoAmount": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPostText": {
       "lines": 2,
       "textfit": true,
@@ -29,6 +33,10 @@
       "textfit": false
     },
     "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreTextNoAmount": {
       "lines": 2,
       "textfit": false
     },
@@ -54,6 +62,10 @@
       "lines": 2,
       "textfit": false
     },
+    "savingAmountPreTextNoAmount": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPostText": {
       "lines": 2,
       "textfit": false
@@ -74,6 +86,10 @@
     },
     "savingAmountPreText": {
       "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreTextNoAmount": {
+      "lines": 3,
       "textfit": false
     },
     "savingAmountPostText": {
@@ -98,6 +114,10 @@
       "lines": 2,
       "textfit": false
     },
+    "savingAmountPreTextNoAmount": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPostText": {
       "lines": 2,
       "textfit": false
@@ -120,6 +140,10 @@
       "lines": 2,
       "textfit": false
     },
+    "savingAmountPreTextNoAmount": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPostText": {
       "lines": 2,
       "textfit": false
@@ -139,6 +163,10 @@
       "textfit": false
     },
     "savingAmountPreText": {
+      "lines": 2,
+      "textfit": false
+    },
+    "savingAmountPreTextNoAmount": {
       "lines": 2,
       "textfit": false
     },

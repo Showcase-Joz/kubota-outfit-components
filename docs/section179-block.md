@@ -1,8 +1,8 @@
 # Section 179 working component
 
 This is a functional starting layout, ready for your CSS and markup design pass.
-Your authored defaults are in `src/components/Section179Block.tsx`; no Figma
-matching or final typography has been applied.
+Your authored defaults and preset styles are in `src/components/Section179Block.tsx`.
+The AG print headline uses the Figma 28px Arial Black treatment.
 
 ## Reading the component
 
@@ -35,6 +35,29 @@ The offer area matches Offer Options V2: `offerOptionContent` contains
 `offerOptionContent-bottom` (description TextElement). Empty regions use `hidden`.
 The amount's `$` and `*` come from the existing CSS pseudo-elements, with no extra
 currency span or savings wrapper between the top region and its TextElements.
+
+## Text-only savings (AG)
+
+Clear `savingAmount` to an explicit empty string and enter the campaign wording
+in `savingAmountPreText`. The existing offer wrapper gets
+`data-offer-mode="text-only"`: pre-text becomes a large orange headline, while the
+amount and its currency/asterisk disappear. Its description and connectors remain.
+Entering an amount restores the usual smaller pre-text; zero is still an amount.
+Null/undefined retain the existing first-pass fallback behaviour.
+
+Print supports the three-line `2-Year<br/>Orange<br/>Protection*` heading at 28px,
+with an 8px gap before the description. Every other dimension has a marked
+text-only CSS section to finish as its artwork is developed. The separate
+`savingAmountPreTextNoAmount` entry in `Section179BlockTextSettings.json` controls
+the headline's line limit per dimension without changing the normal pre-text.
+It also accepts a `textSettings.savingAmountPreTextNoAmount` prop override.
+
+The AG artwork needs approximately 600 × 118px; the current print preview is
+558 × 96px. The sizing decision is pending, so the three-line heading can overflow
+the existing box. No dimension changes have been applied.
+
+These changes live in the shared library. The Editions template uses a pinned
+release and needs that release updated before it receives the new behaviour.
 
 ## Grouping and stacking
 

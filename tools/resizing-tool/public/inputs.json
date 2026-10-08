@@ -485,7 +485,7 @@
     "tag": "section179Text",
     "type": "Variables::Text",
     "custom_title": "Section 179 Description",
-    "hint": "Optional. Clear to hide. Max 2 lines.",
+    "hint": "Optional. Clear to hide. Conditional height.",
     "position": 16,
     "definition": {
       "paragraph": false,

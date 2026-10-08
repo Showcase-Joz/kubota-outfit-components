@@ -34,10 +34,10 @@ it("switches to the Section 179 print area and restores standard sizes for other
   const stage = () => container.querySelector(".comparison-stage");
   expect(stage()).toHaveStyle({ width: "598px", height: "181px" });
   rerender(preview("section179", "print", "exact"));
-  expect(stage()).toHaveStyle({ width: "638px", height: "107px" });
+  expect(stage()).toHaveStyle({ width: "558px", height: "96px" });
   expect(container.querySelector(".component-preview")).toHaveStyle({
-    width: "638px",
-    height: "107px",
+    width: "558px",
+    height: "96px",
   });
   for (const component of ["warranty", "componentStarter", "offer"]) {
     rerender(preview(component, "print", "exact"));

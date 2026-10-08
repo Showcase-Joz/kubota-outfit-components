@@ -153,7 +153,7 @@ it("tracks Section 179 inputs separately and exposes campaign fields only for it
     "300x600"
   );
   expect(section179Preview.getPreviewInputs(state)[field].value).toBe(
-    "Section 179 Tax Deduction"
+    "Section 179†"
   );
   for (const tag of [
     "section179connectorLinesText",
