@@ -600,6 +600,7 @@ const Section179BlockWrapper = styled.div`
               letter-spacing: -0.035rem;
             }
             &.apr-length--long {
+              .text-type--offerAPR,
               .percentage {
                 font-size: 1.6rem;
               }
@@ -616,19 +617,19 @@ const Section179BlockWrapper = styled.div`
 
           :has(.apr-available.has-down-payment) {
             .term-labels {
-              font-size: 0.875rem;
+              font-size: 0.55rem;
               width: 12.8ch;
             }
           }
           :has(.apr-available.has-months) {
             .term-labels {
-              font-size: 0.875rem;
+              font-size: 0.55rem;
               width: 11.5ch;
             }
           }
           :has(.apr-available.has-months.has-down-payment) {
             .term-labels {
-              font-size: 0.7rem;
+              font-size: 0.55rem;
               width: 18ch;
             }
           }
@@ -636,12 +637,18 @@ const Section179BlockWrapper = styled.div`
           :has(.apr-text) {
             height: unset;
             align-content: unset;
-            gap: 0.5rem;
+            align-self: center;
           }
           :has(.apr-text.has-months),
           :has(.apr-text.has-down-payment) {
             .term-labels {
               width: 9.1ch;
+            }
+          }
+          :has(.apr-text.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.55rem;
+              width: 12.1ch;
             }
           }
         }
@@ -692,6 +699,8 @@ const Section179BlockWrapper = styled.div`
       .section179Content {
         gap: 0.125rem;
         grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+        justify-self: center;
+        width: 100%;
         .section179Heading {
           .text-type--section179-text {
             font-size: 1.375rem;
