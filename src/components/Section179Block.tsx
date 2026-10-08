@@ -161,17 +161,17 @@ export type Section179BlockTextSettings = Partial<
 export const defaultSection179BlockFallbackContent: Section179BlockFallbackContent =
   {
     backgroundColor: { value: "white" },
-    aPR: { value: "available" },
+    aPR: { value: "0" },
     paymentMonths: { value: "60" },
-    downPayment: { value: "0" },
-    aprPaymentMonthsConnectorText: { value: "for" },
+    downPayment: { value: "" },
+    aprPaymentMonthsConnectorText: { value: "up to" },
     connectorLinesText: { value: "or" },
     savingAmountPreText: { value: "Save up to" },
-    savingAmount: { value: "0" },
-    savingAmountPostText: { value: "on select models" },
-    section179connectorLinesText: { value: "or" },
-    section179Text: { value: "Section 179 Tax Deduction" },
-    section179PostText: { value: "on select models" },
+    savingAmount: { value: "12000" },
+    savingAmountPostText: { value: `On Select<br/>Kubota Series Equipment` },
+    section179connectorLinesText: { value: "plus" },
+    section179Text: { value: "Section 179†" },
+    section179PostText: { value: "tax savings" },
   };
 
 const Section179BlockWrapper = styled.div`
