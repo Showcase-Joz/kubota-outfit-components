@@ -452,6 +452,8 @@ const Section179BlockWrapper = styled.div`
     .section179-block-content {
       grid-template-columns: minmax(0, auto) auto minmax(0, 7.4rem);
       gap: 1rem;
+      width: 100%;
+
       .financeOfferGroup {
         gap: 1rem;
         grid-template-columns: minmax(0, auto) auto minmax(0, auto);
@@ -586,7 +588,6 @@ const Section179BlockWrapper = styled.div`
     .section179-block-content {
       padding: 1rem;
       gap: 0.375rem;
-      width: 100%;
       .financeOfferGroup {
         gap: 0.4855rem;
         .financingContent {
