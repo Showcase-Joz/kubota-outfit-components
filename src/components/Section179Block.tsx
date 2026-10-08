@@ -214,6 +214,7 @@ const Section179BlockWrapper = styled.div`
     grid-template-areas: "financeOfferGroup section179ConnectorContent section179OptionContent";
     align-items: center;
     width: fit-content;
+    justify-self: center;
   }
 
   .financeOfferGroup {
@@ -421,7 +422,7 @@ const Section179BlockWrapper = styled.div`
       gap: 1rem;
       .financeOfferGroup {
         gap: 1rem;
-        grid-template-columns: minmax(0, auto) auto minmax(0, 16rem);
+        grid-template-columns: minmax(0, auto) auto minmax(0, auto);
         .financingContent {
           /* gap: 0.5rem; */
 
@@ -430,6 +431,11 @@ const Section179BlockWrapper = styled.div`
             .percentage {
               font-size: 2.5rem;
               letter-spacing: -0.07rem;
+            }
+            &.apr-length--long {
+              .percentage {
+                font-size: 1.6rem;
+              }
             }
           }
           .term-labels {
@@ -440,11 +446,17 @@ const Section179BlockWrapper = styled.div`
               width: 8.5ch;
             }
           }
-          :has(.apr-available.has-months),
+
           :has(.apr-available.has-down-payment) {
             .term-labels {
               font-size: 0.875rem;
-              width: 14ch;
+              width: 12.8ch;
+            }
+          }
+          :has(.apr-available.has-months) {
+            .term-labels {
+              font-size: 0.875rem;
+              width: 11.5ch;
             }
           }
           :has(.apr-available.has-months.has-down-payment) {
@@ -457,6 +469,7 @@ const Section179BlockWrapper = styled.div`
           :has(.apr-text) {
             height: unset;
             align-content: unset;
+            gap: 0.5rem;
           }
           :has(.apr-text.has-months),
           :has(.apr-text.has-down-payment) {

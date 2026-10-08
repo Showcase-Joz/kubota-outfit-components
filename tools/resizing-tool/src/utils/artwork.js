@@ -95,10 +95,10 @@ export const artwork = {
   section179: {
     print: {
       image:
-        "https://files.outfit.io/media_library_items/697385/Incentives.png",
-      // image:
-      //   "https://files.outfit.io/media_library_items/697386/Incentives-1.png",
-      hide: false,
+        // "https://files.outfit.io/media_library_items/697385/Incentives.png",
+        // image:
+        "https://files.outfit.io/media_library_items/697386/Incentives-1.png",
+      hide: true,
       opacity: 0.3,
     },
     tractru: {
