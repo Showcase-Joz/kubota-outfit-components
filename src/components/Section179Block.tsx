@@ -74,6 +74,10 @@ export interface Section179BlockProps extends Section179BlockFallbackContent {
    */
   downPayment?: Section179BlockField;
   /**
+   * Override the default financial text for the offer. This is useful if you want to customize the text for a specific offer or campaign. Allows for a maximum of 3 lines. If omitted, the default financial text will be used.
+   */
+  financeTextOverride?: Section179BlockField;
+  /**
    * Connector text between the APR/Months and the saving amount.
    * Choice options: "and", "or", "with", "plus", "minus", "for", "to", "from", "at", "in", "on", "over", "under".
    * Can be omitted if not applicable to the offer.
@@ -130,6 +134,7 @@ export type Section179BlockFallbackContent = {
   aPR?: Section179BlockField;
   paymentMonths?: Section179BlockField;
   downPayment?: Section179BlockField;
+  financeTextOverride?: Section179BlockField;
   aprPaymentMonthsConnectorText?: Section179BlockField;
   connectorLinesText?: Section179BlockField;
   savingAmountPreText?: Section179BlockField;
@@ -166,6 +171,7 @@ export const defaultSection179BlockFallbackContent: Section179BlockFallbackConte
     aPR: { value: "0" },
     paymentMonths: { value: "60" },
     downPayment: { value: "" },
+    financeTextOverride: { value: "" },
     aprPaymentMonthsConnectorText: { value: "up to" },
     connectorLinesText: { value: "or" },
     savingAmountPreText: { value: "Save up to" },
@@ -261,7 +267,35 @@ const Section179BlockWrapper = styled.div`
       min-width: 0;
       text-wrap: balance;
       text-wrap-style: balance;
+      display: none;
     }
+
+    :has(.hide-financial-text-override) {
+      .standard-terms.term-labels {
+        display: block;
+      }
+      .financial-text-override-wrapper {
+        display: none;
+      }
+    }
+    :has(.has-financial-text-override) {
+      .standard-terms.term-labels {
+        display: none;
+      }
+      .financial-text-override-wrapper {
+        display: block;
+      }
+    }
+
+    /* .financial-text-override-wrapper:not(.has-financial-text-override)
+      ~ .standard-terms {
+      display: block;
+    } */
+
+    /* .term-labels.has-financial-text-override.financial-text-override-wrapper
+      + .term-labels.standard-terms {
+      display: none;
+    } */
   }
 
   .connectorWrapper,
@@ -510,6 +544,9 @@ const Section179BlockWrapper = styled.div`
             .term-labels {
               width: 9.1ch;
             }
+          }
+          .term-labels + .term-labels.financial-text-override-wrapper {
+            width: 12.5ch;
           }
         }
 
@@ -790,6 +827,7 @@ export const Section179Block = (props: Section179BlockProps) => {
   const hasFinancing = hasContent(fields.aPR.value);
   const hasMonths = hasContent(fields.paymentMonths.value);
   const hasDownPayment = hasContent(fields.downPayment.value);
+  const hasfinanceTextOverride = hasContent(fields.financeTextOverride.value);
   const hasPreText = hasContent(fields.savingAmountPreText.value);
   const hasSavingAmount = hasContent(fields.savingAmount.value);
   const hasSavings = hasPreText || hasSavingAmount;
@@ -809,6 +847,12 @@ export const Section179Block = (props: Section179BlockProps) => {
   const hasSection179PostText = hasContent(fields.section179PostText.value);
   const hasSection179 = hasSection179Text || hasSection179PostText;
   const termLimits = limits("termLabels");
+
+  console.log(
+    "Section179Block: hasfinanceTextOverride",
+    hasfinanceTextOverride,
+    fields
+  );
   // 4. Three outer regions: finance/offer group, Section 179 connector, campaign.
   return (
     <Section179BlockWrapper
@@ -832,7 +876,7 @@ export const Section179Block = (props: Section179BlockProps) => {
                 <span className="percentage">%</span>
               </div>
               <div
-                className={`term-labels ${hasMonths ? "has-months" : ""} ${
+                className={`term-labels standard-terms ${hasMonths ? "has-months" : ""} ${
                   hasDownPayment ? "has-down-payment" : ""
                 } ${available ? "apr-available" : "apr-text"} `}
               >
@@ -891,6 +935,16 @@ export const Section179Block = (props: Section179BlockProps) => {
                     )}
                   </div>
                 </Limiter>
+              </div>
+              <div
+                className={`term-labels financial-text-override-wrapper ${hasfinanceTextOverride ? "has-financial-text-override" : "hide-financial-text-override"}`}
+              >
+                <TextElement
+                  destructedProp={fields.financeTextOverride}
+                  dynamicClassName="financial-text-override"
+                  fitOnlyOnOverflow
+                  {...limits("financeTextOverride")}
+                />
               </div>
             </div>
           )}

@@ -4,6 +4,10 @@
       "lines": 3,
       "textfit": false
     },
+    "financeTextOverride": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPreText": {
       "lines": 1,
       "textfit": false
@@ -32,6 +36,10 @@
       "lines": 2,
       "textfit": false
     },
+    "financeTextOverride": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPreText": {
       "lines": 2,
       "textfit": false
@@ -58,6 +66,10 @@
       "lines": 2,
       "textfit": false
     },
+    "financeTextOverride": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPreText": {
       "lines": 2,
       "textfit": false
@@ -81,6 +93,10 @@
   },
   "300x600": {
     "termLabels": {
+      "lines": 3,
+      "textfit": false
+    },
+    "financeTextOverride": {
       "lines": 3,
       "textfit": false
     },
@@ -110,6 +126,10 @@
       "lines": 2,
       "textfit": false
     },
+    "financeTextOverride": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPreText": {
       "lines": 2,
       "textfit": false
@@ -136,6 +156,10 @@
       "lines": 2,
       "textfit": false
     },
+    "financeTextOverride": {
+      "lines": 3,
+      "textfit": false
+    },
     "savingAmountPreText": {
       "lines": 2,
       "textfit": false
@@ -160,6 +184,10 @@
   "728x90": {
     "termLabels": {
       "lines": 2,
+      "textfit": false
+    },
+    "financeTextOverride": {
+      "lines": 3,
       "textfit": false
     },
     "savingAmountPreText": {

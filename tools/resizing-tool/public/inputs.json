@@ -239,11 +239,40 @@
     }
   },
   {
+    "tag": "financeTextOverride",
+    "type": "Variables::Text",
+    "custom_title": "Finance Text Override",
+    "hint": "Optional text to override the combined APR, Payment Months, and Down Payment text. Clear to hide and reinstate the default texts.",
+    "position": 8,
+    "definition": {
+      "paragraph": false,
+      "heading_level_one": false,
+      "heading_level_two": false,
+      "heading_level_three": false,
+      "heading_level_four": false,
+      "heading_level_five": false,
+      "heading_level_six": false,
+      "unordered_list": false,
+      "ordered_list": false,
+      "no_formatting": true,
+      "hyperlink": false,
+      "text_color_style": false,
+      "remove_formatting": false,
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "strikethrough": false,
+      "alignment": false,
+      "disable_inline_edit": false,
+      "special_characters": false
+    }
+  },
+  {
     "tag": "savingAmountPreText",
     "type": "Variables::Text",
     "custom_title": "Saving Amount Pre-Text",
     "hint": "Hidden when cleared. In Warranty V2 it also hides when Saving Amount is empty. Include any leading OR yourself.",
-    "position": 8,
+    "position": 9,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -272,7 +301,7 @@
     "type": "Variables::Number",
     "custom_title": "Saving Amount",
     "hint": "Clear to omit the amount. In Warranty V2 this also hides savings pre-text and reveals any discount text. Zero remains a supplied amount.",
-    "position": 9,
+    "position": 10,
     "definition": {
       "min": 0,
       "max": 99999,
@@ -284,7 +313,7 @@
     "type": "Variables::Text",
     "custom_title": "Discount text",
     "hint": "Warranty V2: shown when Saving Amount is empty. Include any leading OR yourself.",
-    "position": 10,
+    "position": 11,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -313,7 +342,7 @@
     "type": "Variables::Text",
     "custom_title": "Offer description",
     "hint": "Shared descriptive copy. It can remain when the savings heading and amount are omitted.",
-    "position": 11,
+    "position": 12,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -342,7 +371,7 @@
     "type": "Variables::Choice",
     "custom_title": "Offer Connector Text",
     "hint": "",
-    "position": 12,
+    "position": 13,
     "definition": {
       "choices": [
         {
@@ -387,7 +416,7 @@
     "type": "Variables::Text",
     "custom_title": "Warranty text",
     "hint": "Warranty V2: large heading, e.g. 2-Year. Text-fit is off for the initial design pass.",
-    "position": 13,
+    "position": 14,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -416,7 +445,7 @@
     "type": "Variables::Choice",
     "custom_title": "Service type",
     "hint": "Warranty V2: hiding this releases its space for warranty text.",
-    "position": 14,
+    "position": 15,
     "definition": {
       "choices": [
         {
@@ -441,7 +470,7 @@
     "type": "Variables::Choice",
     "custom_title": "Section 179 Connector Text",
     "hint": "Joins savings to section 179 . Blank (no text) keeps the lines; Hide connector removes the divider.",
-    "position": 15,
+    "position": 16,
     "definition": {
       "choices": [
         {
@@ -486,7 +515,7 @@
     "type": "Variables::Text",
     "custom_title": "Section 179 Description",
     "hint": "Optional. Clear to hide. Conditional height.",
-    "position": 16,
+    "position": 17,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -515,7 +544,7 @@
     "type": "Variables::Text",
     "custom_title": "Section 179 Post Text",
     "hint": "Optional. Clear to hide. Max 1 line.",
-    "position": 17,
+    "position": 18,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -544,7 +573,7 @@
     "type": "Variables::Choice",
     "custom_title": "Website banner CTA",
     "hint": "Only applies to the 584 \u00d7 600 website banner. The CTA occupies space inside the same component rectangle.",
-    "position": 18,
+    "position": 19,
     "definition": {
       "choices": [
         {
@@ -565,7 +594,7 @@
     "type": "Variables::Text",
     "custom_title": "CTA text",
     "hint": "Only used in the website-banner comparison.",
-    "position": 19,
+    "position": 20,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,
@@ -594,7 +623,7 @@
     "type": "Variables::Text",
     "custom_title": "Component starter placeholder",
     "hint": "Sample content for ComponentStarter. Clear to hide the text.",
-    "position": 20,
+    "position": 21,
     "definition": {
       "paragraph": false,
       "heading_level_one": false,

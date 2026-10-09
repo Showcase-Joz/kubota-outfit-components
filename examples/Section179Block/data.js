@@ -5,6 +5,7 @@ export const data = {
   aprPaymentMonthsConnectorText: { value: "up to" },
   paymentMonths: { value: "60" },
   downPayment: { value: "" },
+  financeTextOverride: { value: "" },
   connectorLinesText: { value: "or" },
   savingAmountPreText: { value: "Save up to" },
   savingAmount: { value: "12000" },

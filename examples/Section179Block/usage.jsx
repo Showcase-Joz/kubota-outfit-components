@@ -11,6 +11,7 @@ export const Section179BlockExample = ({ preset = "print", inputs = {} }) => (
       aPR={inputs.aPR}
       paymentMonths={inputs.paymentMonths}
       downPayment={inputs.downPayment}
+      financeTextOverride={inputs.financeTextOverride}
       aprPaymentMonthsConnectorText={inputs.aprPaymentMonthsConnectorText}
       connectorLinesText={inputs.connectorLinesText}
       savingAmountPreText={inputs.savingAmountPreText}

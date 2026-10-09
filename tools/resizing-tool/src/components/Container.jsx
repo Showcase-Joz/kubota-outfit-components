@@ -71,7 +71,8 @@ const Workspace = styled.main`
 
 export const Container = ({ inputs = {} }) => {
   const component = resolveComponent(inputs.component_selection?.value);
-  const { label, model, data, dimensionOverrides } = previewComponents[component];
+  const { label, model, data, dimensionOverrides } =
+    previewComponents[component];
   const presetId = model.resolvePreset(inputs.aspect_selection?.value);
   const preset = {
     ...dimensions[presetId],
@@ -164,6 +165,7 @@ export const Container = ({ inputs = {} }) => {
                 }
                 paymentMonths={inputs.paymentMonths}
                 downPayment={inputs.downPayment}
+                financeTextOverride={inputs.financeTextOverride}
                 connectorLinesText={inputs.connectorLinesText}
                 savingAmountPreText={inputs.savingAmountPreText}
                 savingAmount={inputs.savingAmount}
