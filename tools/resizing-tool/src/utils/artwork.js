@@ -129,13 +129,13 @@ export const artwork = {
     "300x250": {
       image:
         "https://files.outfit.io/media_library_items/697610/Financing%252BTerm_CashDiscount%2520%25285%2529.png",
-      hide: false,
+      hide: true,
       opacity: 0.3,
     },
     "728x90": {
       image:
-        "https://files.outfit.io/media_library_items/697279/Financing%252BTerm_CashDiscount-3.png",
-      hide: true,
+        "https://files.outfit.io/media_library_items/697611/Financing%252BTerm_CashDiscount%2520%25286%2529.png",
+      hide: false,
       opacity: 0.3,
     },
   },

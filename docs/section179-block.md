@@ -67,8 +67,8 @@ connector, and savings together in their own grid. `connectorLinesText` renders 
 `.connectorWrapper`; `section179connectorLinesText` renders before Section 179
 inside `.section179connectorWrapper`, with its two connector lines.
 
-Print, Tractru and 728x90 use a horizontal outer layout. Web banner, 300x600,
-160x600 and 300x250 stack the campaign connector and content below the
+Print and Tractru use a horizontal outer layout. Web banner, 300x600,
+160x600, 300x250 and 728x90 stack the campaign connector and content below the
 finance/offer group. The outer grid controls this arrangement:
 
 ```css

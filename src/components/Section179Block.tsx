@@ -457,11 +457,12 @@ const Section179BlockWrapper = styled.div`
     display: none !important;
   }
 
-  /* Vertical formats stack the three outer regions; the offer group stays together. */
+  /* Compact offer areas stack the outer regions, including the 728x90 banner. */
   &[data-preset="web-banner"],
   &[data-preset="300x600"],
   &[data-preset="160x600"],
-  &[data-preset="300x250"] {
+  &[data-preset="300x250"],
+  &[data-preset="728x90"] {
     .section179-block-content {
       width: 100%;
       grid-template-columns: minmax(0, 1fr);
@@ -1029,8 +1030,142 @@ const Section179BlockWrapper = styled.div`
     }
   }
   &[data-preset="728x90"] {
-    .offerOptionContent[data-offer-mode="text-only"] {
-      /* AG: add this layout's headline size/width here; line limits live in the JSON. */
+    .section179-block-content {
+      padding: 0.4375rem 0.4375rem 0.5rem 0.4375rem;
+      gap: 0.25rem;
+
+      .financeOfferGroup {
+        /* gap: 0.4855rem; */
+        grid-template-columns: minmax(0, auto) auto minmax(0, auto);
+        justify-content: space-evenly;
+        .financingContent {
+          gap: 0.1875rem;
+          .apr-wrapper {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 1rem;
+              letter-spacing: -0.02rem;
+            }
+            &.apr-length--long {
+              .text-type--offerAPR,
+              .percentage {
+                font-size: 1rem;
+              }
+            }
+          }
+          .term-labels {
+            font-size: 0.4375rem;
+          }
+          :has(.apr-available) {
+            .term-labels {
+              width: 8.5ch;
+            }
+          }
+
+          :has(.apr-available.has-down-payment),
+          :has(.apr-available.has-months),
+          :has(.apr-available.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.4rem;
+              width: 17ch;
+            }
+          }
+
+          :has(.apr-text) {
+            height: unset;
+            align-content: unset;
+            align-self: center;
+          }
+          :has(.apr-text.has-months) {
+            .term-labels {
+              width: 9.1ch;
+            }
+          }
+
+          :has(.apr-text.has-down-payment) {
+            .term-labels {
+              width: 11.5ch;
+            }
+          }
+          :has(.apr-text.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.4rem;
+              width: 17ch;
+            }
+          }
+          .term-labels + .term-labels.financial-text-override-wrapper {
+            width: 12.5ch;
+          }
+        }
+        .connectorWrapper {
+          padding: 0.25rem;
+          .text-type--connectorLinesText {
+            font-size: 0.375rem;
+          }
+        }
+        .offerOptionContent {
+          height: 100%;
+          align-content: space-around;
+          .offerOptionContent-top {
+            grid-template-columns: minmax(0, min-content);
+            .text-type--pre-saving-amount {
+              font-size: 0.4375rem;
+            }
+            .text-type--saving-amount {
+              font-size: 1rem;
+              letter-spacing: -0.02rem;
+            }
+          }
+          .offerOptionContent-bottom {
+            font-size: 0.375rem;
+            width: min-content;
+            min-width: 22ch;
+          }
+          &[data-offer-mode="text-only"] {
+            height: fit-content;
+            .offerOptionContent-top {
+              .text-type--pre-saving-amount {
+                font-size: 0.62rem;
+                letter-spacing: -0.0125rem;
+                min-width: 14ch;
+              }
+              .text-type--saving-amount {
+                display: none;
+              }
+            }
+            .text-type--post-saving-amount {
+              font-size: 0.375rem;
+            }
+          }
+        }
+      }
+      .section179connectorWrapper {
+        gap: 0.375rem;
+        .connector-line {
+          width: 4.71875rem;
+          height: 0.0625rem;
+        }
+        .text-type--section179connectorLinesText {
+          font-size: 0.4375rem;
+        }
+      }
+      .section179Content {
+        gap: 0.125rem;
+        grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+        justify-self: center;
+        .section179Heading {
+          .text-type--section179-text {
+            font-size: 0.8125rem;
+            letter-spacing: -0.01625rem;
+          }
+        }
+        .section179Description {
+          max-width: 100%;
+          .text-type--section179-post-text {
+            font-size: 0.4375rem;
+          }
+        }
+      }
     }
   }
 `;
