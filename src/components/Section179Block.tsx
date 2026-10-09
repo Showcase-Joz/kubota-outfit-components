@@ -688,6 +688,10 @@ const Section179BlockWrapper = styled.div`
               width: 12.1ch;
             }
           }
+          .term-labels + .term-labels.financial-text-override-wrapper {
+            width: 12.5ch;
+            font-size: 0.625rem;
+          }
         }
         .connectorWrapper {
           padding: 0.28319rem 0.32369rem;
@@ -696,7 +700,7 @@ const Section179BlockWrapper = styled.div`
           }
         }
         .offerOptionContent {
-          padding-left: 0.16181rem;
+          /* padding-left: 0.16181rem; */
           gap: 0.24275rem;
           .offerOptionContent-top {
             .text-type--pre-saving-amount {
@@ -713,7 +717,7 @@ const Section179BlockWrapper = styled.div`
           &[data-offer-mode="text-only"] {
             .offerOptionContent-top {
               .text-type--pre-saving-amount {
-                font-size: 1em;
+                font-size: 1rem;
               }
               .text-type--saving-amount {
                 display: none;
@@ -753,13 +757,275 @@ const Section179BlockWrapper = styled.div`
     }
   }
   &[data-preset="160x600"] {
-    .offerOptionContent[data-offer-mode="text-only"] {
-      /* AG: add this layout's headline size/width here; line limits live in the JSON. */
+    .section179-block-content {
+      padding: 0.625rem 0.65rem;
+      gap: 0.375rem;
+      .financeOfferGroup {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: minmax(0, auto) auto minmax(0, 1fr);
+        grid-template-areas:
+          "financingOption"
+          "connectorContent"
+          "offerOptionContent";
+
+        .financingContent {
+          /* gap: 0.32369rem; */
+          grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+          .apr-wrapper {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 1.5rem;
+              letter-spacing: -0.03rem;
+            }
+          }
+          .term-labels {
+            font-size: 0.625rem;
+          }
+          :has(.apr-available) {
+            .term-labels {
+            }
+          }
+
+          :has(.apr-available.has-down-payment) {
+            .term-labels {
+              font-size: 0.55rem;
+            }
+          }
+          :has(.apr-available.has-months) {
+            .term-labels {
+              font-size: 0.55rem;
+            }
+          }
+          :has(.apr-available.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.5rem;
+              width: 24ch;
+            }
+          }
+
+          :has(.apr-text) {
+            height: unset;
+            align-content: unset;
+            align-self: center;
+          }
+          :has(.apr-text.has-months),
+          :has(.apr-text.has-down-payment) {
+            .term-labels {
+              width: max-content;
+            }
+          }
+          :has(.apr-text.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.5rem;
+              width: 20ch;
+            }
+          }
+          .term-labels + .term-labels.financial-text-override-wrapper {
+            font-size: 0.625rem;
+            width: 17ch;
+          }
+        }
+        .connectorWrapper {
+          padding: 0.125rem 0.25rem 0.1875rem 0.25rem;
+          justify-self: start;
+          .text-type--connectorLinesText {
+            font-size: 0.4375rem;
+          }
+        }
+        .offerOptionContent {
+          padding-left: 0.16181rem;
+          gap: 0.24275rem;
+          .offerOptionContent-top {
+            .text-type--pre-saving-amount {
+              font-size: 0.625rem;
+            }
+            .text-type--saving-amount {
+              font-size: 1.5rem;
+              letter-spacing: -0.03rem;
+            }
+          }
+          .offerOptionContent-bottom {
+            font-size: 0.5rem;
+          }
+          &[data-offer-mode="text-only"] {
+            .offerOptionContent-top {
+              .text-type--pre-saving-amount {
+                font-size: 0.875rem;
+              }
+              .text-type--saving-amount {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+      .section179connectorWrapper {
+        padding-top: 0.125rem;
+        gap: 0.5rem;
+        .connector-line {
+          width: 3.15625rem;
+          height: 0.05994rem;
+        }
+        .text-type--section179connectorLinesText {
+          font-size: 0.4375rem;
+        }
+      }
+      .section179Content {
+        gap: 0.125rem;
+        grid-template-rows: minmax(0, max-content) minmax(0, 1fr);
+        justify-self: start;
+        width: 100%;
+        .section179Heading {
+          .text-type--section179-text {
+            font-size: 0.9rem;
+            letter-spacing: -0.01875rem;
+          }
+        }
+        .section179Description {
+          .text-type--section179-post-text {
+            font-size: 0.56rem;
+          }
+        }
+      }
     }
   }
   &[data-preset="300x250"] {
-    .offerOptionContent[data-offer-mode="text-only"] {
-      /* AG: add this layout's headline size/width here; line limits live in the JSON. */
+    .section179-block-content {
+      padding: 0.64225rem;
+      gap: 0.32113rem;
+      grid-template-rows: minmax(0, auto) auto minmax(0, auto);
+      align-content: center;
+      height: 100%;
+      .financeOfferGroup {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: minmax(0, auto) auto minmax(0, auto);
+        grid-template-areas:
+          "financingOption"
+          "connectorContent"
+          "offerOptionContent";
+        gap: 0.21406rem;
+        .financingContent {
+          gap: 0.27719rem;
+          padding-bottom: 0.2555rem;
+          grid-template-rows: minmax(0, auto) minmax(0, auto);
+          .apr-wrapper {
+            .text-type--offerAPR,
+            .percentage {
+              font-size: 1.5rem;
+              letter-spacing: -0.03rem;
+            }
+          }
+          .term-labels {
+            font-size: 0.5625rem;
+          }
+          :has(.apr-available) {
+            .term-labels {
+            }
+          }
+
+          :has(.apr-available.has-down-payment) {
+            .term-labels {
+              font-size: 0.52rem;
+            }
+          }
+          :has(.apr-available.has-months) {
+            .term-labels {
+              font-size: 0.52rem;
+            }
+          }
+          :has(.apr-available.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.42rem;
+              width: 24ch;
+            }
+          }
+
+          :has(.apr-text) {
+            height: unset;
+            align-content: unset;
+            align-self: center;
+          }
+          :has(.apr-text.has-months),
+          :has(.apr-text.has-down-payment) {
+            .term-labels {
+              width: max-content;
+            }
+          }
+          :has(.apr-text.has-months.has-down-payment) {
+            .term-labels {
+              font-size: 0.52rem;
+              width: 20ch;
+            }
+          }
+          .term-labels + .term-labels.financial-text-override-wrapper {
+            font-size: 0.5625rem;
+            width: 17ch;
+          }
+        }
+        .connectorWrapper {
+          padding: 0.16056rem 0.21406rem;
+          justify-self: start;
+          .text-type--connectorLinesText {
+            font-size: 0.375rem;
+          }
+        }
+        .offerOptionContent {
+          gap: 0.24275rem;
+          padding-top: 0.21406rem;
+          .offerOptionContent-top {
+            .text-type--pre-saving-amount {
+              font-size: 0.5625rem;
+            }
+            .text-type--saving-amount {
+              font-size: 1.5rem;
+              letter-spacing: -0.03rem;
+            }
+          }
+          .offerOptionContent-bottom {
+            font-size: 0.4375rem;
+          }
+          &[data-offer-mode="text-only"] {
+            .offerOptionContent-top {
+              .text-type--pre-saving-amount {
+                font-size: 0.8125rem;
+                letter-spacing: -0.01625rem;
+              }
+              .text-type--saving-amount {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+      .section179connectorWrapper {
+        padding-top: 0.125rem;
+        gap: 0.32113rem;
+        .connector-line {
+          width: 2.72463rem;
+          height: 0.05131rem;
+        }
+        .text-type--section179connectorLinesText {
+          font-size: 0.4375rem;
+        }
+      }
+      .section179Content {
+        gap: 0.125rem;
+        grid-template-rows: minmax(0, max-content) minmax(0, 1fr);
+        justify-self: start;
+        width: 100%;
+        .section179Heading {
+          .text-type--section179-text {
+            font-size: 0.875rem;
+            letter-spacing: -0.0175rem;
+          }
+        }
+        .section179Description {
+          padding-bottom: 0.21406rem;
+          .text-type--section179-post-text {
+            font-size: 0.4375rem;
+          }
+        }
+      }
     }
   }
   &[data-preset="728x90"] {

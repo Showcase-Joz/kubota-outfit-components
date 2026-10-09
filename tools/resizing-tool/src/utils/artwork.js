@@ -117,19 +117,19 @@ export const artwork = {
       image:
         "https://files.outfit.io/media_library_items/697508/Financing%252BTerm_CashDiscount%2520%25283%2529.png",
       // "https://files.outfit.io/media_library_items/697507/Financing%252BTerm_CashDiscount%2520%25282%2529.png",
-      hide: false,
+      hide: true,
       opacity: 0.3,
     },
     "160x600": {
       image:
-        "https://files.outfit.io/media_library_items/697280/Financing%252BTerm_CashDiscount-1.png",
+        "https://files.outfit.io/media_library_items/697605/Financing%252BTerm_CashDiscount%2520%25284%2529.png",
       hide: true,
       opacity: 0.3,
     },
     "300x250": {
       image:
-        "https://files.outfit.io/media_library_items/697278/Financing%252BTerm_CashDiscount-2.png",
-      hide: true,
+        "https://files.outfit.io/media_library_items/697610/Financing%252BTerm_CashDiscount%2520%25285%2529.png",
+      hide: false,
       opacity: 0.3,
     },
     "728x90": {
